@@ -1,0 +1,125 @@
+\documentclass[11pt]{book}
+
+%%%
+\usepackage{xspace}
+\newcommand{\ie}{\textit{i.e.,}\xspace}
+\newcommand{\eg}{\textit{e.g.,}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+%%%
+\usepackage{hyperref}
+%%%
+\usepackage[draft]{graphicx}
+%%%
+
+\begin{document}
+
+\title{Halfway between the Gutter and the Stars}
+\author{Adrian Kuhn}
+\date{November 2010}
+\maketitle
+
+\chapter{Introduction}
+
+Other than common believe, software engineers do not spend most time writing code. An approximate 50--80\% of their time is spend on code orientation, ie navigation and understanding \cite{many}. User studies have found that developers use a wide set of cognitive clues for code orientation \cite{many}. Tool support for orientation, however, is typically limited to text file processing or hyperlinks at best. In our research, we explore how to support code orientation by naming, spatial and social clues in development tools.
+
+\begin{itemize}
+\item Lexical clues
+\item Structural clues
+\item Spatial clues
+\item Temporal clues
+\item Episodic clues
+\item Social clues
+\end{itemize}
+
+In this work, we present the following tools that explore the use of orientation clues for tool building. Each of these contributions has been published as one or more peer-review paper at an international conference or in an international journal. 
+
+\begin{itemize}
+\item Software Clustering \cite{Kuhn07a,Kuhn05a,Lung05a}
+\item  Feature Classification \cite{Kuhn06c,Kuhn05b}
+\item  Software Summarization \cite{Kuhn09a}
+\item  Spatial Representation \cite{Kuhn10c,Kuhn10b,Duca06c,Kuhn08a}
+\item  Ownership Map \cite{Girb05a}
+\item  Bug-Report Triage \cite{Matt09a}
+\item  Credibility in Code Search \cite{Gysi10b}
+\end{itemize}
+
+%%%
+
+Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
+
+{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
+be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
+\end{quotation}}
+
+Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
+
+When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
+
+When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
+
+is morning hours minutes seconds is date hours minutes
+seconds invalid time value hours 12 minutes 60 seconds 60
+
+%%%
+
+\chapter{Approches for Code Orientation}
+
+\chapter{Clustering Software by Lexical Clues}
+
+Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This paper proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this paper.
+
+In this paper, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
+
+\begin{itemize}
+  \item \textbf{Providing a first impression of an unfamiliar software system}. A common pattern when encountering an unknown or not well known software for the first time is ``Read all the Code in One Hour'' \cite{Deme02a}. Our objective is to support this task, and to provide a map with a survey of the system's most important topics and their location.
+  \item \textbf{Revealing the developer knowledge hidden in identifiers.} In practice, it is not external documentation, but identifer names and comments where developers put their knowledge about a system. Thus, our objective is not to locate externally defined domain concepts, but rather to derive topics from the actual use of vocabulary in source code.
+  \item \textbf{Enriching Software Analysis with informal information.} When analyzing formal information (\eg structure and behavior) we get only half of the picture: a crucial source of information is missing, namely, the semantics contained in the vocabulary of source code. Our objective is to reveal components or aspects when, for example, planning a large-scale refactoring. Therefore, we analyze how the code naming compares to the code structure: What is the distribution of linguistic topics over a system's modularization? Are the topics well-encapsulated by the modules or do they cross-cut the structure?
+\end{itemize}
+
+
+Our approach is based on Latent Semantic Indexing (LSI), an information retrieval technique that locates linguistic topics in a set of documents \cite{Deer90a,Marc04a}. We apply LSI to compute the linguistic similarity between source artifacts (\eg packages, classes or methods) and cluster them according to their similarity. This clustering partitions the system into linguistic topics that represent groups of documents using similar vocabulary. To identify how the clusters are related to each other, we use a correlation matrix \cite{Ling73a}. We employ LSI again to automatically label the clusters with their most relevant terms. And finally, to complete the picture, we use a map visualization to analyze the distribution of the concepts over the system's structure.
+
+We implemented this approach in a tool called Hapax\footnote{The name is derived from the term \emph{hapax legomenon}, that refers to a word occurring only once a given body of text.}, which is built on top of the Moose reengineering environment \cite{Duca05a,Nier05c}, and we apply the tool on several case studies, two of which are presented in this work: JEdit\footnote{http://www.jedit.org/} and JBoss\footnote{http://www.JBoss.org/}.
+
+This paper is based on our previous work, in which we first proposed semantic clustering \cite{Kuhn05a}. The main contributions of the current paper are:
+\begin{itemize}
+
+\item \emph{Topic distribution analysis.} In our previous work we introduced semantic clustering to detect linguistic topics given by parts of the system that use similar vocabulary. We complement the approach with the analysis of how topics are distributed over the system using a Distribution Map \cite{Duca06c}.
+
+\item \emph{Improvement of the labeling algorithm.} One important feature of semantic clustering is the automatic labeling -- \ie given a cluster we retrieve the most relevant labels for it. We propose an improved algorithm that takes also the similarity to the whole system into account.
+
+\item \emph{Case studies.} In our previous work, we showed the results of the clustering and labeling on different levels of abstraction on three case studies. In this paper we report on other two case studies.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Latent Semantic Indexing}\label{sec:LSI}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As with most information retrieval techniques, Latent Semantic Indexing (LSI) is based on the vector space model approach. This approach models documents as bag-of-words and arranges them in a term-document matrix $A$, such that $a_{i,j}$ equals the number of times term $t_i$ occurs in document $d_j$.
+
+LSI has been developed to overcome problems with synonymy and polysemy that occurred in prior vectorial approaches, and thus improves the basic vector space model by replacing the original term-document matrix with an approximation. This is done using singular value decomposition (SVD), a principal components analysis (PCA) technique originally used in signal processing to reduce noise while preserving the original signal. Assuming that the original term-document matrix is noisy (the aforementioned synonymy and polysemy), the approximation is interpreted as a noise reduced -- and thus better -- model of the text corpus.
+
+As an example, a typical search engine covers a text corpus with millions of web pages, containing some ten thousands of terms, which is reduced to a vector space with 200-500 dimensions only. In Software Analysis, the number of documents is much smaller and we typically reduce the text corpus to 20-50 dimensions.
+
+Even though search engines are the most common uses of LSI \cite{Berr94a}, there is a wide range of applications, such as automatic essay grading \cite{Folt99a}, automatic assignment of reviewers to submitted conference papers \cite{Duma92a},  cross-language search engines, thesauri, spell checkers and many more.
+In the field of software engineering LSI has been successfully applied to categorized source files \cite{Male00a} and open-source projects \cite{Kawa04a}, detect high-level conceptual clones \cite{Marc01a}, recover links between external documentation and source code \cite{Luci04a,Marc05a} and to compute the class cohesion \cite{Marc05a}. Furthermore LSI has proved useful in psychology to simulate language understanding of the human brain, including processes such as the language acquisition of children and other high-level comprehension phenomena \cite{Land97a}.
+
+\autoref{fig:lsi} schematically represents the LSI process. The document collection is modeled as a vector space. Each document is represented by the vector of its term occurrences, where terms are words appearing in the document. The term-document-matrix $A$ is a sparse matrix and represents the document vectors on the rows. This matrix is of size $n \times m$, where $m$ is the number of documents and $n$ the total number of terms over all documents. Each entry $a_{i,j}$ is the frequency of term $t_i$ in document $d_j$. A geometric interpretation of the term-document-matrix is as a set of document vectors occupying a vector space spanned by the terms. The similarity between documents is typically defined as the cosine or inner product between the corresponding vectors. Two documents are considered similar if their corresponding vectors point in the same direction.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.8\columnwidth]{lsi}
+\caption{LSI takes as input a set of documents and the terms occurrences, and returns as output a vector space containing all the terms and all the documents. The similarity between two items (\ie terms or documents) is given by the angle between their corresponding vectors.}
+\label{fig:lsi}
+\end{center}
+\end{figure}
+
+LSI starts with a raw term-document-matrix, weighted by a weighting function to balance out very rare and very common terms. SVD is used to break down the vector space model into less dimensions. This algorithm preserves as much information as possible about the relative distances between the document vectors, while collapsing them into a much smaller set of dimensions.
+
+SVD decomposes matrix $A$ into its singular values and its singular vectors, and yields -- when truncated at the $k$ largest singular values -- an approximation $A'$ of $A$ with rank $k$. Furthermore, not only the low-rank term-document matrix $A'$ can be computed but also a term-term matrix and a document-document matrix. Thus, LSI allows us to compute term-document, term-term and document-document similarities.
+
+As the rank is the number of linear-independent rows and columns of a matrix, the vector space spanned by $A'$ is of dimension $k$ only and much less complex than the initial space. When used for information retrieval, $k$ is typically about 200-500, while $n$ and $m$ may go into millions. When used to analyze software on the other hand, $k$ is typically about $20-50$ with vocabulary and documents in the range of thousands only. And since $A'$ is the best approximation of $A$ under the least-square-error criterion, the similarity between documents is preserved, while in the same time mapping semantically related terms on one axis of the reduced vector space and thus taking into account synonymy and polysemy. In other words, the initial term-document-matrix $A$ is a table with term occurrences and by breaking it down to much less dimension the latent meaning \emph{must} appear in $A'$ since there is now much less space to encode the same information. Meaningless occurrence data is transformed into meaningful concept information.
+
+
+\end{document}
