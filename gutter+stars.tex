@@ -7,9 +7,31 @@
 \newcommand{\etc}{\textit{etc.}\xspace}
 \newcommand{\etal}{\textit{et al.}\xspace}
 %%%
-\usepackage{hyperref}
+\usepackage{amsmath, amsthm, amssymb} 
+\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,
+ linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\figureautorefname}{Figure}
 %%%
 \usepackage[draft]{graphicx}
+%%%
+% --> for chapter on Hapax work
+\newcommand\concept[1]{#1\xspace}
+\newcommand\red{\concept{Red}}
+\newcommand\blue{\concept{Blue}}
+\newcommand\green{\concept{Green}}
+\newcommand\orange{\concept{Orange}}
+\newcommand\cyan{\concept{Cyan}}
+\newcommand\yellow{\concept{Yellow}}
+\newcommand\pink{\concept{Pink}}
+\newcommand\magenta{\concept{Magenta}}
+\newcommand\black{\concept{Black}}
+\newcommand\darkgreen{\concept{DarkGreen}}
+\newcommand\navy{\concept{Navy}}
+%%%
+% --> for chapter on LogLR work
+\newcommand{\loglr}{log-likelihood ratio\xspace}
+\newcommand{\loglrs}{log-likelihood ratios\xspace}
 %%%
 
 \begin{document}
@@ -18,6 +40,8 @@
 \author{Adrian Kuhn}
 \date{November 2010}
 \maketitle
+
+\tableofcontents
 
 \chapter{Introduction}
 
@@ -61,9 +85,53 @@ When we keep only the informal information, the purpose of the code is still rec
 is morning hours minutes seconds is date hours minutes
 seconds invalid time value hours 12 minutes 60 seconds 60
 
-%%%
+%%%%%%%%%%%%
 
 \chapter{Approches for Code Orientation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work, Semantic Clustering}\label{sec:soa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The use of information retrieval techniques for reverse engineering dates back to the late eighties. Frakes and Nejmeh proposed to apply them on source code as if it would be a natural language text corpus \cite{Frak87a}. They applied an IR system based on keyword matching, which allowed to perform simple searches using wildcards and set expressions.
+
+Antoniol \etal have published a series of papers on recovering code to documentation traceability \cite{Anto00c,Anto02b}. They use information retrieval as well, however with another approach. They rely on external documentation as text corpus, then they query the documentation with identifiers taken from source code to get matching external documents.
+
+Maletic and Marcus were the first to propose using LSI to analyze software systems. In a first work they categorized the source files of the Mosaic web browser and presented in several follow-ups other applications of LSI in software analysis \cite{Male00a}. Their work is a precursor of our work, as they proved that LSI is usable technique to compare software source documents. They apply a minimal-spanning-tree clustering and report on class names and average similarity of selected clusters. We broaden the approach by providing a visual notation that gives an overview of all the clusters and their relationships, and we provide the automatic labeling that takes the entire vocabulary into account and not only the class names.
+
+LSI was also used in other related areas: Marcus and Maletic used LSI to detect high-level conceptual clones, that is they go beyond just string based clone detection using the LSI capability to spot similar terms \cite{Marc01a}. They
+select a known implementation of an abstract datatype, and manually investigate all similar source documents to find high-level concept clones. The same authors also used LSI to recover links between external documentation and source code by querying the source code with queries from documentation \cite{Marc03b}.
+
+Kawaguchi \etal used LSI to categorize software systems in open-source software repositories \cite{Kawa04a}. Their approach uses the same techniques as ours, but with a different set up and other objectives. They present a tool that categorizes software projects in a source repository farm, that is they use entire software systems as the documents of their LSI space. They use clustering to provide an overlapping categorizations of software, whereas we use clustering to partition the software into distinct topics. They use a visualization of they results with the objective to navigate among categorizations and projects, similar to the Softwarenaut tool \cite{Lung06a}, whereas we use visualizations to present an overview, including all documents and the complete partition, at one glance.
+
+Marcus \etal employed LSI to detect concepts in the code \cite{Marc04a}. They used the LSI as a search engine and searched in the code the concepts formulated as queries. Their work is about concept location of externally defined concepts, whereas we derive our concepts from the vocabulary usage on the source-code level. Their  article also gives a good overview of the related work. Marcus \etal also use LSI to compute the cohesion of a class based on the semantic similarity of its methods \cite{Marc05a}. In our work, we extend this approach and illustrate on the correlation matrix both, the semantic similarity within a cluster and the semantic similarity between clusters.
+
+De Lucia \etal introduce strategies to improve LSI-based traceability detection \cite{Luci04a}. They use three techniques of link classification: taking the top-\emph{n} search results, using a fix threshold or a variable threshold. Furthermore they create separate LSI spaces for different document categories and observe better results that way, with best results on pure natural language spaces. Lormans and Deursen present two additional links classification strategies \cite{Lorm06a}, and discuss open research questions in traceability link recovery.
+
+Di Lucca \etal also focus on external documentation, doing automatic assignment of maintenance requests to teams \cite{Lucc02b}. They compare approaches based on pattern matching and clustering to information retrieval techniques, of which clustering performs better.
+
+Huffman-Hayes \etal compare the results of several information retrieval techniques in recovering links between document and source code to the results of a senior engineer \cite{Huff06a}. The results suggest that automatic recovery performs better than human analysis, both in terms of precision and recall and with comparable signal-to-noise ratio. In accordance with these findings, we automate the ``Read all the Code in One Hour'' pattern using information retrieval techniques.
+
+\v{C}ubrani\'{c} \etal build a searchable database with artifacts related to a software system, both source code and external documentation \cite{Cubr03a}. They use a structured meta model, which relates bug reports, news messages, external documentation and source files to each other. Their goal is the support software engineers, especially those new to a project, with a searchable database of what they call ``group memory''. To search the database they use information retrieval, however they do not apply LSI and use a plain vector space model only. They implemented their approach in an eclipse plug-in called Hipikat.
+
+\section{Related work for Software Summarization}\label{relwork}
+
+The present work is related to Jonathan Feinberg's comparison of inaugural addresses \cite{Feinberg09blog}. Feinberg analysed the inaugural address of Mr. President Barack Obama and his predecessors in office. For each inaugural addresses he provides a pair of \textsc{Wordle}\footnote{\url{http://www.wordle.net}} word clouds. One cloud consists of words that are specific to the address, and the other cloud consists of words that are missing in the address. Font size is used to represent frequency of a word and saturation to represent the log-likelihood ratio. The color blue is used in the left cloud to represent likely terms, and red is used in the right cloud to represent unlikely terms.
+
+Anslow \etal \cite{Anslow08OOPSLA} visualized the evolution of words in class names in Java version 1.1 and Java version 6.0. They illustrated the history in a combined word cloud that contains terms from both versions. Each word is printed twice, font size represents word frequency and color the corpus. As such they compared word counts, which assumes normal distribution and is thus not as sound as using log-likelihood ratios.
+ 
+Linstead \etal \cite{Linstead09SUITE} analysed the vocabulary of 12,151 open source projects from Sourceforge and Apache. They provide strong evidence of power-law behavior for word distribution across program entities. In addition, they analyse the vocabulary of structural entities (class, interface, method, field) and report the top-10 most frequent terms, as well as the top-10 unique terms for each structural category. As such, they compare word counts which assumes normal distribution and is thus not as sound as using log-likelihood ratios. In \autoref{example5} we report on the likelihood of words for the same structural categories, although our analysis is limited to a smaller corpus, \ie the Java API only.
+
+Kawaguchi \etal \cite{Kawa04a} presented \textsc{MUDABlue}, a tool that provides labels for projects. They used Sourceforge as normative corpus and applied Latent Semantic Indexing (LSI) at the level of projects.
+For each project they grouped together all source files into one retrieval document, and applied LSI to retrieve the semantic similarity among both terms and document.
+They categorized projects and described the categories with the most similar terms. However, the probabilistic model of LSI does not match observed data: LSI assumes that words and documents form a joint Gaussian model, while a Poisson distribution has been observed \cite{Hofmann99PLSA}.
+
+Lexical information of source code has been further proven useful for various tasks in software engineering (\eg \cite{Anto02a,Marc05a,Posh09a}). Many of these approaches apply Latent Semantic Indexing and inverse-document frequency weighting, which are well-accpeted techniques in Information Retrieval but are according to Dunning ``only justified on very sketchy grounds \cite{Dunning}.''
+
+Baldi \etal \cite{Bald08a} present a theory of aspects (the programming language feature) as latent topics. They apply Latent Dirichlet Analysis (LDA) to detect topic distributions that are possible candidates for aspect-oriented programming. They present the retrieved topics as a list of the 5 most likely words. The model of LDA assumes that each topic is associated with a multinomial distribution over words, and each document is associated with a multinomial distribution over topics; their approach is thus sound.
+
+% Related work above
+%%%%%%%%%%%%%
 
 \chapter{Clustering Software by Lexical Clues}
 
@@ -121,5 +189,534 @@ SVD decomposes matrix $A$ into its singular values and its singular vectors, and
 
 As the rank is the number of linear-independent rows and columns of a matrix, the vector space spanned by $A'$ is of dimension $k$ only and much less complex than the initial space. When used for information retrieval, $k$ is typically about 200-500, while $n$ and $m$ may go into millions. When used to analyze software on the other hand, $k$ is typically about $20-50$ with vocabulary and documents in the range of thousands only. And since $A'$ is the best approximation of $A$ under the least-square-error criterion, the similarity between documents is preserved, while in the same time mapping semantically related terms on one axis of the reduced vector space and thus taking into account synonymy and polysemy. In other words, the initial term-document-matrix $A$ is a table with term occurrences and by breaking it down to much less dimension the latent meaning \emph{must} appear in $A'$ since there is now much less space to encode the same information. Meaningless occurrence data is transformed into meaningful concept information.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Semantic Clustering: Grouping Source Documents}\label{sec:sekla}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The result of applying LSI is a vector space, based on which we can compute the similarity between both documents or terms. We use this similarity measurement to identify topics in the source code.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.8\columnwidth]{clustering}
+\caption{Semantic clustering of software source code (\eg classes, methods).}
+\label{fig:clustering}
+\end{center}
+\end{figure}
+
+\autoref{fig:clustering} illustrates the first three steps of the approach: preprocessing, applying LSI, and clustering. Furthermore we retrieve the most relevant terms for each cluster and visualize the clustering on a 2D-map, thus in short the approach is:
+
+\begin{enumerate}
+  \item \emph{Preprocessing the software system.} In \autoref{sec:parsing}, we show how we break the system into documents and how we build a term-document-matrix that contains the vocabulary usage of the system.
+  \item \emph{Applying Latent Semantic Indexing.} In \autoref{sec:lsi} we use LSI to compute the similarities between source code documents and illustrate the result in a correlation matrix \cite{Ling73a}.
+  \item \emph{Identifying topics.} In \autoref{sec:clustering} we cluster the documents based on their similarity, and we rearrange the correlation matrix. In \autoref{sec:wittgenstein} we discuss that each cluster is a \emph{linguistic topic}.
+  \item \emph{Describing the topics with labels.} In \autoref{sec:labeling} we use LSI again to retrieve for each cluster the top-$n$ most relevant terms.
+  \item \emph{Comparing the topics to the structure.} In \autoref{sec:distribution} we illustrate the distribution of topics over the system on a Distribution Map \cite{Duca06c}.
+\end{enumerate}
+
+We want to emphasize that the primary contribution of our work is semantic clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this paper.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{On the Relationship between Concepts and Semantic Clustering}\label{sec:wittgenstein}
+
+In this paper we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
+
+Other than with domain or application concepts in Software Analysis \cite{Bigg93a}, it is not uncommon in information retrieval to derive \emph{linguistic topics} from the distribution of words over a set of documents. This is in accordance with Wittgenstein who states that \emph{``Die Bedeutung eines Wortes ist sein Gebrauch in der Sprache---the meaning of a word is given by its use in language''} \cite{Witt53a}. Unlike in classical philosophy, as for example Plato, there is no external definition of a word's meaning, but rather the meaning of a word is given by the relations it bears with other terms and sentences being used in the same context. Certainly, there is a congruence between the external definition of a word and its real meaning, since our external definitions are human-made as well, and thus, also part of the language game, but this congruence is never completely accurate.
+
+In accordance with \cite{Bigg89c} we call our clusters \emph{linguistic topics} since they are derived from language use. Certainly, some linguistic topics do map to the domain and others do map to application concepts, however, this mapping is never complete. There is no guarantee that semantic clustering locates all or even any externally defined domain concept. But nonetheless, our case studies show that semantic clustering is able to capture important domain and application concepts of a software system. Which does not come as a surprise, since it is well known that identifer names and comments are one of the most prominent places where developers put their knowledge about a system.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preprocessing the Software System}\label{sec:parsing}
+
+When we apply LSI to a software system we partition its source code into documents and we use the vocabulary found therein as terms. The system can be split into documents at any level of granularity, such as packages or classes and methods. Other slicing solutions are possible as well, for example execution traces \cite{Kuhn05b}, or we can even use entire projects as documents and analyze a complete source repository \cite{Kawa04a}.
+
+To build the term-document-matrix, we extract the vocabulary from the source code: we use both identifier names and the content of comments. Natural language text in comments is broken into words, whereas compound identifier names are split into parts. As most modern naming conventions use camel case, splitting identifiers is straightforward: for example \emph{FooBar} becomes \emph{foo} and \emph{bar}.
+
+We exclude common stopwords from the vocabulary, as they do not help to discriminate documents. In addition, if the first comment of a class contains a copyright disclaimer, we exclude it as well. To reduce words to their morphological root we apply a stemming algorithm: for example \emph{entity} and \emph{entities} both become \emph{entiti} \cite{Port80a}. And finally, the term-document matrix is weighted with \emph{tf-idf} to balance out the influence of very rare and very common terms \cite{Duma91a}.
+
+When preprocessing object-oriented software systems we take the inheritance relationship into account as well. For example, when applying our approach on the level of classes, each class inherits some of the vocabulary of its superclass. If a method is defined only in the superclass we add its vocabulary to the current class. Per level of inheritance a weighting factor of $w = 0.5$ applies to the term occurrences, to balance out between the abstractness of high level definitions and concrete implementations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Using Latent Semantic Indexing to Build the Similarity Index}
+\label{sec:lsi}
+
+We use LSI to extract linguistic information from the source code, which results in an LSI-index with similarities between source documents (\ie packages, classes or methods). Based on the index we can determine the similarity between source code documents. Documents are more similar if they cover the same topic, terms are more similar if they denote related topics.
+
+In the vector space model there is a vector for each document. For example, if we use methods as documents, there is a vector for each method and the cosine between these vectors denotes the semantic similarity between the methods. In general cosine values are in the $[-1,1]$ range, however when using an LSI-index the cosine between its element never strays much below zero. This is since the LSI-index is derived from a term-document matrix that contains positive occurrence data only.
+
+\emph{First matrix in \autoref{fig:comaFourStep}.} To visualize similarities between documents we map them to gray values: the darker, the more similar. The similarities between elements are arranged in a square matrix called \emph{correlation matrix} or \emph{dot plot}. Correlation matrix is a common visualization tool to analyze patterns in a set of entities \cite{Ling73a}. Each dot $a_{i,j}$ denotes the similarity between element $d_i$ and element $d_j$. Put in other words, the elements are arranged on the diagonal and the dots in the off-diagonal show the relationship between them.
+
+\begin{figure}[h]
+  \includegraphics{clusteringEx}
+  \caption{From left to right: unordered correlation matrix, then sorted by similarity, then grouped by clusters, and finally including semantic links.}\label{fig:comaFourStep}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Clustering: Ordering the Correlation Matrix}\label{sec:clustering}
+
+%do not change the first sentence of this section, it is a hidden reference to the fist sentence from William  Gibsons novel Necromancer: ``The sky above the port was the color of television, tuned to a dead channel''.
+
+Without proper ordering the correlation matrix looks like television tuned to a dead channel. An unordered matrix does not reveal any patterns. An arbitrary ordering, such as for example the names of the elements, is generally as useful as random ordering \cite{Bert73a}. Therefore, we cluster the matrix to put similar elements near each other and dissimilar elements far apart of each other.
+
+A clustering algorithm groups similar elements together and aggregates them into clusters \cite{Jain99a}. Hierarchical clustering creates a tree of nested clusters, called \emph{dendrogram}, which has two features: breaking the tree at a given threshold groups the elements into clusters, and traversing the tree imposes a sort order upon its leaves. We use these two features to rearrange the matrix and to group the dots into rectangular areas.
+
+\emph{Second and third matrix in \autoref{fig:comaFourStep}.} Each rectangle on the diagonal represents a semantic cluster: the size is given by the number of classes that belong to a topic, the color refers to the \emph{semantic cohesion} \cite{Marc05a} (\ie the average similarity among its classes\footnote{Based on the similarity ${\rm sim}(a,b)$ between elements, we define the similarity between cluster $A$ and cluster $B$ as $\frac{1}{|B| \times |A|}\sum \sum {\rm sim}(a_m,b_n)$ with $a \in A$ and $b \in B$ and in the same way the similarity between an element $a_0$ and a cluster $B$ as $\frac{1}{|B|}\sum {\rm sim}(a_0,b_n)$ with $B \in B$.
+}). The color in the off-diagonal is the darker the more similar to clusters are, if it is white they are not similar at all. The position on the diagonal is ordered to make sure that similar topics are placed together.
+
+The clustering takes the focus of the visualization from similarity between elements to similarity between clusters. The tradeoff is, as with any abstraction, that some valuable detail information is lost. Our experiments showed that one-to-many relationships between an element and an entire cluster are valuable patterns.
+
+\emph{Fourth matrix in \autoref{fig:comaFourStep}.} If the similarity between an element $d_n$ from a cluster and another cluster differs more than a fix threshold from the average similarity between the two clusters, we plot $d_n$ on top of the clustered matrix either as a bright line if $d_n$ is less similar than average, or as a dark line if $d_n$ is more similar than average. We call such a one-to-many relationship a \emph{semantic link}, as it reveals an element that links from its own topic to another topic.
+
+\autoref{fig:hotspot} illustrates an example of a semantic link. The relationship between cluster A and cluster B is represented by the rectangle found at the intersection of the two clusters. The semantic link can be identified by a horizontal (or vertical) line that is darker than the rest of the rectangle. In our example, we find such a semantic link between two clusters. Please note that the presence of a link does not mean that the element in A should belong to B, it only means that the element in A is more similar to B then the other elements in A.
+
+\begin{figure}[h]
+    \centering
+  \includegraphics{hotspot}
+  \caption{Illustration of a semantic link. A semantic link is a one-to-many relation: A document in cluster A that is more similar than its siblings in A to cluster B.}\label{fig:hotspot}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Labeling the Clusters}\label{sec:labeling}
+
+With the clustering we partitioned the source documents by their vocabulary, but we do not know about the actual vocabulary that connects these documents together. In other words, what are the most important terms for each cluster? In this section we use LSI to retrieve for each cluster the top-$n$ list with its most relevant terms. We use these lists to label the topics.
+
+The labeling works as follows. As we already have an LSI-index at hand, we use it as a search engine \cite{Berr94a}. We reverse the usual search process where a search query of terms is used to find documents, and instead, we use the documents in a cluster as search query to find the most similar terms. To label a cluster, we take the top-$n$ most similar terms, using a top-7 list provides a useful labeling for most case studies.
+
+To compute the relevance of a term, we compare the similarity to the current cluster with the similarity to all other clusters. This raises better results than just retrieving the top most similar terms \cite{Kuhn05a}. Common terms, as for example the names of custom data structures and utility classes, are often highly similar to many clusters. Thus, these terms would pollute the top-$n$ lists with non-discriminating labels if using plain similarity only, whereas subtracting the average lowers the ranking of such common terms. The following formula ranks high those terms that are very similar to the current cluster but not common to all other clusters.
+
+$$\mathrm{rel}(t_0,A_0) = \mathrm{sim}(t_0,A_0) - \frac{1}{|\mathcal{A}|} \sum_{A_n \in \mathcal{A}}{\mathrm{sim}(t_0,A_n)}$$
+
+Term $t_0$ is relevant to the current cluster $A_0$, if it has a high similarity to the current cluster $A_0$ but not to the remaining clusters $A_n \in \mathcal{A}$. Given the similarity between a term $t$ and a cluster $A$ as $\mathrm{sim}(t,A)$, we define the relevance of term $t_0$ according to cluster $A_0$ as given above.
+
+Another solution to avoid such terms, is to include the common terms into a custom stopword list. However this cannot be done without prior knowledge about the system, which is more work and contradicts our objectives. Furthermore, this ranking formula is much smoother than the strict opt-out logic of a stopword list.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analyzing the Distribution of Semantic Clusters}\label{sec:distribution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The semantic clusters help us grasp the topics implemented in the source code. However, the clustering does not take the structure of the system into account. As such, an important question is: How are these topics distributed over the system?
+
+To answer this question, we use a Distribution Map \cite{Tuft01a,Duca06c}. A Distribution Map visualizes the distribution of properties over system parts \ie a set of entities. In this paper, we visualize packages and their classes, and color these classes according to the semantic cluster to which they belong.
+
+For example, in \autoref{fig:distMap} we show an example of a Distribution Map representing 5 packages, 37 classes and 4 semantic clusters. Each package is represented by a rectangle, which includes classes represented as small squares. Each class is colored by the semantic cluster to which it belongs.
+
+\begin{figure}[h]
+    \centering
+  \includegraphics{MetricExamples}\\
+  \caption{Example of a Distribution Map.}\label{fig:distMap}
+\end{figure}
+
+Using the Distribution Map visualization we correlate linguistic information with structural information. The semantic partition of a system, as obtained by semantic clustering, does generally not correspond one-on-one to its structural modularization. In most systems we find both, topics that correspond to the structure as well as topics that cross-cut it. Applying this visualization on several case studies, we identified the following patterns:
+
+\begin{itemize}
+  \item \emph{Well-encapsulated topic} -- if a topic corresponds to system parts, we call this a \emph{well-encapsulated topic}. Such a topic is spread over one or multiple parts and includes almost all source code within those parts. If a well-encapsulated topic covers only one part we speak of a \emph{solitary topic}.
+
+  \item \emph{Cross-Cutting topic} -- if a topic is orthogonal to system parts, we call this a \emph{cross-cutting topic}. Such a topic spreads across multiple parts, but includes only one or very few elements within each parts. As linguistic information and structure are independent of each other, cross-cutting identifiers or names do not constitute a design flaw. Whether a cross-cutting topic has to be considered a design smell or not depends on the particular circumstances. Consider for example the popular three-tier architecture: It separates \emph{accessing, processing \emph{and} presenting data} into three layers; where application specific topics -- such as \eg \emph{accounts, transactions \emph{or} customers} -- are deliberately designated to cross-cut the layers. That is, it emphasizes on the separation of those three topics and deliberately designates the others as cross-cutting concerns.
+
+ \item \emph{Octopus topic} -- if a topic dominates one part, as a solitary does, but also spreads across other parts, as a cross-cutter does, we call this an \emph{octopus topic}. Consider for example a framework or a library: there is a core part with the implementation and scattered across other parts there is source code that plug into the core, and hence use the same vocabulary as the core.
+
+  \item \emph{Black Sheep topic} -- if there is a topic that consists only of one or a few separate source documents, we call this a \emph{black sheep}. Each black sheep deserves closer inspection, as these documents are sometimes a severe design smell. Yet as often, a black sheep is just an unrelated helper class and thus not similar enough to any other topic of the system.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case studies}\label{sec:validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To show evidence of the usefulness of our approach for software comprehension, in this section we apply it on two case studies. Due to space limitations, only the first case study is presented in full length.
+
+First, we exemplify each step of the approach and discuss its findings in the case of JEdit, a text editor written in Java. This case study is presented in full length. Secondly, we present JBoss, an application-server written in Java, which includes interesting anomalies in its vocabulary.
+
+\begin{figure}[h]
+\centering
+{\scriptsize
+\begin{tabular}{l|llrrrrrr}
+\hline
+\textbf{Case Study}&\textbf{language}&\textbf{type}&\textbf{docs}&\textbf{terms}
+&\textbf{parts}&\textbf{links}&\textbf{rank}&\textbf{sim}\\
+\hline
+Ant & Java & \emph{Classes} & 665 & 1787 & 9 & -- & 17 & 0.4\\
+Azureus & Java & \emph{Classes}       & 2184 & 1980 & 14 & -- & 22 & 0.4\\
+JEdit & Java & \emph{Classes}       & 394  & 1603 & 9 & 53 &17 & 0.5\\
+JBoss & Java & \emph{Classes}       & 660 & 1379 & 10 & -- & 16 & 0.5\\
+Moose\footnotemark{} & Smalltalk & \emph{Classes}  & 726  & 11785 & -- & 137& 27 & --\\
+MSEModel & Smalltalk & \emph{Methods}  & 4324  & 2600 & -- & -- & 32 & 0.75\\
+Outsight & Java & \emph{Classes}    & 223 & 774 & 10 & -- & 12 & 0.5\\
+\hline
+\end{tabular}}\\
+\caption{The statistics of sample case studies, JEdit and JBoss are discussed in this work, for the other studies please refer to our previous work \cite{Kuhn05a,Kuhn06a}.}\label{fig:table1}
+\end{figure}
+\footnotetext{The Moose case study in \cite{Kuhn05a} did not use stemming to preprocess the text corpus, hence the large vocabulary.}
+
+\autoref{fig:table1} summarizes the problem size of each case study. It lists for each case study: (lang) the language of the source code, (type) the granularity of  documents, (docs) the number of documents, (terms) the number of terms, (parts) the number of found topics, (links) the number of found semantic links, (rank) the dimension of the LSI-index, and (sim) the threshold  of the clustering.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{On the Calibration of Parameters and Thresholds}\label{sec:parameters}
+
+Our approach depends on several parameters, which may be difficult too choose for someone not familiar with the underlying technologies. In this section we present all parameters, discuss their calibration and share our experience gained when performing case studies using the Hapax tool.
+
+  \textbf{Weighting the term-document-matrix.} To balance out the influence of very rare and very common terms, it is common in information retrieval to weight the occurrence values. The most common weighting scheme is \emph{tf-idf}, which we also use in the case studies, others are entropy or logarithmic weighting \cite{Duma91a}.
+  %Nako01b = Weight functions impact on LSA performance.
+
+  When experimenting with different weighting schemes, we observed that the choice of the weighting scheme has a considerable effect on the similarity values, depending on the weighting the distance within the complete text corpus becomes more compact or more loose \cite{Nako01b}. Depending on the choice of the weighting scheme, the similarity thresholds may differ significantly: as a rule of thumb, using logarithmic weighting and a similarity threshold of $\delta = 0.75$ is roughly equivalent to a threshold of $\delta = 0.5$ with \emph{tf-idf} weighting \cite{Nako01a}.
+
+  \textbf{Dimensionality of the LSI-space.} As explained in \autoref{sec:LSI}, LSI replaces the term-document matrix with a low-rank approximation. When working with natural language text corpora that contain millions of documents and some ten thousands of terms, most authors suggest to use an approximation between rank 200 and 500. In Software Analysis the number of documents is much smaller, such that even ranks as low as 10 or 25 dimensions yield valuable results. Our tool uses rank $r = (m * n)^{0.2}$ by default for an $m \times n$-dimensional text corpus, and allows customization.
+
+  \textbf{Choice of clustering algorithm.} There is a rich literature on different clustering algorithms \cite{Jain99a}. We performed a series of experiments using different algorithms, however as we cannot compare our results against an \emph{a priori} known partition, we cannot measure recall in hard numbers and have to rely on human judgment of the results. Therefore we decided to use a hierarchical \emph{average-linkage} clustering as it is a common standard algorithm. Further studies on the choice of clustering algorithm are open for future work.
+
+  \textbf{Breaking the dendrogram into clusters.} Hierarchical clustering uses a threshold to break the dendrogram, which is the tree of all possible clusters, into a fix partition. Depending on the objective, we break it either into a fixed number of clusters (\eg for the Distribution Map, where the number of colors is constrained) or at a given threshold (\eg for the correlation matrix). In the user interface of the Hapax tool, there is a slider for the threshold such that we can immediately observe the effect on both correlation matrix and Distribution Map interactively.
+
+  \textbf{Detecting semantic links.} As explained in \autoref{sec:clustering}, a semantics link is an element in cluster $A$ with a different similarity to cluster $B$ than average. Typically we use a threshold of $\delta = \pm20\%$ to decide this, however, our tool supports fixed thresholds and selecting the top-$n$ link as well. When detecting traceability-links, a problem which is closely related to semantic links, this has been proven as the best out if these three strategies \cite{Luci04a}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Semantic Clustering applied on JEdit}
+
+We exemplify our approach at the case of JEdit, an open-source Text editor written in Java. The case study contains 394 classes and uses a vocabulary of 1603 distinct terms. We reduced the text corpus to an LSI-space with rank $r = 15$ and clustered it with a threshold of $\delta = 0.5$ (the choice of parameters is discussed in \autoref{sec:parameters}).
+
+In \autoref{fig:jeditCorrelation}, we see nine clusters with a size of (from top right to bottom left) 116, 63, 26, 10, 68, 10, 12, 80, and 9 classes. The system is divided into four zones: (zone 1) the large cluster in the top left, (zone 2) two medium sized and a small clusters, (zone 3) a large cluster and two small clusters, and (zone 4) a large and a small cluster. The two zones in the middle that are both similar to the first zone but not to each other, and the fourth zone is not similar to any zone.
+
+In fact, there is a limited area of similarity between the Zone 2 and 3. We will later on identify the two counterparts as topics \pink and \cyan, which are related to text buffers and regular expression respectively. These two topics share some of their labels (\ie start, end, length and count), however they are clustered separately since LSI does more than just keyword matching, LSI takes the context of term usage into account as well, that is the co-location of terms with other terms.
+
+\begin{figure}[b]
+  \centering
+  \includegraphics{jeditcorrelationzone}\\
+  \caption{The correlation matrix of JEdit.}\label{fig:jeditCorrelation}
+\end{figure}
+
+This is a common pattern that we often encountered during our experiments: zone 1 is the core of system with domain-specific implementation, zone 2 and 3 are facilities closely related to the core, and zone 4 is an unrelated component or even a third-party library. However, so far this is just an educated guess and therefore we will have a look at the labels next.
+
+\autoref{fig:jeditLabels} lists for each cluster the top-7 most relevant labels, ordered by relevance. The labels provide a good description of the clusters and the tell same story as the correlation matrix before. We verified the labels and topics by looking at the actual classes within each cluster.
+
+\begin{itemize}
+  \item Zone 1: topic \red implements the very domain of the system: files and users, and a user can load, edit and save files.
+  \item Zone 2: topic \green and \magenta implement the user interface, and topic \pink implements text buffers.
+  \item Zone 3: topic \cyan is about regular expressions, topic \yellow provides XML support and topic \darkgreen is about TAR archives.
+  \item Zone 4: topic \blue and \orange are the BeanShell scripting framework, a third-party library.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics{jeditCorrelationLabels}
+\caption{The semantic clusters of JEdit and their labels.}\label{fig:jeditLabels}
+\end{figure}
+
+All these labels are terms taken from the vocabulary of the source code and as such they do not always describe the topics in generic terms. For example, event though JEdit is a text-editor, the term \emph{text-editor} is not used on the source code level. The same applies for topic \cyan, where the term \emph{regular expression} does not shop up in the labels.
+
+Next are the semantic links, these are the thin lines on the correlation matrix. If a line is thicker than one pixel, this means that there are two or more similar classes which are each a semantic links. The analysis detected 53 links, below we list as a selection all links related to the scripting topic (these are the link annotated on \autoref{fig:jeditCorrelation}). For each link we list the class names and the direction:
+
+\begin{itemize}
+  \item Link 1: \emph{AppelScriptHandler} and \emph{BeanShell} link from topic \red to scripting.
+  \item Link 2: \emph{Remote} and \emph{ConsoleInterface} link from topic \red to scripting
+  \item Link 3: \emph{VFSDirectoryEntryTable} and \emph{JThis} link from the UI topic to scripting.
+  \item Link 4: \emph{ParseException}, \emph{Token} \emph{TokenMgrError} and \emph{BSHLiteral} link from the regular expressions topic to scripting.
+  \item Link 5: \emph{ClassGeneratorUtil} and \emph{ClasspathError} link from scripting to topic \red.
+  \item Link 6: \emph{ReflectManager} and \emph{Modifiers} link from scripting to the UI topic.
+  \item Link 7: \emph{NameSource} and \emph{SimpleNode} link from scripting to the regular expressions and the XML topic.
+\end{itemize}
+
+Evaluating semantic links is similar to evaluating traceability links \cite{Luci04a}. We inspected the source code of each link. Some of them are false positives, for example link 4 and 5 are based on obviously unrelated use of the same identifers. On the other hand, link 1 points to the main connector between core and scripting library and link 7 reveals a high-level clone, the implementation of the same datatype in three places: XML uses nodes, and both BSH and regular expressions implement their own AST node.
+
+
+\autoref{fig:jeditDistribution} shows the distribution of topics over the package structure of JEdit. The large boxes are the packages (the text above is the package name), the squares are classes and the colors correspond to topics (the colors are the same as on \autoref{fig:jeditLabels}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{jeditDistribution}\\
+  \caption{The Distribution Map of the semantic clusters over the package structure of JEdit.}\label{fig:jeditDistribution}
+\end{figure}
+
+
+For example, in \autoref{fig:jeditDistribution} the large box on the right represents the package named \emph{bsh}, it contains over 80 classes and most of these classes implement the topic referred to by \blue. The package boxes are ordered by their similarity, such that related packages are placed near to each other.
+
+Topic \red, the largest cluster, shows which parts of the system belong to the core and which do not. Based on the ordering of the packages, we can conclude that the two UI topics (\eg \green and \yellow) are more closely related to the core than for example topic \cyan, which implements regular expressions.
+
+The three most well-encapsulated topics (\eg \orange, \blue and \cyan) implement separated topics such as scripting and regular expressions. Topic \yellow and \pink cross-cut the system: \yellow implements dockable windows, a custom GUI-feature, and \pink is about handling text buffers. These two topics are good candidates for a closer inspection, since we might want to refactor them into packages of their own.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{First Impression of JBoss: Distribution Map and Labels}\label{sec:azureus}
+
+This case study presents the outline of JBoss, an application-server written in Java. We applied semantic clustering and partitioned the system into ten topics. The system is divided into one large cluster (colored in red), which implements the core of the server, and nine smaller clusters. Most of the small clusters implement different services and protocols provided by the application server.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\linewidth]{JBossDistribution}
+  \caption{The Distribution Map of the semantic clusters over the package structure of JBoss.}
+  \label{fig:JBossDistribution}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \begin{scriptsize}
+  \begin{tabular}{l|rl}
+    \hline
+    \textbf{Color} & \textbf{Size} & \textbf{Labels}\\
+    \hline
+    red & 223 & invocation, invoke, wire, interceptor, call, chain, proxy, share\\
+    blue & 141 & jdbccmp, JDBC, cmp, field, loubyansky, table, fetch\\
+    cyan & 97 & app, web, deploy, undeployed, enc, JAR, servlet\\
+    green & 63 & datetime, parenthesis, arithmetic, negative, mult, div, AST\\
+    yellow & 35 & security, authenticate, subject, realm, made, principle, sec\\
+    dark magenta & 30 & expire, apr, timer, txtimer, duration, recreation, elapsed\\
+    magenta & 20 & ASF, alive, topic, mq, dlq, consume, letter\\
+    orange & 20 & qname, anonymous, jaxrpcmap, aux, xb, xmln, WSDL\\
+    purple & 16 & invalid, cost, September, subscribe, emitt, asynchron, IG\\
+    dark green & 15 & verify, license, warranty, foundation, USA, lesser, fit\\
+    \hline
+  \end{tabular}
+  \end{scriptsize}
+  \caption{The labels of the semantic clusters of JBoss.}\label{fig:JBossLabels}
+\end{figure}
+
+
+The Distribution Map is illustrated in \autoref{fig:JBossDistribution}, and the top-7 labels are listed in figure \autoref{fig:JBossLabels} in order of relevance. This is the same setup as in the first case study, except the correlation matrix and semantic links are left out due to space restrictions. We verified the clustering by looking the source code, and present the results as follows.
+
+Topic \red is the largest cluster and implements the core functionality of the system: is labeled with terms such as \emph{invocation, interceptor, proxy \emph{and} share}. Related to that, topic \cyan implements the deployment of JAR archives.
+
+The most well-encapsulated topics are \darkgreen, \orange, \green and \blue. The first three are placed apart from \red, whereas \blue has outliers in the red core packages. The labels and package names (which are printed above the package boxes in the Distribution Map) show that \darkgreen is a bean verifier, that \orange implements JAX-RPC and WDSL (\eg web-services), that \green implements an SQL parser and that \blue provides JDBC (\eg database access) support. These are all important topics of an application server.
+
+The most cross-cutting topic is \yellow, it spreads across half of the system. The labels reveal that this the security aspect of JBoss, which is reasonable as security is an important feature within a server architecture.
+
+Noteworthy is the label \emph{loubyansky} in topic \blue, it is the name of a developer. Based on the fact that his name appears as one of the labels, we assume that he is the main developers of that part of the system. Further investigation proved this to be true.
+
+Noteworthy as well are the labels of topic \darkgreen, as they expose a failure in the preprocessing of the input data. To exclude copyright disclaimers, as for example the GPL licence, we ignore any comment above the \emph{package} statement of a Java class. In the case of topic \darkgreen this heuristic failed: the source files contained another licence within the body of the class. However, repeating the same case study with an improved preprocessing resulted in nearly the same clustering and labeled this cluster as RMI component: \emph{event, receiver, RMI, RMIiop, iiop, RMIidl, and idl}.
+
+The topics extracted from the source code can help improving the comprehension. If a maintainer is seeking information, semantic clustering helps in identifying the related code. This is similar to the use of a search engine, for example if the web-service interface has to be changed, the maintainer can immediately look at the Orange concept, and identify the related classes. Much in the same way, if one has to maintain the database interface, he looks at the Blue concept.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+In this section we evaluate and discuss success criteria, strengths and limitations of the proposed approach. We discuss how the approach stands and fails with the quality of the identifer naming. Furthermore we discuss the relation between linguistic topics and domain or application concepts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{On the Quality of Identifier Names}
+
+In the same way as structural analysis depends on correct syntax, semantic analysis is sensitive to the quality of the naming. Since we derive our topics solely based on the use of identifer names and comments, it does not come as a surprise that our approach stands and fails with the quality of the source code naming.
+
+Our results are not generalizable to any software system, a good naming convention and well chosen identifiers yields best results, whereas bad naming (\ie too generic names, arbitrary names or cryptic abbreviations) is one of the main threats to external validation. The vocabulary of the case studies presented in this work is of good quality, however, when performing other case studies we learned of different facets that affect the outcome, these are:
+
+\textbf{On the use of naming conventions.} Source following state-of-the-art naming conventions, as for example the Java Naming Convention, is easy to preprocess. In case of legacy code that uses other naming conventions (\eg the famous Hungarian Notation) or even none at all, other algorithms and heuristics are to be applied \cite{Capr93a,Anqu98b}.
+
+\textbf{On generic or arbitrary named identifiers.} However, even the best preprocessing cannot guess the meaning of variables which are just named \emph{temp} or \emph{a}, \emph{b} and \emph{c}. If the developers did not name the identifiers with care, our approach fails, since the developer knowledge is missing. Due to the strength of LSI in detecting synonymy and polysemy, our approach can deal with a certain amount of such ambiguous or even completely wrong named identifiers -- but if a majority of identifiers in system is badly chosen, the approach fails.
+
+\textbf{On abbreviated identifier names.} Abbreviated identifers are commonly found in legacy code, since early programming languages often restrict the discrimination of identifer names to the first few letters. But unlike generic names, abbreviations affect the labeling only and do not threat our approach  as whole. This might come as a surprise, but since LSI is solely based on analyzing the statistical distribution of terms across the document set, it is not relevant whether identifiers are consistently written out or consistently abbreviated.
+
+However, if the labeling task comes up with terms such as \emph{pma}, \emph{tcm}, \emph{IPFWDIF} or \emph{sccpsn} this does not tell a human reader much about the system. These terms are examples taken from a large industry case study, which is not included in this paper, where about a third of all identifiers where abbreviations. In this case the labeling was completely useless. Please refer to \cite{Anqu98b} for approaches on how to recover abbreviations.
+
+\textbf{On the size of the vocabulary.}  The vocabulary of source code is very small, smaller than that of a natural language text corpus. Intuitively explained: LSI is like a child learning language. In the same way as a human with a vocabulary of 2000 terms is less eloquent and knowledgeable than a human with a vocabulary of 20,000 terms, LSI performs better the larger the vocabulary. Whereas, the smaller the vocabulary the stronger the effect of missing or incorrect terms. In fact, LSI has been proven a valid model of the way children acquire language \cite{Land97a}.
+
+\textbf{On the size of documents.} In average there are only about 5-10 distinct terms per method body, and 20-50 distinct terms per class. In a well commented software system, these numbers are higher since comments are human-readable text. This is one of the rationales why LSI does not perform as accurate on source code as on natural language text \cite{Luci04a}, however the results are of sufficient quality.
+
+\textbf{On the combination of LSI with morphological analysis.} Even tough the benefits of stemming are not without controversy, we apply it as part of the preprocessing step \cite{Baez99b}. Our rational is: analyzing a software system at the level of methods is very sensitive to the quality of input, as the small document size threatens the success of LSI. Considering these circumstances, we  decided to rely on stemming as it is well known that the naming of identifers often includes the same term in singular and plurals: for example \emph{setProperty} and \emph{getAllProperties} or \emph{addChild} and \emph{getChildren}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{On using Semantic Clustering for Topic Identification}
+
+One of our objectives is to compare linguistic topics to domain and application concepts \cite{Bigg93a}. As discussed in \autoref{sec:wittgenstein}, we derive linguistic topics from the vocabulary usage of source code instead from external definitions. In this section we clarify some questions concerning the relation between derived topics and externally defined concepts:
+
+\textbf{On missing vocabulary and ontologies.} Often the externally defined concepts are not captured by the labeling. The rational for this is as follows. Consider for example a text editor in whose source code the term \emph{text-editor} is never actually used, but terms like \emph{file} and \emph{user}. In this case our approach will label the text-editor concepts with these two terms, as a more generic term is missing. As our approach is not based on an ontological database, its vocabulary is limited to the terms found in source code and if terms are not used our approach will not find accurate labels. We suggest to use ontologies (\ie WordNet) to improve the results in these cases.
+
+\textbf{On the congruence between topics and domain.} When starting this work, one of our hypotheses was that semantic clustering will reveal a system's domain semantics. But our experiments disproved this hypothesis: most linguistic topics are application concepts or architectural components, such as layers. In many experiments, our approach partitioned the system into one (or sometimes two) large domain-specific part and up to a dozen domain-independent parts, such as for example input/output or data storage facilities. Consider for example the application in \autoref{fig:outsight}, it is divided into nine parts as follows:
+
+\begin{figure}[h]
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=\linewidth]{outsightDistribution}\\
+  \caption{The Distribution Map of Outsight, a webbased job portal application \cite{Kuhn06a}.}\label{fig:outsight}
+\end{figure}
+
+Only one topic out of nine concepts is about the system's domain: job exchange. Topic \red includes the complete domain of the system: that is users, companies and CVs. Whereas all other topics are application specific components: topic \blue is a CV search engine, topic \darkgreen implements PDF generation, topic \green is text and file handling, topic \cyan and \magenta provide access to the database, and topic DarkCyan is a testing and debugging facility. Additionally the cross-cutting topic \yellow bundles high-level clones related to time and timestamps.
+
+\textbf{On the congruence between topics and packages.} In section \autoref{sec:distribution} we discussed the relation between topics and packages. Considering again the case study in \autoref{fig:outsight} as an example, we find occurrences of all four patterns: Topic \darkgreen for example is well-encapsulated, whereas topic \yellow cross-cuts the application. Then there is topic \blue, which is an octopus with the \emph{conditions} package as its body and tentacles reaching into six other packages, and finally we have in the \emph{logic} package an instance of a black sheep.
+
+\textbf{On source documents that are related to more than one topic.} If we want to analyze how the topics are spread across some type of documents (\eg packages, classes or methods) we have to break the system into documents one level below the target level. For example, if we want to analyze the topic distribution over packages, we break the system into classes and analyze how the topics of classes are spread over the packages.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}\label{sec:conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Source code bears the semantics of an application in the names of identifiers and comments. In this paper we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce semantic clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups semantic clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the semantic clusters are distributed over the system.
+
+We applied the approach on several case studies with different characteristics, two of which are presented in this paper.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Semantic clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
+
+When starting this work, one of our hypotheses was that semantic clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
+
+In the future we would also like to investigate in more depth recall and precision of the approach. For example, we would like to compare the results of the semantic clustering with other types of clustering. Furthermore, we would like to improve the labeling with other computer linguistic techniques.
+
+\chapter{Summarizing Software with Lexical Clues and Temporal Clues}
+
+As more and more open-source software components become available on the internet we need automatic ways to label and compare them. For example, a developer who searches for reusable software must be able to quickly gain an understanding of retrieved components. This understanding cannot be gained at the level of source code due to the semantic gap between source code and the domain model. In this paper we present a lexical approach that uses the log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system.
+
+In recent years, software vocabulary has been proven to be a valuable source for software analysis, often including the retrieval of labels (\eg \cite{Baldi08OOPSLA,EinarHoest,Kuhn07a}). However, labeling software is not without pitfalls. The distribution of words in software corpora follows the same power-law as word frequencies in natural-language text \cite{Linstead09SUITE}. Most of the text is made up of a small set of common terms, whereas content-bearing words are rare. Analysis of software vocabulary must deal with the reality of rare terms, thus statistical tests that assume normal distribution are not applicable. For example, textual comparison based on directly counting term frequencies is subject to overestimation when the frequencies involved are very small.  
+
+For text analysis the use of \loglr improves the statistical results. Likelihood tests do not depend on assumptions of normal distribution, instead they use the asymptotic distribution of binomial likelihood \cite{Dunning}. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms.
+
+In this paper we present a lexical approach that uses the \loglr of word frequencies to automatically retrieve labels from source code. The approach can be applied i) to compare components with each other, ii) to compare a component against a normative corpus, and iii) to compare different revisions of the same component. We present a prototype implementation and give examples of its application. In particular, we apply the approach to detect trends in the evolution of the JUnit software system.
+
+\section{Log-Likelihood in a Nutshell}\label{nutshell}
+
+This section explains how log-likelihood ratio is applied to analyse word frequencies. The explanations are kept as concise as possible. We provide the general background and just enough details such that a programmer may implement the algorithm. Please refer to Ted Dunning's work \cite{Dunning} for more background.
+
+The idea behind \loglr is to compare two statistical hypotheses, of which one is a subspace of the other. Given two text corpora, we compare the hypothesis that both corpora have the same distribution of term frequencies with the ``hypothesis'' given by the actual term frequencies. Because we know that terms are not equally distributed over source code, we use binomial likelihood
+
+$$ L(p,k,n) = p^k ( 1 - p) ^ { n - k }$$
+\noindent
+with $p = \frac{k}{n}$, where $k$ is the term frequency (\ie number of occurrences) and $n$ the size of the corpus. Taking the logarithm of the likelihood ratio gives
+\footnote{In some publications (\eg \cite{Rayson}) we found that the last two terms were omitted (since their values tend to be orders of magnitude smaller than the corresponding values of the first two terms). The results presented in this paper, however, are obtained using the complete log likelihood ratio formula.}
+
+\begin{align*}
+-2 \log \lambda =~&2 \big[ \log L(p_1,k_1,n_1) + \log L(p_2,k_2,n_2)\\
+ &- \log L(p,k_1,n_1) - \log L(p,k_2,n_2) \big] 
+\end{align*}
+\noindent
+with $p = \frac{k_1 + k_2}{n_1 + n_2}$. The higher the value of $-2log\lambda$ the more significant is the difference between the term frequencies in of both text corpora. By multiplying the $-2log\lambda$ value with the signum of $p_1 - p_2$ we can further distinguish between terms specific to the first corpus and terms specific to the second corpus. Terms that are equally frequent in both corpora have a $-2log\lambda$ value close to zero and thus fall in between.
+
+\paragraph{Example.} Let $C_1$ be the corpus of a software project with size $n_1 = 10^6$, where the words \verb$`rare'$, \verb$`medium'$, and \verb$`common'$ appear respectively 1, 100, and $1\times10^4$ times; and let $C_2$ be the corpus of one of the project's classes with size $n_2 = 1000$, where each word appears 10 times. Then the \loglr{} values are
+
+\begin{center}
+\begin{tabular}{l | rrrr}
+~ & $p_1$ & $p_2$ & $-2log\lambda$ & $\chi^2$ \\ 
+\hline
+\verb$rare$ & $10^{-6}$ & $10^{-2}$  & 131.58 & 9.08 \\
+\verb$medium$ & $10^{-4}$ & $10^{-2}$  & 71.45 & 0.89 \\
+\verb$common$ & $10^{-2}$ & $10^{-2}$  & 0.00 & 0.00 \\
+\end{tabular}
+\end{center}
+
+The column $\chi^2$ lists the value of Pearson's chi-square test, which assumes normal distribution. As we can see, there is an overestimation when the frequencies involved are very small. Therefore, text analysis should use \loglr{}s to compare the occurrences of common and rare terms \cite{Dunning}.
+
+
+\section{Applications}\label{applications}
+
+In this section we present two example applications of log-likelihood ratio for software analysis.
+There are two main types of corpus comparison: comparison of a sample corpus to a larger corpus, and comparison of a two equally sized corpora. In the first case, we refer to the large corpus as a \emph{normative} corpus since it provides as norm against which we compare.
+
+Applications of these comparisons are
+\begin{itemize}
+\item \emph{Providing labels for components.} Comparing a component's vocabulary with a large normative corpus (as \eg Sourceforge, Github, or Sourcerer \cite{Bajrach09SUITE}), we obtain labels that describe the component. In the same way, we can compare a class's vocabulary against the containing project.
+\item \emph{Comparing components to each other.} Comparing two components, we obtain labels to describe their differences as well as commonalities. This is applicable at any level of granularity, from the level of projects down to the level of methods.
+\item \emph{Documenting the history of a component.} Comparing subsequent revisions of the same component, we obtain labels to describe the evolution of that component. (Using multinominal distribution we could even compare all revisions at once, although such results are harder to interpret \cite{Dunning}.)
+\item \emph{Describing the results of software search.} Code-search engines have recently received much attention, both commercial engines (as \eg Krugle) and academic engines (as \eg Sourcerer \cite{Bajrach09SUITE}) are publicly available. The result of a search query are typically provided by presenting a peep-hole view on the matching source line and its context to the user. Comparing each result, or the class/project that contains the result, against the entire index we can provide labels that may help users to make better use of these results.
+\item \emph{Analysing the structural use of vocabulary.} There has been much confusion regarding which parts of the software vocabulary are to be considered in software analysis. Some approaches consider the entire source code including comments, keywords and literals (\eg \cite{Kuhn08b,Kuhn07a}), other approaches consider class and methods names only (\eg \cite{Baldi08OOPSLA,EinarHoest}). A recent study compared the vocabulary of different structural level using techniques that assume normal distribution \cite{Linstead09SUITE}. Log-likelihood ratios provide a statistically more sound means to study these phenomena.
+\end{itemize}
+
+\noindent We implemented $-2log\lambda$ analysis in a Java prototype which is available on the \textsc{Hapax} website\footnote{\url{http://smallwiki.unibe.ch/adriankuhn/hapax}} under AGPL license. In the remainder of this section we present results obtained with that prototype.
+
+\subsection{Labeling the Java API}\label{example1}
+
+\begin{table}
+{\scriptsize \begin{center}
+\begin{tabular}{lr | lr | lr}
+\verb$java.io$ & ~ & \verb$java.text$ & ~ &  \verb$java.util$ & ~ \\
+\hline
+read & 521.99 & pattern & 228.92 & iterator & 306.91\\
+write & 481.93 & format & 209.40 & entry & 301.90\\
+skip & 154.61 & digits & 183.24 & next & 237.82\\
+close & 113.41 & FIELD & 167.58 & E & 222.33\\
+mark & 111.47 & instance & 127.16 & contains & 187.69\\
+println & 99.66 & fraction & 104.98 & sub & 166.49\\
+UTF & 85.27 & integer & 102.77 & of & 165.57\\
+flush & 80.96 & index & 93.43 & K & 154.07\\
+desc & 69.19 & run & 90.99 & T & 154.30\\
+TC & 68.88 & currency & 91.55 & key & 145.10\\
+prim & 61.48 & decimal & 86.34 & all & 145.74\\
+char & 61.28 & contract & 84.92 & V & 142.15\\
+buf & 60.15 & separator & 72.11 & remove & 128.59\\
+stream & 56.86 & grouping & 62.26 & last & 128.09\\
+fields & 52.38 & parse & 56.93 & map & 115.68\\
+bytes & 47.99 & collation & 56.60 & clear & 114.03\\
+\dots & ~ & \dots & ~ & \dots & ~ \\
+border & -28.35 & UI & -23.07 & create & -62.67\\
+set & -33.89 & border & -22.77 & listener & -62.42\\
+remove & -37.49 & property & -24.23 & action & -63.83\\
+listener & -39.79 & remove & -30.11 & UI & -64.68\\
+accessible & -40.97 & accessible & -32.91 & border & -63.83\\
+paint & -44.90 & listener & -31.97 & accessible & -92.25\\
+value & -59.10 & type & -32.18 & paint & -101.11\\
+get & -64.38 & paint & -36.07 & get & -164.14\\
+\end{tabular}
+\end{center}}
+\caption{Labels retrieved for three Java packages using the full Java 6.0 API as normative corpus.}
+\label{tab:one}
+\end{table}%
+
+
+In this example, we compare the packages \verb$java.io$ and \verb$java.text$ and \verb$java.util$ with the normative corpus of the full Java 6.0 API. We use the Java Compiler (JSR 199) to parse the byte-code of the full Java API and then extract the vocabulary of all public and protected elements. We extract the names of packages, classes (including interfaces, annotations, and enums), fields, methods and type parameters. We split the extracted names by camel-case to accomodate to the Java naming convention.
+
+Results are shown in \autoref{tab:one}. For each package we list the most specific words and the least specific words. All three packages are characterized by not covering UI code, in addition \verb$java.io$ and \verb$java.util$ have obviously substantially fewer \verb$get$-accessors than is usual for the Java API. The remaining findings offer no further surprises, except maybe for the uppercase letters in \verb$java.util$ which are generic type parameters; obviously the majority of the Java 6.0 API makes less use of generic types than the collection framework.
+
+%\subsection{Compare Components to Each Other}\label{example2}
+
+%In this example, we compare the \verb$JUnit$ project to the \verb$JExample$ project, both of which are unit testing frameworks. We parse the source code of both projects and extract the complete vocabulary, including comments and literals. We split the extracted words by camel-case to accomodate to the Java naming convention, and apply stemming. We do not, however, exclude common keywords (as \eg \verb$public$ and \verb$float$) since learning about the different use of keywords is a valuable insight as well. 
+
+\subsection{The Evolution of JUnit}\label{example3}
+
+In this example, we report on the vocabulary trends in the history of the \verb$JUnit$\footnote{\url{http://www.junit.org}} project. We use a collection of 14 release distributions of JUnit and parse the source code of each release.  We compare the vocabulary of each two subsequent releases and report on the most significant changes in the vocabulary. We extract all words, including comments; split by camel-case, and exclude English stopwords but not Java keywords.
+
+Results are shown in \autoref{tab:two}. For each release we list the top removed terms and the top added terms, as well as the $-2log\lambda$ value of the top-most term. Large $-2log\lambda$ values indicate substantial changes.
+
+The top 7 change trends (\ie $-2log\lambda \geqslant 100.0$) in the history of JUnit are as follows. In 3.2 removal of \verb$MoneyBag$ example and introduction of graphical UI; in 4.0 removal of graphical UI and introduction of annotation processing; in 4.2 removal of HTML tags from Javadoc comments; in 4.4 introduction of theory matchers and \verb$hamcrest$ framework; in 4.5 introduction of blocks and statements. We manually verified these findings with the release notes of JUnit and found that the findings are appropriate.
+ 
+\begin{table}
+{\scriptsize \begin{center}
+\begin{tabular}{lrl}
+\textbf{JUnit} & $2log\lambda$ & \textbf{Top-10 terms (with $-2log\lambda \geqslant10.0$)} \\
+\hline
+3 & -8.21 &  \\
+~ & 54.11 & count, writer, wrapper \\
+\hline
+3.2 & -382.80 & money, CHF, assert, case, USD, equals, test, fmb,\\~&~& result, currency \\
+~ & 114.21 & tree, model, constraints, combo, reload, swing,\\~&~& icon, pane, browser, text \\
+\hline
+3.4 & -19.48 & stack, util, button, mouse \\
+~ & 15.73 & preferences, base, zip, data, awtui \\
+\hline
+3.5 & -38.78 & param, reload, constraints \\
+~ & 69.34 & view, collector, context, left, cancel, values,\\~&~& selector, views, icons, display \\
+\hline
+3.6 & -1.20 &  \\
+~ & 8.72 &  \\
+\hline
+3.7 & -8.25 &  \\
+~ & 2.79 &  \\
+\hline
+3.8 & -13.30 & deprecated \\
+~ & 23.40 & printer, boo, lines \\
+\hline
+4.0 & -349.34 & constraints, grid, bag, set, label, panel, path,\\~&~& icon, model, button \\
+~ & 350.47 & description, code, nbsp, org, annotation,\\~&~& notifier, method, request, runner, br \\
+\hline
+4.1 & -1.43 &  \\
+~ & 61.90 & link, param, check \\
+\hline
+4.2 & -288.53 & nbsp, br \\
+~ & 20.03 & link, builder, pre, li \\
+\hline
+4.3.1 & -8.91 &  \\
+~ & 53.36 & array, actuals, expecteds, multi, dimensional,\\~&~& arrays, values, javadoc \\
+\hline
+4.4 & -34.32 & introspector, code, todo, multi, javadoc,\\~&~& dimensional, array, runner, test, fix \\
+~ & 151.98 & matcher, theories, experimental, hamcrest,\\~&~& matchers, theory, potential, item, supplier,\\~&~& parameter \\
+\hline
+4.5 & -30.11 & theory, theories, date, result, static, validator,\\~&~& pointer, string, assert, experimental \\
+~ & 124.28 & statement, model, builder, assignment, block,\\~&~& errors, unassigned, evaluate, describable,\\~&~& statements \\
+\end{tabular}
+\end{center}}
+\caption{Evolution of JUnit: for each release we list the removed and the added words, large $2log\lambda$ values indicate more significant changes.}
+\label{tab:two}
+\end{table}%
+
+%\subsection{On the Structural Use of Vocabulary}\label{example5}
+
+%In this example, we take again the Java API of version 1.6 as case study. We group the extracted names by structural category: package names, class names (which are further subdivided in class and interface names), method names, and field names. As in the first example, we use the Java Compiler API (JSR 199) to parse the binaries and extract the vocabulary of all public and protected elements. We proceed with split by camel-case and stemming.
+
+%\todo{Fill in epic table with results.}
+
+%\todo{Compare the results to Linstead's work.}
+
+\section{Conclusion}\label{eventually}
+
+We presented \loglr as a technique to label software components. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms. We presented how to use the \loglr of word frequencies to retrieve labels, and how to compare a component against a normative corpus. In addition, we proposed to use \loglrs to characterize the evolution of a software component. We presented the results of two example applications, one using the Java API as case study, the other using 14 releases of JUnit as case study. By comparing subsequent revisions of JUnit to each other we were able to characterize substantial changes in the history of JUnit.
 
 \end{document}
