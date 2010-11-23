@@ -95,6 +95,26 @@
 \newcommand{\trainingset}{training set\xspace}
 \newcommand{\validationset}{validation set\xspace}
 %%%
+% --> for Code Search
+\newcommand{\findQ}{\footnote{\underline{Find quote!}} }
+\newcommand{\keyw}[1]{\textbf{#1}}
+\newcommand{\proj}[1]{#1}
+\newcommand{\codeList}[1]{\begin{center}
+\texttt{#1}
+\end{center}}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+\def\chapterautorefname{Chapter}
+\def\subsubsectionname{Subsubsection}
+\newcommand{\Jbd}{\emph{JBender}\xspace}
+\newcommand{\Rbd}{\emph{RBender}\xspace}
+\newcommand{\gcs}{\proj{Google Code Search}\xspace}
+\newcommand{\krugle}{\proj{Krugle}\xspace}
+\newcommand{\koders}{\proj{Koders}\xspace}
+\newcommand{\sourcerer}{\proj{Sourcerer}\xspace}
+\newcommand{\conjurer}{\proj{Code Conjurer}\xspace}
+\newcommand{\merobase}{\proj{Merobase}\xspace}
+%%% 
 
 \begin{document}
 
@@ -283,6 +303,31 @@ We are not the first to apply an author-topic model \cite{Linstead07, Bald08a}. 
 
 Lexical information of source code has previously been proven useful for other tasks in software engineering, such as: identifying high-level conceptual clones \cite{Marc01a}, recovering traceability links between external documentation and source code \cite{Anto02a}, automatically categorizing software projects in open-source repositories \cite{Kawa04a}, visualizing conceptual correlations among software artifacts \cite{Kuhn07a,Kuhn08b}, and defining cohesion and coupling metrics \cite{Marc05a,Posh09a}.
 
+% =====================================================================
+\section{Background \& Related Work of Code Search}
+\label{sec:relwork}
+
+Since the rise of internet-scale code search engines, searching for reusable source code has quickly become a fundamental activity for developers \cite{Kuhn09b}. However, in order to establish search-driven software reuse as a best practice, the cost and time of deciding whether to integrate a search result must be minimized. The decision whether to reuse a search result or not should be quickly taken without the need for careful (and thus time-consuming) examination of the search results.
+
+Trustability is a big issue for reusing code. When a developer reuses code from an external sources he has to trust the work of external developers that are unknown to him. This is not to be confused with trustworthy computing, where clients are concerned with security and reliability of a computation service.
+
+For a result to actually be helpful and serve the purpose originally pursued with the search it is not enough to just match the entered keywords.
+%It is essential that the developer know at least the license under which certain source code was published, otherwise he will not be able to use it legally. Furthermore, it is very helpful to know from which project a search result is taken when assessing its quality.
+User studies have shown that developers rely on both technical and human clues to assess the trustability of search results \cite{Gall09a}. For example developers will prefer results from well-known open source projects over results rom less popular projects.
+
+The issue of providing meta-information alongside search results and thereby increasing trustabilty has not been widely studied and we are trying to address this with our work.
+
+In recent years special search engines for source code have appeared, namely  \textsc{\gcs}\footnote{\url{http://www.google.com/codesearch}}, \textsc{\krugle}\footnote{\url{http://www.krugle.org}} and  \textsc{\koders}\footnote{\url{http://www.koders.com}}. They all focus on full-text search over a huge code base, but lack detailed information about the project. Search results typically provide a path to the version control repository and little meta-information on the actual open source project; often, even such basic information as the name and homepage of the project are missing.
+
+\textsc{\sourcerer}\footnote{\url{http://sourcerer.ics.uci.edu}} by Bajracharya \etal \cite{Bajr06a} and \textsc{\merobase}\footnote{\url{http://www.merobase.org}} by Hummel \etal \cite{Humm08a} are research projects with an internet-scale code search-engine. Both provide the developer with license information and project name. Merobase also provides a set of metrics such as cyclomatic- and Halstead complexity.  An improved version of \sourcerer with trustability data is in development, though it has not yet been published\footnote{Personal communication with Sushil Bajracharya.}. 
+
+In addition to the web user interface, both Sourcerer and Merobase are also accessible through Eclipse plug-ins that allow the developer to write unit tests. These are then used as a special form of query to search for matching classes/ methods, \ie classes that pass the tests\cite{Humm08a}. Using unit tests as form of formulating queries is a way of increase technical trustability: Unit-tested search results are of course more trustable, however at the cost of a more time consuming query formulation (\ie additionally writing the unit tests). The kind of results returned are also limited to clearly-defined and testable features.  A combination of technical trustability factors (\eg unit tests) and human trustability factors might be promising future work.
+
+%In addition to the web user interface, both Sourcerer and Merobase are also accessible through Eclipse plug-ins that allow the developer to write unit tests that are then used to query the search engines for matching classes \cite{Lemo07a,Humm08a}. Using unit tests for query formulation is interesting with regard to trustability. Unit-tested search results are of course more trustable, however at the cost of a more time consuming query formulation (\ie additionally writing the unit tests). \on{This is still confusing. It is not clear what writing unit tests have to do with query formulation.} The kind of results returned are also limited to clearly-defined and testable features.  A combination of technical trustability factors (\eg unit tests) and human trustability factors might be promising future work.
+
+We are not the first to use collaborative filtering in code search. Ichii \etal used collaborative filtering to recommend relevant components to users \cite{Ichi09a}. Their system uses browsing history to recommend components to the user. The aim was to help users make cost-benefit decisions about whether or not those components are worth integrating. Our contribution beyond the state-of-the-art is our focus on human factors and the role of cross-project contributors.
+
+%The \Jbd prototype, that we present in \autoref{sec:approach}, uses data collected from the Ohloh website to compute the trustability metric that we propose in \autoref{sec:metric}.
 
 % Related work above
 %%%%%%%%%%%%%
@@ -1511,5 +1556,198 @@ In the future, we would like to extend our expertise model with developer knowle
 
 For more information on \TOOL and the case study presented in this paper, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
 
+\cite{Credibility in Code Search with Social Clues}
+
+The promise of search-driven development is that developers will save time and resources by reusing external code in their local projects. To efficiently integrate this code, users must be able to trust it, thus \emph{trustability} of code search results is just as important as their relevance. 
+%
+In this paper, we introduce a \emph{trustability metric} to help users assess the quality of code search results and therefore ease the cost-benefit analysis they undertake trying to find suitable integration candidates. The proposed trustability metric incorporates both user votes and cross-project activity of developers to calculate a \emph{``karma''} value for each developer. Through the karma value of all its developers a project is ranked on a trustability scale.
+%
+We present \Jbd, a proof-of-concept code search engine which implements our trustability metric and we discuss preliminary results from an evaluation of the prototype.
+
+Code search engines help developers to find and reuse software. 
+%The promise of search-driven development is that developers will save time and resources by searching for software and reusing the search results in their code. 
+However, to support search-driven development it is not sufficient to implement a mere full text search over a base of source code, human factors have to be taken into account as well. At last year's SUITE workshop \cite{Kuhn09a}, \emph{suitability} and \emph{trustability} have been major issues in search-driven development, besides---of course---relevance of search results.  
+
+In this paper we focus on the \emph{trustability} of search results. Relevance of code search results is of course paramount, but trustability in the results is just as important. Before integrating a search result the developer has to assess its trustability to take a go-or-no-go decision. A well-designed search interface allows its users to take this decision on the spot. Gallardo-Valencia \etal found that developers often look into human rather than technical factors to assess the trustability of search results \cite{Gall09a}. For example developers will prefer results from well-known open source projects over results from less popular projects.
+
+In this paper we present a trustability metric for search results. The  trustability metric is based on human factors. We use data collected from Web 2.0 platforms to assess the trustability of both projects and developers. Our trustability metric is based on collaborative filtering of user votes and cross-project activity of developers. For example, if a little-known project is written by developers who also contributed to a popular open source project, the little-known project is considered to be as trustable as the popular project. 
+
+As a feasibility study, we implemented the trustability metric in \Jbd, a proof-of-concept code search engine. The index of our \Jbd installation currently contains trustability assessments for over 3,700 projects, based on 193,000 user votes and the cross-project activity of over 56,000 developers. In this paper, preliminary results from an evaluation of the prototype are discussed.
+
+Contributions of this paper are as follows.
+\begin{itemize}
+\item We introduce a trustability metric for software projects. The trustability metric is based on human factors, and uses collaborative filtering of both user votes and cross-project activity of developers.
+\item We present \Jbd, a proof-of-concept implementation of our trustability metric and discuss preliminary results from an evaluation of the prototype.
+\end{itemize}
+
+% =====================================================================
+\begin{figure}
+  \centering
+    \includegraphics[width=\linewidth]{src_paper_diagram2}
+    \caption{
+    {\small
+    Architecture of the \Jbd prototype. \Jbd enhances search results from source code with a trustability estimate that is based on social data collect from the Ohloh Web 2.0 website.
+    }
+    }
+    \label{fig:archi}
+\end{figure}
+% =====================================================================
+\section{Trustability Metric}
+\label{sec:metric}
+
+\begin{figure*}
+  \centering
+  	 \includegraphics[width=\linewidth]{screenshot5.png}
+    \caption{
+    {\small
+    Screenshot of a \Jbd search result with trustability estimate. On the right there is the actual search result, with full name and code snippet. On the left there is information about the originating project and the trust value calculated by the trustability metric.
+    }
+    }
+    \label{fig:screenshot}
+\end{figure*}
+
+In this section, we propose a trustability metric for code search results that uses collaborative filtering of both user votes and cross-project activity of developers.
+
+To assess the trustability of code search results we combine traditional full text search with meta-information from Web 2.0 platforms. Our trustability metric requires the following information:
+
+\begin{itemize}
+\item A matrix $M = (c_{d,p})$ with the number of contributions per contributor $d$ to a project $p$.
+\item A vector $V = (v_p)$ with user votes for software projects to signal the users' trust in projects. Gallardo-Valencia \etal refer to user votes as ``fellow users'' \cite{Gall09a}.
+\end{itemize}
+
+We use collaborative filtering of both user votes and cross-project activity of developers. For example, if a little-known project is written by developers who have also contributed to a popular open source project, the little-known project is considered to be as trustable as the popular project. Since both the number of contributions per contributor and the number of votes per project follow a power-law distribution, we use \emph{log} weighting and \emph{tf-idf}\footnote{``term frequency-inverse document frequency'' \url{http://en.wikipedia.org/wiki/Tf-idf}} weighting where applicable. 
+
+First we define the \emph{karma} of a contributor as
+
+    $$K_{d} = \sum_{P} w_{d,p} \log v_p
+    \quad \mathrm{where} \quad 
+    w_{d,p} = \frac{\log c_{d,p}}{\log \mathrm{df}(d)}$$
+
+\noindent
+which is the sum of the votes of all projects, weighted by the number of contributions to these projects and divided by the inverse project frequency of the contributor (\ie the number of projects to which the contributor contributed at least one contribution).
+
+
+Based on this, trustability of a project is defined as 
+
+	$$T_{p} = \sum_{D} w_{d,p} K_d
+	\quad \mathrm{where} \quad 
+	w_{d,p} = \frac{\log c_{d,p}}{\sum_{d' \in D} \log c_{d',p}}$$
+
+\noindent
+which represents the sum of the karma of all the projects contributors, weighted by the number of their contributions.
+Note that we divide project trustability by the total number of contributions, but not contributor karma. This is on purpose, contributors are more trustable the more they commit (based on the assumption that all accepted commits require approval of a trusted core developer, as is common in many open source projects) but projects are not per se more trustable the larger they are.
+
+To summarize, we consider a project to be trustable if there are significant contributions by contributors who have also significantly contributed to projects (including the project in question) that have received a high number of user votes.
+
+The proposed definition of trustability is dominated by cross-project contributors, \ie contributors who contributed many times to many projects with many votes. This is in accordance with empirical findings on open source that have shown how cross-project developers are a good indicator of project success \cite{Kats07a}. This behaviour is also known as ``the rich get richer'' in the theory of scale-free networks and is considered an inherent and thus common property of most social networks \cite{Bara03a}.
+
+% =====================================================================
+\section{The JBender Prototype}
+\label{sec:approach}
+
+We have developed a prototype, called \Jbd, which enriches code search results with trustability information. To add to the information content of search results we combine two main sources to form the \Jbd code search engine. On the one hand there is the actual code base of the search engine over which an index is created. On the other hand we have created a database of metadata for the projects in the code base. 
+
+\autoref{fig:archi} illustrates the architecture of \Jbd. \Jbd creates a searchable index over the code base and provides a code search over it. Its novelty however lies in the underlying metadata which is linked to the projects in the searchable code base - upon finding results from the latter \Jbd can supply the meta information stored for the result's originating project.
+
+
+\begin{figure*}
+{\small
+  \centering
+\begin{tabular}{ l | l | l }%{ | l || l || l |}
+%\hline
+%% row 1
+\textbf{Top projects (by votes)} & \textbf{Top Developer (by karma)} & \textbf{Top projects (by trustability)}
+\\\hline
+%% row 2
+``firefox", $v_p$ = 7207 & ``darins", $K_{d}$ = 71.97 & ``grepWin", $T_{p}$ = 51.60, $v_p$ = 32
+\\%\hline
+%% row 3
+``subversion", $v_p$ = 5687 & ``amodra", $K_{d}$ = 70.11 & ``GNU Diff Utilities", $T_{p}$ = 51.18, $v_p$ = 645
+\\%\hline
+%% row 4
+``apache", $v_p$ = 5107 & ``darin", $K_{d}$ = 69.09 & ``Eclipse Ant Plugin", $T_{p}$ = 49.76, $v_p$ = 136
+\\%\hline
+%% row 5
+``mysql", $v_p$ = 4834 & ``nickc", $K_{d}$ = 67.14 & ``Eclipse Java Development Tools", $T_{p}$ = 48.36, $v_p$ = 647
+\\%\hline
+%% row 6
+``php", $v_p$ = 4081 & ``Dani Megert", $K_{d}$ = 66.51 & ``Crimson", $T_{p}$ = 42.41, $v_p$ = 2
+\\%\hline
+%% row 7
+``openoffice", $v_p$ = 3118 & ``mlaurent", $K_{d}$ = 66.14 & ``GNU binutils", $T_{p}$ = 42.18, $v_p$ = 525
+\\%\hline
+%% row 8
+``firebug", $v_p$ = 3109 & ``Paul Eggert", $K_{d}$ = 65.89 & ``syrep", $T_{p}$ = 42.12, $v_p$ = 2
+\\%\hline
+%% row 9
+``gcc", $v_p$ = 2586 & ``kazu", $K_{d}$ = 65.78 & ``GNU M4", $T_{p}$ = 41.85, $v_p$ = 54
+\\%\hline
+%% row 10
+``putty", $v_p$ = 2519 & ``rth", $K_{d}$ = 65.25 & ``gzip", $T_{p}$ = 41.61, $v_p$ = 261
+\\%\hline
+%% row 11
+``phpmyadmin", $v_p$ = 2412 & ``hjl", $K_{d}$ = 65.04 & ``Forgotten Edge OpenZIS", $T_{p}$ = 40.86, $v_p$ = 1
+\\%\hline
+\end{tabular}
+\caption{
+{\small
+Top ten results for A) project ranking by Ohloh, B) karma of developers, C) project ranking by trustabilty.
+}}
+\label{fig:table}
+}
+\end{figure*}
+
+\subsection{JBender's Metadatabase}
+Our source of meta data is the \textsc{Ohloh}\footnote{\url{http://www.ohloh.net}} project. Ohloh is a social networking platform for open source software projects where projects (or rather their developers) can specify additional information. However Ohloh does not allow users to actually search through or interact with the source code: Ohloh is not a code search engine. Ohloh provides user contributed information on both open source projects and their developers, composing valuable information for search users. Users can vote for both projects and developers whether and how much they like them by rating projects and giving kudos to certain developers. Furthermore kudos are (automatically) given to developers who have worked for successful projects, i.e. projects with large user bases. 
+
+For the \Jbd prototype we collected the trustability meta-information from Ohloh, which is a social web platform for open source projects that provides user contributed information on both open source projects and their developers.
+
+Metadata stored in the database includes (among others): Description of original project, project homepage, rating of the project, list of current repositories (type, url, last time of update, ...), licenses of files in the project (exact type of license, number of files), employed programming languages (percentage of total, lines of code, comment ratio, ...), the project's users and developers who worked on the project (kudos, experience, commits per project, ...).
+
+\subsection{JBender's Codebase}
+In addition to the collected metadata, \Jbd also follows the links to the version control repositories that are listed on Ohloh, creates local copies of these repositories and parses the code in Java projects to build an search index over them.
+\Jbd then provides a basic structured code search over various parts of the indexed source code. Examples are method/class names and their bodies, comments, visibility, dependencies and implemented interfaces.
+
+\subsection{Trustability enhanced results}
+
+The following data from Ohloh was directly used for the trustability metric: As contributors we used the developers of the projects and as the number of contributions we used the number of commits. As user votes we used the number of developers who ``stacked'' a project, which is Ohloh's terminology for claiming to be an active user of a project.\footnote{That is, we interpret ``votes'' as a user expressing his trust in a project by using it.} Thus in our case, both users and contributors are open source developers. To be a user the developers must be registered on Ohloh.  This is not necessary for being a contributor, since that information is taken from version control systems.
+
+As explained in \autoref{sec:metric} this trustability metric takes into account several of the collected meta parameters and calculates a trust metric for each result according to which the results can be sorted.
+
+\autoref{fig:screenshot} shows a screenshot of a single search result from \Jbd. On the right there is the actual search result, with full name and code snippet. On the left there is information about the originating project and the trust value calculated by the trustability metric. Currently the raw trust measurement is displayed as a floating point number to the user. We might change that to a ranked assessment that maps the trustability to a scale from 1 to 10 to improve usability. 
+
+The layout of our search result is deliberately kept very simple and lucid in order to be efficiently usable. It has been shown that efficient search requires compact and well-arranged interfaces, which do not burden the user with too much information or a complex information seeking process \cite{Hear09a}. 
+
+
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Some preliminary results}
+\autoref{fig:table} illustrates the top-10 results for a) project ranking through votes by Ohloh, b) karma of developers, c) project ranking by our trustability metric. Notice how the project ranking changed through consideration of cross-project developer activity: grepWin for example has only 32 users on Ohloh but is ranked by us with top trustability because its developers are very active and have a high karma value.
+
+\paragraph{Evidence of power law distribution} 
+We found that our input data (\ie the user-generated data that we crawled from Ohloh) follows a power law distribution: the number of votes per project ($r = 0.95157$), the number of commits per developer per project ($r = 0.89207$), as well as number of projects per developer ($r = 0.85029$). Therefore we applied \emph{log} and \emph{tf-idf} weighting so that the trustability metric is not dominated by high values.
+At the moment project trustability ranges from zero to about 52, developer karma ranges from zero to about 72.
+
+\paragraph{A note on Ohloh's kudo-rank}
+The Ohloh website provides its own measurement of developer ``karma'', called \emph{kudo-rank}. Kudo-ranks are based on a mix of user votes for projects and of user votes for developers, called \emph{kudos}. User participation for kudos is very low and as a consequence a small clique of developers can vote themselves up to top ranks. Therefore, we decided against including kudo-ranks in our trustability function.
+
+\paragraph{Possible weakness of karma ranking}
+One must consider that developers may not use the same user names for all their commits through various repository systems. In such a case Ohloh can not auotmatically collect all the developers commits into one account; the developer would have to register and do this manually. Furthermore we blacklist commit bots. Finally the karma value could be tampered with deliberately if a user was to do a huge number of (small) commits to few highly ranked projects.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this paper we have presented an approach to improve the \emph{trustability} of search results. Trustability of search results is important, so that developers can quickly assess search results from external code bases before integrating them into their local code base. 
+
+%Our aim is that the developer gains a quick estimate of code trustability in his results. We therefore created a trust function, that calculates a trust value for each originating project depending on the projects meta data. This trust value is an indication of the projects quality, its popularity and the quality of its source code. Upon reaching a sufficient size of source code and metadata index it would also be egligible to sort search results according to their trust value. As result relevance is paramount the trustability metric would then be used to choose from a pool of \emph{relevant} search results. Under the premise that all results comply with the users technical specification this would provide the user working results of the best quality.
+
+We have proposed $T_p$ as a trustability metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the trustability metric which allows developers to quickly assess the trustability of search results from a code search engine. We have discussed the choice of our trustability metric and presented preliminary results from an ongoing evaluation. 
+
+%We have proposed $T_p$ as a trustability metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the trustability metric. Integrating the trustability metric in a code search engine allows developers to quickly assess the trustability of search results from a code search engine. We have discussed the choice of our trustability metric and presented preliminary results from an ongoing evaluation.
+
+The current trustability metric is defined per project. We would like to combine it with code ownership data from project history, so that we can assess the trustability of single classes (or even methods) based on developers karma.
+
+Currently we are building up our metadata and code bases for \Jbd; upon reaching a sufficient level we plan do a user study to evaluate the effect of metadata on result trustability. We would also like to compare the proposed trustability metric with other trustability measurements, \eg corporate backing of projects. It might also be promising to combine the proposed trustability metric, which is currently based on human factors only, with technical trustability assessments such as \eg test coverage. 
 
 \end{document}
