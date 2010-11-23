@@ -33,6 +33,10 @@
 \newcommand{\loglr}{log-likelihood ratio\xspace}
 \newcommand{\loglrs}{log-likelihood ratios\xspace}
 %%%
+% --> for chapter on Chronia
+\newcommand{\omap}{\emph{Ownership Map}\xspace}
+\newcommand{\id}[1]{{\sf\small{#1}}}
+%%%
 
 \begin{document}
 
@@ -129,6 +133,38 @@ They categorized projects and described the categories with the most similar ter
 Lexical information of source code has been further proven useful for various tasks in software engineering (\eg \cite{Anto02a,Marc05a,Posh09a}). Many of these approaches apply Latent Semantic Indexing and inverse-document frequency weighting, which are well-accpeted techniques in Information Retrieval but are according to Dunning ``only justified on very sketchy grounds \cite{Dunning}.''
 
 Baldi \etal \cite{Bald08a} present a theory of aspects (the programming language feature) as latent topics. They apply Latent Dirichlet Analysis (LDA) to detect topic distributions that are possible candidates for aspect-oriented programming. They present the retrieved topics as a list of the 5 most likely words. The model of LDA assumes that each topic is associated with a multinomial distribution over words, and each document is associated with a multinomial distribution over topics; their approach is thus sound.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work for Chronia}\label{sec:soa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Analyzing the way developers interact with the system has only attracted few research. A visualization similar to the \omap is used to visualize how authors change a wiki page \cite{Vieg04a}.
+
+Xiaomin Wu \etal visualize \cite{Wu04b} the change log information to provide an overview of the active places in the system as well as of the authors activity. They display measurements like the number of times an author changed a file, or the date of the last commitment.
+
+Measurements and visualization have long been used to analyze how software systems evolve.
+
+Ball and Eick \cite{Ball96a} developed multiple visualizations for showing changes that appear in the source code. For example, they show what is the percentage of bug fixes and feature addition in files, or which lines were changed recently.
+
+Eick \etal proposed multiple visualizations to show changes using colors and third dimension \cite{Eick02a}.
+
+Chuah and Eick proposed a three visualizations for comparing and correlating different evolution information like the number of lines added, the errors recorded between versions, number of people working etc. \cite{Chua98a}.
+
+Rysselberghe and Demeyer use a scatter plot visualization of the changes  to provide an overview of the evolution of systems and to detect patterns of change\cite{Ryss04a}.
+
+Jingwei Wu \etal use the spectrograph metaphor to visualize how changes occur in software systems \cite{Wu04a}. They used colors to denote the age of changes on different parts of the systems.
+
+Jazayeri analyzes the stability of the architecture \cite{Jaza02a} by using colors to depict the changes. From the visualization he concluded that old parts tend to stabilize over time.
+
+Lanza and Ducasse visualize the evolution of classes in the Evolution Matrix \cite{Lanz02a}. Each class version is represented using a rectangle. The size of the rectangle is given by different measurements applied on the class version. From the visualization different evolution patterns can be detected such as continuous growth, growing and shrinking phases etc.
+
+Another relevant reverse engineering domain is the analysis of the co-change history.
+
+Gall \etal aimed to detect logical coupling between parts of the system \cite{Gall98a} by identifying the parts of the system which change together. They used this information to define a coupling measurement based on the fact that the more times two modules were changed at the same time, the more they were coupled.
+
+Zimmerman \etal aimed to provide mechanism to warn developers about the correlation of changes between functions. The authors placed their analysis at the level of entities in the meta-model (\eg methods) \cite{Zimm04a}. The same authors defined a measurement of coupling based on co-changes \cite{Zimm03a}.
+
+Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
 
 % Related work above
 %%%%%%%%%%%%%
@@ -718,5 +754,336 @@ The top 7 change trends (\ie $-2log\lambda \geqslant 100.0$) in the history of J
 \section{Conclusion}\label{eventually}
 
 We presented \loglr as a technique to label software components. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms. We presented how to use the \loglr of word frequencies to retrieve labels, and how to compare a component against a normative corpus. In addition, we proposed to use \loglrs to characterize the evolution of a software component. We presented the results of two example applications, one using the Java API as case study, the other using 14 releases of JUnit as case study. By comparing subsequent revisions of JUnit to each other we were able to characterize substantial changes in the history of JUnit.
+
+\chapter{Spatial Representation with Lexical Clues and Spatial Clues}
+
+To be done
+
+\chapter{Ownership Map with Social and Spatial Clues}
+
+As systems evolve their structure change in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this paper we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this paper make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
+
+Software systems need to change in ways that challenge the original design. Even if the original documentation exists, it might not reflect the code anymore. In such situations, it is crucial to get access to developer knowledge to understand the system. As systems grow larger, not all developers know about the entire system, thus, to make the best use of developer knowledge, we need to know which developer is knowledgeable in which part of the system.
+
+From another perspective, Conway's law \cite{Conw68a} states that ``Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." That is, the shape of the organization reflects on the shape of the system. As such, to understand the system, one also has to understand the interaction between the developers and the system \cite{Deme02a}.
+
+In this paper we aim to understand how the developers drove the evolution of the system. In particular we provide answers to the following questions:
+\begin{itemize}
+\item How many authors developed the system?
+\item Which author developed which part of the system?
+\item What were the behaviors of the developers?
+\end{itemize}
+
+In our approach, we assume that the original developer of a line of code is the most knowledgeable in that line of code. We use this assumption to determine the owner of a piece of code (\eg a file) as being the developer that owns the largest part of that piece of code. We make use of the ownership to provide a visualization that helps to understand how developers interacted with the system. The visualization represents files as lines, and colors these lines according to the ownership over time.
+
+Contrary to similar approaches \cite{Ryss04a}, we give a semantic order to the file axis (\ie we do not rely on the names of the files) by clustering the files based on their history of changes: files committed in the same period are related \cite{Gall98a}.
+
+We implemented our approach in Chronia, a tool built on top of the Moose reengineering environment \cite{Duca05a}. As CVS is a de facto versioning system, our implementation relies on the CVS model. Our aim was to provide a solution that gives fast results, therefore, our approach relies only on information from the CVS log without checking out the whole repository. As a consequence, we can analyze large systems in a very short period of time, making the approach usable in the early stages of reverse engineering.
+
+To show the usefulness of our solution we applied it on several large case studies. We report here some of the findings and discuss different facets of the approach.
+
+The contributions of the paper are:
+\begin{itemize}
+\item The definition of file ownership.
+\item The clustering of files based on their commit history.
+\item A characterization of developer behaviors.
+\item The \omap visualization.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Extraction from CVS log}\label{sec:ownership}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This section introduces a measurement to characterize the code ownership. The assumption is that the original developer of a line of code is the most knowledgeable in that line of code. Based on this assumption, we determine the owner of a piece of code as being the developer that owns the most lines  of that piece of code.
+
+The straightforward approach is to checkout all file versions ever committed to the versioning repository and to compute the code ownership from diff information between each subsequent revisions $f_{n-1}$ and $f_n$. From an implementation point of view this implies the transfer of large amounts of data over the network, and long computations.
+
+In this paper, we aim to provide for an approach that can deal with large projects with long history, and that can provide the results fast. As CVS is the very common versioning system, we make tuned our approach to work with the information CVS can provide. In particular we compute the ownership of the code based only on the CVS log information.
+
+Below we present a snippet from a CVS log. The log lists for each version $f_n$ of a file \-- termed revision in CVS \-- the time $t_{f_n}$ of its commit, the name of its author $\alpha_{f_n}$, some state information and finally the number of added and removed lines as deltas $a_{f_n}$ and $r_{f_n}$. We use these numbers to recover both the file size $s_{f_n}$, and the code ownership $own_{f_n}^\alpha$.
+
+\begin{tiny}\begin{verbatim}
+----------------------------
+revision 1.38
+date: 2005/04/20 13:11:24;  author: girba;  state: Exp;  lines: +36 -11
+added implementation section
+----------------------------
+revision 1.37
+date: 2005/04/20 11:45:22;  author: akuhn;  state: Exp;  lines: +4 -5
+fixed errors in ownership formula
+----------------------------
+revision 1.36
+date: 2005/04/20 07:49:58;  author: mseeberg;  state: Exp;  lines: +16 -16
+Fixed math to get pdflatex through without errors.
+----------------------------
+\end{verbatim}\end{tiny}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measuring File Size}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $s_{f_n}$ be the size of revision $f_n$, measured in number of lines. The number of lines is not given in the CVS log, but can be computed from the deltas $a_{f_n}$ and $r_{f_n}$ of added and removed lines. Even though the CVS log does not give the initial size $s_{f_0}$, we can give an estimate based on the fact that one cannot remove more lines from a file than were ever contained. We define $s_{f_n}$ as in autoref{fig:filesize}: we first calculate the sizes starting with an initial size of 0, and then in a second pass adjust the values with the lowest value encountered in the first pass.
+
+\begin{figure}[htbp]
+\begin{minipage}[c]{.45\linewidth}
+\includegraphics[width=1.2\linewidth]{minimum}
+ \end{minipage}
+ \hfill
+ \begin{minipage}[c]{.5\linewidth}
+\begin{eqnarray}
+& s'_{f_0} := 0 \nonumber \\
+& s'_{f_n} := s'_{f_{n-1}} + a_{f_{n-1}} - r_{f_n} \nonumber  \\
+& s_{f_0} := \vert min \{ s'_x \} \vert \nonumber \\
+& s_{f_n} := s_{f_{n-1}} + a_{f_n} - r_{f_n} \nonumber
+ \end{eqnarray}
+ \end{minipage}
+\caption{The computation of the initial size.}
+\label{fig:filesize}
+\end{figure}
+
+This is a pessimistic estimate, since lines that never changed are not covered by the deltas in the CVS log. This is an acceptable assumption since our main focus is telling the story of the developers, not measuring lines that were never touched by a developer. Furthermore in a long-living system the content of files is entirely replaced or rewritten at least once if not several times. Thus the estimate matches the correct size of most files.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measuring Code Ownership}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A developer owns a line of code if he was the last one that committed a change to that line. In the same way, we define file ownership as the percentage of lines he owns in a file. And the overall owner of a file is the developer that owns the largest part of it.
+
+Let $own_{f_n}^\alpha$ be the percentage of lines in revision $f_n$ owned by author $\alpha$. Given the file size $s_{f_n}$, and both the author $\alpha_{f_n}$ that committed the change and $a_{f_n}$ the number of lines he added, we defined ownership as:
+\[
+own_{f_0}^\alpha:=\left\{
+    \begin{array}{cl}
+        1, & \alpha=\alpha_{f_0} \\
+        0, & else
+    \end{array}\right.
+\]
+\[
+own_{f_n}^\alpha:=own_{f_{n-1}}^\alpha \frac{s_{f_n} - a_{f_n}}{s_{f_n}} + \left\{
+    \begin{array}{cl}
+        \frac{a_{f_n}}{s_{f_n}}, & \alpha=\alpha_{f_n} \\
+        0, & else
+    \end{array}\right.
+\]
+In the definition we assume that the removed lines $r_{f_n}$ are evenly distributed over the ownership of the preceding owners of $f_{n-1}$.
+%A better estimate than $own_{f_n}^\alpha$ can be retrieved by checking out the content of each revision and using a diff algorithm to find out to whom the removed lines actually belonged. But this would, as initially explained, require vast amounts of network traffic and time consuming calculations, and thus the advantages of only processing information from CVS log would be lost.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Ownership Map View}\label{sec:approach}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We introduce the \omap visualization as in autoref{fig:ownershipDetailsExample}. The visualization is similar to the Evolution Matrix \cite{Lanz02a}: each line represents a history of a file, and each circle on a line represents a change to that file.
+
+The color of the circle denotes the author that made the change. The size of the circle reflects the proportion of the file that got changed \ie the larger the change, the larger the circle. And the color of the line denotes the author who owns most of the file.
+
+Bertin \cite{Bert74a} assessed that one of the good practices in information visualization is to offer to the viewer visualizations that can be grasped at one glance. The colors used in our visualizations follow visual guidelines suggested by Bertin, Tufte \cite{Tuft90a}, and Ware \cite{Ware00a} \-- \eg we take into account that the human brain is not capable of processing more than a dozen distinct colors.
+
+In a large system, we can have hundreds of developers. Because the human eye is not capable of distinguishing that many colors, we only display the authors who committed most of all changes using distinct colors; the remaining authors are represented in gray. Furthermore, we also represent with gray files that came into the CVS repository with the initial import, because these files are usually sources from another project with unknown authors and are thus not necessarily created by the author that performed the import. In short, a gray line represents either an unknown owner, or an unimportant one.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=\linewidth]{owners-map-detail}
+\caption{Example of ownership visualization of two files.}
+\label{fig:ownershipDetailsExample}
+\end{center}
+\end{figure}
+
+In the example from autoref{fig:ownershipDetailsExample}, each line represents the lifetime of a file; each circle represents a change. \id{File A} appears gray in the first part as it originates from the initial import. Later the green author significantly changed the file, and he became the owner of the file. In the end, the blue author deleted the file. \id{File B} was created by the green author. Afterwards, the blue author changed the file, but still the green author owns the larger part, so the line remains green. At some point, the red author committed a large change and took over the ownership. The file was not deleted.
+
+\begin{figure*}[hbt]
+\begin{center}
+\includegraphics{owners-map-example}
+\caption{Example of the Ownership Map view. The view reveals different patterns:
+Monologue, Familiarization, Edit, Takeover, Teamwork, Bug-fix.}
+\label{fig:ownershipMapExample}
+\end{center}
+\end{figure*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ordering the Axes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph{Ordering the Time Axis.}
+Subsequent file revisions committed by the same author are grouped together to form a transaction of changes \ie a commit. We use a single linkage clustering with a threshold of 180 seconds to obtain these groups. This solution is similar to the sliding time window approach of Zimmerman \etal when they analyzed co-changes in the system \cite{Zimm04a}. The difference is that in our approach the revisions in a commit do not have to have the same log comment, thus any quick subsequent revisions by the same author are grouped into one commit.
+
+\paragraph{Ordering the Files Axis.}
+A system may contain thousands of files; furthermore, an author might change multiple files that are not near each other if we would represent the files in an alphabetical order. Likewise, it is important to keep an overview of the big parts of the system. Thus, we need an order that groups files with co-occurring changes near each other, while still preserving the overall structure of the system. To meet this requirement we split the system into high-level modules (\eg the top level folders), and order inside each module the files by the similarity of their history. To order the files in a meaningful way, we define a distance metric between the commit signature of files and order the files based on a hierarchical clustering.
+
+Let $H_f$ be the commit signature of a file, a set with all timestamps $t_{f_n}$ of each of its revisions $f_n$. Based on this the distance between two commit signatures $H_a$ and $H_b$ can be defined as the modified Hausdorff distance \footnote{The Hausdorff metric is named after the german mathematician Felix Hausdorff (1868-1942) and is used to measure the distance between two sets with elements from a metric space.} $\delta(H_a,H_b)$:
+\[
+D(H_n,H_m) := \sum_{n \in H_n} min^2 \{ \vert m -n \vert : m \in H_m \}
+\]
+\[
+\delta(H_a,H_b) := max \{ D(H_a,H_b), D(H_b,H_a) \}
+\]
+
+With this metric we can order the files according to the result of a hierarchical clustering algorithm \cite{Jain99a}. From this algorithm a dendrogram can be built: this is a hierarchical tree with clusters as its nodes and the files as its leaves. Traversing this tree and collecting its leaves yields an ordering that places files with similar histories near each other and files with dissimilar histories far apart of each other.
+
+The files axes of the \omap views shown in this paper are ordered with \textit{average linkage} clustering and \textit{larger-clusters-first} tree traversal. Nevertheless, our tool Chronia allows customization of the ordering.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Behavioral Patterns}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Overview Map reveals semantical information about the work of the developer. autoref{fig:ownershipMapExample} shows a part of the \omap of the Outsight case study (for more details see  autoref{sec:outsight}). In this view we can identify several different behavioral patterns of the developers:
+
+\begin{itemize}
+
+\item \emph{Monologue.} Monologue denotes a period where all changes and most files belong to the same author. It shows on an \omap as a unicolored rectangle with change circles in the same color.
+
+\item \emph{Dialogue.} As opposed to Monologue, Dialogue denotes a period with changes done by multiple authors and mixed code ownership. On an \omap it is denoted by rectangles filled with circles and lines in different colors.
+
+\item \emph{Teamwork.} Teamwork is a special case of Dialogue, where two or more developers commit a quick succession of changes to multiple files. On an \omap it shows as circles of alternating colors looking like a bunch of bubbles. In our example, we see in the bottom right part of the figure a collaboration between Red and Green.
+
+\item \emph{Silence.} Silence denotes an uneventful period with nearly no changes at all. It is visible on an \omap as a rectangle with constant line colors and none or just few change circles.
+
+\item \emph{Takeover.} Takeover denotes a behavior where a developer takes over a large amount of code in a short amount of time \-- \ie the developer seizes ownership of a subsystem in a few commits. It is visible on an \omap as a vertical stripe of single color circles together with an ensuing change of the lines to that color. A Takeover is commonly followed by subsequent changes done by the same author. If a Takeover marks a transition from activity to Silence we classify it as an \emph{Epilogue}.
+
+\item \emph{Familiarization.} As opposed to Takeover, Familiarization characterizes an accommodation over a longer period of time. The developer applies selective and small changes to foreign code, resulting in a slow but steady acquisition of the subsystem. In our example, Blue started to work on code originally owned by Green, until he finally took over ownership.
+
+\item \emph{Expansion.} Not only changes to existing files are important, but also the expansion of the system by adding new files. In our example, after Blue familiarized himself with the code, he began to extend the system with new files.
+
+\item \emph{Cleaning.} Cleaning is the opposite of expansion as it denotes an author that removes a part of the system. We do not see this behavior in the example.
+
+\item \emph{Bugfix.} By bug fix we denote a small, localized change that does not affect the ownership of the file. On an \omap it shows as a sole circle in a color differing from its surrounding.
+
+\item \emph{Edit.} Not every change necessarily fulfills a functional role. For example, cleaning the comments, changing the names of identifiers to conform to a naming convention, or reshaping the code are sanity actions that are necessary but do not add functionality. We call such an action \emph{Edit}, as it is similar to the work of a book editor. An Edit is visible on an \omap as a vertical stripe of unicolored circles, but in difference to a Takeover neither the ownership is affected nor is it ensued by further changes by the same author. If an Edit marks a transition from activity to Silence we classify it as an \emph{Epilogue}.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Validation}\label{sec:validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We applied our approach on several large case studies: Outsight, Ant, Tomcat, JEdit and JBoss. Due to the space limitations we report the details from the Outsight case study, and we give an overall impression on the other four well-known open-source projects.
+
+\textbf{Outsight.} Outsight is a commercial web application written in Java and JSP. The CVS repository goes back three years and spans across two development iterations separated by half a year of maintenance. The system is written by four developers and has about 500 Java classes and about 500 JSP pages.
+
+\textbf{Open-source Case Studies.} We choose Ant, Tomcat, JEdit, and JBoss to illustrate different fingerprints systems can have on an \omap. Ant has about 4500 files, Tomcat about 1250 files, JEdit about 500 files, and JBoss about 2000 files. The CVS repository of each project goes back several years.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Outsight}\label{sec:outsight}
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\columnwidth]{commit-histogram}
+\caption{Number of commits per team member in periods of three months.}
+\label{fig:histogram}
+\end{center}
+\end{figure}
+
+\begin{figure*}[htbp]
+\begin{center}
+\includegraphics[height=21.3cm]{outsight}
+\caption{The Ownership Map of the Outsight case study.}
+\label{fig:casestudy-outsight}
+\end{center}
+\end{figure*}
+
+The first step to acquire an overview of a system is to build a histogram of the team to get an impression about the fluctuations of the team members over time. autoref{fig:histogram} shows that a team of four developers is working on the system. There is also a fifth author contributing changes in the last two periods only.
+
+
+
+autoref{fig:casestudy-outsight} shows the \omap of our case study. The upper half are Java files, the bottom half are JSP pages. The files of both modules are ordered according to the similarity of their commit signature. For the sake of readability we use \id{S1} as a shorthand for the Java files part of the system, and \id{S2} as a shorthand for the JSP files part. Time is cut into eight periods \id{P1} to \id{P8}, each covering three months. The paragraphs below discuss each period in detail, and show how to read the \omap in order to answer our initial questions.
+
+The shorthands in parenthesis denote the labels \id{R1} to \id{R15} as given on autoref{fig:casestudy-outsight}.
+
+\textbf{Period 1.} In this period four developers are working on the system. Their collaboration maps the separation of \id{S1} and \id{S2}: while Green is working by himself on \id{S2} (\id{R5}), the others are collaborating on \id{S1}. This is a good example of Monologue versus Dialogue. A closer look on \id{S1} reveals two hotspots of Teamwork between Red and Cyan (\id{R1,R3}), as well as large mutations of the file structure. In the top part multiple Cleanings happen (\id{R2}), often accompanied by Expansions in the lower part.
+
+\textbf{Period 2.} Green leaves the team and Blue takes over responsibility of \id{S2}. He starts doing this during a slow Familiarization period (\id{R6}), which lasts until end of \id{P3}. In the meantime Red and Cyan continue their Teamwork on \id{S1} (\id{R4}) and Red starts adding some files, which foreshadow the future Expansion in \id{P3}.
+
+\textbf{Period 3.} This period is dominated by a big growth of the system, the number of files doubles as large Expansions happen in both \id{S1} and \id{S2}. The histogram in autoref{fig:histogram} identifies Red as the main contributor. The Expansion of \id{S1} evolves in sudden steps (\id{R9}), and as their file base grows the Teamwork between Red and Cyan becomes less tight. In contradiction the Expansion of \id{S2} evolves in small steps (\id{R8}), as Blue continues familiarizing himself with \id{S2} and slowly but steady takes over ownership of most files in this subsystem (\id{R6}). Also an Edit of Red in \id{S2} can be identified (\id{R7}).
+
+\textbf{Period 4.} Activity moves down from \id{S1} to \id{S2}, leaving \id{S1} in a Silence only broken by selective changes. autoref{fig:histogram} shows that Red left the team, which consists now of Cyan and Green only. Cyan acts as an allrounder providing changes to both \id{S1} and \id{S2}, and Blue is further working on \id{S2}. The work of Blue culminates in an Epilogue marking the end of this period (\id{R8}). He has now completely taken over ownership of \id{S2}, while the ownership of subsystem \id{S1} is shared between Red and Cyan.
+
+\textbf{Period 5 and 6.} Starting with this period the system goes into maintenance. Only small changes occur, mainly by author Blue.
+
+\textbf{Period 7.} After two periods of maintenance the team resumes work on the system. In autoref{fig:histogram} we see how the composition of the team changed: Blue leaves and Green comes back. Green restarts with an Edit in \id{S2} (\id{R11}), later followed by a quick sequence of Takeovers (\id{R13}) and thus claiming back the ownership over his former code. Simultaneous he starts expanding \id{S2} in Teamwork with Red (\id{R12}).
+
+First we find in \id{S1} selective changes by Red and Cyan scattered over the subsystem, followed by a period of Silence, and culminating in a Takeover by Red in the end \ie an Epilogue (\id{R14}). The Takeover in \id{S1} stretches down into \id{S2}, but there being a mere Edit. Furthermore we can identify two selective Bug-fixes (\id{R10}) by author Yellow, being also a new team member.
+
+\textbf{Period 8.} In this period, the main contributors are Red and Green: Red works in both \id{S1} and \id{S2}, while green remains true to \id{S2}. As Red finished in the previous period his work in \id{S1} with an Epilogue, his activity now moves down to \id{S2}. There we find an Edit (\id{R15}) as well as the continuation of the Teamwork between Red and Green (\id{R12}) in the Expansion started in \id{P7}. Yet again, as in the previous period, we find small Bug-fixes applied by Yellow.
+
+To summarize these finding we give a description of each author's behavior, and in what part of the system he is knowledgeable.
+
+\textbf{Red author.} Red is working mostly on \id{S1}, and acquires in the end some knowledge of \id{S2}. He commits some edits and may thus be a team member being responsible for ensuring code quality standards. As he owns a good part of \id{S1} during the whole history and even closed that subsystem end of \id{P7} with an Epilogue, he is the developer most knowledgeable in \id{S1}.
+
+\textbf{Cyan author.} Cyan is the only developer that was in the team during all periods, thus he is the developer most familiar with the history of the system. He worked mostly on \id{S1} and he owned large parts of this subsystem till end of \id{P7}. His knowledge of \id{S2} depends on the kind of changes Red introduced in his Epilogue. A quick look into the CVS log messages reveals that Red's Epilogue was in fact a larger than usual Edit and not a real Takeover: Cyan is as knowledgeable in \id{S1} as Red.
+
+\textbf{Green author.} Green only worked in \id{S2}, and he has only little impact on \id{S1}. He founded \id{S2} with a Monologue, lost his ownership to Blue during \id{P2} to \id{P6}, but in \id{P7} he claimed back again the overall ownership of this subsystem. He is definitely the developer most knowledgeable with \id{S2}, being the main expert of this subsystem.
+
+\textbf{Blue author.} Blue left the team after \id{P4}, thus he is not familiar with any changes applied since then. Furthermore, although he became an expert of \id{S2} through Familiarization, his knowledge might be of little value since Green claimed that subsystem back with multiple Takeovers and many following changes.
+
+\textbf{Yellow author.} Yellow is a pure Bug-fix provider.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ant, Tomcat, JEdit and JBoss}
+
+\begin{figure*}[htb]
+\begin{center}
+\includegraphics[width=12.5cm]{casestudies-overview}
+\caption{The Ownership Map of Ant, Tomcat, JEdit, and JBoss.}
+\label{fig:casestudies-owerview}
+\end{center}
+\end{figure*}
+
+autoref{fig:casestudy-outsight} shows the \omap of four open-source projects: Ant, Tomcat, JEdit, and JBoss. The views are plotted with the same parameters as the map in the previous case study, the only difference is that vertical lines slice the time axis into periods of twelve instead of three months. Ant has about 4'500 files with 60'000 revisions, Tomcat about 1'250 files and 13'000 revisions, JEdit about 500 files and 11'000 revisions, and JBoss about 2'000 files with 23'000 revisions.
+
+Each view shows a different but common pattern. The paragraphs below discuss each pattern briefly.
+
+\textbf{Ant.} The view is dominated by a huge Expansion. After some time of development, the very same files fall victim to a huge Cleaning. This pattern is found in many open-source projects: Developers start a new side-project and when grown up it moves to an own repository, or the side-project ceases and is removed from the repository. In this case, the spin-off is the Myrmidon project, a ceased development effort planned as successor to Ant.
+
+\textbf{Tomcat.} The colors in this view are, apart from some large blocks of Silence, well mixed. The \omap shows much Dialogue and hotspots with Teamwork. Thus this project has developers that  collaborate well.
+
+\textbf{JEdit.} This view is dominated by one sole developer, making him the driving force behind the project. This pattern is also often found in open-source projects: being the work of a single author that contributed about 80\% of the code.
+
+\textbf{JBoss.} The colors in this view indicate that the team underwent to large fluctuations. We see twice a sudden change in the colors of both commits and code ownership: once mid 2001 and once mid 2003. Both changes are accompanied by Cleanings and Expansions. Thus the composition of the team changed twice significantly, and the new teams restructured the system.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{On the exploratory nature of the implementation.} We implemented our approach in Chronia, a tool built on top of the Moose reengineering environment \cite{Duca05a}. autoref{fig:chronia} emphasizes the interactive nature of our tool.
+
+On the left of autoref{fig:chronia} we see Chronia visualizing the overall history of the project, which provides a first overview. Since there is too much data we cannot give the reasoning only from this view, thus, Chronia allows for interactive zooming. For example, in the window on the lower right, we see Chronia zoomed into the bottom right part of the original view. Furthermore, when moving the mouse over the \omap, we complement the view by also showing the current position on both time and file axis are highlighted in the lists on the right. These lists show all file names and the timestamps of all commits. As Chronia is build on top of Moose, it makes use of the Moose contextual menus to open detailed views on particular files, modules or authors. For example, in the top right window we see a view with metrics and measurements of a file revision.
+
+\begin{figure*}[htbp]
+\begin{center}
+\includegraphics{chronia}
+\caption{Chronia is an interactive tool.}
+\label{fig:chronia}
+\end{center}
+\end{figure*}
+
+\textbf{On the scalability of the visualization.} Although Chronia provides zooming interaction, one may lose the focus on the interesting project periods. A solution would be to further abstract the time and group commits to versions that cover longer time periods. The same applies to the file axis grouping related files into modules.
+
+\textbf{On the decision to rely on CVS log only.} Our approach relies only on the information from the CVS log without checking out the whole repository. There are two main reasons for that decision.
+
+First, we aim to provide a solution that gives fast results; \eg building the \omap of JBoss takes 7,8 minutes on a regular 3 GHz Pentium 4 machine, including the time spent fetching the CVS log information from the \textit{Apache.org} server.
+
+Second, it is much easier to get access to closed source case studies from industry, when only metainformation is required and not the source code itself. We consider this an advantage of our approach.
+
+\textbf{On the shortcomings of CVS as a versioning system.} As CVS lacks support for true file renaming or moving, this information is not recoverable without time consuming calculations. To move a file, one must remove it and add it later under another name. Our approach identifies the author doing the renaming as the new owner of the file, where in truth she only did rename it. For that reason, renaming directories impacts the computation of code ownership in a way not desired.
+
+\textbf{On the perspective of interpreting the \omap.} In our visualization we sought answers to questions regarding the developers and their behaviors. We analyzed the files from an author perspective point of view, and not from a file perspective of view. Thus the \omap tells the story of the developers and not of the files \eg concerning small commits: subsequent commits by different author to one file do not show up as a hotspot, while a commit by one author across multiple files does. The later being the pattern we termed \textit{Edit}.
+
+Also from a project manager point of view the \omap can give valuable hints. Knowing whether a developer tends more to  Takeover or more to Familiarization is a good indicator to whom the responsibility of subsystem should be given. If a subsystem need rewrites and restructuring the Takeover type is a good choice, otherwise if a subsystem is a good base to be built up on the Familiarization type is a good choice.
+
+But classifications of the authors have to be interpreted in their context. If a developer ly takes over subsystems this does not mean that he has an  character or that he will always tend to Takeovers. In our case study (autoref{fig:casestudy-outsight}) Green's Takeover of \id{S2} in \id{P7} must be seen in the context of the system history: Blue left the team and Green was the original developer of \id{S2}. He would have acted differently if Blue were still in the team.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}\label{sec:conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this paper we aim to understand how the developers drove the evolution of the system. In particular we ask the following questions:
+\begin{itemize}
+\item How many authors developed the system?
+\item Which author developed which part of the system?
+\item What were the behaviors of the developers?
+\end{itemize}
+
+To answer them, we define the \omap visualization based on the notion of code ownership. In addition we semantically group files that have a similar \emph{commit signature} leading to a visualization that is not  based on alphabetical ordering of the files but on co-change relationships between the file histories. The \omap helps in answering which authors are knowledgeable in which part of the system and also reveal behavioral patterns. To show the usefulness we implemented the approach and applied it on several case studies. We reported some of the findings and we discussed the benefits and the limitations as we perceived them during the experiments.
+
+In the future, we would like to investigate the application of the approach at other levels of abstractions besides files, and to take into consideration types of changes beyond just the change of a line of code.
+
+
 
 \end{document}
