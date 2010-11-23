@@ -14,6 +14,46 @@
 \renewcommand{\figureautorefname}{Figure}
 %%%
 \usepackage[draft]{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Markup macros for proof-reading
+\usepackage[normalem]{ulem} % for \sout
+\usepackage{xcolor}
+\newcommand{\ra}{$\rightarrow$}
+\newcommand{\ugh}[1]{\textcolor{red}{\uwave{#1}}} % please rephrase
+\newcommand{\ins}[1]{\textcolor{blue}{\uline{#1}}} % please insert
+\newcommand{\del}[1]{\textcolor{red}{\sout{#1}}} % please delete
+\newcommand{\chg}[2]{\textcolor{red}{\sout{#1}}{\ra}\textcolor{blue}{\uline{#2}}} % please change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Put edit comments in a really ugly standout display
+\usepackage{ifthen}
+\usepackage{amssymb}
+\newboolean{showcomments}
+\setboolean{showcomments}{false} % toggle to show or hide comments
+\ifthenelse{\boolean{showcomments}}
+  {\newcommand{\note}[2]{
+	% \fbox{\bfseries\sffamily\scriptsize#1}
+	\fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+    {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
+    % \marginpar{\fbox{\bfseries\sffamily#1}}
+   }
+   \newcommand{\version}{\emph{\scriptsize$-$Id$-$}}
+  }
+  {\newcommand{\note}[2]{}
+   \newcommand{\version}{}
+  }
+
+\newcommand{\dm}[1]{\note{dominique}{#1}}
+\newcommand{\AK}[1]{\note{akuhn}{#1}}
+\newcommand{\on}[1]{\note{oscar}{#1}}
+
+\newcommand{\todo}[1]{\note{todo}{#1}}
+\newcommand{\rev}[2]{\note{Rev #1}{#2}}
+%\newcommand{\done}[1]{\note{done}{#1}}
+\newcommand{\done}[1]{}
+
+
 %%%
 % --> for chapter on Hapax work
 \newcommand\concept[1]{#1\xspace}
@@ -36,6 +76,24 @@
 % --> for chapter on Chronia
 \newcommand{\omap}{\emph{Ownership Map}\xspace}
 \newcommand{\id}[1]{{\sf\small{#1}}}
+%%%
+% --> for chapter on Bug Assignment
+\newcommand{\VOC}{vocabulary\xspace}
+\newcommand{\VOCs}{vocabularies\xspace}
+\newcommand{\diff}{\emph{diff}\xspace}
+\newcommand{\diffs}{\emph{diffs}\xspace}
+\newcommand{\rlog}{\emph{log}\xspace}
+\newcommand{\rlogs}{\emph{logs}\xspace}
+\newcommand{\TAM}{term-author-matrix\xspace}
+\newcommand{\TAMS}{term-author-matrices\xspace}
+\newcommand{\BR}{bug report\xspace}
+\newcommand{\BRs}{bug reports\xspace}
+\newcommand{\EC}{Eclipse\xspace}
+\newcommand{\VCS}{version control system\xspace}
+\newcommand{\VCSs}{version control systems\xspace}
+\newcommand{\TOOL}{\textsc{Develect}\xspace}
+\newcommand{\trainingset}{training set\xspace}
+\newcommand{\validationset}{validation set\xspace}
 %%%
 
 \begin{document}
@@ -165,6 +223,66 @@ Gall \etal aimed to detect logical coupling between parts of the system \cite{Ga
 Zimmerman \etal aimed to provide mechanism to warn developers about the correlation of changes between functions. The authors placed their analysis at the level of entities in the meta-model (\eg methods) \cite{Zimm04a}. The same authors defined a measurement of coupling based on co-changes \cite{Zimm03a}.
 
 Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
+
+\section{Related Work for Bugreport Assignment}\label{sec:relatedwork}
+
+There was previous work done on mining developer expertise from source code. However, if such an expertise model was applied to assist in the triage of bug reports, it required an explicit linkage between bug reports and source files~\cite{Anvik07}. Most existing recommendation systems for the assignment of developers to bug reports use other expertise models, as \eg models based on previous reports. Thus, the main differences between our approach and other recommendation systems are: First, our system is trained on the source code repository rather than on previous bug reports. Second, for the recommendation of a developer suitable to handle a bug report, we do not need a linkage between the bug tracking system and the software repository. As a collorary, our approach is a) not dependent on the quality of previous bug reports, and b) can also be used to assign developers that have not worked on any bug report previously. The main requirement for a developer to be assignable is that he has a contribution history of approx. half a year or more.
+
+Mockus and Herbsleb \cite{Mock02b} compute the experience of a developer as a function of the number of changes he has made to a software system so far. Additionally, they compute recent experience by weighting recent changes more than older ones. The experience is then used to model the expertise of a developer. Furthermore, they examine the time that a developer needs to find additional people to work on a given modification request. Based on the results, they report that finding experts is a difficult task.
+
+Fritz \etal \cite{Frit07a} report on an empirical study that investigates whether a programmer's activity indicates knowledge of code. They found that the frequency and recency of interaction  indicates the parts of the code for which the developer is an expert. They also report on a number of indicators that may improve the expertise model, such as authorship, role of elements, and the task being performed. In our work, we use the vocabulary of frequently and recently changed code to build an expertise model of developers. By using the vocabulary of software changes, lexical information about the role of elements and the kind of tasks are included in our expertise model.
+
+%Other approaches working with the \VOC of \BRs and/or source code include: Estimating the person-hour spent on fixing a bug \cite{Weis07a}. \todo{more}
+
+Siy \etal \cite{Siy08a} present a way to summarize developer work history in terms of the files they have modified over time by segmenting the CVS change data of individual Eclipse developers. They show that the files modified by developers tend to change significantly over time. Although, most of the developers tend to work within the same directories. This accords with our observation regarding the decay of vocabulary.
+
+Gousios \etal \cite{Gous08a} present an approach for evaluating developer contributions to the software development process based on data acquired from software repositories and collaboration infrastructures. However, their expertise model does not include the vocabulary of software changes and is thus not queryable using the content of bug reports.
+
+Alonso \etal \cite{Alon08a} describe an approach using classification of the file paths of contributed source code files to derive the expertise of developers. 
+
+Schuler and Zimmerman \cite{Schu08a} introduce the concept of usage expertise, which manifests itself whenever developers are using functionality, \eg by calling API methods. They present preliminary
+results for the Eclipse project indicating that usage expertise is a promising complement to implementation expertise (such as our expertise model). Given these results, we consider as future work to extend our expertise model with usage expertise as well.
+
+%A valuable source of developer expertise are mailing lists. It has been shown that the frequency with which software entities (functions, methods, classes, etc) are mentioned in the mail correlated with the number of times these entities are included in changes to the software \cite{Patt08a}. It has been shown that approx.\ 70\% of the vocabulary used in source code changes is found in mailing lists as well~ \cite{Bays07a}, we can thus estimate the impact of including mailinglists on our results.  
+
+%Given these results, we consider as future work to including vocabulary from mailing lists in our expertise model. We expect that this will considerable improve our results, since Information Retrieval approaches are known to perform the better the more data is available \cite{TheTextminigHandbookOrOther}.
+
+% While research in the mining of software repositories has frequently ignored commits that include a large number of files; 
+Hindle \etal \cite{Hind08b} perform a case study that includes the manual classification of large commits. They show that large commits tend to be perfective while small commits are more likely to be corrective. Commits are not normalized in our expertise model, thus the size of a commit may affect our model. However, since large commits are rare and small commits are common, we can expect our expertise model to equally take perfective and corrective contributions into account.
+%However, it would be interesting for future work to introduce weightings for commit sizes. 
+
+%Hill \etal \cite{Hill08a} present an automatic mining technique to expand abbreviations in source code.  Automatically generated abbreviation expansions can be used to enhance software maintenance tools that utilize natural language information, such as our approach. If the same abbreviations are used in both souce code and bug reports then our approach is not affected by this issue, nevertheless we plan to include  automatic abbreviation expansion as future work.
+
+%Currently our expertise model is limited to the granularity of commited software changes, a more fine grained acquisition of the model could be achieved by using a change-aware development environment \cite{Omor08a,Robb08a} that records developer vocabulary as the software is written.  
+
+Bettenburg \etal \cite{Bett08c} present an approach to split bug reports into natural text parts and structured parts, \ie source code fragments or stack traces. Our approach treats both the same, since counting word frequencies is applicable for natural-language text as well as source code in the same way.
+
+%Recommending experts to assign developers to bug reports is a common application of developer expertise models.
+Anvik \etal \cite{Anvi06a} build developers' expertise from previous \BRs and try to assign current reports based on this expertise. They label the reports. If a report cannot be labeled, it is not considered for training. Additionally, reports involving developers with a too low bug fixing frequency or involving developers not working on the project anymore are filtered. They then assign \BRs from a period of lower than half a year. To find possible experts for their recall calculation, they look for the developers who fixed the bug in the source code (by looking for the corresponding bug ID in the change comments). They reach precision levels of 57\% and 64\% on the Eclipse and Firefox development projects respectively. However, they only achieve around 6\% precision on the Gnu C Compiler project. The highest recall they achieve is on average 10\% (Eclipse), 3\% (Firefox) and 8\% (gcc). Please note that the recall results are not directly comparable to ours, since they use different configurations of bug-related persons to compute recall.
+
+Cubranic and Murphy \cite{Cubr04b} propose to use machine learning techniques to assist in bug triage. Their prototype uses supervised Bayesian learning to train a classifier with the textual content of resolved bug reports. This is then used to classify newly incoming bug reports. They can correctly predict 30\% of the report assignments, considering \EC as a case study.
+
+Canfora and Cerulo \cite{Canf05a} propose an Information Retrieval technique to assign developers to bug reports and to predict the files impacted by the bug's fix. They use the lexical content of \BRs to index source files as well as developers. They do not use vocabulary found in source files, rather they assign to source files the vocabulary of related bug reports. The same is done for developers. For the assignments of developers, they achieve 30\%--50\% top-1 recall for KDE and 10\% to 20\% top-1 recall for the Mozilla case study.
+
+%G\^irba, Kuhn \etal\cite{Girb05c} assume that a developer changing a line knows about the line.
+
+Similar to our work, Di Lucca \etal use Information Retrieval approaches to classify maintenance requests \cite{Lucc02b}. They train a classifier on previously assigned bug reports, which is then used to classify incoming bug reports. They evaluate different classifiers, one of them being a term-documents matrix using cosine similarity. However, this matrix is used to model the vocabulary of previous bug reports and not the vocabulary of developers.
+
+Anvik and Murphy evaluate approaches that mine implementation expertise from a software repository or from \BRs~\cite{Anvik07}. Both approaches are used to recommend experts for a \BR. For the approach that gathers information from the software repository, a linkage between similar reports and source code elements is required. For the approach that mines the reports itself, amongst others, the commenters of the reports (if they are developers) are estimated as possible experts. Both approaches disregard inactive developers. Both recommendation sets are then compared to human generated expert sets for the \BR.
+%\todo{write more, write results, compare to our results}
+
+Minto and Murphy's Emergent Expertise Locator (EEL)~\cite{Minto07} recommends a ranked list of experts for a set of files of interest. The expertise is calculated based on how many times which files have been changed together and how many times which author has changed what file. They validate their approach by comparing recommended experts for files changed for a bug fix with the developers commenting on the bug report, assuming that they ``either have expertise in this area or gain expertise through the discussion"~\cite{Minto07}.
+%\todo{I guess the next cite is not really related...}\cite{Sand04xMSR}.
+
+%\todo{Explain why we didn't use ten-fold cross validation which is normally commonly used (see also \cite{Anvi06a}) }
+
+We are not the first to apply an author-topic model \cite{Linstead07, Bald08a}. Linstead \etal showed promising results in applying author-topic models on Eclipse and Baldi \etal applied topic models to mine aspects.
+%They extract the words contained in the source code files to generate a word-document matrix. An additional author-document matrix is generated from a bug database where information about developers changing specific source files can be found. 
+
+%Podgurski \etal classified failure reports~\cite{Podgurski03}. They cluster profiles of failed executions in order to classify new failures and to diagnose common defect sources.
+
+Lexical information of source code has previously been proven useful for other tasks in software engineering, such as: identifying high-level conceptual clones \cite{Marc01a}, recovering traceability links between external documentation and source code \cite{Anto02a}, automatically categorizing software projects in open-source repositories \cite{Kawa04a}, visualizing conceptual correlations among software artifacts \cite{Kuhn07a,Kuhn08b}, and defining cohesion and coupling metrics \cite{Marc05a,Posh09a}.
+
 
 % Related work above
 %%%%%%%%%%%%%
@@ -1084,6 +1202,314 @@ To answer them, we define the \omap visualization based on the notion of code ow
 
 In the future, we would like to investigate the application of the approach at other levels of abstractions besides files, and to take into consideration types of changes beyond just the change of a line of code.
 
+\section{Bug-Report Triage with Lexical Clues and Social Clues}
+
+For popular software systems, the number of daily submitted bug reports is high. Triaging these incoming reports is a time consuming task. Part of the bug triage is the assignment of a report to a developer with the appropriate expertise. In this paper, we present an approach to automatically suggest developers who have the appropriate expertise for handling a bug report. We model developer expertise using the vocabulary found in their source code contributions and compare this vocabulary to the vocabulary of bug reports. We evaluate our approach by comparing the suggested experts to the persons who eventually worked on the bug. Using eight years of Eclipse development as a case study, we achieve 33.6\% top-1 precision and 71.0\% top-10 recall.
+
+\todo{Do not forget to remove the page numbers in the camera-ready version!}
+Software repositories of large projects are typically accompanied by a bug report tracking system. In the case of popular open source software systems, the bug tracking systems receive an increasing number of reports daily. The task of triaging the incoming reports therefore consumes an increasing amount of time \cite{Anvi06b}. One part of the triage is the assignment of a report to a developer with the appropriate expertise. Since in large open source software systems the developers typically are numerous and distributed, finding a developer with a specific expertise can be a difficult task.
+
+Expertise models of developers can be used to support the assignment of developers to bug reports. It has been proposed that tasks such as bug triage can be improved if an externalized model of each programmer's expertise of the code base is available \cite{Frit07a}. Even though approaches for expertise models based on software repository contributions are available, existing recommendation systems for bug assignment typically use expertise models based on previous bug reports only \cite{Anvi06a,Canf05a,Cubr04b,Mock02b,Lucc02a}.
+Typically a classifier is trained with previously assigned bug reports, and is then used to classify and assign new, incoming bug reports.
+Our approach differs, we train our recommendations system with all source code contributions up to the reporting date of the bug and then use the bug reports textual description as a search query against the expertise model's \TAM.
+
+In this paper, we propose an expertise model based on source code contributions and apply in it a recommendation system that assigns developers to bug reports. We compare \VOC found in the \verb$diff$s of a developer's contributions with the vocabulary found in the description of a bug report. We then recommend developers whose contribution vocabulary is lexically similar to the vocabulary of the \BR.
+
+We implemented our approach as a prototype called \TOOL\footnote{\TOOL is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
+
+The contributions of this paper are as follows:
+\begin{itemize}
+\item We propose a novel expertise model of developers. The approach is based on the vocabulary found in the source code contributions of developers.
+
+\item We propose a recommendation system that applies the above expertise model to assign developers to bug reports. We evaluate the system using eight years of Eclipse development as a case study. 
+
+\item We report on the decay of developer expertise, observed when calibrating our approach. We apply two weighting schemes to counter this effect.
+\end{itemize}
+
+%-------------------------------------------------------------------------
+\section{Our Approach in a Nutshell}\label{sec:nutshell}
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{FlowOfAlgo}
+    \caption{Architecture of the \TOOL recommendation system: (left) bug reports and versioning repositories are processed to produce term vectors and \TAMS; (right) the cosine angle between vector and matrix columns is taken to rank developers in the suggested list of experts.}
+    \label{fig:algo}
+\end{figure} 
+
+In this paper we present i) the construction of an expertise model of developers and ii) the application of a recommendation system that uses this expertise model to automatically assign developers to bug reports. Our approach requires a versioning repository to construct the expertise model as well as a bug tracking facility to assign developers to bug reports. We realized the approach as a prototype implementation, called \TOOL.
+
+In his work on automatic bug report assignment, John Anvik proposes eight types of information sources to be used by a recommendation system \cite{Anvi06b}. Our recommendation system focuses on three of these types of information: the information of the textual description of the bug (type~1), the one of the developer who owns the associated code (type~6), and the information of the list of developers actively contributing to the project (type~8). We refine information type~6 to take into account the textual content of the code owned by a developer. Our recommendation system is based on an expertise model of the developer's source code contributions. For each developer, we count the textual word frequencies in their change sets. This includes deleted code and context lines, assuming that any kind of change (even deletions) requires developer knowledge and thus familiarity with the vocabulary. 
+
+Our system currently does not consider the component the bug is reported for (type~2), the operation system that the bug occurs on (type~3), the hardware that the bug occurs on (type~4), the version of the software the bug was observed for (type~5), or the current workload of the developers (type~7). Information types 2--4 are indirectly covered, since textual references to the component, operation system, or hardware are taken into account when found in bug reports or source code. Information of type~7 is typically not publicly available for open source projects and thus excluded from our studies. Furthermore, we deliberately disregard information of type~5, since developer knowledge acquired in any version pre-dating the bug report might be of use. 
+
+Given a software system with a versioning repository, the creation of the expertise model works as illustrated in \autoref{fig:algo}:
+
+\begin{enumerate}
+\item For each contributor to the versioning repository, we create an empty bag of words. 
+\item For each contribution to the versioning repository, we create a \verb$diff$ of all changed files and count the word frequencies in the diff files. We assign the word frequencies to the contributor's bag of words.
+\item We create a \TAM $M_{n \times m}$, where $n$ is the global number of words and $m$ the number of contributors. Each entry $m_{i,j}$ equals the frequency of the word $t_i$ in the contributions of the contributor $a_j$. 
+\end{enumerate}
+
+Given the above \TAM and a bug tracking facility, the assignment of developers works as follows:
+
+\begin{enumerate}
+\item We count the word frequencies in the bug report and create a query vector of length $n$ where $v_i$ equals the frequency of word $t_i$ in the bug report. 
+\item For each developer in the \TAM, we take the cosine of the angle between the query vector and the developer's column of the matrix.
+\item We rank all developers by their lexical similarity and suggest the top $k$ developers.
+\end{enumerate}
+
+To evaluate our approach we use Eclipse as a case study. We train our system with weekly summaries of all CVS commits from 2001 to 2008, and use the resulting expertise-model to assign developers to bug reports. We evaluate precision and recall of our approach by comparing the suggested developers to the persons who eventually worked on the bug and its report.
+
+For example, for a report that was submitted in May 2005, we would train our system with all commits up to April. Then we would evaluate the suggested developers against those persons who worked on the bug and its report in May or later on to see if they match.
+
+ 
+
+\section{The Develect Expertise Model}\label{sec:algorithm}
+
+Given the natural language description of a bug report, we aim to find the developer with the best expertise regarding the content of the bug report. For this purpose, we model developer expertise using their source code contributions. 
+
+Developers gain expertise by either writing new source code or working on existing source code. Therefore we use the vocabulary of source code contributions to quantify the expertise of developers. Whenever a developer writes new source code or works on existing source code, the vocabulary of mutated lines (and surrounding lines) are added to the expertise model. These lines are extracted from the \VCS using the \verb$diff$ command.
+
+Natural language documents differ from source code in their structure and grammar, thus we treat both kind of documents as unstructured bags of words. We use Information Retrieval techniques to match the word frequencies in bug reports to the word frequencies in source code. This requires that developers use meaningful names \eg for variables and methods, which is the case given modern naming conventions~\cite{Kuhn07a}. 
+
+Given a bug report, we rank the developers by their expertise regarding the bug report. The expertise of a developer is given by the lexical similarity of his vocabulary to the content of the bug report.
+
+\subsection{Extracting the Vocabulary of Developers from Version Control}
+
+To extract the vocabulary of a specific developer we must know which parts of the source code have been authored by which developer. 
+%read and changed by this developer !!!
+
+We extract the vocabulary in two steps, first building a \textsc{Chronia} model of the entire repository \cite{Girb05c} and then collecting word frequencies from the \verb$diff$ of each revisions. %Depending on the particular versioning system, it can require an additional effort to identify revisions. For example, in CVS version numbers are associated with single files instead of the entire repository.
+The \verb$diff$ command provides a line-by-line summary of the changes between two versions of the same file. The diff of a revision summarizes the changes made to all files that changed in that revision of the repository. The identifier names and comments that appear on these lines give us evidence of the contributor's expertise in the system. Thus, we add the word frequencies in a revision's \verb$diff$ to the expertise model of the contributing developer.
+
+Word frequencies are extracted as follows: the lines are split into sequences of letters, which are further split at adjacent lower- and uppercase letters to accommodate the common \emph{camel case} naming convention. Next stopwords are removed (\ie common words such as \emph{the}, \emph{and}, etc). Eventually stemming %\cite{Port80a}
+is applied to remove the grammatical suffix of words.
+
+The comment message associated with a revision is processed in the same way, and added to the expertise model of the contributing developer as well. 
+%This is done on a per file basis: the comment message of a commit including many files is weighted higher than the comment message of a single file commit.
+
+%\todo{Add conclusional paragraph which sums up this subsection}
+
+\subsection{Modeling the Expertise of Developers as a Term-Author-Matrix}
+
+We store the expertise model in a matrix that correlates word frequencies with developers. We refer to this matrix as a \TAM. Although, technically it is a term-document-matrix where the documents are developers. (It is common in Information Retrieval to describe documents as bags of words, thus our model is essentially the same, with developers standing in for documents.)
+
+The \TAM has dimension $n \times m$, where $n$ is the global number of words and $m$ the number of contributors, that is developers. Each entry $m_{i,j}$ equals the frequencies of the word $t_i$ summed up over all source code contributions provided by developer $a_j$.
+%Furthermore, we weight the matrix with \emph{tf-idf} (term frequencyinverse document frequency) to balance rare and common words.
+
+We have found that results improve if the \TAM is weighted as follows:
+
+\begin{itemize}
+\item \emph{Decay of Vocabulary.} For each revision, the word frequencies are weighted by a decay factor that is proportional to the age of the revision. In the Eclipse case study, best results are obtained with a weighting of $3\%$ per week (which accumulates to $50\%$ per half year and $80\%$ per annum). Please refer to \autoref{sec:discussion} for a detailed discussion.
+\end{itemize}
+
+\subsection{Assign Developers to Bug Reports regarding their Expertise}
+
+To assign developers to bug reports, we use the bug report's textual content as a search query to the \TAM.
+%Our current tool supports the extraction of bug reports from Bugzilla, however our approach works with any textual representation of bug reports, even with raw text.
+Given a Bugzilla\footnote{http://www.bugzilla.org} bug report, we count the word frequencies in its textual content. In particular we process both short and all long descriptions (threats to validity see \autoref{sec:discussion}).
+\todo{ XXX, mail this to migod! }
+We disregard attachments that are Base-64 encoded, such as attached images, as well as fields that refer to persons. From the extracted word frequencies, we create a \emph{term vector} that uses the same word indices as the \TAM. % The lexical similarity between term vectors is obtained using the cosine between both vectors.
+We then compute the lexical similarity between two term vectors by taking the cosine of the angle between them.
+The similarity values range from $1.0$ for identical vectors to $0.0$ for vectors without shared terms. (Negative similarity values are not possible, since word-frequencies cannot be negative either.)
+
+We compare the term vector of the bug report with the term vectors of all developers (\ie the columns of the \TAM) and create a ranking of developers. For the assignment of bug reports to developers, a suggestion list of the top-$k$ developers with the highest lexical similarities is then provided.
+
+We have found that the results improve if the \TAM is further weighted as follows:
+\begin{itemize}
+\item \emph{Inactive Developer Penalty.} If a developer has been inactive for more than three months, the lexical similarity is decreased by a penalty proportional to the time since his latest contribution. In the Eclipse case study, best results are obtained with a penalty of $0.2$ per annum. Please refer to \autoref{sec:discussion} for a detailed discussion.
+\end{itemize}
+
+\section{Case Study: \EC platform}\label{sec:casestudy}
+
+To evaluate our approach we take Eclipse\footnote{http://www.eclipse.org/eclipse} as a case study. \EC is a large open source software project with numerous active developers.
+\EC has been developed over several years now. Therefore, its version repository contains a great deal of source code developed by many different authors.
+% a lot of source code of different authors can be obtained from its versioning system CVS.
+Furthermore, \EC uses Bugzilla as its bug tracking system, storing \BRs dating back to nearly the beginning of the project.
+% where \BRs dated from today until almost the beginning of the development are stored.
+%These circumstances make \EC a project well suited to extract large \VOC data of many different authors from and to query that data with also from \EC extracted \BRs. Since such a query should yield the author with the best expertise regarding the bug report,
+We evaluate our results by comparing the top-$k$ developers with the persons who eventually worked on the bug report.
+
+Our case study covers the Eclipse project between April 22, 2001, and November 9, 2008. The source code contributions of Eclipse are stored in a CVS repository\footnote{:pserver:anonymous@dev.eclipse.org/cvsroot/eclipse}, the bug reports in a Bugzilla database\footnote{https://bugs.eclipse.org/bugs}. This represents almost eight years of development, including 130,769 bug reports and 162,942 global revisions (obtained from CVS's file versions using a sliding time-window of 2 minutes \cite{Zimm04a}). During this time, 210 developers contributed to the project.
+
+\subsection{Setup of the Case Study}
+
+The setup of the Eclipse case study consists of two different parts. The first part is about the change database, here we use all changes before the actual bug report. The second part is about the bug database, here we make 10 partitions of which two are used in this case study. We process and evaluate  both parts in weekly iterations as follows:
+\begin{itemize}
+\item We create a \TOOL expertise model based on contributions between April 22, 2001, and the last day of the previous week.
+\item We generate a suggested list of the top-10 experts for all bug reports submitted in the current week.
+\item We evaluate precision and recall by comparing the suggestion list with the developers who, between the first day of the next week and November 9, 2008, eventually worked on the bug report.
+\end{itemize}
+
+For example, for a bug report submitted on May 21, 2005, we would train our system with all commits between April 22, 2001 and May 15, 2005, and then evaluate the list of suggested experts against the set of developers who, between May 23, 2005, and November 9, 2008, eventually handled the bug report.
+
+We use systematic sampling to create 10 partitions of 13,077 bug reports (ordered by time) that span the entire time of the project. One partition is used as \trainingset for the development of our approach, and another partition is used as \validationset to validate our approach. We applied the approach to the \validationset only after all implementation details and all calibration parameters had been finally decided on. The other partitions remain untouched for use as \validationset in future work.
+
+In this section, we report on our results obtained on the validation partition \#2. In \autoref{sec:discussion} we report on results obtained from the training partition \#1 while calibrating the approach.
+
+%We developed and calibrated our approach on just the first partition. Only after all implementation details and all calibration parameters had been finally decided on, did we apply the approach to the remaining partitions.
+
+%\subsection{Settings of the Case Study}
+
+%The results of the evaluation in this section are obtained by running \TOOL with the following settings:
+%{\footnotesize \begin{verbatim}
+%  project = Eclipse
+%  stemming = Porter
+%  scanner = CamelCaseScanner
+%  stopwords = English
+%  similarity = Cosine
+%  TAM weighting = None
+%  use LSI = false
+%  added lines weighting = 1.0
+%  removed lines weighting = 1.0
+%  context lines weighting = 1.0
+%  comments weighting = 1.0
+%  decay of vocabulary (per week) = 0.97
+%  inactive developer penalty (per annum) = 0.2
+%  excluded fields = Persons, Base64
+%  weekly diffs = true
+%  co-developer weighting = Sqrt
+%  start date = 2001-04-22
+%  end date = 2008-11-02
+%  exclude unmapped logins = true
+%  partition (1->validation, else->test) = 2
+%\end{verbatim}}
+
+\subsection{Precision and Recall}
+
+We evaluate our approach by comparing the suggested list of experts with the developers who eventually worked on the bug report. We report on precision and recall for different sizes of suggested lists, between $k = 1$ and $k = 10$. Comparing our results to the persons who eventually worked on the bug is not optimal. For example, the person could have been assigned to the bug report by some factor other than expertise. Obtaining a better list of experts requires manual interrogation of the development team.
+
+Precision is the percentage of suggested developers who actually worked on the bug report. Recall is the percentage of developers who worked on the bug who were actually suggested. It is typical for Information Retrieval approaches that there is a trade-off between precision and recall.
+
+Getting the list of persons who eventually worked on a bug report is tricky. The \emph{assigned-to} field does not always denote a person who eventually solved the bug report \cite{Cubr04b, Anvi06a, Anvik07}. Therefore we compare our results against three configurations (C1--C3) of bug-related persons:
+
+\begin{enumerate}
+\item Developers who committed an actual bug fix to the software repository. For \EC, this information is not stored in the Bugzilla database, therefore we must rely on information from CVS commit messages. In the \validationset, this information is provided for 14.3\% of the bug reports only. This configuration evaluates how well we perform in suggesting experts who provide actual bug fixes.
+\item Persons given by the \emph{assigned-to} field or a \emph{who} field of the bug report. That is, the eventual assignee (if this is a developer) and all developers who ever discussed the bug in the comment section of the report. This configuration evaluates how well we perform in suggesting experts who are capable of understanding and discussing the bug. Note that resolving a bug is not limited to providing code fixes; often the discussion is just as important to the resolution of the bug. 
+\item As in configuration \#2, but additionally including the person identified by the \emph{reporter} field, if the reporter is a developer, \ie has a CVS login. \todo{check last comment} This reflects the fact that bugs are sometimes resolved by the same people who find and track them.
+\end{enumerate}
+
+Please refer to \autoref{sec:discussion} for further discussion of the above configurations and their threats to validity.
+
+\subsection{Results}\label{therealthing}
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{runOnTestSet}
+    \caption{Recall and precision of the Eclipse case study: configuration C1 scores best with $33.6\%$ top-1 precision and $71.0\%$ top-10 recall.}
+    \label{fig:eclipse}
+\end{figure} 
+
+\autoref{fig:eclipse} illustrates the results of the Eclipse case study. We compare lists of suggested persons of list size 1 to 10 with set of ``bug related persons'' as given by the three configurations (C1-3) above.
+
+The figure illustrates that recall and precision of configuration C1 are better than C2 and C3. When comparing the suggested list to the bug fixing person~(C1) we achieved the best score with 33.6\% top-1 precision only and 71.0\% top-10 recall. Comparing of the suggested list to all related persons~(C3) we score 26.0\% top-1 precision and 54.2\% top-10 recall. When excluding the reporter of the bug report~(C2) from the suggested list scores are at 22.3\% top-1 precision and 57.4\% top-10 recall.
+
+The fact that configuration C3 scores slightly better then C2 indicates that bug reporters are sometimes indeed experts regarding the reported bug and thus should be considered when triaging bug reports. We can thus conclude that an automatic assignment system should provide to the triaging person a suggested list of people that may include the reporter.
+
+\section{Discussion}\label{sec:discussion}
+
+In this section, we first discuss the calibration of our approach and then cover threats to validity.
+
+Compared to related work, an advantage of our approach is that we do not require a record of previous \BRs. We are able to recommend developers who did not work on bugs previously. For example, we do not require that developers have worked on at least 10 resolved bug reports. On the other hand, our approach requires at least a half to one year of versioning history in order to suggest developers. 
+
+One obvious threat to validity is the quality of our evaluation benchmark. We compare our suggested list against the developers who eventually worked on the bug report and assume that these are the top experts. For example, the bug report could have been assigned to a developer by some factor other than expertise. This threat is hard to counter. A better list of experts can be obtained by manual interrogation of the development team, but even this is not a golden oracle.
+
+Another threat to validity is that we use all long descriptions, including comments, of a bug report as information source. This may include discussions that happened after the bug has been eventually assigned or fixed, information which is not actually available when doing initial bug triage. This might impact the performance of our approach. 
+
+
+\begin{figure*}
+    \center
+    \includegraphics[width=0.40\linewidth]{distOverTime}
+    \includegraphics[width=0.28\linewidth]{fadedMatrices}
+    \includegraphics[width=0.28\linewidth]{penaltyResults}
+    \caption{Decay of vocabulary: (left) decreasing quality of unweighted results, compared to results with \emph{decay of vocabulary} and \emph{inactive developer penalty} settings, (middle) precision and recall for different decay of vocabulary settings, (right) precision and recall for different inactive developer penalty settings.}
+    \label{fig:decay}
+\end{figure*} 
+
+\subsection{On the Calibration of \TOOL}
+
+We used 1/10th of the Eclipse case study as a \trainingset to calibrate our approach. The calibration results are summarized in \autoref{thetable}.
+
+The table lists top-1 precision and top-10 recall. On the first row, we list the results before calibration $(p = 19.7\%, r = 42.6\%)$, and on the last row the results of the final calibration. Please note that the final results on the \trainingset are slightly better than the results reported in \autoref{therealthing} for the \validationset.
+
+\begin{table}
+\center
+{\footnotesize \begin{tabular}{l | c  c}
+  Settings & Precision & Recall \\ \hline
+  reference & 19.7 & 42.6 \\ 
+  weighted \verb$diff$ & 18.5 & 41.1 \\
+  desc. fields only & 16.7 & 37.7 \\
+  with LSI & 16.5 & 35.1 \\
+  decay 0.03 & 20.5 & 43.2 \\ 
+  decay 0.05 & 20.4 & 42.4 \\ 
+  decay 0.10 & 20.5 & 41.5 \\ 
+  decay 0.20 & 18.0 & 38.0 \\ 
+  penalty 0.1 & 24.5 & 50.9 \\ 
+  penalty 0.2 & 24.8 & 51.6 \\ 
+  penalty 0.3 & 24.8 & 51.9 \\
+  final calibration & 26.2 & 54.6 \\
+\end{tabular}
+}\vspace{0.1in}
+\caption{Summary of calibration of \trainingset, for each settings top-1 precision and top-10 recall are given.}
+\label{thetable}
+\end{table}
+
+The output of the \verb$diff$ command consists of added, removed, and context lines. We experimented with different weightings for these lines (weighted \verb$diff$ in Table 1% 
+%\autoref{thetable}
+). However, we found that weighting all lines the same yields best results. 
+
+As Bugzilla bug reports consist of many fields, we experimented with different selections of fields. We found that taking short and long descriptions (``desc. fields only'' in \autoref{thetable}) yields worse results than selecting all fields except those that refer to persons, or Base64 encoded attachments. 
+
+We also experimented with Latent Semantic Indexing (LSI), an Information Retrieval technique typically used in search engines that detects polysemy and synonymy by statistical means~\cite{Deer90a}. However, we found that LSI yields poor results (``with LSI'' in \autoref{thetable}).
+
+\subsection{On the Decay of Vocabulary}
+
+In our experiments, we found that developer expertise decays over time. In our approach we introduced two weighting schemes to counter this effect: 
+
+\begin{itemize}
+\item \emph{Decay of Vocabulary.} For each revision, the word frequencies are weighted by a decay factor that is proportional to the age of the revision. Developers change their interests and by doing so change their expertise and \VOC. To take such a shift into account, we fade the old \VOC out bit by bit every week, so that the newest words are weighted slightly more than older ones. With time, the old words eventually fade out completely.
+\item \emph{Inactive Developer Penalty.} If a developer has been inactive for more than three months, the lexical similarity is decreased by a penalty proportional to the time since his latest contribution to the software system. Inactive developers will most likely not resolve bugs anymore. In order to only recommend currently active developers (we assign \BRs during a period of eight years), developers who did not recently make a change to the software system receive a penalty.
+%This penalty consists either of raising the distance to a \BR to assign (depending on the days since their last change) or of downgrading the rank in the list of the authors (ordered by distance).
+\end{itemize}
+
+\noindent \autoref{fig:decay} illustrates the effect of these settings. On the left, the unbroken curve illustrates the decreasing quality of unweighted results, whereas the dotted curve shows the results obtained with weighting. Even though results improved significantly, the quality of the weighted results still slightly decreases over time. We cannot fully explain this effect; it may be due to the increasing complexity of \EC as a project, or perhaps the lack of mappings from CVS logins to persons (see \autoref{sec:scvmapping}) in the early years of the project impacts the results. Another cause for the trend in the most recent year, \ie 2008, might be that the list of persons that worked on a bug is not yet completely known to us, which may impact the evaluation.
+
+
+In the middle of \autoref{fig:decay}, precision and recall for different \emph{decay of vocabulary} settings are given. On the right, precision and recall for different \emph{inactive developer penalty} settings are given. 
+
+Decay of vocabulary scores best results with a weighting of $3\%$ per week (which accumulates to $50\%$ per half year and $80\%$ per annum). This shows that implementation expertise acquired one year ago or earlier does not help in assigning developers to bug reports.
+
+The inactive developer setting scores best results with a penalty of $0.2$ per annum. As a result of the penalty, the matching score of a developer who has been inactive for a year is decreased. The matching scores are the lexical similarity values (between 1.0 and 0.0). Decreasing this value by 0.1 or more is typically enough to exclude a result from the top-10 list. 
+
+Interestingly, any penalty above 0.1 is better than none. The results obtained with different penalty values are almost the same. Please note, that even though the penalty removes inactive developers from the top of the suggested list, their vocabulary is not lost. The results reported for the calibration of the penalty do not make use of vocabulary decay. If a developer becomes active again, all his past expertise is reactivated as well. Thus, we use a moderate penalty of 0.2 in combination with a decay of 3\% as the final calibration settings.
+
+\subsection{On Grouping Diffs by Week}
+
+To cope with the size of our case study, we decided to run weekly iterations rather than fine-grained iterations per bug report and revision. This reduced the time complexity from over 160,000 iterations down to 394 weekly iterations.
+
+Grouping diffs by both author \emph{and} week introduces the following threats to validity: 
+If \VOC is added and removed within the same week, it does not add to the developer's expertise. 
+In the same way, if a file is added and removed within the same week, it is not taken into account at all. 
+If bug reports are submitted late in the week, we might miss developers who acquired novel expertise early in the week. 
+
+If several authors worked on the same file, we cannot tell their weekly contributions apart. In this case, we weight the word frequencies by $\frac{1}{\sqrt{n}}$, where $n$ is the number of co-developers, and assign the weighted frequencies to all co-developers. For the \EC case study, this applies to 3.6\% of weekly file changes.
+
+\subsection{On other Threats to Validity}\label{sec:scvmapping}
+
+% the golden oracle of experts is never available.
+
+Establishing an identity relationship between CVS logins and people mentioned in \BRs is not trivial. The developer information in the CVS log is provided as a mere login name. People mentioned in a Bugzilla \BR are listed with their email address and sometimes additionally with their first and last name. For \EC, the mapping between logins and active developers can be found on the \EC website\footnote{http://www.eclipse.org/projects/lists.php}. However, the list of names of the former \EC developers does not include their corresponding logins\footnote{http://www.eclipse.org/projects/committers-alumni.php}. We could not map 17.1\% of the CVS logins and had thus to exclude 2.7\% of the bug reports from our evaluation.   
+
+Information about copy patterns is not available in CVS. Bulk renaming of files appears in the change history of CVS as bulk removal of files followed by bulk addition of files. Given our current implementation of \TOOL, this may lead to an incorrect acquisition of developer knowledge, since the entire vocabulary of the moved files is assigned to the developer who moved the files.
+We are thus in good shape to further improve our results by using a copy pattern detection approach~\cite{Chan08a}.
+
+\section{Conclusion}\label{sec:eventually}
+
+We presented a novel expertise model of developers. The model is based on the source code vocabulary of developers. The vocabulary of developers is obtained from the \verb$diff$ of their source code contributions. We applied the model in a recommendation system that assigns developers to bug reports. We evaluated the recommendation system using eight years of Eclipse development as a case study, and achieved 33.6\% top-1 precision and 71.0\% top-10 recall. 
+
+When calibrating our approach, we found that developer expertise decays over time. To counter this effect we applied two weighting schemes: i) \emph{decay of vocabulary} weights expertise by a decay factor that is proportional to the time since the developer acquired that expertise, ii) \emph{inactive developer penalty} downgrades developers that had been inactive for a certain time.
+
+In the future, we would like to extend our expertise model with developer knowledge from other sources, \eg mailing lists. Furthermore we would like to include additional Information Retrieval techniques, as well as combine our approach with approaches that are trained on previous bug reports (\eg \cite{Anvi06a, Canf05a, Cubr04b, Lucc02a}).
+
+For more information on \TOOL and the case study presented in this paper, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
 
 
 \end{document}
