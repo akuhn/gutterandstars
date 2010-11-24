@@ -1,0 +1,110 @@
+%!TEX root = gutter+stars.tex
+\chapter{Introduction}
+
+Dispite common believe, software engineers do not spend most time writing code. An approximate 50--80\% of their time is spend on code orientation, ie navigation and understanding \cite{many}. This may include reading and searching of source code and documentation, but als debugging for understanding or seeking the help of another developer. User studies have found that developers use a wide set of cognitive clues for code orientation \cite{many}. Tool support for orientation, however, is typically limited to text file processing or hyperlinking of code elements at best. 
+
+In our research, we explore how to support code orientation by leveraging development tools with cognitive clues for software orientation. In a user study, we looked at how developers find answers to technical questions in order to learn about code orientation strategies. We found that developers typically use lexical and social clues to find answers, however we identified potential for the use of temporal and in particular spatial clues. Thus, a key contribution of our work is ``Software Cartography'' a novel cartographic visualization of software systems to support code orientation by spatial clues. Code maps, as well call them, are a stable and spatial representation of software system based on lexical information found in the system's source code. Code maps can be used by both individual developers and shared in a team. We evaluated our approach in a qualitative user study, with both professional and student users, and found that it is most helpful for exploring search results and call hierarchies.
+
+\section{Types of Code Orientation}
+
+In the following, we summarize the congnitive clues used for software orientation and list the chapters which contribute towards leveraging these clues in development tools.
+
+\begin{itemize}
+\item \emph{Lexical clues} are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
+\begin{itemize}
+\item In \autoref{the chapter on lexical clues} we use lexical information found in source code to cluster and summarize software systems.
+\item In \autoref{the chapter on LogLR} we use lexical information found to summarize whole systems, parts thereof, or even the system's entire evolution.
+\item In \autoref{the chapter on bug reports} we show how to automatically assign work tickets using lexical information found in both source code and bug reports.
+\item In \autoref{the chapter on codemap} we use lexical information found in source code to establish a visualization that supports spatial code orientation.
+\end{itemize}
+\item \emph{Spatial clues} can help to reduce the cognitive load of orientation of an hyperlinked document space, such as software systems. Spatial clues can be of two kinds, either they are structural as in recalling to which class a certain method belonged or true spatial clues as in recalling that a given method was at the end of a certain source file. Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues.
+%Always given the assumption that the system is well packaged, which often is not given either.
+A key contribution of our research is the creation of novel spatial visualization to support code orientation by spatial clues.
+\begin{itemize}
+\item In \autoref{the chapter on chronia} we use temporal information taken from version control repositories to reveal the social interaction in collaborative software development.
+\item In \autoref{the chapter on codemap} we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
+\item In \autoref{the chapter on the codemap user study} we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
+\end{itemize}
+
+\item \emph{Temporal clues} are most helpful to refind source code that has been written or used in the past. Often temporal clues are tied to episodic memory, as for example in recalling a personal story related to project or authors of a given piece of source code. Current support for code orientation by temporal clues in development tools is \adhoc at best, often even information about the evolution of a software system is external to the development information and thus not integrated at all. The true potential of code orientation by temporal means is best supported by applying data mining techniques on version control repositories. 
+\begin{itemize}
+\item In \autoref{the chapter on LogLR} we use lexical clues found in the version control system to summarize and reveal the story of system's evolution. 
+\item In \autoref{the chapter on bug reports} we use lexical clues found in past contributions of developers to model their expertise for the assignment of bug reports. 
+\item In \autoref{the chapter on chronia} we address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system.
+\end{itemize}
+
+\item \emph{Social clues} are often not considered part of software comprehension, yet they are possibly the most powerful clues for code orientation. Examples of social clues can be asking another person for help, or posting a question to a discussion board on the web where experts gather and share their expertise. Current support for code orientation by social clues is typically not present in development tools. To reveal the potential of social clues we integrated ideas taken from social media in our prototype tools.
+
+\begin{itemize}
+\item In \autoref{the chapter on bug reports} we use contributions that developers shared with open source systems in the past to build a recommendation model for bug repots.
+\item In \autoref{the chapter on chronia} we use the past collaboration of the developers to tell a system's past story to both its team members as well as new hires.
+\item In \autoref{the chapter on codesearch} we use cross-project collaboration in open source projects to model the credibility of code search results.
+\end{itemize}
+
+\end{itemize}
+
+\section{Thesis Statement}
+
+We state our thesis as follows
+
+\begin{quote}
+To support software engineers with code navigation and understanding, we need (1) tools that address all cognitive clues used by developers, in particular (2) code orientation by lexical, spatial and temporal clues. Since software has no inherent spatiality, for code orientation by spatial clues we need to (3) establish a novel spatial representation of software systems based on other properties, as \eg lexical information.
+\end{quote}
+
+\section{Our Solution in a Nutshell}
+
+In this work, we present the following contributions that explore the use of orientation clues for tool building. Each of these contributions has been published as one or more peer-reviewed paper at an international venue or in an international journal.  
+
+\begin{itemize}
+\item Software Clustering \cite{Kuhn07a,Kuhn05a,Lung05a}
+\item  Feature Classification \cite{Kuhn06c,Kuhn05b}
+\item  Software Summarization \cite{Kuhn09a}
+\item  Spatial Representation \cite{Kuhn10c,Kuhn10b,Duca06c,Kuhn08a}
+\item  Ownership Map \cite{Girb05a}
+\item  Bug-Report Triage \cite{Matt09a}
+\item  Credibility in Code Search \cite{Gysi10b}
+\end{itemize}
+
+\section{Contributions}
+
+%%%
+
+Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
+
+{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
+be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
+\end{quotation}}
+
+Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
+
+When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
+
+When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
+
+is morning hours minutes seconds is date hours minutes
+seconds invalid time value hours 12 minutes 60 seconds 60
+
+\section{Outline}
+
+The dissertation is structured as follows
+
+\begin{enumerate}
+% --> related.tex
+\item[\autoref{the chapter on related work}] discusses the related work of this thesis. We present various user studies and solutions to code orientation and analyse the short comings in the context of each orientation clue.
+% --> codemap.tex
+\item[\autoref{the chapter on the MSR user study}] presents a user study that looked at how developers find answers to technical questions and discusses code orientation by cognitive clues.
+\item[\autoref{the chapter on codemap}] we introduce SOFTWARE CARTOGRAPHY, and approach that use lexical information to establish a cartographic visualization that supports spatial code orientation by individuals or teams. The approach is implemented in the CODEMAP tool.
+\item[\autoref{the chapter on the codemap user study}] reports on a qualitative user study that evaluates the prototype implementation of the techniques introduced in the chapter above.]
+% --> gutter+stars.tex
+\item[\autoref{the chapter on lexical clues}] presents an approach to cluster and summarize software systems using lexical information found in source code. The approach is implemented in the HAPAX tool. 
+\item[\autoref{the chapter on LogLR}] presents an approach that uses lexical information found in source code to summarize whole 
+systems, parts thereof, or even the system’s entire evolution. 
+\item[\autoref{the chapter on chronia}] presents an approach to address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system. The approach is implemented in the CHRONIA tool.
+\item[\autoref{the chapter on bug reports}] presents an approach that use lexical information found in contributions that developers shared with open source systems to build a recommendation model for bug repots. The approach is implemented  in the DEVLECT tool.
+\item[\autoref{the chapter on codesearch}] presents an approach that uses cross-project collaboration of developers in open source projects to model the credibility of code search results. The approach is implemented in the BENDER tool.
+\item[\autoref{the conclusion}] concludes the dissertation and outlines future work.
+\end{enumerate}
+
+
+%%%%%%%%%%%%
+

@@ -1,0 +1,241 @@
+\chapter{Approches for Code Orientation}
+\label{the chapter on related work}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work, Semantic Clustering}\label{sec:soa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The use of information retrieval techniques for reverse engineering dates back to the late eighties. Frakes and Nejmeh proposed to apply them on source code as if it would be a natural language text corpus \cite{Frak87a}. They applied an IR system based on keyword matching, which allowed to perform simple searches using wildcards and set expressions.
+
+Antoniol \etal have published a series of papers on recovering code to documentation traceability \cite{Anto00c,Anto02b}. They use information retrieval as well, however with another approach. They rely on external documentation as text corpus, then they query the documentation with identifiers taken from source code to get matching external documents.
+
+Maletic and Marcus were the first to propose using LSI to analyze software systems. In a first work they categorized the source files of the Mosaic web browser and presented in several follow-ups other applications of LSI in software analysis \cite{Male00a}. Their work is a precursor of our work, as they proved that LSI is usable technique to compare software source documents. They apply a minimal-spanning-tree clustering and report on class names and average similarity of selected clusters. We broaden the approach by providing a visual notation that gives an overview of all the clusters and their relationships, and we provide the automatic labeling that takes the entire vocabulary into account and not only the class names.
+
+LSI was also used in other related areas: Marcus and Maletic used LSI to detect high-level conceptual clones, that is they go beyond just string based clone detection using the LSI capability to spot similar terms \cite{Marc01a}. They
+select a known implementation of an abstract datatype, and manually investigate all similar source documents to find high-level concept clones. The same authors also used LSI to recover links between external documentation and source code by querying the source code with queries from documentation \cite{Marc03b}.
+
+Kawaguchi \etal used LSI to categorize software systems in open-source software repositories \cite{Kawa04a}. Their approach uses the same techniques as ours, but with a different set up and other objectives. They present a tool that categorizes software projects in a source repository farm, that is they use entire software systems as the documents of their LSI space. They use clustering to provide an overlapping categorizations of software, whereas we use clustering to partition the software into distinct topics. They use a visualization of they results with the objective to navigate among categorizations and projects, similar to the Softwarenaut tool \cite{Lung06a}, whereas we use visualizations to present an overview, including all documents and the complete partition, at one glance.
+
+Marcus \etal employed LSI to detect concepts in the code \cite{Marc04a}. They used the LSI as a search engine and searched in the code the concepts formulated as queries. Their work is about concept location of externally defined concepts, whereas we derive our concepts from the vocabulary usage on the source-code level. Their  article also gives a good overview of the related work. Marcus \etal also use LSI to compute the cohesion of a class based on the semantic similarity of its methods \cite{Marc05a}. In our work, we extend this approach and illustrate on the correlation matrix both, the semantic similarity within a cluster and the semantic similarity between clusters.
+
+De Lucia \etal introduce strategies to improve LSI-based traceability detection \cite{Luci04a}. They use three techniques of link classification: taking the top-\emph{n} search results, using a fix threshold or a variable threshold. Furthermore they create separate LSI spaces for different document categories and observe better results that way, with best results on pure natural language spaces. Lormans and Deursen present two additional links classification strategies \cite{Lorm06a}, and discuss open research questions in traceability link recovery.
+
+Di Lucca \etal also focus on external documentation, doing automatic assignment of maintenance requests to teams \cite{Lucc02b}. They compare approaches based on pattern matching and clustering to information retrieval techniques, of which clustering performs better.
+
+Huffman-Hayes \etal compare the results of several information retrieval techniques in recovering links between document and source code to the results of a senior engineer \cite{Huff06a}. The results suggest that automatic recovery performs better than human analysis, both in terms of precision and recall and with comparable signal-to-noise ratio. In accordance with these findings, we automate the ``Read all the Code in One Hour'' pattern using information retrieval techniques.
+
+\v{C}ubrani\'{c} \etal build a searchable database with artifacts related to a software system, both source code and external documentation \cite{Cubr03a}. They use a structured meta model, which relates bug reports, news messages, external documentation and source files to each other. Their goal is the support software engineers, especially those new to a project, with a searchable database of what they call ``group memory''. To search the database they use information retrieval, however they do not apply LSI and use a plain vector space model only. They implemented their approach in an eclipse plug-in called Hipikat.
+
+\section{Related work for Software Summarization}\label{relwork}
+
+The present work is related to Jonathan Feinberg's comparison of inaugural addresses \cite{Feinberg09blog}. Feinberg analysed the inaugural address of Mr. President Barack Obama and his predecessors in office. For each inaugural addresses he provides a pair of \textsc{Wordle}\footnote{\url{http://www.wordle.net}} word clouds. One cloud consists of words that are specific to the address, and the other cloud consists of words that are missing in the address. Font size is used to represent frequency of a word and saturation to represent the log-likelihood ratio. The color blue is used in the left cloud to represent likely terms, and red is used in the right cloud to represent unlikely terms.
+
+Anslow \etal \cite{Anslow08OOPSLA} visualized the evolution of words in class names in Java version 1.1 and Java version 6.0. They illustrated the history in a combined word cloud that contains terms from both versions. Each word is printed twice, font size represents word frequency and color the corpus. As such they compared word counts, which assumes normal distribution and is thus not as sound as using log-likelihood ratios.
+ 
+Linstead \etal \cite{Linstead09SUITE} analysed the vocabulary of 12,151 open source projects from Sourceforge and Apache. They provide strong evidence of power-law behavior for word distribution across program entities. In addition, they analyse the vocabulary of structural entities (class, interface, method, field) and report the top-10 most frequent terms, as well as the top-10 unique terms for each structural category. As such, they compare word counts which assumes normal distribution and is thus not as sound as using log-likelihood ratios. In \autoref{example5} we report on the likelihood of words for the same structural categories, although our analysis is limited to a smaller corpus, \ie the Java API only.
+
+Kawaguchi \etal \cite{Kawa04a} presented \textsc{MUDABlue}, a tool that provides labels for projects. They used Sourceforge as normative corpus and applied Latent Semantic Indexing (LSI) at the level of projects.
+For each project they grouped together all source files into one retrieval document, and applied LSI to retrieve the semantic similarity among both terms and document.
+They categorized projects and described the categories with the most similar terms. However, the probabilistic model of LSI does not match observed data: LSI assumes that words and documents form a joint Gaussian model, while a Poisson distribution has been observed \cite{Hofmann99PLSA}.
+
+Lexical information of source code has been further proven useful for various tasks in software engineering (\eg \cite{Anto02a,Marc05a,Posh09a}). Many of these approaches apply Latent Semantic Indexing and inverse-document frequency weighting, which are well-accpeted techniques in Information Retrieval but are according to Dunning ``only justified on very sketchy grounds \cite{Dunning}.''
+
+Baldi \etal \cite{Bald08a} present a theory of aspects (the programming language feature) as latent topics. They apply Latent Dirichlet Analysis (LDA) to detect topic distributions that are possible candidates for aspect-oriented programming. They present the retrieved topics as a list of the 5 most likely words. The model of LDA assumes that each topic is associated with a multinomial distribution over words, and each document is associated with a multinomial distribution over topics; their approach is thus sound.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work for Chronia}\label{sec:soa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Analyzing the way developers interact with the system has only attracted few research. A visualization similar to the \omap is used to visualize how authors change a wiki page \cite{Vieg04a}.
+
+Xiaomin Wu \etal visualize \cite{Wu04b} the change log information to provide an overview of the active places in the system as well as of the authors activity. They display measurements like the number of times an author changed a file, or the date of the last commitment.
+
+Measurements and visualization have long been used to analyze how software systems evolve.
+
+Ball and Eick \cite{Ball96a} developed multiple visualizations for showing changes that appear in the source code. For example, they show what is the percentage of bug fixes and feature addition in files, or which lines were changed recently.
+
+Eick \etal proposed multiple visualizations to show changes using colors and third dimension \cite{Eick02a}.
+
+Chuah and Eick proposed a three visualizations for comparing and correlating different evolution information like the number of lines added, the errors recorded between versions, number of people working etc. \cite{Chua98a}.
+
+Rysselberghe and Demeyer use a scatter plot visualization of the changes  to provide an overview of the evolution of systems and to detect patterns of change\cite{Ryss04a}.
+
+Jingwei Wu \etal use the spectrograph metaphor to visualize how changes occur in software systems \cite{Wu04a}. They used colors to denote the age of changes on different parts of the systems.
+
+Jazayeri analyzes the stability of the architecture \cite{Jaza02a} by using colors to depict the changes. From the visualization he concluded that old parts tend to stabilize over time.
+
+Lanza and Ducasse visualize the evolution of classes in the Evolution Matrix \cite{Lanz02a}. Each class version is represented using a rectangle. The size of the rectangle is given by different measurements applied on the class version. From the visualization different evolution patterns can be detected such as continuous growth, growing and shrinking phases etc.
+
+Another relevant reverse engineering domain is the analysis of the co-change history.
+
+Gall \etal aimed to detect logical coupling between parts of the system \cite{Gall98a} by identifying the parts of the system which change together. They used this information to define a coupling measurement based on the fact that the more times two modules were changed at the same time, the more they were coupled.
+
+Zimmerman \etal aimed to provide mechanism to warn developers about the correlation of changes between functions. The authors placed their analysis at the level of entities in the meta-model (\eg methods) \cite{Zimm04a}. The same authors defined a measurement of coupling based on co-changes \cite{Zimm03a}.
+
+Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
+
+\section{Related Work for Bugreport Assignment}\label{sec:relatedwork}
+
+There was previous work done on mining developer expertise from source code. However, if such an expertise model was applied to assist in the triage of bug reports, it required an explicit linkage between bug reports and source files~\cite{Anvik07}. Most existing recommendation systems for the assignment of developers to bug reports use other expertise models, as \eg models based on previous reports. Thus, the main differences between our approach and other recommendation systems are: First, our system is trained on the source code repository rather than on previous bug reports. Second, for the recommendation of a developer suitable to handle a bug report, we do not need a linkage between the bug tracking system and the software repository. As a collorary, our approach is a) not dependent on the quality of previous bug reports, and b) can also be used to assign developers that have not worked on any bug report previously. The main requirement for a developer to be assignable is that he has a contribution history of approx. half a year or more.
+
+Mockus and Herbsleb \cite{Mock02b} compute the experience of a developer as a function of the number of changes he has made to a software system so far. Additionally, they compute recent experience by weighting recent changes more than older ones. The experience is then used to model the expertise of a developer. Furthermore, they examine the time that a developer needs to find additional people to work on a given modification request. Based on the results, they report that finding experts is a difficult task.
+
+Fritz \etal \cite{Frit07a} report on an empirical study that investigates whether a programmer's activity indicates knowledge of code. They found that the frequency and recency of interaction  indicates the parts of the code for which the developer is an expert. They also report on a number of indicators that may improve the expertise model, such as authorship, role of elements, and the task being performed. In our work, we use the vocabulary of frequently and recently changed code to build an expertise model of developers. By using the vocabulary of software changes, lexical information about the role of elements and the kind of tasks are included in our expertise model.
+
+Other approaches working with the \VOC of \BRs and/or source code include: Estimating the person-hour spent on fixing a bug \cite{Weis07a}. \todo{more}
+
+Siy \etal \cite{Siy08a} present a way to summarize developer work history in terms of the files they have modified over time by segmenting the CVS change data of individual Eclipse developers. They show that the files modified by developers tend to change significantly over time. Although, most of the developers tend to work within the same directories. This accords with our observation regarding the decay of vocabulary.
+
+Gousios \etal \cite{Gous08a} present an approach for evaluating developer contributions to the software development process based on data acquired from software repositories and collaboration infrastructures. However, their expertise model does not include the vocabulary of software changes and is thus not queryable using the content of bug reports.
+
+Alonso \etal \cite{Alon08a} describe an approach using classification of the file paths of contributed source code files to derive the expertise of developers. 
+
+Schuler and Zimmerman \cite{Schu08a} introduce the concept of usage expertise, which manifests itself whenever developers are using functionality, \eg by calling API methods. They present preliminary
+results for the Eclipse project indicating that usage expertise is a promising complement to implementation expertise (such as our expertise model). Given these results, we consider as future work to extend our expertise model with usage expertise as well.
+
+A valuable source of developer expertise are mailing lists. It has been shown that the frequency with which software entities (functions, methods, classes, etc) are mentioned in the mail correlated with the number of times these entities are included in changes to the software \cite{Patt08a}. It has been shown that approx.\ 70\% of the vocabulary used in source code changes is found in mailing lists as well~ \cite{Bays07a}, we can thus estimate the impact of including mailinglists on our results.  
+
+Given these results, we consider as future work to including vocabulary from mailing lists in our expertise model. We expect that this will considerable improve our results, since Information Retrieval approaches are known to perform the better the more data is available \cite{TheTextminigHandbookOrOther}.
+
+ While research in the mining of software repositories has frequently ignored commits that include a large number of files; 
+Hindle \etal \cite{Hind08b} perform a case study that includes the manual classification of large commits. They show that large commits tend to be perfective while small commits are more likely to be corrective. Commits are not normalized in our expertise model, thus the size of a commit may affect our model. However, since large commits are rare and small commits are common, we can expect our expertise model to equally take perfective and corrective contributions into account.
+However, it would be interesting for future work to introduce weightings for commit sizes. 
+
+Hill \etal \cite{Hill08a} present an automatic mining technique to expand abbreviations in source code.  Automatically generated abbreviation expansions can be used to enhance software maintenance tools that utilize natural language information, such as our approach. If the same abbreviations are used in both souce code and bug reports then our approach is not affected by this issue, nevertheless we plan to include  automatic abbreviation expansion as future work.
+
+Currently our expertise model is limited to the granularity of commited software changes, a more fine grained acquisition of the model could be achieved by using a change-aware development environment \cite{Omor08a,Robb08a} that records developer vocabulary as the software is written.  
+
+Bettenburg \etal \cite{Bett08c} present an approach to split bug reports into natural text parts and structured parts, \ie source code fragments or stack traces. Our approach treats both the same, since counting word frequencies is applicable for natural-language text as well as source code in the same way.
+
+Recommending experts to assign developers to bug reports is a common application of developer expertise models.
+Anvik \etal \cite{Anvi06a} build developers' expertise from previous \BRs and try to assign current reports based on this expertise. They label the reports. If a report cannot be labeled, it is not considered for training. Additionally, reports involving developers with a too low bug fixing frequency or involving developers not working on the project anymore are filtered. They then assign \BRs from a period of lower than half a year. To find possible experts for their recall calculation, they look for the developers who fixed the bug in the source code (by looking for the corresponding bug ID in the change comments). They reach precision levels of 57\% and 64\% on the Eclipse and Firefox development projects respectively. However, they only achieve around 6\% precision on the Gnu C Compiler project. The highest recall they achieve is on average 10\% (Eclipse), 3\% (Firefox) and 8\% (gcc). Please note that the recall results are not directly comparable to ours, since they use different configurations of bug-related persons to compute recall.
+
+Cubranic and Murphy \cite{Cubr04b} propose to use machine learning techniques to assist in bug triage. Their prototype uses supervised Bayesian learning to train a classifier with the textual content of resolved bug reports. This is then used to classify newly incoming bug reports. They can correctly predict 30\% of the report assignments, considering \EC as a case study.
+
+Canfora and Cerulo \cite{Canf05a} propose an Information Retrieval technique to assign developers to bug reports and to predict the files impacted by the bug's fix. They use the lexical content of \BRs to index source files as well as developers. They do not use vocabulary found in source files, rather they assign to source files the vocabulary of related bug reports. The same is done for developers. For the assignments of developers, they achieve 30\%--50\% top-1 recall for KDE and 10\% to 20\% top-1 recall for the Mozilla case study.
+
+G\^irba, Kuhn \etal\cite{Girb05c} assume that a developer changing a line knows about the line.
+
+Similar to our work, Di Lucca \etal use Information Retrieval approaches to classify maintenance requests \cite{Lucc02b}. They train a classifier on previously assigned bug reports, which is then used to classify incoming bug reports. They evaluate different classifiers, one of them being a term-documents matrix using cosine similarity. However, this matrix is used to model the vocabulary of previous bug reports and not the vocabulary of developers.
+
+Anvik and Murphy evaluate approaches that mine implementation expertise from a software repository or from \BRs~\cite{Anvik07}. Both approaches are used to recommend experts for a \BR. For the approach that gathers information from the software repository, a linkage between similar reports and source code elements is required. For the approach that mines the reports itself, amongst others, the commenters of the reports (if they are developers) are estimated as possible experts. Both approaches disregard inactive developers. Both recommendation sets are then compared to human generated expert sets for the \BR.
+%\todo{write more, write results, compare to our results}
+
+Minto and Murphy's Emergent Expertise Locator (EEL)~\cite{Minto07} recommends a ranked list of experts for a set of files of interest. The expertise is calculated based on how many times which files have been changed together and how many times which author has changed what file. They validate their approach by comparing recommended experts for files changed for a bug fix with the developers commenting on the bug report, assuming that they ``either have expertise in this area or gain expertise through the discussion"~\cite{Minto07}.
+%\todo{I guess the next cite is not really related...}\cite{Sand04xMSR}.
+
+%\todo{Explain why we didn't use ten-fold cross validation which is normally commonly used (see also \cite{Anvi06a}) }
+
+We are not the first to apply an author-topic model \cite{Linstead07, Bald08a}. Linstead \etal showed promising results in applying author-topic models on Eclipse and Baldi \etal applied topic models to mine aspects.
+%They extract the words contained in the source code files to generate a word-document matrix. An additional author-document matrix is generated from a bug database where information about developers changing specific source files can be found. 
+
+Podgurski \etal classified failure reports~\cite{Podgurski03}. They cluster profiles of failed executions in order to classify new failures and to diagnose common defect sources.
+
+Lexical information of source code has previously been proven useful for other tasks in software engineering, such as: identifying high-level conceptual clones \cite{Marc01a}, recovering traceability links between external documentation and source code \cite{Anto02a}, automatically categorizing software projects in open-source repositories \cite{Kawa04a}, visualizing conceptual correlations among software artifacts \cite{Kuhn07a,Kuhn08b}, and defining cohesion and coupling metrics \cite{Marc05a,Posh09a}.
+
+% =====================================================================
+\section{Background \& Related Work of Code Search}
+\label{sec:relwork}
+
+Since the rise of internet-scale code search engines, searching for reusable source code has quickly become a fundamental activity for developers \cite{Kuhn09b}. However, in order to establish search-driven software reuse as a best practice, the cost and time of deciding whether to integrate a search result must be minimized. The decision whether to reuse a search result or not should be quickly taken without the need for careful (and thus time-consuming) examination of the search results.
+
+Trustability is a big issue for reusing code. When a developer reuses code from an external sources he has to trust the work of external developers that are unknown to him. This is not to be confused with trustworthy computing, where clients are concerned with security and reliability of a computation service.
+
+For a result to actually be helpful and serve the purpose originally pursued with the search it is not enough to just match the entered keywords.
+It is essential that the developer know at least the license under which certain source code was published, otherwise he will not be able to use it legally. Furthermore, it is very helpful to know from which project a search result is taken when assessing its quality.
+User studies have shown that developers rely on both technical and human clues to assess the trustability of search results \cite{Gall09a}. For example developers will prefer results from well-known open source projects over results rom less popular projects.
+
+The issue of providing meta-information alongside search results and thereby increasing trustabilty has not been widely studied and we are trying to address this with our work.
+
+In recent years special search engines for source code have appeared, namely  \textsc{\gcs}\footnote{\url{http://www.google.com/codesearch}}, \textsc{\krugle}\footnote{\url{http://www.krugle.org}} and  \textsc{\koders}\footnote{\url{http://www.koders.com}}. They all focus on full-text search over a huge code base, but lack detailed information about the project. Search results typically provide a path to the version control repository and little meta-information on the actual open source project; often, even such basic information as the name and homepage of the project are missing.
+
+\textsc{\sourcerer}\footnote{\url{http://sourcerer.ics.uci.edu}} by Bajracharya \etal \cite{Bajr06a} and \textsc{\merobase}\footnote{\url{http://www.merobase.org}} by Hummel \etal \cite{Humm08a} are research projects with an internet-scale code search-engine. Both provide the developer with license information and project name. Merobase also provides a set of metrics such as cyclomatic- and Halstead complexity.  An improved version of \sourcerer with trustability data is in development, though it has not yet been published\footnote{Personal communication with Sushil Bajracharya.}. 
+
+In addition to the web user interface, both Sourcerer and Merobase are also accessible through Eclipse plug-ins that allow the developer to write unit tests. These are then used as a special form of query to search for matching classes/ methods, \ie classes that pass the tests\cite{Humm08a}. Using unit tests as form of formulating queries is a way of increase technical trustability: Unit-tested search results are of course more trustable, however at the cost of a more time consuming query formulation (\ie additionally writing the unit tests). The kind of results returned are also limited to clearly-defined and testable features.  A combination of technical trustability factors (\eg unit tests) and human trustability factors might be promising future work.
+
+In addition to the web user interface, both Sourcerer and Merobase are also accessible through Eclipse plug-ins that allow the developer to write unit tests that are then used to query the search engines for matching classes \cite{Lemo07a,Humm08a}. Using unit tests for query formulation is interesting with regard to trustability. Unit-tested search results are of course more trustable, however at the cost of a more time consuming query formulation (\ie additionally writing the unit tests). \on{This is still confusing. It is not clear what writing unit tests have to do with query formulation.} The kind of results returned are also limited to clearly-defined and testable features.  A combination of technical trustability factors (\eg unit tests) and human trustability factors might be promising future work.
+
+We are not the first to use collaborative filtering in code search. Ichii \etal used collaborative filtering to recommend relevant components to users \cite{Ichi09a}. Their system uses browsing history to recommend components to the user. The aim was to help users make cost-benefit decisions about whether or not those components are worth integrating. Our contribution beyond the state-of-the-art is our focus on human factors and the role of cross-project contributors.
+
+The \Jbd prototype, that we present in \autoref{sec:approach}, uses data collected from the Ohloh website to compute the trustability metric that we propose in \autoref{sec:metric}.
+
+% ===================================================================================
+\section{RELATED WORK}
+\label{sec:related}
+
+Using \mds to visualize information based on the metaphor of cartographic maps is by no means a novel idea. \emph{Topic maps}, as they are called, have a longstanding tradition in information visualization \cite{Ware04a}. The work in this paper was originally inspired by Michael Hermann's and Heiri Leuthold's work on the political landscapes of Switzerland \cite{Herm03a}. 
+
+In the same way, stable layouts have a long history in information visualization, as a starting point see \eg the recent work by Frishman and Tal on online dynamic graph drawing \cite{Fris08a}. They present an online graph drawing approach, which is similar to the online pipeline presented in this work. Please refer to \autoref{sec:other} for a comparison of graph drawing and \MDS. 
+
+ThemeScape is the best-known example of a text visualization tool that uses the metaphor of cartographic maps. 
+Topics extracted from documents are organized into a visualization where visual distance correlates to topical distance and surface height corresponds to topical frequency \cite{Wise95b}. The visualization is part of a larger toolset that uses a variety of algorithms to cluster terms in documents. For laying out small document sets MDS is used; for larger document sets a proprietary algorithm, called ``Anchored Least Stress'', is used. The digital elevation model is constructed by successively layering the contributions of the contributing topical terms, similar to our approach.
+
+In the software visualization literature however, topic maps are rarely used.
+Except for the use of graph splatting in RE Toolkit by Telea \etal \cite{Tele03a}, we are unaware of their prior application in software visualization. And even in the case of the RE toolkit, the maps are not used to produce consistent layouts for thematic maps, or to visualize the evolution of a software system. 
+
+
+\subsection{Desiderata for Spatial Representation of Software}
+
+Robert DeLine's work on software navigation \cite{Deli05b,Deli06a} closely relates to \SOCA. His work is based on the observation that developers are consistently lost in code \cite{Deli05a} and that using textual landmarks only places a large burden on cognitive memory. He concludes the need for new visualization techniques that allow developers to use their spatial memory while navigating source code.
+
+DeLine proposes four desiderata \cite{Deli05b} that should be satisfied by spatial software navigation: 1)~the display should show the entire program and be continuous, 2)~the display should contain visual landmarks such that developers can find parts of the program perceptually rather than relying on names, 3)~the display should remain visually stable during navigation [and evolution], and 4)~the display should be capable of showing global program information overlays other than navigation.
+
+An ad-hoc algorithm that satisfies the first and fourth properties is presented in the same work. As distance metric between software entities (here, methods) an arbitrary chosen score is used.
+
+Our work satisfies all above desiderata, and completes them with a fifth desideratum that visual distance should have a meaningful interpretation. The scope of \SOCA is broader than just navigation, it is also intended for reverse engineering and code comprehension in general. We can thus generalize the five desiderata for spatial representation of software as follows:
+
+\begin{enumerate}
+\item The visualization should show the entire program and be continuous.
+\item The visualization should contain visualization landmarks that allow the developers to find parts of the system perceptually, rather than relying on name or other cognitive causes. 
+\item The visualization should remain visually stable as the system evolves. 
+\item The visualization should should be capable of showing global information overlays.
+\item On the visualization, distance should have a meaningful interpretation. 
+\end{enumerate}
+
+\subsection{Other Layout Approaches used in Software Visualization}
+
+Most software visualization layouts are based on one or multiple of the following approaches: UML diagrams, force-based graph drawing, tree-map layouts, and polymetric views.
+
+% -----------------------------------------------------------------------------------
+\emph{UML diagrams} generally employ no particular layout and do not continuously use the visualization pane. The UML standard itself does not cover the layout of diagrams. Typically a UML tool will apply an unstable graph drawing layout (\eg based on visual optimization such a reducing the number of edge crossings) when asked to automatically layout a diagram. However, this does not imply that the layout of UML diagrams is meaningless. UML diagrams are carefully created by architects, at least those made during the design process, so their layout do have a lot of meaning. If you change such a diagram and re-show it to its owner, the owner will almost suddenly complain, since he invested time in drawing the diagram a certain way! Alas, this layout process requires manual effort.
+
+Gudenberg \etal have proposed an evolutionary approach to layout UML diagrams in which a fitness function is used to optimize various metrics (such as number of edge crossings) \cite{Gude06a}. Although the resulting layout does not reflect a distance metric, in principle the technique could be adapted to do so. Andriyevksa \etal have conducted user studies to assess the effect that different UML layout schemes have on software comprehension \cite{Andr05a}.
+They report that the layout scheme that groups architecturally related classes together yields best results. They conclude that it is more important that a layout scheme convey % NB: "convey", not "conveys" (subjunctive)
+a meaningful grouping of entities, rather than being aesthetically appealing. Byelas and Telea highlight related elements in a UML
+% Google says 51,700 x an UML and 315,000 a UML %
+diagram using a custom ``area of interest'' algorithm that connects all related elements with a blob of the same color, taking special care to minimize the number of crossings \cite{Byel06a}.
+The impact of layout on their approach is not discussed.
+
+% -----------------------------------------------------------------------------------
+\emph{Graph drawing} refers to a number of techniques to layout two- and three-dimensional graphs for the purpose of information visualization \cite{Ware04a,Kauf01b}. Noack \etal offer a good starting point for applying graph drawing to software visualization \cite{Noac05a}. Jucknath-John \etal present a technique to achieve stable graph layouts over the evolution of the displayed software system \cite{Juck06a}, thus achieving consistent layout, while sidestepping the issue of reflecting meaningful position or distance metrics.
+
+Unlike MDS, graph drawing does not map an $n$-dimensional space to two dimensions, rather it is concerned with the placement of vertices and edges such that visual properties of the output are optimized. For example, algorithms minimize the number of edge crossings or try to avoid that nodes overlap each other. Even though, the standard force-based layouts can consider edge weights (which can be seen as a distance metric), edges with the same weight may have different length on the visualization pane depending on the connectedness of the graph at that position. Furthermore, the resulting placement is not continuos. The void between vertices is not continuous spectrum of metric locations, as is the case with an MDS layout.
+
+\emph{Graph splatting} is a variation of graph drawing, which produced visualizations that are very similar to thematic maps \cite{Lier03a}. Graph splatting represents the layout of graph drawing algorithms as a continuous scalar field. Graph splatting combines the layout of graph drawing with the rendering of thematic maps. Each vertex contributes to the field with a Gaussian shaped basis function. The elevation of the field thus represents the density of the graph layout at that position. Telea \etal apply Graph splatting in their RE toolkit to visualize software systems \cite{Tele03a}. However, they are not concerned with stable layouts. Each run of their tool may yield a different layout.
+
+% -----------------------------------------------------------------------------------
+\emph{Treemaps} represent tree-structured information using nested rectangles \cite{Ware04a}.
+Though treemaps make continuous use of the visualization pane, the interpretation of position and distance is implementation dependent. Classical treemap implementations are known to produce very narrow and thus distorted rectangles. Balzer \etal proposed a modification of the classical treemap layout using Voronoi tessellation \cite{Balz05a}. Their approach creates aesthetically more appealing treemaps, reducing the number of narrow tessels. There are some treemap variations (\eg the strip layout or the squarified layout) that can, and do, order the nodes depending on a metric. However, nodes are typically ordered on a local level only, not taking into account the global co-location of bordering leaf nodes contained in nodes that touch at a higher level. Many treemaps found in software visualization literature are even applied with arbitrary order of nodes, such as alphanumeric order of class names. 
+
+\emph{Polymetric views} visualize software systems by mapping different software metrics on the visual properties of box-and-arrow diagrams \cite{Lanz03d,Lanz06a}. Many polymetric views are ordered by the 
+value of a given software metric, so that relevant items appear first (whatever first means, given the 
+layout). Such an order is more meaningful then alphabetic (or worse, hash-key ordering), but on the other hand only as stable as the used metric. The System Complexity view is by far the most popular polymetric view, and is often used as a base layout where our requirements for stability and consistence apply (see \eg \cite{Gree06a}). The layout of System Complexity uses graph drawing on inheritance relations, and orders the top-level classes as well as each layer of subclasses by class names. Such a layout does not meet our desiderate for a stable and consistent layout.
+   
+% -----------------------------------------------------------------------------------
+\subsection{ More Cartography Metaphors in Software Visualization}\label{sec:other}
+
+A number of tools have adopted metaphors from cartography in recent years to visualize software.
+Usually these approaches are integrated in a tool with in an interactive, explorative interface and often feature three-dimensional visualizations. None of these approaches satisfies DeLine's desiderata.
+
+MetricView is an exploratory environment featuring UML diagram visualizations \cite{Term05a}. The third dimension is used to extend UML with polymetric views \cite{Lanz03d}.
+The diagrams use arbitrary layout, so do not reflect meaningful distance or position.
+
+White Coats is an explorative environment also based on the notion of polymetric views \cite{Mesn05b}. The visualizations are three-dimensional with position and visual-distance of entities given by selected metrics. However they do not incorporate the notion of a consistent layout.
+
+CGA Call Graph Analyser is an explorative environment that visualizes a combination of function call graph and nested modules structure \cite{Bohn07a}. The tool employs a 2$\frac{1}{2}$-dimensional approach. To our best knowledge, their visualizations use an arbitrary layout.
+
+CodeCity is an explorative environment building on the city metaphor \cite{Wett07b}. CodeCity employs the nesting level of packages for their city's elevation model, and uses a modified tree layout to position the entities, \ie packages and classes. Within a package, elements are ordered by size of the element's visual representation. Hence, when changing the metrics mapped on width and height, the overall layout of the city changes, and thus, the consistent layout breaks.
+
+VERSO is an explorative environment that is also based on the city metaphor \cite{Lang05a}. Similar to CodeCity, VERSO employs a treemap layout to position their elements. Within a package, elements are either ordered by their color or by first appearance in the system's history. As the leaf elements have all the same base size, changing this setting does not change the overall layout. Hence, they provide consistent layout, however within the spatial limitations of the classical treemap layout. 
+
+% Related work above

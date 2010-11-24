@@ -1,0 +1,144 @@
+%%%
+\usepackage{xspace}
+\newcommand{\ie}{{that is},\xspace}
+\newcommand{\eg}{{for example},\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\etc}{\emph{etc.}\xspace}
+\newcommand{\adhoc}{\emph{ad hoc}\xspace}
+%%%
+\usepackage{amsmath, amsthm, amssymb} 
+%\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor= blue,citecolor= blue,urlcolor=blue]{hyperref}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\figureautorefname}{Figure}
+%%%
+\usepackage[draft]{graphicx}
+
+\newcommand{\moarsauce}{}%\vspace{-0.07in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Markup macros for proof-reading
+\usepackage[normalem]{ulem} % for \sout
+\usepackage{xcolor}
+\newcommand{\ra}{$\rightarrow$}
+\newcommand{\ugh}[1]{\textcolor{red}{\uwave{#1}}} % please rephrase
+\newcommand{\ins}[1]{\textcolor{blue}{\uline{#1}}} % please insert
+\newcommand{\del}[1]{\textcolor{red}{\sout{#1}}} % please delete
+\newcommand{\chg}[2]{\textcolor{red}{\sout{#1}}{\ra}\textcolor{blue}{\uline{#2}}} % please change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Put edit comments in a really ugly standout display
+\usepackage{ifthen}
+\usepackage{amssymb}
+\newboolean{showcomments}
+\setboolean{showcomments}{false} % toggle to show or hide comments
+\ifthenelse{\boolean{showcomments}}
+  {\newcommand{\note}[2]{
+	% \fbox{\bfseries\sffamily\scriptsize#1}
+	\fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+    {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
+    % \marginpar{\fbox{\bfseries\sffamily#1}}
+   }
+   \newcommand{\version}{\emph{\scriptsize$-$Id$-$}}
+  }
+  {\newcommand{\note}[2]{}
+   \newcommand{\version}{}
+  }
+
+\newcommand{\dm}[1]{\note{dominique}{#1}}
+\newcommand{\AK}[1]{\note{akuhn}{#1}}
+\newcommand{\on}[1]{\note{oscar}{#1}}
+
+\newcommand{\todo}[1]{\note{todo}{#1}}
+\newcommand{\rev}[2]{\note{Rev #1}{#2}}
+%\newcommand{\done}[1]{\note{done}{#1}}
+\newcommand{\done}[1]{}
+
+\def\figureautorefname{Figure}%
+\def\tableautorefname{Table}%
+\def\partautorefname{Part}%
+\def\appendixautorefname{Appendix}%
+\def\chapterautorefname{Chapter}%
+\def\sectionautorefname{Section}%
+
+%%%
+% --> for chapter on Hapax work
+\newcommand\concept[1]{#1\xspace}
+\newcommand\red{\concept{Red}}
+\newcommand\blue{\concept{Blue}}
+\newcommand\green{\concept{Green}}
+\newcommand\orange{\concept{Orange}}
+\newcommand\cyan{\concept{Cyan}}
+\newcommand\yellow{\concept{Yellow}}
+\newcommand\pink{\concept{Pink}}
+\newcommand\magenta{\concept{Magenta}}
+\newcommand\black{\concept{Black}}
+\newcommand\darkgreen{\concept{DarkGreen}}
+\newcommand\navy{\concept{Navy}}
+%%%
+% --> for chapter on LogLR work
+\newcommand{\loglr}{log-likelihood ratio\xspace}
+\newcommand{\loglrs}{log-likelihood ratios\xspace}
+%%%
+% --> for chapter on Chronia
+\newcommand{\omap}{\emph{Ownership Map}\xspace}
+\newcommand{\id}[1]{{\sf\small{#1}}}
+%%%
+% --> for chapter on Bug Assignment
+\newcommand{\VOC}{vocabulary\xspace}
+\newcommand{\VOCs}{vocabularies\xspace}
+\newcommand{\diff}{\emph{diff}\xspace}
+\newcommand{\diffs}{\emph{diffs}\xspace}
+\newcommand{\rlog}{\emph{log}\xspace}
+\newcommand{\rlogs}{\emph{logs}\xspace}
+\newcommand{\TAM}{term-author-matrix\xspace}
+\newcommand{\TAMS}{term-author-matrices\xspace}
+\newcommand{\BR}{bug report\xspace}
+\newcommand{\BRs}{bug reports\xspace}
+\newcommand{\EC}{Eclipse\xspace}
+\newcommand{\VCS}{version control system\xspace}
+\newcommand{\VCSs}{version control systems\xspace}
+\newcommand{\trainingset}{training set\xspace}
+\newcommand{\validationset}{validation set\xspace}
+\newcommand{\TOOL}{\textsc{Devlect}\xspace}
+%%%
+% --> for Code Search
+\newcommand{\findQ}{\footnote{\underline{Find quote!}} }
+\newcommand{\keyw}[1]{\textbf{#1}}
+\newcommand{\proj}[1]{#1}
+\newcommand{\codeList}[1]{\begin{center}
+\texttt{#1}
+\end{center}}
+\newcommand{\Jbd}{\emph{JBender}\xspace}
+\newcommand{\Rbd}{\emph{RBender}\xspace}
+\newcommand{\gcs}{\proj{Google Code Search}\xspace}
+\newcommand{\krugle}{\proj{Krugle}\xspace}
+\newcommand{\koders}{\proj{Koders}\xspace}
+\newcommand{\sourcerer}{\proj{Sourcerer}\xspace}
+\newcommand{\conjurer}{\proj{Code Conjurer}\xspace}
+\newcommand{\merobase}{\proj{Merobase}\xspace}
+%%% 
+% --> for chapter on user study
+\newcommand{\ZoomableUML}{Zoomable UML}
+\newcommand{\ConceptMap}{Concept Map}
+\newcommand{\FacettedSearch}{Faceted Search}
+\newcommand{\RichIntellisense}{Rich Intellisense}
+\newcommand{\CloudREPL}{Interactive Snippets} % Dropping the jargon acronym
+%%%
+% -> for chapter on Codemap Userstudy
+\newcommand{\SOCA}{Software Cartography\xspace}
+\newcommand{\LSI}{Latent Semantic Indexing\xspace}
+\newcommand{\MDS}{Multi\-dimensional Scaling\xspace}
+\newcommand{\Codemap}{\textsc{Code\-map}\xspace}
+\newcommand{\mds}{multi\-dimensional scaling\xspace}
+\newcommand{\eclipse}{Eclipse\xspace}
+%%%
+% -> for chapter on Codemap itself
+\newcommand{\secref}[1]{\autoref{sec:#1}}
+\newcommand{\figref}[1]{\autoref{fig:#1}}
+\newcommand{\tabref}[1]{\autoref{tab:#1}}
+\newcommand{\soca}{software cartography\xspace}
+\newcommand{\emSOCA}{\emph{Software Cartography}\xspace}
+\newcommand{\lsi}{latent semantic indexing\xspace}
+\newcommand{\CODEMAP}{\textsc{CodeMap}\xspace}
+%%%%%%%%%%%%%%%%%%%%
+ 
