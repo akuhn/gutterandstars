@@ -1,23 +1,25 @@
 %!TEX root = gutter+stars.tex
 \chapter{Introduction}
 
-Dispite common believe, software engineers do not spend most time writing code. An approximate 50--80\% of their time is spend on code navigation and understanding \cite{many}. This may include reading of local source  source code and documentation, searching the internet for tutorials and code examples, but als seeking the help of another developer. User studies have found that developers use four kinds of cognitive clues for \codenavigation \cite{many}, \ie lexical clues, social clues, episodic clues and spatial clues. Tool support for following-up upon these clues, however, is typically limited to text file processing or hyperlinking of code elements at best. 
+Dispite common believe, software engineers do not spend most time writing code. An approximate 50--80\% of development time is spend on code navigation and understanding \cite{a,b,c,d}. This may include reading of local source  source code and documentation, searching the internet for tutorials and code examples, but als seeking the help of another developer. User studies have found that developers use four kinds of cognitive clues for \codenavigation \cite{a,b,c}: lexical clues, social clues, episodic clues and spatial clues. 
 
-In our research, we explore how to support \codenavigation by leveraging development tools with cognitive clues for software orientation. In a user study, we looked at how developers find answers to technical questions in order to learn about \codenavigation strategies. We found that developers typically use lexical and social clues to find answers, however we identified potential for the use of temporal and in particular spatial clues. Thus, a key contribution of our work is ``Software Cartography'' a novel cartographic visualization of software systems to support code orientation by spatial clues. Code maps, as well call them, are a stable and spatial representation of software system based on lexical information found in the system's source code. Code maps can be used by both individual developers and shared in a team. We evaluated our approach in a qualitative user study, with both professional and student users, and found that it is most helpful for exploring search results and call hierarchies.
+Examples of \codenavigation clues are 
+	(a) recalling a name or having a guess about the answer's name, or
+	(b) knowing a person with expertise or a place on the internet where people share their expertise, or 
+	(c) an episodic memory about a past encounter with the answer, for example about having seen it on a mailing list, and 
+	(d) sometimes even a spatial clues, like recalling that a given functionality is located at the end of that one specific source text file. 
+
+Tool support for following-up upon these clues, however, is typically limited to text file processing or hyperlinking of code elements at best. In our research, we explore how development tools can support the cognitive clues that software engineers use for \codenavigation. In interviews with professional software engineers, we looked at how developers find answers to technical questions in order to learn about \codenavigation strategies. We found that finding an answer typically falls apart in to parts, in a first and hard part developers struggle to turn a fuzzy textual clue, or just as often a social or episodical clues, into a concerete textual clue that they can eventually use in the second part to locate the answer in the local documentation or on the internet. Also we identified promising potential for the use spatial clues. 
+
+A key contribution of our work is \emph{Software Cartography}, a novel cartographic visualization of software systems that is supposed to support code orientation by on-screen spatial clues. Code maps, as well call them, are a stable and spatial representation of software system based on lexical information found in the system's source code. Code maps can be used by both individual developers and or shared by a team. We evaluated our approach in a qualitative user study, with both professional and student users, and found that it is most helpful for exploring search results and call hierarchies.
 
 \section{Types of Code Navigation}
 
 In the context of this work, we are interested in better supporting software engineers when they are facing a technical question that is related to source code. We introduce the term \emph{\codenavigation{}} in order to refer to all programming activities that have in common that software engineers do need to find an answer to a technical question that is related to source code. Code orientation is thus am umbrella term of code navigation and code understanding. 
 
-In the following we categorize \codenavigation according to the kind of cognitive clues being followed-up (lexical clues, social clues, episodic clues and spatial clues) and further characterize \navigation according to its purpose (refind, discovery and learning) and its reach (ranging from current working set to the entire internet).
+In the following we categorize \codenavigation according to the kind of cognitive clues being followed-up (lexical clues, social clues, episodic clues and spatial clues) and characterize \navigation tasks according to their aim (refind, discovery and learning) and reach (ranging from current working set to the entire internet).
 
-On the way from a technical question to an answer, developers follow-up different kinds of cognitive clues in order to find to an answer. Examples of these clues are 
-	(a) recalling a name or having a guess about the answer's name, or
-	(b) knowing a person with expertise or a place on the internet where people share their expertise, or 
-	(c) an episodic memory about a past encounter with the answer, for example about having seen it on a mailing list, and 
-	(d) sometimes developers even follow-up a spatial clues, like recalling that a given functionality is located at the end of that one specific source text file. 
-	
-In interviews with developers we found that finding to an answer is typically split in two parts: the first and hard part is boiling the often fuzzy problem description down to a single lexical clue, and in the second part that lexical clue is used to search documentation, tutorials and mailing list for concrete help. Current tool support for \codenavigation is typically limited to \navigation by lexical clues. The above behavior might be an artifact of current tool support \ie that developers aim to find a lexical clue first because they are most easy to follow up, or it might not. In either case, developers do need better tool support to follow-up on social, episodic and spatial clues.
+In interviews with developers we found the way from a technical question to an answer is typically split in two parts: the first and hard part is boiling the often fuzzy problem description down to a single lexical clue, which in the second part is used to query documentation, tutorials and mailing list for concrete help. Current tool support for \codenavigation is often limited to \navigation by lexical clues. The above behavior might thus be an artifact of current tool support, \ie developers aim to find a lexical clue first because they are most easy to follow up, or it might not. In either case, developers do need better tool support to follow-up on social, episodic and spatial clues.
 	
 \subsection*{Purpose and Reach of Code Orientation}
 	
@@ -50,20 +52,17 @@ In interviews with developers we found that finding to an answer is typically sp
 - Clues are not about the sources of information, but about the way developers navigate about how they cognitively work when they follow.
 
 	
-%- So one question is, do we observe this pattern because lexical clues are the only ones with decent tool support?
-%- All these tools help you to follow up, some more complex clues and unconventional information. It is not that any of these tools addresses a very specific task? Erwann thinks yes it does.
-%- I want to help developers, working with code, in particular wrt navigation and understanding, and learning about code.  These clues can be  (ii)  or (iii) it could be temporal or episodic, having a memory from the past that could lead you to an answer, that you've seen it last year (or recall the song that played on the radio) or (iv) 
-%- maybe in some years we can add here location based clues, like I've written that code on the train. And in the source of JUnit Kent Beck found it so cool that he added "was written on HŸtte at 1200 mUm"
-%- and sometime people follow up some very underdeveloped spatial clues. So we know they follow up these clues so we need better tool support and not have to be force to use lexical proxies, you should not be forced to recall the name, but be able to directly work social information when following up a social clues.
-%- With spatial information we have this even more special situation that we possible first have to create a space for space.
-%- Is there one space to rule them all? or different spaces for different tasks. Codemap that provides one space but still have IDE so onscreen is split, Codecanvas does the same but put the source code on it such that the space become the only onscreen space, the space should be contextually created.
-
-%- Spatial one, two things that are close together have something do together, if we put randomly put things on screen (not quite correct...) of course this works because people as humans have strong spatial capabilities, that software can be represented in spatial meaningful way, this is really good enough because  the spatial part of our brain that is impressive, if people had really good memory for which tunes and sound there would be one how can source code be distributed over the vocal range. Why do we not sing source code to one other. We could sing quick sort :)
-
-%- The thesis emerged from my work, is that in order to support developers with code navigation we need to build better tools that address the cognitive clues that are used by developers, in particular (in addition to lexical clues) to support navigation by social clues by temporal clues and by spatial clues, and since software has no ...
-%- lexical clues are present as identifier names and in comments, social clues are also there we know how has written software and mailinglists etc so people are also there as entity, and also temporal information is tere we have versioning systems that make snapshots of a system in time, but spatial is more difficult ...
-%- it somehow maps to the structure of software, which you can extract from source code, but very often spatial is more on a conceptual level and people even use spatial terms on the very level of the arrangement of the UI on screen. So we have three spatial dimensions, structural, conceptual and on screen. So the spatial clues have the least support, so we gotta create a space of software of onscreen to support spatial navigation by developers. 
-%- Since software lacks we need to create a spatial view to address the on-screen spatial clues. To create a cartographic representation of other non-spatial properties of the system (like temporal, social and lexical ones) and give them a spatial representation os people can use this forth kind of navigation clues that are actually used. When you talk with developers how they find answers to technical questions related to source code they will tell you sometime they recall a method is at the end of this file, which is onscreen spatial representation. Lemme browser the packages it us up there, down there. And they will use this in the same sentence as some spatial representation that is related to package structure. We have to fix this also up there in the business layer, it as down there in this file, we have to fix this up there it is down there in this file. 
+- So one question is, do we observe this pattern because lexical clues are the only ones with decent tool support?
+- All these tools help you to follow up, some more complex clues and unconventional information. It is not that any of these tools addresses a very specific task? Erwann thinks yes it does.
+- I want to help developers, working with code, in particular wrt navigation and understanding, and learning about code.  These clues can be  (ii)  or (iii) it could be temporal or episodic, having a memory from the past that could lead you to an answer, that you've seen it last year (or recall the song that played on the radio) or (iv) 
+- maybe in some years we can add here location based clues, like I've written that code on the train. And in the source of JUnit Kent Beck found it so cool that he added "was written on HŸtte at 1200 mUm"
+- and sometime people follow up some very underdeveloped spatial clues. So we know they follow up these clues so we need better tool support and not have to be force to use lexical proxies, you should not be forced to recall the name, but be able to directly work social information when following up a social clues.
+- With spatial information we have this even more special situation that we possible first have to create a space for space.
+- Is there one space to rule them all? or different spaces for different tasks. Codemap that provides one space but still have IDE so onscreen is split, Codecanvas does the same but put the source code on it such that the space become the only onscreen space, the space should be contextually created.
+- The thesis emerged from my work, is that in order to support developers with code navigation we need to build better tools that address the cognitive clues that are used by developers, in particular (in addition to lexical clues) to support navigation by social clues by temporal clues and by spatial clues, and since software has no ...
+- lexical clues are present as identifier names and in comments, social clues are also there we know how has written software and mailinglists etc so people are also there as entity, and also temporal information is tere we have versioning systems that make snapshots of a system in time, but spatial is more difficult ...
+- it somehow maps to the structure of software, which you can extract from source code, but very often spatial is more on a conceptual level and people even use spatial terms on the very level of the arrangement of the UI on screen. So we have three spatial dimensions, structural, conceptual and on screen. So the spatial clues have the least support, so we gotta create a space of software of onscreen to support spatial navigation by developers. 
+- Since software lacks we need to create a spatial view to address the on-screen spatial clues. To create a cartographic representation of other non-spatial properties of the system (like temporal, social and lexical ones) and give them a spatial representation os people can use this forth kind of navigation clues that are actually used. When you talk with developers how they find answers to technical questions related to source code they will tell you sometime they recall a method is at the end of this file, which is onscreen spatial representation. Lemme browser the packages it us up there, down there. And they will use this in the same sentence as some spatial representation that is related to package structure. We have to fix this also up there in the business layer, it as down there in this file, we have to fix this up there it is down there in this file. 
 
 \subsection*{Orientation by Lexical Clues}
 
@@ -85,7 +84,7 @@ Simple keyword search and regular expressions are of great help to follow-up on 
 \subsection*{Orientation by Social Clues}
 
 % Importance
-Social clues are often not considered part of software comprehension, yet they are possibly the most powerful clues for code orientation. 
+Social clues are often not considered part of software comprehension, yet they are most powerful for discovery and learning. 
 % Examples
 Examples of social clues can be asking another person for help, or posting a question to a discussion board on the web where experts gather and share their expertise. 
 
@@ -106,64 +105,40 @@ Episodic clues are typically tied to personal memory, as for example in recallin
 
 % Assumption 
 Developers do rely on episodic clues because humans do have strong episodic memory and thus their guess about the past is more correct than their current knowledge. This works is because as humans our episodic memory works way better than our structural memory, typically developers do recall ``that'' they knew the answer before but not ``what'' the answer exactly constituted of.  
-% kind of information?
 
+% Kind of information?
 Episodic clues are typically pointers to past interaction with books, mailing lists and other people, but may also be pointers to past snapshots of the current or a related software system. 
-% tool support and hint a need that we address later on?
+% Tool support and hint a need that we address later on?
 Support for code orientation by episodic clues in development tools is typically not present. Information that could be used to follow-up an episodic clue is typically stored in external databases, such as version control repositories and mailing list archives, and thus typically not integrated with development tools. Also it is known that visualizations are a powerful means to evoke episodic memories. Using data mining techniques and embedding the results as visualizations in the IDE can help to fill that gap.
 
 %- or you know ''we had this bug a year ago'' or you know ''oh we need to sort a list, we've done this in this project'' ... episodic memory ... or you recall who've told you about it ... 
 %- Episodic memory ... recall that they've solved it ... or that they've seen the solution on a mailing list ... learning by lurking ... grown your own folksonomy ... collect your own anecdotes
 %- Chronia: ownership map shows how contributers to a software system worked together ... devs get excited ... ''see here we worked together'' .. even better than a holiday photo album.
 
-\subsubsection{Spatial}
+\subsection*{Orientation by Spatial Clues}
 
-- Change on database propagates to business layer, UI layer ... you know where do go spatially, the space is given by space of software, in other case the space is given by layout of IDE, or given by storage format or persistence format, you know it is there in that text file or on that folder, or in smalltalk open in that window.
-- Codemap: if you observe which clues devs use to refer to code, you'll find all four, but if you look at tool support, you find lexical supported by tools, and temporal only in external tools, and social clues are also not supported, you gonna recall the name of person (ie using the lexical clue of the name as a proxy for the social connection) and spatial is not supported at all, we got the IDE layouted without care about spatial thinking ... code bubbles, code map, and code canvas are about the first systems to take care of this ... 
-- If you ask people to draw maps of their software systems ... as Grady Booch does ... and they always draw an architecture with spatial structural ... so the spatial structure is in their thinking but not in the IDE and even not in the software ...
-- So this why codemap is so interesting because it takes the lexical information and give it a spatial structure in the hope to fill the gap when devs are stuck with lexical clues or social/temporal
-- Spatial clues "somewhere at the end of this file"
-- Structural and spatial is often perceived in the same way, developers tend to use spatial terminology to refer to layers and architectural components.
+% Importance
+Spatial clues can help to reduce the cognitive load of orientation of an hyperlinked document space, such as software systems. 
+% Examples
+% Kind of information?
+Spatial clues can be of three kinds, either they are structural or conceptual as in recalling which class or architectural layer some functionality belongs to, or they are true spatial clues as in recalling the on-screen or within-text-file position of a given function.
 
-- To create a space of software that is visualized on screen, so that people can start using that one to navigate in source code.
-- Erwann: the mental model part?
-- To provide them with a space that will become / should reflect their spatial model...
-- Erwann: if the notion of mental model can be used for all clues ... the other tools gravitate around this spatial mental model.
+% Assumption 
+Developers do rely on spatial clues works because as humans they have strong spatial capabilities. The spatial capabilities of our brain is really impressive, it has been found that developers do form a spatially meaningful internal mental model of a software system even though the external model of the software system has no inherent spatial properties by itself. 
 
+% Tool support and hint a need that we address later on?
+Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues. Provide developers with a cartographic on-screen visualization, so they can use spatial clues for code orientation, may help address this problem.
 
-\begin{itemize}
-\item \emph Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
-\begin{itemize}
-\item In \autoref{the chapter on lexical clues} we use lexical information found in source code to cluster and summarize software systems.
-\item In \autoref{the chapter on LogLR} we use lexical information found to summarize whole systems, parts thereof, or even the system's entire evolution.
-\item In \autoref{the chapter on bug reports} we show how to automatically assign work tickets using lexical information found in both source code and bug reports.
-\item In \autoref{the chapter on codemap} we use lexical information found in source code to establish a visualization that supports spatial code orientation.
-\end{itemize}
-\item \emph{Spatial clues} can help to reduce the cognitive load of orientation of an hyperlinked document space, such as software systems. Spatial clues can be of two kinds, either they are structural as in recalling to which class a certain method belonged or true spatial clues as in recalling that a given method was at the end of a certain source file. Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues.
-%Always given the assumption that the system is well packaged, which often is not given either.
-A key contribution of our research is the creation of novel spatial visualization to support code orientation by spatial clues.
-\begin{itemize}
-\item In \autoref{the chapter on chronia} we use temporal information taken from version control repositories to reveal the social interaction in collaborative software development.
-\item In \autoref{the chapter on codemap} we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
-\item In \autoref{the chapter on the codemap user study} we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
-\end{itemize}
-
-\item 
-\begin{itemize}
-\item In \autoref{the chapter on LogLR} we use lexical clues found in the version control system to summarize and reveal the story of system's evolution. 
-\item In \autoref{the chapter on bug reports} we use lexical clues found in past contributions of developers to model their expertise for the assignment of bug reports. 
-\item In \autoref{the chapter on chronia} we address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system.
-\end{itemize}
-
-\item \emph{Social clues} are often not considered part of software comprehension, yet they are possibly the most powerful clues for code orientation. Examples of social clues can be asking another person for help, or posting a question to a discussion board on the web where experts gather and share their expertise. Current support for code orientation by social clues is typically not present in development tools. To reveal the potential of social clues we integrated ideas taken from social media in our prototype tools.
-
-\begin{itemize}
-\item In \autoref{the chapter on bug reports} we use contributions that developers shared with open source systems in the past to build a recommendation model for bug repots.
-\item In \autoref{the chapter on chronia} we use the past collaboration of the developers to tell a system's past story to both its team members as well as new hires.
-\item In \autoref{the chapter on codesearch} we use cross-project collaboration in open source projects to model the credibility of code search results.
-\end{itemize}
-
-\end{itemize}
+%- Change on database propagates to business layer, UI layer ... you know where do go spatially, the space is given by space of software, in other case the space is given by layout of IDE, or given by storage format or persistence format, you know it is there in that text file or on that folder, or in smalltalk open in that window.
+%- Codemap: if you observe which clues devs use to refer to code, you'll find all four, but if you look at tool support, you find lexical supported by tools, and temporal only in external tools, and social clues are also not supported, you gonna recall the name of person (ie using the lexical clue of the name as a proxy for the social connection) and spatial is not supported at all, we got the IDE layouted without care about spatial thinking ... code bubbles, code map, and code canvas are about the first systems to take care of this ... 
+%- If you ask people to draw maps of their software systems ... as Grady Booch does ... and they always draw an architecture with spatial structural ... so the spatial structure is in their thinking but not in the IDE and even not in the software ...
+%- So this why codemap is so interesting because it takes the lexical information and give it a spatial structure in the hope to fill the gap when devs are stuck with lexical clues or social/temporal
+%- Spatial clues "somewhere at the end of this file"
+%- Structural and spatial is often perceived in the same way, developers tend to use spatial terminology to refer to layers and architectural components.
+% - To create a space of software that is visualized on screen, so that people can start using that one to navigate in source code.
+%- Erwann: the mental model part?
+%- To provide them with a space that will become / should reflect their spatial model...
+%- Erwann: if the notion of mental model can be used for all clues ... the other tools gravitate around this spatial mental model.
 
 \section{Thesis Statement}
 
@@ -184,6 +159,33 @@ In this work, we present the following contributions that explore the use of ori
 - Work by Dominique Matter where we go and mine all the date from the temporal repository and mine the the vocabulary from the contribution of the developers, so we have a new tool that models the expertise of the developers so that now when you have a bug report the system can recommend to you the person. You can turn now a fuzzy textual clue into a social thing.
 - So we asses the credibility of search results solely based on the social network of the authors. This is the way developers have been found to asses the trustworthiness of code, since when you copy code from the internet you do so because you do not want to make the effort of technically understanding it so you look at its author's credibility to make an assessment of trustworthiness.
 - So we have the Chronia tool that has a timeline of the project, and you have a timeline of each file and you see the collaboration patterns. When you show this to developers the go crazy, with this visualization the episodic memory is brought back. You can learn about team members.
+
+\begin{itemize}
+\item 
+\begin{itemize}
+\item In \autoref{the chapter on lexical clues} we use lexical information found in source code to cluster and summarize software systems.
+\item In \autoref{the chapter on LogLR} we use lexical information found to summarize whole systems, parts thereof, or even the system's entire evolution.
+\item In \autoref{the chapter on bug reports} we show how to automatically assign work tickets using lexical information found in both source code and bug reports.
+\item In \autoref{the chapter on codemap} we use lexical information found in source code to establish a visualization that supports spatial code orientation.
+\end{itemize}
+\begin{itemize}
+\item In \autoref{the chapter on chronia} we use temporal information taken from version control repositories to reveal the social interaction in collaborative software development.
+\item In \autoref{the chapter on codemap} we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
+\item In \autoref{the chapter on the codemap user study} we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
+\end{itemize}
+\item 
+\begin{itemize}
+\item In \autoref{the chapter on LogLR} we use lexical clues found in the version control system to summarize and reveal the story of system's evolution. 
+\item In \autoref{the chapter on bug reports} we use lexical clues found in past contributions of developers to model their expertise for the assignment of bug reports. 
+\item In \autoref{the chapter on chronia} we address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system.
+\end{itemize}
+\begin{itemize}
+\item In \autoref{the chapter on bug reports} we use contributions that developers shared with open source systems in the past to build a recommendation model for bug repots.
+\item In \autoref{the chapter on chronia} we use the past collaboration of the developers to tell a system's past story to both its team members as well as new hires.
+\item In \autoref{the chapter on codesearch} we use cross-project collaboration in open source projects to model the credibility of code search results.
+\end{itemize}
+
+\end{itemize}
 
 
 \begin{itemize}
