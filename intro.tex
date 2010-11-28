@@ -21,48 +21,40 @@ In the following we categorize \codenavigation according to the kind of cognitiv
 
 In interviews with developers we found the way from a technical question to an answer is typically split in two parts: the first and hard part is boiling the often fuzzy problem description down to a single lexical clue, which in the second part is used to query documentation, tutorials and mailing list for concrete help. Current tool support for \codenavigation is often limited to \navigation by lexical clues. The above behavior might thus be an artifact of current tool support, \ie developers aim to find a lexical clue first because they are most easy to follow up, or it might not. In either case, developers do need better tool support to follow-up on social, episodic and spatial clues.
 	
-\subsection*{Purpose and Reach of Code Orientation}
+\subsection*{Aim and Reach of Code Orientation}
 	
-- I wanna refind a certain piece of source code, I wanna refind a certain functionality, I wanna find a solution strategy and learn about an API, I wanna copy paste. If you go back in time, that you know its there, I've learned about it in the past, or you have to find it for the first time. Also a difference in finding code and functionality, like if you have never seen some piece of source code it is maybe easier to recall the person that has told you about it rather than the source code's name. Some if you are looking forward, learning about an API is different than copy pasting some piece of code. Well, sometimes you don't know in the begin with which one you'll gonna end up.
-- What's the places that you look at
-- the current working set
-- your local codebase (which can also have different level, like current project and entire codebase)
-- complete codebase of your company
-- go to the codebase of the internet, two kind of codebases, one is source code repositories that only contain code, and then the internet itself contains an amazing amount of code examples that are contained in blog posts and website and discussion forums, and that is selected source code, selected for its usefulness for learning and copy pasting. That is often more valuable that the one found in source repositories. So that's why these so-called code search engines are of limited use since they do not search those examples. And there is research to fix this.
-- Developers prob more use refind in their local code, and more often discovery and learning on the interweb. But it can also be that parts of your local code based are unknown to you, and you could recall that you've seen something on the internet.
-- Maybe you recall the song that played on the webradio, so you look that up ...
-- You can use one kind of information as a proxy for other information, so you can you use social and temporal information as a proxy for dependency information (like Tom Zimmermanns work on recommending other locations to update).
-- Photographic memory.
-- Struggling very hard to find that one magic name, is this because of a lack of tools that support searching by other clues.
-- The clues have to be turned into actions.
-- How many (inter)actions do you have to do to follow up one clue.
-- Non-conventional questions that people ask themselves but had no tool to answer them before.
+The aim of a code orientation task can be threefold. It can be about refinding a given piece of code or functionality that developers have encountered or heard of in the past. It can be about discovering a piece of code that you know must exist, by searching you local code repository or the internet for code examples. Or, it can be about learning how to implement a certain piece of code, by talking to people with expertise, by looking reading a book, or by finding advice on a mailing list or a blog. 
+
+The reach of a code orientation ranges from the current working set to the entire internet. The current working set can a single method or all open files. The local codebase can be the current project and the entire codebase of a developer's company, but also includes all local documentation and learning sources. Eventually the ultimate reach is accessing the internet, which offers two kind of codebases. On the one hand there are source code repositories that only contain source code, on the other hand, there is an amazing amount of code examples that are contained in blog posts and website and discussion forums. The latter are a most useful for code orientation because they are selected examples, the authors of the embedding content typically selected these examples for their usefulness for learning and copy-pasting. When going from a local to a global reach, the nature of information sources changes. Local information sources are typically limited and homogenous, authored by a small group of people with known expertise and known trustworthiness. More global information sources are typically unlimited and heterogenous, authored by people with unknown expertise and unknown trustworthiness.
+
+Refind tasks are typically targeted at the local codebase, which with the developers are familiar, whereas discovery and learning tasks are typically targeted at the internet. But it is just as likely that parts of the local code based are unknown to developers and they thus target a discovery tasks locally. Or it can be that developers recall that they've read about the answer on the internet and they thus target a refind task globally.
+%Also there is a difference in finding code and finding functionality, like if a developer has never seen some piece of source code it is maybe easier to recall the person that has told him about it rather than recalling the source code's name. And just the same with the forward reaching tasks, where often copy-pasting an example is preferred over learning for pragmatic cost considerations.
 
 
-- When developers have a technical question and are looking for the answer.
-- How do developers find their way in source code? 
-- temporal/episodic is often 'refind' ... social is more 'search'
-- Tasks: How to go from A to B in code? Refind code. How do you find a certain piece of code? How do you implemented a certain functionality? When you do a change how do find other places to be changed? If you dont know how to do something where you learn how to do it? Where do you find code examples?
-- Two hard problems in CS, caching and naming.
 
-- Countable vs unlimited, homogenous vs heterogenous
-- Search in your own system is limited and homogenous, if you search on the web you search in an unlimited and heterogenous system, where you gonna have problems like trust. If you search within company you trust, outside credibility is less given
-- JExample generates 'Examples that are worth to be found' .. JExample makes exampels more relevant and more applicable ...
-- Erwann: information can come right from the source code (lexical clues) and can come from somebody else (social clues) from temporal memory or version control system (temporal ones) ...
-- Clues are not about the sources of information, but about the way developers navigate about how they cognitively work when they follow.
+%- Maybe you recall the song that played on the webradio, so you look that up ...
+%- You can use one kind of information as a proxy for other information, so you can you use social and temporal information as a proxy for dependency information (like Tom Zimmermanns work on recommending other locations to update).
+%- Photographic memory.
+%- The clues have to be turned into actions.
+%- How many (inter)actions do you have to do to follow up one clue.
+%- Non-conventional questions that people ask themselves but had no tool to answer them before.
+%- Two hard problems in CS, caching and naming.
+
+%- JExample generates 'Examples that are worth to be found' .. JExample makes exampels more relevant and more applicable ...
+%- Erwann: information can come right from the source code (lexical clues) and can come from somebody else (social clues) from temporal memory or version control system (temporal ones) ...
+%- Clues are not about the sources of information, but about the way developers navigate about how they cognitively work when they follow.
 
 	
-- So one question is, do we observe this pattern because lexical clues are the only ones with decent tool support?
-- All these tools help you to follow up, some more complex clues and unconventional information. It is not that any of these tools addresses a very specific task? Erwann thinks yes it does.
-- I want to help developers, working with code, in particular wrt navigation and understanding, and learning about code.  These clues can be  (ii)  or (iii) it could be temporal or episodic, having a memory from the past that could lead you to an answer, that you've seen it last year (or recall the song that played on the radio) or (iv) 
-- maybe in some years we can add here location based clues, like I've written that code on the train. And in the source of JUnit Kent Beck found it so cool that he added "was written on HŸtte at 1200 mUm"
-- and sometime people follow up some very underdeveloped spatial clues. So we know they follow up these clues so we need better tool support and not have to be force to use lexical proxies, you should not be forced to recall the name, but be able to directly work social information when following up a social clues.
-- With spatial information we have this even more special situation that we possible first have to create a space for space.
-- Is there one space to rule them all? or different spaces for different tasks. Codemap that provides one space but still have IDE so onscreen is split, Codecanvas does the same but put the source code on it such that the space become the only onscreen space, the space should be contextually created.
-- The thesis emerged from my work, is that in order to support developers with code navigation we need to build better tools that address the cognitive clues that are used by developers, in particular (in addition to lexical clues) to support navigation by social clues by temporal clues and by spatial clues, and since software has no ...
-- lexical clues are present as identifier names and in comments, social clues are also there we know how has written software and mailinglists etc so people are also there as entity, and also temporal information is tere we have versioning systems that make snapshots of a system in time, but spatial is more difficult ...
-- it somehow maps to the structure of software, which you can extract from source code, but very often spatial is more on a conceptual level and people even use spatial terms on the very level of the arrangement of the UI on screen. So we have three spatial dimensions, structural, conceptual and on screen. So the spatial clues have the least support, so we gotta create a space of software of onscreen to support spatial navigation by developers. 
-- Since software lacks we need to create a spatial view to address the on-screen spatial clues. To create a cartographic representation of other non-spatial properties of the system (like temporal, social and lexical ones) and give them a spatial representation os people can use this forth kind of navigation clues that are actually used. When you talk with developers how they find answers to technical questions related to source code they will tell you sometime they recall a method is at the end of this file, which is onscreen spatial representation. Lemme browser the packages it us up there, down there. And they will use this in the same sentence as some spatial representation that is related to package structure. We have to fix this also up there in the business layer, it as down there in this file, we have to fix this up there it is down there in this file. 
+%- All these tools help you to follow up, some more complex clues and unconventional information. It is not that any of these tools addresses a very specific task? Erwann thinks yes it does.
+%- I want to help developers, working with code, in particular wrt navigation and understanding, and learning about code.  These clues can be  (ii)  or (iii) it could be temporal or episodic, having a memory from the past that could lead you to an answer, that you've seen it last year (or recall the song that played on the radio) or (iv) 
+%- maybe in some years we can add here location based clues, like I've written that code on the train. And in the source of JUnit Kent Beck found it so cool that he added "was written on HŸtte at 1200 mUm"
+%- and sometime people follow up some very underdeveloped spatial clues. So we know they follow up these clues so we need better tool support and not have to be force to use lexical proxies, you should not be forced to recall the name, but be able to directly work social information when following up a social clues.
+%- With spatial information we have this even more special situation that we possible first have to create a space for space.
+%- Is there one space to rule them all? or different spaces for different tasks. Codemap that provides one space but still have IDE so onscreen is split, Codecanvas does the same but put the source code on it such that the space become the only onscreen space, the space should be contextually created.
+%- The thesis emerged from my work, is that in order to support developers with code navigation we need to build better tools that address the cognitive clues that are used by developers, in particular (in addition to lexical clues) to support navigation by social clues by temporal clues and by spatial clues, and since software has no ...
+%- lexical clues are present as identifier names and in comments, social clues are also there we know how has written software and mailinglists etc so people are also there as entity, and also temporal information is tere we have versioning systems that make snapshots of a system in time, but spatial is more difficult ...
+%- it somehow maps to the structure of software, which you can extract from source code, but very often spatial is more on a conceptual level and people even use spatial terms on the very level of the arrangement of the UI on screen. So we have three spatial dimensions, structural, conceptual and on screen. So the spatial clues have the least support, so we gotta create a space of software of onscreen to support spatial navigation by developers. 
+%- Since software lacks we need to create a spatial view to address the on-screen spatial clues. To create a cartographic representation of other non-spatial properties of the system (like temporal, social and lexical ones) and give them a spatial representation os people can use this forth kind of navigation clues that are actually used. When you talk with developers how they find answers to technical questions related to source code they will tell you sometime they recall a method is at the end of this file, which is onscreen spatial representation. Lemme browser the packages it us up there, down there. And they will use this in the same sentence as some spatial representation that is related to package structure. We have to fix this also up there in the business layer, it as down there in this file, we have to fix this up there it is down there in this file. 
 
 \subsection*{Orientation by Lexical Clues}
 
@@ -127,7 +119,7 @@ Spatial clues can be of three kinds, either they are structural or conceptual as
 Developers do rely on spatial clues works because as humans they have strong spatial capabilities. The spatial capabilities of our brain is really impressive, it has been found that developers do form a spatially meaningful internal mental model of a software system even though the external model of the software system has no inherent spatial properties by itself. 
 
 % Tool support and hint a need that we address later on?
-Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues. Provide developers with a cartographic on-screen visualization, so they can use spatial clues for code orientation, may help address this problem.
+Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues. Providing developers with a cartographic on-screen visualization, so they can use spatial clues for code orientation, may help address this problem.
 
 %- Change on database propagates to business layer, UI layer ... you know where do go spatially, the space is given by space of software, in other case the space is given by layout of IDE, or given by storage format or persistence format, you know it is there in that text file or on that folder, or in smalltalk open in that window.
 %- Codemap: if you observe which clues devs use to refer to code, you'll find all four, but if you look at tool support, you find lexical supported by tools, and temporal only in external tools, and social clues are also not supported, you gonna recall the name of person (ie using the lexical clue of the name as a proxy for the social connection) and spatial is not supported at all, we got the IDE layouted without care about spatial thinking ... code bubbles, code map, and code canvas are about the first systems to take care of this ... 
@@ -145,10 +137,8 @@ Current support for code orientation by spatial clues in development tools is \a
 We state our thesis as follows
 
 \begin{quote}
-To support software engineers with code navigation and understanding, we need (1) tools that address all cognitive clues used by developers, in particular (2) code orientation by lexical, spatial and temporal clues. Since software has no inherent spatiality, for code orientation by spatial clues we need to (3) establish a novel spatial representation of software systems based on other properties, as \eg lexical information.
+To support code navigation and code understanding, we need development tools that provide first-class support for the cognitive clues that developers use for code orientation. In particular, we need better tool support for social clues and episodic clues. And third, because software has no inherent spatiality, we need to establish a stable and shared cartographic representation of software systems in order to facilitate code orientation by on-screen spatial clues.
 \end{quote}
-
-- Thesis: "To support code navigation and understanding, developers need support for the cognitive clues they follow. In particular for social and temporal clues we need to go beyond the current state of tool, and third because software has no space we need to create some space so developers can start to use spatial clues."
 
 \section{Our Solution in a Nutshell}
 
