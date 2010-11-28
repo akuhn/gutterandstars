@@ -140,43 +140,16 @@ We state our thesis as follows
 To support code navigation and code understanding, we need development tools that provide first-class support for the cognitive clues that developers use for code orientation. In particular, we need better tool support for social clues and episodic clues. And third, because software has no inherent spatiality, we need to establish a stable and shared cartographic representation of software systems in order to facilitate code orientation by on-screen spatial clues.
 \end{quote}
 
-\section{Our Solution in a Nutshell}
+\section{Contributions}
 
-In this work, we present the following contributions that explore the use of orientation clues for tool building. Each of these contributions has been published as one or more peer-reviewed paper at an international venue or in an international journal.  
+\section{Software Cartography in a Nutshell}
 
-- Information retrieval to make more interesting things with lexical clues.
-- Evoclouds combine lexical with temporal information.
-- Work by Dominique Matter where we go and mine all the date from the temporal repository and mine the the vocabulary from the contribution of the developers, so we have a new tool that models the expertise of the developers so that now when you have a bug report the system can recommend to you the person. You can turn now a fuzzy textual clue into a social thing.
-- So we asses the credibility of search results solely based on the social network of the authors. This is the way developers have been found to asses the trustworthiness of code, since when you copy code from the internet you do so because you do not want to make the effort of technically understanding it so you look at its author's credibility to make an assessment of trustworthiness.
-- So we have the Chronia tool that has a timeline of the project, and you have a timeline of each file and you see the collaboration patterns. When you show this to developers the go crazy, with this visualization the episodic memory is brought back. You can learn about team members.
-
-\begin{itemize}
-\item 
-\begin{itemize}
-\item In \autoref{the chapter on lexical clues} we use lexical information found in source code to cluster and summarize software systems.
-\item In \autoref{the chapter on LogLR} we use lexical information found to summarize whole systems, parts thereof, or even the system's entire evolution.
-\item In \autoref{the chapter on bug reports} we show how to automatically assign work tickets using lexical information found in both source code and bug reports.
-\item In \autoref{the chapter on codemap} we use lexical information found in source code to establish a visualization that supports spatial code orientation.
-\end{itemize}
-\begin{itemize}
-\item In \autoref{the chapter on chronia} we use temporal information taken from version control repositories to reveal the social interaction in collaborative software development.
-\item In \autoref{the chapter on codemap} we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
-\item In \autoref{the chapter on the codemap user study} we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
-\end{itemize}
-\item 
-\begin{itemize}
-\item In \autoref{the chapter on LogLR} we use lexical clues found in the version control system to summarize and reveal the story of system's evolution. 
-\item In \autoref{the chapter on bug reports} we use lexical clues found in past contributions of developers to model their expertise for the assignment of bug reports. 
-\item In \autoref{the chapter on chronia} we address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system.
-\end{itemize}
-\begin{itemize}
-\item In \autoref{the chapter on bug reports} we use contributions that developers shared with open source systems in the past to build a recommendation model for bug repots.
-\item In \autoref{the chapter on chronia} we use the past collaboration of the developers to tell a system's past story to both its team members as well as new hires.
-\item In \autoref{the chapter on codesearch} we use cross-project collaboration in open source projects to model the credibility of code search results.
-\end{itemize}
-
-\end{itemize}
-
+%In this work, we present the following contributions that explore the use of orientation clues for tool building. Each of these contributions has been published as one or more peer-reviewed paper at an international venue or in an international journal.  
+%- Information retrieval to make more interesting things with lexical clues.
+%- Evoclouds combine lexical with temporal information.
+%- Work by Dominique Matter where we go and mine all the date from the temporal repository and mine the the vocabulary from the contribution of the developers, so we have a new tool that models the expertise of the developers so that now when you have a bug report the system can recommend to you the person. You can turn now a fuzzy textual clue into a social thing.
+%- So we asses the credibility of search results solely based on the social network of the authors. This is the way developers have been found to asses the trustworthiness of code, since when you copy code from the internet you do so because you do not want to make the effort of technically understanding it so you look at its author's credibility to make an assessment of trustworthiness.
+%- So we have the Chronia tool that has a timeline of the project, and you have a timeline of each file and you see the collaboration patterns. When you show this to developers the go crazy, with this visualization the episodic memory is brought back. You can learn about team members.
 
 \begin{itemize}
 \item Software Clustering \cite{Kuhn07a,Kuhn05a,Lung05a}
@@ -188,24 +161,22 @@ In this work, we present the following contributions that explore the use of ori
 \item  Credibility in Code Search \cite{Gysi10b}
 \end{itemize}
 
-\section{Contributions}
-
 %%%
 
-Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
-
-{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
-be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
-\end{quotation}}
-
-Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
-
-When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
-
-When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
-
-is morning hours minutes seconds is date hours minutes
-seconds invalid time value hours 12 minutes 60 seconds 60
+%Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
+%
+%{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
+%be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
+%\end{quotation}}
+%
+%Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
+%
+%When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
+%
+%When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
+%
+%is morning hours minutes seconds is date hours minutes
+%seconds invalid time value hours 12 minutes 60 seconds 60
 
 \section{Outline}
 
@@ -213,17 +184,17 @@ The dissertation is structured as follows
 
 \begin{enumerate}
 % --> related.tex
-\item[\autoref{the chapter on related work}] discusses the related work of this thesis. We present various user studies and solutions to code orientation and analyse the short comings in the context of each orientation clue.
+\item[\autoref{the chapter on related work}] discusses related work of this thesis. We present various user studies and solutions to code orientation and analyse the short comings in the context of each orientation clue.
 % --> codemap.tex
-\item[\autoref{the chapter on codemap}] we introduce SOFTWARE CARTOGRAPHY and approach that uses lexical information to establish a cartographic visualization that supports spatial code orientation by individuals or teams. The approach is implemented in the CODEMAP tool.
-\item[\autoref{the chapter on the codemap user study}] reports on a qualitative user study that evaluates the prototype implementation of the techniques introduced in the chapter above.]
+\item[\autoref{the chapter on codemap}] we introduce \emph{Software Cartography} as approach to establish a cartographic visualization that facilitates spatial code orientation by individuals or teams. The approach is implemented in the \textsc{Codemap} tool.
+\item[\autoref{the chapter on the codemap user study}] reports on a qualitative user study that evaluates the prototype implementation of the Software Cartography approach presented above.
 \item[\autoref{the chapter on the MSR user study}] presents a user study that looked at how developers find answers to technical questions and discusses code orientation by cognitive clues.
 % --> gutter+stars.tex
-\item[\autoref{the chapter on lexical clues}] presents an approach to cluster and summarize software systems using lexical information found in source code. The approach is implemented in the HAPAX tool. 
-\item[\autoref{the chapter on LogLR}] presents an approach that uses lexical information found in source code to summarize whole systems, parts thereof, or even the system’s entire evolution. The approach is implemented in the EVOCLOUD tool.
-\item[\autoref{the chapter on chronia}] presents an approach to address the episodic memory of developers by providing them with a visualization that tells the story of a team's collaboration as recorded by the version control system. The approach is implemented in the CHRONIA tool.
-\item[\autoref{the chapter on bug reports}] presents an approach that use lexical information found in contributions that developers shared with open source systems to build a recommendation model for bug repots. The approach is implemented  in the DEVLECT tool.
-\item[\autoref{the chapter on codesearch}] presents an approach that uses cross-project collaboration of developers in open source projects to model the credibility of code search results. The approach is implemented in the BENDER tool.
+\item[\autoref{the chapter on lexical clues}] presents an approach to cluster and summarize software systems using lexical information found in source code. The approach is implemented in the \textsc{Hapax} tool. 
+\item[\autoref{the chapter on LogLR}] presents an approach that uses lexical information found in source code to summarize whole systems, parts thereof, or even the system's entire evolution. The approach is implemented in the \textsc{EvoClouds} tool.
+\item[\autoref{the chapter on chronia}] presents an approach to address the episodic memory of developers by providing them with a visualization that tells the story of the team collaboration as recorded by the version control system. The approach is implemented in the \textsc{Chronia} tool.
+\item[\autoref{the chapter on bug reports}] presents an approach that use lexical information found in contributions that developers shared with open source systems to build a recommendation model for bug repots. The approach is implemented  in the \textsc{Devlect} tool.
+\item[\autoref{the chapter on codesearch}] presents an approach that uses cross-project collaboration of developers in open source projects to model the credibility of code search results. The approach is implemented in the \textsc{Bender} tool.
 \item[\autoref{the conclusion}] concludes the dissertation and outlines future work.
 \end{enumerate}
 
