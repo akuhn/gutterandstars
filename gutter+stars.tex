@@ -7,6 +7,7 @@
 \begin{document}
 \maketitle
 
+\setcounter{tocdepth}{1}
 \tableofcontents
 
 \include{intro} % INTRODUCTION
@@ -620,16 +621,20 @@ We presented \loglr as a technique to label software components. Using \loglr{}s
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
 
-\chapter{Ownership Map with Social and Spatial Clues}
+\chapter{Stories of Collaboration}
 \label{the chapter on chronia}
 
-Spatial clues can help to reduce the cognitive load of orientation of an hyperlinked document space, such as software systems. Spatial clues can be of two kinds, either they are structural as in recalling to which class a certain method belonged or true spatial clues as in recalling that a given method was at the end of a certain source file. Current support for code orientation by spatial clues in development tools is \adhoc at best, the systems is presented as a tree view of alphabetically ordered files and inside a file the source is linearized as an unordered text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited to structural clues.
-Always given the assumption that the system is well packaged, which often is not given either.
-A key contribution of our research is the creation of novel spatial visualization to support code orientation by spatial clues.
+\infobox
+	{Learning about team collaboration}
+	{Team of a project's local codebase}
+	{Episodic (established through social and historical information)}
+	{Visual analytics of a story-telling visualization}
 
-we use temporal information taken from version control repositories to reveal the social interaction in collaborative software development.
+Episodic clues are of great help to developers when having to find their way through a system, whoever episodic memory is only available to those developer that know the system's history first-hand. For most software systems, the tribal folklore of the team is the only record on the system's history beside the version control system. The tribal folklore is hard to query because it is only present as the team's episodic memory, and the version control system is hard to query because it is typically only present as a series of textual low-level changes to the systems source code. There is a need for better means of recovering and telling a systems story to both new hires and seasoned team members.
 
+In the following chapter we present an approach to visualization a system history and its team's collaboration as a story-telling visualization. Story-telling visualizations are a branch of information visualization that has been popularized by the political information graphics of newspapers such as the New York Times and the Guardian. A story-telling visualization is supposed to invite its reader to get engaged with the visualized data by establishing a personal connection between the reader and the presented data. Our approach uses social and historical information taken from the version control system to establish an episodic visualization of the system's history. We show the lifeline of files ordered by code ownership, thus telling the story of the team's collaboration. Team are typically getting very engaged and excited when showen the visualization of their own system. Both new hires and seasoned team members can use this visualization to learn about episodes from the system's history in order to take better technical decisions when working with the system in the future.
 
+\asteriskasteriskasterisk
 
 As systems evolve their structure change in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this paper we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this paper make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
 
@@ -963,16 +968,22 @@ In the future, we would like to investigate the application of the approach at o
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
 
-\chapter{Bug-Report Triage with Lexical Clues and Social Clues}
+\chapter{Discovery of Experts}
 \label{the chapter on bug reports}
 
-Lexical clues are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
+\infobox
+	{Discovery of experts}
+	{Experts that committed to local codebase}
+	{Social (established through lexical and historical information)}
+	{Fuzzy problem description given as natural language text}
 
-we show how to automatically assign work tickets using lexical information found in both source code and bug reports.
+Given current tool support, following up social clues has to be done through the lexical proxy of a persons name. However, often developers are facing a problem where they need help but not know an expert by name. Either because they are not aware that someone from their personal network is actually on expert on that matter, or because they simply do not know an expert on that matter. There is a clear need for establishing a link between fuzzy problem descriptions and experts, such that developers may follow-up social clues that are otherwise out of their reach. 
 
+In this chapter we present an approach to discover experts without having to know their name. Given a problem description, such as a work item or a bug report, we provide an automated means of linking to the person with the expertise on that matter. Our work deals with assigning incoming bug reports to developers, however the techniques that we developed can be used to establish links from any fuzzy problem description to known experts. To model the expertise of developers, we require a recorded history of their submissions to a system's source base. This information can be taken from a version control system. We use lexical information found in those submission to model the developer's expertise. Even though not discussed in the following chapter, that very information could also be used to render \EVOCLOUDS of the developer's expertise and thus to enable discovery of experts through the means of an story telling visualization.
 
+\asteriskasteriskasterisk
 
-For popular software systems, the number of daily submitted bug reports is high. Triaging these incoming reports is a time consuming task. Part of the bug triage is the assignment of a report to a developer with the appropriate expertise. In this paper, we present an approach to automatically suggest developers who have the appropriate expertise for handling a bug report. We model developer expertise using the vocabulary found in their source code contributions and compare this vocabulary to the vocabulary of bug reports. We evaluate our approach by comparing the suggested experts to the persons who eventually worked on the bug. Using eight years of Eclipse development as a case study, we achieve 33.6\% top-1 precision and 71.0\% top-10 recall.
+For popular software systems, the number of daily submitted bug reports is high. Triaging these incoming reports is a time consuming task. Part of the bug triage is the assignment of a report to a developer with the appropriate expertise. In this chapter, we present an approach to automatically suggest developers who have the appropriate expertise for handling a bug report. We model developer expertise using the vocabulary found in their source code contributions and compare this vocabulary to the vocabulary of bug reports. We evaluate our approach by comparing the suggested experts to the persons who eventually worked on the bug. Using eight years of Eclipse development as a case study, we achieve 33.6\% top-1 precision and 71.0\% top-10 recall.
 
 \todo{Do not forget to remove the page numbers in the camera-ready version!}
 Software repositories of large projects are typically accompanied by a bug report tracking system. In the case of popular open source software systems, the bug tracking systems receive an increasing number of reports daily. The task of triaging the incoming reports therefore consumes an increasing amount of time \cite{Anvi06b}. One part of the triage is the assignment of a report to a developer with the appropriate expertise. Since in large open source software systems the developers typically are numerous and distributed, finding a developer with a specific expertise can be a difficult task.
@@ -981,11 +992,11 @@ Expertise models of developers can be used to support the assignment of develope
 Typically a classifier is trained with previously assigned bug reports, and is then used to classify and assign new, incoming bug reports.
 Our approach differs, we train our recommendations system with all source code contributions up to the reporting date of the bug and then use the bug reports textual description as a search query against the expertise model's \TAM.
 
-In this paper, we propose an expertise model based on source code contributions and apply in it a recommendation system that assigns developers to bug reports. We compare \VOC found in the \verb$diff$s of a developer's contributions with the vocabulary found in the description of a bug report. We then recommend developers whose contribution vocabulary is lexically similar to the vocabulary of the \BR.
+In this chapter, we propose an expertise model based on source code contributions and apply in it a recommendation system that assigns developers to bug reports. We compare \VOC found in the \verb$diff$s of a developer's contributions with the vocabulary found in the description of a bug report. We then recommend developers whose contribution vocabulary is lexically similar to the vocabulary of the \BR.
 
-We implemented our approach as a prototype called \TOOL\footnote{\TOOL is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
+We implemented our approach as a prototype called \DEVLECT\footnote{\DEVLECT is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
 
-The contributions of this paper are as follows:
+The contributions of this chapter are as follows:
 \begin{itemize}
 \item We propose a novel expertise model of developers. The approach is based on the vocabulary found in the source code contributions of developers.
 
@@ -999,11 +1010,11 @@ The contributions of this paper are as follows:
 
 \begin{figure}
     \includegraphics[width=\linewidth]{FlowOfAlgo}
-    \caption{Architecture of the \TOOL recommendation system: (left) bug reports and versioning repositories are processed to produce term vectors and \TAMS; (right) the cosine angle between vector and matrix columns is taken to rank developers in the suggested list of experts.}
+    \caption{Architecture of the \DEVLECT recommendation system: (left) bug reports and versioning repositories are processed to produce term vectors and \TAMS; (right) the cosine angle between vector and matrix columns is taken to rank developers in the suggested list of experts.}
     \label{fig:algo}
 \end{figure} 
 
-In this paper we present i) the construction of an expertise model of developers and ii) the application of a recommendation system that uses this expertise model to automatically assign developers to bug reports. Our approach requires a versioning repository to construct the expertise model as well as a bug tracking facility to assign developers to bug reports. We realized the approach as a prototype implementation, called \TOOL.
+In this chapter we present i) the construction of an expertise model of developers and ii) the application of a recommendation system that uses this expertise model to automatically assign developers to bug reports. Our approach requires a versioning repository to construct the expertise model as well as a bug tracking facility to assign developers to bug reports. We realized the approach as a prototype implementation, called \DEVLECT.
 
 In his work on automatic bug report assignment, John Anvik proposes eight types of information sources to be used by a recommendation system \cite{Anvi06b}. Our recommendation system focuses on three of these types of information: the information of the textual description of the bug (type~1), the one of the developer who owns the associated code (type~6), and the information of the list of developers actively contributing to the project (type~8). We refine information type~6 to take into account the textual content of the code owned by a developer. Our recommendation system is based on an expertise model of the developer's source code contributions. For each developer, we count the textual word frequencies in their change sets. This includes deleted code and context lines, assuming that any kind of change (even deletions) requires developer knowledge and thus familiarity with the vocabulary. 
 
@@ -1103,7 +1114,7 @@ Our case study covers the Eclipse project between April 22, 2001, and November 9
 
 The setup of the Eclipse case study consists of two different parts. The first part is about the change database, here we use all changes before the actual bug report. The second part is about the bug database, here we make 10 partitions of which two are used in this case study. We process and evaluate  both parts in weekly iterations as follows:
 \begin{itemize}
-\item We create a \TOOL expertise model based on contributions between April 22, 2001, and the last day of the previous week.
+\item We create a \DEVLECT expertise model based on contributions between April 22, 2001, and the last day of the previous week.
 \item We generate a suggested list of the top-10 experts for all bug reports submitted in the current week.
 \item We evaluate precision and recall by comparing the suggestion list with the developers who, between the first day of the next week and November 9, 2008, eventually worked on the bug report.
 \end{itemize}
@@ -1118,7 +1129,7 @@ In this section, we report on our results obtained on the validation partition \
 
 %\subsection{Settings of the Case Study}
 
-%The results of the evaluation in this section are obtained by running \TOOL with the following settings:
+%The results of the evaluation in this section are obtained by running \DEVLECT with the following settings:
 %{\footnotesize \begin{verbatim}
 %  project = Eclipse
 %  stemming = Porter
@@ -1192,7 +1203,7 @@ Another threat to validity is that we use all long descriptions, including comme
     \label{fig:decay}
 \end{figure*} 
 
-\subsection{On the Calibration of \TOOL}
+\subsection{On the Calibration of \DEVLECT}
 
 We used 1/10th of the Eclipse case study as a \trainingset to calibrate our approach. The calibration results are summarized in \autoref{thetable}.
 
@@ -1266,7 +1277,7 @@ If several authors worked on the same file, we cannot tell their weekly contribu
 
 Establishing an identity relationship between CVS logins and people mentioned in \BRs is not trivial. The developer information in the CVS log is provided as a mere login name. People mentioned in a Bugzilla \BR are listed with their email address and sometimes additionally with their first and last name. For \EC, the mapping between logins and active developers can be found on the \EC website\footnote{http://www.eclipse.org/projects/lists.php}. However, the list of names of the former \EC developers does not include their corresponding logins\footnote{http://www.eclipse.org/projects/committers-alumni.php}. We could not map 17.1\% of the CVS logins and had thus to exclude 2.7\% of the bug reports from our evaluation.   
 
-Information about copy patterns is not available in CVS. Bulk renaming of files appears in the change history of CVS as bulk removal of files followed by bulk addition of files. Given our current implementation of \TOOL, this may lead to an incorrect acquisition of developer knowledge, since the entire vocabulary of the moved files is assigned to the developer who moved the files.
+Information about copy patterns is not available in CVS. Bulk renaming of files appears in the change history of CVS as bulk removal of files followed by bulk addition of files. Given our current implementation of \DEVLECT, this may lead to an incorrect acquisition of developer knowledge, since the entire vocabulary of the moved files is assigned to the developer who moved the files.
 We are thus in good shape to further improve our results by using a copy pattern detection approach~\cite{Chan08a}.
 
 \section{Conclusion}\label{sec:eventually}
@@ -1277,31 +1288,32 @@ When calibrating our approach, we found that developer expertise decays over tim
 
 In the future, we would like to extend our expertise model with developer knowledge from other sources, \eg mailing lists. Furthermore we would like to include additional Information Retrieval techniques, as well as combine our approach with approaches that are trained on previous bug reports (\eg \cite{Anvi06a, Canf05a, Cubr04b, Lucc02a}).
 
-For more information on \TOOL and the case study presented in this paper, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
-
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%%
+For more information on \DEVLECT and the case study presented in this chapter, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
 
 
-\chapter{Credibility of Code Search Results}
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+\chapter{Credibility of Code-Search}
 \label{the chapter on codesearch}
 
-% Aim: discovery of source code
-% Reach: the internet
-% Clue: Social clues
+\infobox
+	{Discovery of trustworthy projects}
+	{Open-source projects on the internet}
+	{Episodic (established through social and historical information)}
+	{Name of an open-source project}
 
 Searching for code examples or libraries on the internet is a common code orientation task. Developers do use code search engines to discover source code that they need in order to answer a technical question, such as implementing a given functionality. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet. Other than internal sources, code examples taken from external source are possibly written by an untrusted author.
 
 We found that developer follow-up social clues rather than technical issues in order to asses the trustworthiness of code search results. On a second thought, this is not surprising: when developers copy-paste code, they do because they either do not have the time or do not have the expertise to technically understand the problem, thus assessing trustworthiness based on social clues as a pragmatic alternative---given the assumption that more trustworthy developers do write more trustworthy source code. For example, we have found that developers are more likely to assess a search result as trustworthy if it has been written by an author they do know or by an author that belongs to a company or to an open source project that they do value for its credibility. Automating this process may help the reduce the time and effort that developers have to spend on following-up social clues related to code search results.
 
-\begin{center}* * *
-\end{center}
+\asteriskasteriskasterisk
 
 The promise of search-driven development is that developers will save time and resources by reusing external code in their local projects. To efficiently integrate this code, users must be able to trust it, thus \emph{credibility} of code search results is just as important as their relevance. 
 %
@@ -1335,7 +1347,7 @@ Contributions of this chapter are as follows.
     \label{fig:archi}
 \end{figure}
 % =====================================================================
-\section{credibility metric}
+\section{Credibility Metric}
 \label{sec:metric}
 
 \begin{figure*}
