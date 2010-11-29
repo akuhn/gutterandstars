@@ -142,24 +142,158 @@ To support code navigation and code understanding, we need development tools tha
 
 \section{Contributions}
 
+In this work, we present the following contributions that explore the support of code orientation clues by development tools. Each of these contributions has been published as one or more peer-reviewed paper at an international venue or in an international journal.  
+
+Common to all these contributions is that tap on unconventional information found in source code, in order to provide developers with new means of following-up code orientation clues that had been out of their reach without the novel tool support. For example, in \autoref{the chapter on chronia} we present a story-relling visualization of a system's history that enables new hires to draw on episodic memories that they would not have access to otherwise.
+
+\subsection*{Software Cartography}
+
+\infobox
+	{Code orientation in general}
+	{Local codebase and possibly history of a system}
+	{Spatial (established through lexical and structural information)}
+	{Visual analytics of a cartographic visualization}
+
+Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. 
+
+We provide a cartographic on-screen visualization so they can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout of the local code base. Code maps, as we call them, are stable over time and can be shared among members of a team to establish a common mental model of the system. 
+%
+We implemented our approach in prototype and evaluated it in a user study, and found that it is most helpful for spatially exploring search results and call hierarchies.
+
+For more information please refer to the next section for an introduction in a nutshell, as well as \autoref{the chapter on codemap} and \autoref{the chapter on the codemap user study} for an in depth coverage. 
+
+The work on software cartography has been realized with the support of my students David Erni and Peter Loretan, and has been published as two peer-reviewed conference paper \cite{Kuhn08b,Kuhn10c}, one of which has been extended into a peer-reviewed journal paper \cite{Kuhn10b}, as well as their Master's theses \cite{Erni10a,Lore11a}. 
+
+\subsection*{Lexical Clustering}
+
+\infobox
+	{Refinding and discovering topics}
+	{Local codebase of a system}
+	{Lexcial (established through lexical information)}
+	{Visual analytics and fuzzy keyword search}
+
+Keyword matching and regular expressions are powerful means for code orientation by lexical clues. However, current tool support fails to meet the developer needs when they are following-up on a fuzzy lexical clues. 
+
+We present an approach to model a system lexical information in a fuzzy text model that resolves synonymy and polysemy with unsupervised learning. We use the fuzzy text model to cluster the parts of a system by topic, and visualize the topics user correlation matrices and a novel visualization of our own that illustrates the distribution of topics of the static structure of the system. 
+%
+We implemented the approach in a prototype and evaluated its application.
+
+For more in information please refer to the \autoref{the chapter on lexical clues}. 
+%
+The work on lexical clustering (formerly also known as ``semantic clustering'') has been published a peer-reviewed conference paper \cite{Kuhn05a} which has been extended into my Master's thesis \cite{Kuhn06a} and into a peer-review journal paper \cite{Kuhn07a}.
+
+\subsection*{Code Summarization}
+
+\infobox
+	{Refinding and discovering topics}
+	{Part of a system's codebase or history}
+	{Lexcial and episodic (established through lexical information)}
+	{Visual analytics of word clouds}
+
+When developers encounter a piece of source code for the first time, they are typically not presented with a high-level summary of the code's topics. In the following chapter we present an approach to summarize part of a system as a word cloud, that consist of the statistically most significant terms that set this part of system apart from the rest. The same approach can be use to compare two parts of a system to compare two versions of the same system. Presenting those word clouds to the developer helps them to lexically query the topics, as well as when presenting all words clouds of a systems versions to recover and tell the story of a systems history and thus enabling developers to draw from episodic memories that they possibly never experiences first-hand themselves.
+%
+We implemented the approach in a prototype and evaluated its application.
+
+For more in information please refer to the \autoref{the chapter on LogLR}. 
+%
+The work on code summarization has been published as a peer-reviewed conference paper \cite{Kuhn09a}.
+
+\subsection*{Stories of Collaboration}
+
+\infobox
+	{Learning about team collaboration}
+	{Team of a project's local codebase}
+	{Episodic (established through social and historical information)}
+	{Visual analytics of a story-telling visualization}
+
+Episodic clues are of great help to developers when having to find their way through a system, whoever episodic memory is only available to those developer that know the system's history first-hand. We present an approach to recover and tell a systems history as a story-telling visualization. Our approach uses social and historical information taken from the version control system to establish an episodic visualization of the system's history. Both new hires and seasoned team members can use this visualization to learn about episodes from the system's history in order to take better technical decisions when working with the system in the future.
+%
+We implemented the approach in a prototype and evaluated its application.
+
+For more in information please refer to the \autoref{the chapter on LogLR}. 
+%
+The work on visualizing code ownership is part of Mauricio Seeberger's Master's thesis \cite{Seeb06a} and has been published as a peer-reviewed conference paper \cite{Girb05a} that was co-authored by our mutual supervisor Tudor G\^irba and myself.
+
+\subsection*{Discovery of Experts}
+
+\infobox
+	{Discovery of experts}
+	{Experts that committed to local codebase}
+	{Social (established through lexical and historical information)}
+	{Fuzzy problem description given as natural language text}
+
+Given current tool support, following up social clues has to be done through the lexical proxy of a persons name. We present an approach to discover experts without having to know their name. Given a problem description, such as a work item or a bug report, we provide an automated means of linking to the person with the expertise on that matter. We use lexical information found in the submission to the version control system in order to model the developer's expertise. 
+%
+We implemented the approach in a prototype and evaluated it against a benchmark in bug-report assignment .
+
+The work on discovery of experts has been realized by my student Dominique Matter, and has been published as a peer-reviewed conference paper \cite{Matt09a} that he first-authored as well as his Master's thesis \cite{Matt09b}.
+
+\subsection*{Credibility of Code Search}
+
+\infobox
+	{Discovery of trustworthy projects}
+	{Open-source projects on the internet}
+	{Episodic (established through social and historical information)}
+	{Name of an open-source project}
+
+Searching for code examples or libraries on the internet is a common code orientation task. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet. We present an approach to automatically asses the trustworthiness of open-source projects based on the credibility of their authors, in inferring the trustworthiness of well-known project to unknown projects if they have common contributors. 
+%
+We implemented the approach in a prototype and evaluated it against a benchmark in bug-report assignment .
+
+The work on discovery of experts has been realized by my student Florian Gysin, and has been published as a peer-reviewed workshop paper \cite{Gysi10b} that he first-authored as well as his Bachelor's thesis \cite{Gysi10c}, in addition his work won the ACM Student Competition award 2010 \cite{Gysi10a}.
+
 \section{Software Cartography in a Nutshell}
 
-%In this work, we present the following contributions that explore the use of orientation clues for tool building. Each of these contributions has been published as one or more peer-reviewed paper at an international venue or in an international journal.  
+\SOCA uses a spatial visualization of software systems to provide software development teams with a stable and shared mental model. Our cartographic visualization is most useful when it supports as many development tasks as possible. Therefore we integrated \SOCA in the IDE so that a map of the software system may always be present and may thus support as many development tasks as possible. 
+
+At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\footnote{New features are added on a weekly base, please subscribe to \url{http://twitter.com/codemap} to receive latest news.}
+
+\begin{itemize}
+\item Navigation within a software system, be it for development or analysis. \Codemap is integrated with the package explorer and editor of \eclipse. The selection in the package explorer and the selection on the map are linked. Open files are marked with an icon on the map. Double clicking on the map opens the closest file in the editor. When using heat map mode, recently visited classes are highlighted on the map.
+
+\item Comparing software metrics to each other, \eg to compre bug density with code coverage. \Codemap is hooked into several \eclipse plug-ins in order to display their results on the map alongside the regular views. The map displays search results, compiler errors, and (given the \textsc{Eclemma} plug-in is installed) test coverage information. More information can be added through an extension point.
+
+\item Social awareness of collaboration in the development team. \Codemap can connect two or more \eclipse instances to show open files of other developers. Colored icons are used to show the currently open files of all developers. Icons are colored by user and updated in real time.
+
+\item Help to understand a software system's domain. The layout of \Codemap is based on structure \emph{and} vocabulary, since we believe that a mental model of software should transcend structural artifacts. Labels on the map are not limited to class names, but include automatically retrieved keywords and topics.
+
+\item Exploring a system during reverse engineering. \Codemap is integrated with \eclipse's structural navigation functions such as search for callers, implementers, and references. Arrows are shown for search results. We apply the \textsc{Flow Map} algorithm \cite{Phan05a} to  avoid visual clutter by merging parallel arrow edges. \autoref{fig:awesome} shows the result of searching for calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class .
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+  \includegraphics[width=\linewidth]{awesome-codemap-NIER}
+\end{center}
+    \caption{\emph{Thematic codemap of a software system, here the \Codemap tool itself is shown. Arrow edges show incoming calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus labeled with a pop-up.}}
+    \label{fig:awesome}
+\end{figure}
+
+\begin{figure*}
+\begin{center}
+  \includegraphics[width=\linewidth]{codemap-pipeline2}
+\end{center}
+    \caption{\emph{Construction steps of a software map, from left to right: 1) 2-dimensional embedding of files on the visualization pane; 2.a) circles around each file's location, based on class size in KLOC; 2.b) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size; the contributions of all files are summed up; 3) fully rendered map with hill-shading, contour lines, and filename labels.}}
+    \label{fig:steps}
+\end{figure*}
+
+\autoref{fig:steps} illustrates the construction of a software map. The sequence of the construction is basically the same as presented in previous work~\cite{Kuhn08b,Kuhn09x}. However, preliminary results from an ongoing user study have already led to a series of improvements which are discussed below.
+
+\textbf{2-Dimensional Embedding:}
+A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the \textsc{Isomap} algorithm \cite{Tene00a} and \textsc{Multidimensional Scaling} \cite{Borg05a} is used to embed all software artifacts on the visualization pane\footnote{Different to previous work \textsc{Latent Semantic Indexing} is not applied anymore; it has been found to have little impact on the final embedding, if at all.}. The application of \textsc{Isomap} is an improvement over previous work in order to assist \textsc{MDS} with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
+
+Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
+
+\textbf{Digital Elevation Model:} In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
+
+Using KLOC leads to an elevation model where large classes dominate the codemap. Observations from our user study indicate that this might be misleading since developers tend to interpret size as a measure of impact. Based on this observation, we implemented a set of different impact metrics~\cite{Lanz06a} and plan to evaluate them in a fresh user study.
+
+\textbf{Cartographic rendering:} In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
+
 %- Information retrieval to make more interesting things with lexical clues.
 %- Evoclouds combine lexical with temporal information.
 %- Work by Dominique Matter where we go and mine all the date from the temporal repository and mine the the vocabulary from the contribution of the developers, so we have a new tool that models the expertise of the developers so that now when you have a bug report the system can recommend to you the person. You can turn now a fuzzy textual clue into a social thing.
 %- So we asses the credibility of search results solely based on the social network of the authors. This is the way developers have been found to asses the trustworthiness of code, since when you copy code from the internet you do so because you do not want to make the effort of technically understanding it so you look at its author's credibility to make an assessment of trustworthiness.
 %- So we have the Chronia tool that has a timeline of the project, and you have a timeline of each file and you see the collaboration patterns. When you show this to developers the go crazy, with this visualization the episodic memory is brought back. You can learn about team members.
-
-\begin{itemize}
-\item Software Clustering \cite{Kuhn07a,Kuhn05a,Lung05a}
-\item  Feature Classification \cite{Kuhn06c,Kuhn05b}
-\item  Software Summarization \cite{Kuhn09a}
-\item  Spatial Representation \cite{Kuhn10c,Kuhn10b,Duca06c,Kuhn08a}
-\item  Ownership Map \cite{Girb05a}
-\item  Bug-Report Triage \cite{Matt09a}
-\item  Credibility in Code Search \cite{Gysi10b}
-\end{itemize}
 
 %%%
 
