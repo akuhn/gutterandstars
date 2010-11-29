@@ -26,10 +26,17 @@
 \chapter{Clustering Software by Lexical Clues}
 \label{the chapter on lexical clues}
 
-Lexical clues are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
+\infobox
+	{Refinding and discovering topics}
+	{Local codebase of a system}
+	{Lexcial (established through lexical information)}
+	{Visual analytics and fuzzy keyword search}
 
-We use lexical information found in source code to cluster and summarize software systems.
+Keyword matching and regular expressions are powerful means for code orientation by lexical clues. However, current tool support fails to meet the developer needs when they are following-up on a fuzzy lexical clues. For refinding tasks it may by that developers do not recall the exact name, or even more common for discovery tasks developers can typically only guess which name other developers have picked for the concept that they are looking for. Just the same, when attempting to find all implementation of a the same concept, often the source code uses synonymous but not exactly the same identifier names. And further, when encountering a system for the first time, developers do have a need to cluster the system by topics so they can start establishing a mental model of the services provided by the system and of how these services depend upon one another. 
 
+In the following chapter we present an approach to model a system lexical information in a fuzzy text model that resolves synonymy and polysemy with unsupervised learning. No user input or ontologies are requires to resolve ambiguous lexical clues. The latter is in particular important because software engineering uses too many metaphors such that common natural language ontologies fall short of being applicable on lexical information found in source code. We use the fuzzy text model to cluster the parts of a system by topic, and visualize the topics user correlation matrices and a novel visualization of our own that illustrates the distribution of topics of the static structure of the system. Furthermore, even though not discussed in the following chapter, our approach allows to query the system with fuzzy keyword search that is able resolve synonymy and polysemy.
+
+\asteriskasteriskasterisk
 
 Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This paper proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this paper.
 
@@ -432,12 +439,22 @@ In the future we would also like to investigate in more depth recall and precisi
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
 
-\chapter{Summarizing Software with Lexical Clues and Temporal Clues}
+\chapter{Code Summarization}
 \label{the chapter on LogLR}
 
-Lexical clues are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing.
+\infobox
+	{Refinding and discovering topics}
+	{Part of a system's codebase or history}
+	{Lexcial and episodic (established through lexical information)}
+	{Visual analytics of word clouds}
 
-we use lexical information found to summarize whole systems, parts thereof, or even the system's entire evolution.
+Source code rarely comes with an executive summary. When developers encounter a piece of source code for the first time, they are typically not presented with a high-level summary of the code's topics. Looking at package and class names might help to make an educated guess, but does often not give away the complete picture. Even the more, when comparing two pieces of source code or two entire systems to two versions of the same system, developers are missing a high-level summary that distilles the difference in a short textual summarization. The need for software summarization is obvious.
+
+In the following chapter we present an approach to summarize part of a system as a word cloud, that consist of the statistically most significant terms that set this part of system apart from the rest. The same approach can be use to compare two parts of a system to compare two versions of the same system. When comparing version, both statistically significant addition and removals are shown using two different colors. Presenting those word clouds to the developer helps them to lexically query the topics, as well as when presenting all words clouds of a systems versions to recover and tell the story of a systems history and thus enabling developers to draw from episodic memories that they possibly never experiences first-hand themselves.
+
+\asteriskasteriskasterisk
+
+\todo{Include MSR Poster}
 
 As more and more open-source software components become available on the internet we need automatic ways to label and compare them. For example, a developer who searches for reusable software must be able to quickly gain an understanding of retrieved components. This understanding cannot be gained at the level of source code due to the semantic gap between source code and the domain model. In this paper we present a lexical approach that uses the log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system.
 
