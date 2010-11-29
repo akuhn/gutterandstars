@@ -38,6 +38,21 @@ In the following chapter we present an approach to model a system lexical inform
 
 \asteriskasteriskasterisk
 
+%Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
+%
+%{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
+%be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
+%\end{quotation}}
+%
+%Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
+%
+%When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
+%
+%When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
+%
+%is morning hours minutes seconds is date hours minutes
+%seconds invalid time value hours 12 minutes 60 seconds 60
+
 Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This paper proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this paper.
 
 In this paper, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
