@@ -1,20 +1,26 @@
 %!TEX root = gutter+stars.tex
 \chapter{Introduction}
 
-Dispite common believe, software engineers do not spend most time writing code. An approximate 50--80\% of development time is spend on code navigation and understanding \cite{a,b,c,d}. This may include reading of local source code and documentation, searching the internet for tutorials and code examples, but als seeking the help of other developers. User studies have found that software engineers use four kinds of cognitive clues for \codenavigation \cite{a,b,c}: lexical clues, social clues, episodic clues and spatial clues. 
+Despite common belief, software engineers do not spend most time writing code. An approximate 50--80\% of development time is spend on code navigation and understanding \cite{Lato06a,more}. This may include reading of local source code and documentation, searching the internet for tutorials and code examples, but also seeking the help of other developers. User studies have found that software engineers use at least four kinds of cognitive clues for \codenavigation: 
+	lexical clues, %\cite{a,b,c,d,e}, 
+	social clues, \cite{Lato06a,more}, 
+	episodic clues %\cite{a,b,c} 
+	and spatial clues. %\cite{a,b,c}. 
 
 Examples of \codenavigation clues are 
 	recalling a name,
 	contacting a person with expertise or 
 	asking questions on a mailing list where people share their expertise, or 
-	an episodic memory like having heard about the solution at a conference, and 
-	sometimes even spatial clues like recalling that the solution is located at the end of a text file. 
+	an episodic memory like having heard been presented a solution to their current problem at a conference years ago, and 
+	sometimes even spatial clues like recalling that a piece of coude is located at the end of a text file. 
 
 Tool support for following-up upon these clues, however, is typically limited to text file processing or hyperlinking of code elements at best. 
 
-In our research, we are interested in how to support code navigation and code understanding with development tools. In interviews with professional software engineers, we looked at how developers find answers to technical questions in order to learn about their \codenavigation strategies. We found that the way towards an answer is typically split in two parts. In the (1) first and hard part, developers struggle to turn their fuzzy initial clue into a more concerete textual clue. Eventually, in the (2) second part they use that textual clue to query local documentation or the internet for the answer. We found that they particularly struggle with resolving social, episodic and spatial clues.
+In our research, we are interested in how to support code navigation and code understanding with development tools. In interviews with professional software engineers, we looked at how developers find answers to technical questions in order to learn about their \codenavigation strategies. We found that the way towards an answer is typically split in two parts. In the (1) first part, developers aim to turn their fuzzy initial clue into a more concerete textual clue, for example by running a series of web searches and inspecting the results. Eventually, in the (2) second part they use that textual clue to query local documentation or the internet for the answer. We found that they particularly struggle with resolving social, episodic and spatial clues during the first part. The above behavior might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow-up, or it might be a general search behavior. In either case, developers do need better tool support to follow-up on social, episodic and spatial clues.
 
-A key contribution of our work is \emph{Software Cartography}, a novel cartographic visualization of software systems that is supposed to support code orientation by on-screen spatial clues. Code maps, as well call them, are a stable and spatial representation of software systems based on lexical information found in the system's source code. Code maps can be used by both individual developers as well as shared by a team. We evaluated our approach in a qualitative user study, with both professional and student users, and found that it is most helpful for exploring search results and call hierarchies.
+Of the four kinds of clues that software developers use, spatial clues stand out for not having a first-class representation in the ecosystem of source code. Textual clues typically relate to identifiers found in source code or to terms used in comments and documentation. Social clues typically relate to the personal network or to experts that share their knowledge on the internet. Episodic clues relate to past experience that is often recorded in version control system, mailing list archives or recorded conference talks. Spatial clues however typically lack such a first-class counterpart since neither software system nor their documentation do have an inherent spatial structure. 
+
+Nevertheless, we found that developers do refer to \adhoc spatial properties, auch as the position of a piece of code on-screen or within a source text file. A mayor part of our research thus focused on creating and establishing a spatial representation of software systems that facilitates code navigation and understanding by spatial clues. A key contribution of our work is \emph{Software Cartography}, a novel cartographic visualization of software systems that is supposed to support code orientation by on-screen spatial clues. Code maps, as well call them, are a stable and spatial representation of software systems based on lexical information found in the system's source code. Code maps can be used by both individual developers as well as shared by a team. We evaluated our approach in a qualitative user study, with both professional and student users, and found that it is most helpful for exploring search results and call hierarchies.
 
 %%%%%%%%%% Section 1.1
 %%%%%%%%%%
@@ -27,10 +33,8 @@ A key contribution of our work is \emph{Software Cartography}, a novel cartograp
 
 In the context of this work, we are interested in supporting software engineers when they are facing technical questions that involve code navigation and code understanding. We introduce the term \emph{\codenavigation{}} in order to refer to those navigation and understanding activities that happen while developer are looking for an answer to their technical question. Code orientation is thus am umbrella term of code navigation and code understanding. 
 
-In the following we aim to characterize \codenavigation according to the kind of cognitive clues being followed-up (lexical clues, social clues, episodic clues and spatial clues) and characterize \navigation tasks according to their aim (refind, discovery and learning) and their reach (ranging from current working set to the entire internet).
+In the following we aim to characterize \codenavigation according to the kind of cognitive clues being followed-up (lexical clues, social clues, episodic clues and spatial clues) and characterize \navigation tasks according to their aim (refind, discovery and learning) and their reach (ranging from current working set to the entire internet). 
 
-In interviews with professional software engineers, we found that the way towards an answer is typically split in two parts. The first and hard part is boiling the often fuzzy problem description down to a single lexical clue, which in the second part is used to query local documentation or the internet for concrete help. Current tool support for \codenavigation is limited to \navigation by lexical clues. The above behavior might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow-up, or it might be a general search behavior. In either case, developers do need better tool support to follow-up on social, episodic and spatial clues.
-	
 \subsection*{Aim and Reach of Code Orientation}
 	
 The aim of code orientation tasks can be threefold. It can be about refinding a given piece of code or functionality that developers have encountered or heard of in the past. It can be about discovering a piece of code that you know must exist, by searching your local code repository or the internet for code examples. Or, it can be about learning how to implement a certain piece of code, by talking to people with expertise, by reading a book, or by finding advice on a mailing list or a blog. 
@@ -134,8 +138,8 @@ In this work, we present the following contributions that explore the support of
 
 Common to all these contributions is that they tap on unconventional information found in source code, in order to provide developers with new means of following-up code orientation clues, that would have been out of their reach without the novel tool support. For example, in \autoref{the chapter on chronia} we present a story-relling visualization of a system's history that enables new hires to draw on episodic memories that they would not have access to otherwise.
 
+%%%%%%%%%%
 \subsection*{Software Cartography}
-
 \infobox
 	{Code orientation in general}
 	{Local codebase and possibly history of a system}
@@ -152,8 +156,8 @@ For more information please refer to the next section for a brief introduction, 
 
 The work on software cartography has been realized with the support of my students David Erni and Peter Loretan, and has been published as two peer-reviewed conference paper \cite{Kuhn08b,Kuhn10c}, one of which has been extended into a peer-reviewed journal paper \cite{Kuhn10b}, as well as their Master's theses \cite{Erni10a,Lore11a}. 
 
+%%%%%%%%%%
 \subsection*{Lexical Clustering}
-
 \infobox
 	{Refinding and discovering topics}
 	{Local codebase of a system}
@@ -170,8 +174,8 @@ For more in information please refer to the \autoref{the chapter on lexical clue
 %
 The work on lexical clustering (formerly also known as ``semantic clustering'') has been published a peer-reviewed conference paper \cite{Kuhn05a} which has been extended into my Master's thesis \cite{Kuhn06a} and into a peer-review journal paper \cite{Kuhn07a}.
 
+%%%%%%%%%%
 \subsection*{Code Summarization}
-
 \infobox
 	{Refinding and discovering topics}
 	{Part of a system's codebase or history}
@@ -186,8 +190,8 @@ For more in information please refer to the \autoref{the chapter on LogLR}.
 %
 The work on code summarization has been published as a peer-reviewed conference paper \cite{Kuhn09a}.
 
+%%%%%%%%%%
 \subsection*{Stories of Collaboration}
-
 \infobox
 	{Learning about team collaboration}
 	{Team of a project's local codebase}
@@ -202,8 +206,10 @@ For more in information please refer to the \autoref{the chapter on LogLR}.
 %
 The work on visualizing code ownership is part of Mauricio Seeberger's Master's thesis \cite{Seeb06a} and has been published as a peer-reviewed conference paper \cite{Girb05a} that was co-authored by our mutual supervisor Tudor G\^irba and myself.
 
-\subsection*{Discovery of Experts}
+- Understanding who owns a piece of code 50\% \cite{Latoza} 
 
+%%%%%%%%%%
+\subsection*{Discovery of Experts}
 \infobox
 	{Discovery of experts}
 	{Experts that committed to local codebase}
@@ -216,8 +222,8 @@ We implemented the approach in a prototype and evaluated it against a benchmark 
 
 The work on discovery of experts has been realized by my student Dominique Matter, and has been published as a peer-reviewed conference paper \cite{Matt09a} that he first-authored as well as his Master's thesis \cite{Matt09b}.
 
+%%%%%%%%%%
 \subsection*{Credibility of Code Search}
-
 \infobox
 	{Discovery of trustworthy projects}
 	{Open-source projects on the internet}
@@ -239,11 +245,11 @@ The work on discovery of experts has been realized by my student Florian Gysin, 
 
 \section{Software Cartography in a Nutshell}
 
-Software is intangible and knowledge about software systems and their architecture is often tacit. The mental model of software developers is thus an important factor in software engineering. In our work, we aim to provide developers with tool support to establish a better mental model of their work. We do so by embedding a cartographic visualization, called \textsc{Codemap}, in their IDE (Integrated Development Environment). We do not aim to document or visualize the present mental model of developers, rather it is our goal that developers arrive at a better mental model based on the spatial visualization provided by our tool. This is motivated by the observation that the representation of source code in the IDE often impacts the mental model of developers. 
+Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. With \SOCA we aim to address this limitation. We provide a cartographic on-screen visualization so that software engineers can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout. 
 
-\SOCA uses a spatial visualization of software systems to provide software development teams with a stable and shared mental model. Our cartographic visualization is most useful when it supports as many development tasks as possible. Therefore we integrated \SOCA in the IDE so that a map of the software system may always be present and may thus support as many development tasks as possible. 
+\SOCA embeds a cartographic visualization of the current working set in the development environment (IDE) of software engineers. Code maps, as we call them, are stable over time and can be shared among members of a team to establish a common mental model of the system. Code maps are most useful when they supports as many development tasks as possible with spatial clues. Therefore we integrated \SOCA in the IDE so that a map of the software system may always be present and may thus support as many development tasks as possible. 
 
-At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\footnote{New features are added on a weekly base, please subscribe to \url{http://twitter.com/codemap} to receive latest news.}
+At the moment, the \Codemap prototype plug-in for \eclipse supports the following development tasks:\footnote{New features are added on a weekly base, please subscribe to \url{http://twitter.com/codemap} to receive latest news.}
 
 \begin{itemize}
 \item Navigation within a software system, be it for development or analysis. \Codemap is integrated with the package explorer and editor of \eclipse. The selection in the package explorer and the selection on the map are linked. Open files are marked with an icon on the map. Double clicking on the map opens the closest file in the editor. When using heat map mode, recently visited classes are highlighted on the map.
@@ -259,7 +265,7 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{awesome-codemap-NIER}
+  \includegraphics[width=0.75\linewidth]{intro-codemap-example}
 \end{center}
     \caption{\emph{Thematic codemap of a software system, here the \Codemap tool itself is shown. Arrow edges show incoming calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus labeled with a pop-up.}}
     \label{fig:awesome}
@@ -267,24 +273,30 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 
 \begin{figure*}
 \begin{center}
-  \includegraphics[width=\linewidth]{codemap-pipeline2}
+  \includegraphics[width=\linewidth]{intro-pipeline}
 \end{center}
     \caption{\emph{Construction steps of a software map, from left to right: 1) 2-dimensional embedding of files on the visualization pane; 2.a) circles around each file's location, based on class size in KLOC; 2.b) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size; the contributions of all files are summed up; 3) fully rendered map with hill-shading, contour lines, and filename labels.}}
     \label{fig:steps}
 \end{figure*}
 
-\autoref{fig:steps} illustrates the construction of a software map. The sequence of the construction is basically the same as presented in previous work~\cite{Kuhn08b,Kuhn09x}. However, preliminary results from an ongoing user study have already led to a series of improvements which are discussed below.
+\subsection*{Construction of a Code Map}
 
-\textbf{2-Dimensional Embedding:}
-A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the \textsc{Isomap} algorithm \cite{Tene00a} and \textsc{Multidimensional Scaling} \cite{Borg05a} is used to embed all software artifacts on the visualization pane\footnote{Different to previous work \textsc{Latent Semantic Indexing} is not applied anymore; it has been found to have little impact on the final embedding, if at all.}. The application of \textsc{Isomap} is an improvement over previous work in order to assist \textsc{MDS} with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
+\autoref{fig:steps} illustrates the construction of code maps. The sequence of the construction is as follows:
+
+\begin{description}
+
+\item[2-Dimensional Embedding]
+A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling \cite{Borg05a} is used to embed all software artifacts on the visualization pane. Different to lexical clustering Latent Semantic Indexing is not anymore; it has been found to have little impact on the final embedding, if at all. The application of Isomap is an improvement of the embedding in order to assist MDS with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
 
 Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
 
-\textbf{Digital Elevation Model:} In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
+\item[Digital Elevation Model] In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
 
 Using KLOC leads to an elevation model where large classes dominate the codemap. Observations from our user study indicate that this might be misleading since developers tend to interpret size as a measure of impact. Based on this observation, we implemented a set of different impact metrics~\cite{Lanz06a} and plan to evaluate them in a fresh user study.
 
-\textbf{Cartographic rendering:} In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
+\item[Cartographic rendering] In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
+
+\end{description}
 
 %%%%%%%%%% Section 1.5
 %%%%%%%%%%
@@ -297,7 +309,7 @@ Using KLOC leads to an elevation model where large classes dominate the codemap.
 
 The dissertation is structured as follows
 
-\begin{enumerate}
+\begin{description}
 % --> related.tex
 \item[\autoref{the chapter on related work}] discusses related work of this thesis. We present various user studies and solutions to code orientation and analyse the short comings in the context of each orientation clue.
 % --> codemap.tex
@@ -311,7 +323,7 @@ The dissertation is structured as follows
 \item[\autoref{the chapter on bug reports}] presents an approach that use lexical information found in contributions that developers shared with open source systems to build a recommendation model for bug repots. The approach is implemented  in the \textsc{Devlect} tool.
 \item[\autoref{the chapter on codesearch}] presents an approach that uses cross-project collaboration of developers in open source projects to model the credibility of code search results. The approach is implemented in the \textsc{Bender} tool.
 \item[\autoref{the conclusion}] concludes the dissertation and outlines future work.
-\end{enumerate}
+\end{description}
 
 
 %%%%%%%%%%%%
