@@ -79,7 +79,7 @@ In the field of software engineering LSI has been successfully applied to catego
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\columnwidth]{lsi}
+\includegraphics[width=.8\columnwidth]{fig/hapax-lsi}
 \caption{LSI takes as input a set of documents and the terms occurrences, and returns as output a vector space containing all the terms and all the documents. The similarity between two items (\ie terms or documents) is given by the angle between their corresponding vectors.}
 \label{fig:lsi}
 \end{center}
@@ -99,7 +99,7 @@ The result of applying LSI is a vector space, based on which we can compute the 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=.8\columnwidth]{clustering}
+\includegraphics[width=.8\columnwidth]{fig/hapax-clustering}
 \caption{Semantic clustering of software source code (\eg classes, methods).}
 \label{fig:clustering}
 \end{center}
@@ -148,7 +148,7 @@ In the vector space model there is a vector for each document. For example, if w
 \emph{First matrix in \autoref{fig:comaFourStep}.} To visualize similarities between documents we map them to gray values: the darker, the more similar. The similarities between elements are arranged in a square matrix called \emph{correlation matrix} or \emph{dot plot}. Correlation matrix is a common visualization tool to analyze patterns in a set of entities \cite{Ling73a}. Each dot $a_{i,j}$ denotes the similarity between element $d_i$ and element $d_j$. Put in other words, the elements are arranged on the diagonal and the dots in the off-diagonal show the relationship between them.
 
 \begin{figure}[h]
-  \includegraphics{clusteringEx}
+  \includegraphics[width=\linewidth]{fig/hapax-clustering-example}
   \caption{From left to right: unordered correlation matrix, then sorted by similarity, then grouped by clusters, and finally including semantic links.}\label{fig:comaFourStep}
 \end{figure}
 
@@ -172,7 +172,7 @@ The clustering takes the focus of the visualization from similarity between elem
 
 \begin{figure}[h]
     \centering
-  \includegraphics{hotspot}
+  \includegraphics[width=\columnwidth]{fig/hapax-hotspot}
   \caption{Illustration of a semantic link. A semantic link is a one-to-many relation: A document in cluster A that is more similar than its siblings in A to cluster B.}\label{fig:hotspot}
 \end{figure}
 
@@ -188,7 +188,7 @@ For example, in \autoref{fig:distMap} we show an example of a Distribution Map r
 
 \begin{figure}[h]
     \centering
-  \includegraphics{MetricExamples}\\
+  \includegraphics[width=\columnwidth]{fig/hapax-distributionmap-example}\\
   \caption{Example of a Distribution Map.}\label{fig:distMap}
 \end{figure}
 
@@ -264,7 +264,7 @@ In fact, there is a limited area of similarity between the Zone 2 and 3. We will
 
 \begin{figure}[b]
   \centering
-  \includegraphics{jeditcorrelationzone}\\
+  \includegraphics[width=\columnwidth]{fig/hapax-jedit-correlation-zone}\\
   \caption{The correlation matrix of JEdit.}\label{fig:jeditCorrelation}
 \end{figure}
 
@@ -281,7 +281,7 @@ This is a common pattern that we often encountered during our experiments: zone 
 
 \begin{figure}[h]
 \centering
-\includegraphics{jeditCorrelationLabels}
+\includegraphics[width=\columnwidth]{fig/hapax-jedit-correlation-labels}
 \caption{The semantic clusters of JEdit and their labels.}\label{fig:jeditLabels}
 \end{figure}
 
@@ -306,7 +306,7 @@ Evaluating semantic links is similar to evaluating traceability links \cite{Luci
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{jeditDistribution}\\
+  \includegraphics[width=\linewidth]{fig/hapax-jedit-distribution}\\
   \caption{The Distribution Map of the semantic clusters over the package structure of JEdit.}\label{fig:jeditDistribution}
 \end{figure}
 
@@ -324,7 +324,7 @@ This case study presents the outline of JBoss, an application-server written in 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\linewidth]{JBossDistribution}
+  \includegraphics[width=\linewidth]{fig/hapax-jboss-distribution}
   \caption{The Distribution Map of the semantic clusters over the package structure of JBoss.}
   \label{fig:JBossDistribution}
 \end{center}
@@ -409,7 +409,7 @@ One of our objectives is to compare linguistic topics to domain and application 
 
 \begin{figure}[h]
   % Requires \usepackage{graphicx}
-  \includegraphics[width=\linewidth]{outsightDistribution}\\
+  \includegraphics[width=\linewidth]{fig/hapax-outsight-distribution}\\
   \caption{The Distribution Map of Outsight, a webbased job portal application \cite{Kuhn06a}.}\label{fig:outsight}
 \end{figure}
 
@@ -719,7 +719,7 @@ Let $s_{f_n}$ be the size of revision $f_n$, measured in number of lines. The nu
 
 \begin{figure}[htbp]
 \begin{minipage}[c]{.45\linewidth}
-\includegraphics[width=1.2\linewidth]{minimum}
+\includegraphics[width=1.2\linewidth]{fig/chronia-minimum}
  \end{minipage}
  \hfill
  \begin{minipage}[c]{.5\linewidth}
@@ -774,7 +774,7 @@ In a large system, we can have hundreds of developers. Because the human eye is 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=\linewidth]{owners-map-detail}
+\includegraphics[width=\linewidth]{fig/hapax-owners-map-detail.pdf}
 \caption{Example of ownership visualization of two files.}
 \label{fig:ownershipDetailsExample}
 \end{center}
@@ -784,7 +784,7 @@ In the example from autoref{fig:ownershipDetailsExample}, each line represents t
 
 \begin{figure*}[hbt]
 \begin{center}
-\includegraphics{owners-map-example}
+\includegraphics[width=\linewidth]{fig/hapax-owners-map-example}
 \caption{Example of the Ownership Map view. The view reveals different patterns:
 Monologue, Familiarization, Edit, Takeover, Teamwork, Bug-fix.}
 \label{fig:ownershipMapExample}
@@ -857,7 +857,7 @@ We applied our approach on several large case studies: Outsight, Ant, Tomcat, JE
 \subsection{Outsight}\label{sec:outsight}
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=\columnwidth]{commit-histogram}
+\includegraphics[width=\columnwidth]{fig/chronia-commit-histogram}
 \caption{Number of commits per team member in periods of three months.}
 \label{fig:histogram}
 \end{center}
@@ -865,7 +865,7 @@ We applied our approach on several large case studies: Outsight, Ant, Tomcat, JE
 
 \begin{figure*}[htbp]
 \begin{center}
-\includegraphics[height=21.3cm]{outsight}
+\includegraphics[height=21.3cm]{fig/chronia-outsight}
 \caption{The Ownership Map of the Outsight case study.}
 \label{fig:casestudy-outsight}
 \end{center}
@@ -912,7 +912,7 @@ To summarize these finding we give a description of each author's behavior, and 
 
 \begin{figure*}[htb]
 \begin{center}
-\includegraphics[width=12.5cm]{casestudies-overview}
+\includegraphics[width=12.5cm]{fig/casestudies-overview.pdf}
 \caption{The Ownership Map of Ant, Tomcat, JEdit, and JBoss.}
 \label{fig:casestudies-owerview}
 \end{center}
@@ -940,7 +940,7 @@ On the left of autoref{fig:chronia} we see Chronia visualizing the overall histo
 
 \begin{figure*}[htbp]
 \begin{center}
-\includegraphics{chronia}
+\includegraphics[width=\linewidth]{fig/chronia-screenshot}
 \caption{Chronia is an interactive tool.}
 \label{fig:chronia}
 \end{center}
@@ -1027,7 +1027,7 @@ The contributions of this chapter are as follows:
 \section{Our Approach in a Nutshell}\label{sec:nutshell}
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{FlowOfAlgo}
+    \includegraphics[width=\linewidth]{fig/devlect-pipeline}
     \caption{Architecture of the \DEVLECT recommendation system: (left) bug reports and versioning repositories are processed to produce term vectors and \TAMS; (right) the cosine angle between vector and matrix columns is taken to rank developers in the suggested list of experts.}
     \label{fig:algo}
 \end{figure} 
@@ -1190,7 +1190,7 @@ Please refer to \autoref{sec:discussion} for further discussion of the above con
 \subsection{Results}\label{therealthing}
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{runOnTestSet}
+    \includegraphics[width=\linewidth]{fig/devlect-test-set}
     \caption{Recall and precision of the Eclipse case study: configuration C1 scores best with $33.6\%$ top-1 precision and $71.0\%$ top-10 recall.}
     \label{fig:eclipse}
 \end{figure} 
@@ -1214,9 +1214,9 @@ Another threat to validity is that we use all long descriptions, including comme
 
 \begin{figure*}
     \center
-    \includegraphics[width=0.40\linewidth]{distOverTime}
-    \includegraphics[width=0.28\linewidth]{fadedMatrices}
-    \includegraphics[width=0.28\linewidth]{penaltyResults}
+    \includegraphics[width=0.40\linewidth]{fig/devlect-graph-left}
+    \includegraphics[width=0.28\linewidth]{fig/devlect-graph-middle}
+    \includegraphics[width=0.28\linewidth]{fig/devlect-graph-right}
     \caption{Decay of vocabulary: (left) decreasing quality of unweighted results, compared to results with \emph{decay of vocabulary} and \emph{inactive developer penalty} settings, (middle) precision and recall for different decay of vocabulary settings, (right) precision and recall for different inactive developer penalty settings.}
     \label{fig:decay}
 \end{figure*} 
@@ -1356,7 +1356,7 @@ Contributions of this chapter are as follows.
 % =====================================================================
 \begin{figure}
   \centering
-    \includegraphics[width=\linewidth]{bender-architecture-diagram}
+    \includegraphics[width=\linewidth]{fig/bender-architecture-diagram}
     \caption{
     {\small
     Architecture of the \Jbd prototype. \Jbd enhances search results from source code with a credibility estimate that is based on social data collect from the Ohloh Web 2.0 website.
@@ -1370,7 +1370,7 @@ Contributions of this chapter are as follows.
 
 \begin{figure*}
   \centering
-  	 \includegraphics[width=\linewidth]{bender-screenshot}
+  	 \includegraphics[width=\linewidth]{fig/bender-screenshot}
     \caption{
     {\small
     Screenshot of a \Jbd search result with credibility estimate. On the right there is the actual search result, with full name and code snippet. On the left there is information about the originating project and the trust value calculated by the credibility metric.
