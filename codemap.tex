@@ -81,7 +81,7 @@ In this section we present the techniques that are used to achieve a consistent 
 
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{codemap-pipeline}
+  \includegraphics[width=\linewidth]{fig/codemap-pipeline}
 \end{center}
     \caption{\SOCA in a nutshell: left) the raw text of source files is parsed and indexed using \LSI, center) the high-dimensional term-document-matrix is mapped down to two dimensions using \MDS, and right) cartographic visualization techniques are used to render the final map.}
     \label{fig:soca}
@@ -148,7 +148,7 @@ Note that \MDS is not a force-based graph layout algorithm. MDS does not operate
 \newlength{\figwidth}
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{codemap-pipeline2}
+  \includegraphics[width=\linewidth]{fig/codemap-pipeline-too.pdf}
 \end{center}
     \caption{Construction steps: left) MDS placement of files on the visualization pane, middle) circles around each file's location, based on class size in KLOC, right) digital elevation model with hill-shading and contour lines. Sidebox on digital elevation model) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all files are summed up to a digital elevation model.}
     \label{fig:steps}
@@ -164,7 +164,7 @@ Eventually, we use hill-shading \cite{Burr98a} to render an aesthetically appeal
 Hill-shading uses a digital elevation model (DEM) to render the illumination of a landscape. The digital elevation model is a two-dimensional scalar field. Each each entity contributes a Gaussian shaped basis function to the elevation model. To avoid that closely located entities occlude each other, the contributions of all files are summed up as shown in \figref{steps}. 
 
 \begin{figure*}
-  \includegraphics[width=\linewidth]{ludo-history.png}
+  \includegraphics[width=\linewidth]{fig/chronia-ludo-history}
   \caption{From left to right: each map shows an consecutieve iteration of the same software system. As all four views use the same layout, a user can build up a mental model of the system's spatial structure. For example, {\tt Board/LudoFactory} is on all four views located in the south-western quadrant. See also Figure~5 and 6 for more views of this system.}
   \label{fig:ludo}
 \end{figure*}
@@ -307,12 +307,12 @@ Figure \ref{fig:fullpage} shows the software map for six of these systems: Apach
 \begin{center}
 \begin{minipage}{1.4\figwidth}
 \begin{center}
-  \includegraphics[width=1.4\figwidth]{ludo-v4-testtubes}
+  \includegraphics[width=1.4\figwidth]{fig/chronia-ludo-testtubes}
 \end{center}
 \end{minipage}
 \begin{minipage}{1.4\figwidth}
 \begin{center}
-  \includegraphics[width=1.4\figwidth]{ludo-v4-testexecution}
+  \includegraphics[width=1.4\figwidth]{fig/chronia-ludo-testexecution}
 \end{center}
 \end{minipage}
 \end{center}
@@ -427,7 +427,7 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{awesome-codemap-NIER}
+  \includegraphics[width=\linewidth]{fig/codemap-example}
 \end{center}
     \caption{\emph{Thematic codemap of a software system. Here the \Codemap tool itself is shown. Arrow edges show incoming calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus labeled with a pop-up.}}
     \label{fig:awesome}
@@ -439,7 +439,7 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 
 \begin{figure*}
 \begin{center}
-  \includegraphics[width=\linewidth]{codemap-pipeline2}
+  \includegraphics[width=\linewidth]{fig/codemap-pipeline-too}
 \end{center}
     \caption{\emph{Construction steps of a software map, from left to right: 1) 2-dimensional embedding of files on the visualization pane; 2.a) circles around each file's location, based on class size in KLOC; 2.b) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size; the contributions of all files are summed up; 3) fully rendered map with hill-shading, contour lines, and filename labels.}}
     \label{fig:steps}
@@ -552,7 +552,7 @@ To learn about the architectural constraints, professionals, for the first time 
 
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{codemap-userstudy2010-T-fat-arrow-1937}
+  \includegraphics[width=\linewidth]{fig/codemap-userstudy2010-T-fat-arrow-1937}
 \end{center}
     \caption{\emph{Screen capture of ``Aha moment'' as encountered by participant~T during task 4-b (location of security features): Upon opening the call hierarchy of \texttt{Grant}'s constructor, a huge call-arrow appeared on the map: indicating dozens of individual calls that connect the security-related archipelago in the south-west with the \texttt{TreeFactory} island in the east. Given the visual evidence of this arrow, participant~T solved the task without further investigation.}}
     \label{fig:fatarrow}
@@ -762,7 +762,7 @@ Borrowing from participatory design, we asked the participants to act as our par
 This chapter's main contributions are a compilation of design implications for API learning tools, grounded in the reality of the professional developers themselves. We report on the recurring themes in the participants' feedback: trustworthiness, confidentiality, information overload and the need for code examples as first-class documentation artifacts.
 
 \begin{figure*}
-    \includegraphics[width=\linewidth]{api-learning-five-design}
+    \includegraphics[width=\linewidth]{fig/api-learning-five-design}
     \caption{The five solution designs as narrated to the participants (from left to right): \ZoomableUML, \ConceptMap, \FacettedSearch, and on the last panel \RichIntellisense~(above) and \CloudREPL~(below). Pen color has been used to distinguish the designs (green) from the participant's input (red). The stick notes are the participant's votes.}
     \label{fivedesigns}
 \end{figure*} 
