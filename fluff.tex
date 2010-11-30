@@ -18,9 +18,9 @@
 	{Lexcial (established through lexical information)}
 	{Visual analytics and fuzzy keyword search}
 
-Keyword matching and regular expressions are powerful means for code orientation by lexical clues. However, current tool support fails to meet the developer needs when they are following-up on a fuzzy lexical clues. For refinding tasks it may by that developers do not recall the exact name, or even more common for discovery tasks developers can typically only guess which name other developers have picked for the concept that they are looking for. Just the same, when attempting to find all implementation of a the same concept, often the source code uses synonymous but not exactly the same identifier names. And further, when encountering a system for the first time, developers do have a need to cluster the system by topics so they can start establishing a mental model of the services provided by the system and of how these services depend upon one another. 
+Keyword matching and regular expressions are powerful means for code orientation by lexical clues. However, current tool support fails to meet the developer needs when they are following-up on fuzzy lexical clues. For example, for refinding tasks it may by that developers do not recall the exact name, or even more common for discovery tasks developers can typically only guess which name other developers have picked for the concept that they are looking for. Just the same, when attempting to find all implementation of a the same concept, often the source code uses synonymous but not exactly the same identifier names. And further, when encountering a system for the first time, developers do have a need to cluster the system by topics so they can start establishing a mental model of the services provided by the system and of how these services depend upon one another. 
 
-In the following chapter we present an approach to model a system lexical information in a fuzzy text model that resolves synonymy and polysemy with unsupervised learning. No user input or ontologies are requires to resolve ambiguous lexical clues. The latter is in particular important because software engineering uses too many metaphors such that common natural language ontologies fall short of being applicable on lexical information found in source code. We use the fuzzy text model to cluster the parts of a system by topic, and visualize the topics user correlation matrices and a novel visualization of our own that illustrates the distribution of topics of the static structure of the system. Furthermore, even though not discussed in the following chapter, our approach allows to query the system with fuzzy keyword search that is able resolve synonymy and polysemy.
+In the following chapter we present an approach to model a system's lexical information in a fuzzy text model that resolves synonymy and polysemy with unsupervised learning. No user input or ontologies are requires to resolve ambiguous lexical clues. To not depend on ontologies is in particular important because software engineers use too many and often broken metaphors (as \eg ``storing persons in a tree'') such that common natural language ontologies fall short of being applicable on lexical information found in source code. We use the fuzzy text model to cluster the parts of a system by topic, and visualize the topics user correlation matrices and a novel visualization of our own that illustrates the distribution of topics of the static structure of the system. Furthermore, even though not discussed in the following chapter, our approach allows to query the system with fuzzy keyword search that is able resolve synonymy and polysemy.
 
 \asteriskasteriskasterisk
 
@@ -39,7 +39,7 @@ In the following chapter we present an approach to model a system lexical inform
 %is morning hours minutes seconds is date hours minutes
 %seconds invalid time value hours 12 minutes 60 seconds 60
 
-Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This chapter proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this chapter.
+Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This chapter proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Lexical Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{lexical clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this chapter.
 
 In this chapter, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
 
@@ -54,7 +54,7 @@ Our approach is based on Latent Semantic Indexing (LSI), an information retrieva
 
 We implemented this approach in a tool called Hapax\footnote{The name is derived from the term \emph{hapax legomenon}, that refers to a word occurring only once a given body of text.}, which is built on top of the Moose reengineering environment \cite{Duca05a,Nier05c}, and we apply the tool on several case studies, two of which are presented in this work: JEdit\footnote{http://www.jedit.org/} and JBoss\footnote{http://www.JBoss.org/}.
 
-This chapter is based on our previous work, in which we first proposed semantic clustering \cite{Kuhn05a}. The main contributions of the current chapter are:
+This chapter is based on our previous work, in which we first proposed lexical clustering (back then still called ``semantic clustering'' \cite{Kuhn05a}. The main contributions of the current chapter are:
 \begin{itemize}
 
 \item \emph{Topic distribution analysis.} In our previous work we introduced semantic clustering to detect linguistic topics given by parts of the system that use similar vocabulary. We complement the approach with the analysis of how topics are distributed over the system using a Distribution Map \cite{Duca06c}.
@@ -89,10 +89,10 @@ LSI starts with a raw term-document-matrix, weighted by a weighting function to 
 
 SVD decomposes matrix $A$ into its singular values and its singular vectors, and yields -- when truncated at the $k$ largest singular values -- an approximation $A'$ of $A$ with rank $k$. Furthermore, not only the low-rank term-document matrix $A'$ can be computed but also a term-term matrix and a document-document matrix. Thus, LSI allows us to compute term-document, term-term and document-document similarities.
 
-As the rank is the number of linear-independent rows and columns of a matrix, the vector space spanned by $A'$ is of dimension $k$ only and much less complex than the initial space. When used for information retrieval, $k$ is typically about 200-500, while $n$ and $m$ may go into millions. When used to analyze software on the other hand, $k$ is typically about $20-50$ with vocabulary and documents in the range of thousands only. And since $A'$ is the best approximation of $A$ under the least-square-error criterion, the similarity between documents is preserved, while in the same time mapping semantically related terms on one axis of the reduced vector space and thus taking into account synonymy and polysemy. In other words, the initial term-document-matrix $A$ is a table with term occurrences and by breaking it down to much less dimension the latent meaning \emph{must} appear in $A'$ since there is now much less space to encode the same information. Meaningless occurrence data is transformed into meaningful concept information.
+As the rank is the number of linear-independent rows and columns of a matrix, the vector space spanned by $A'$ is of dimension $k$ only and much less complex than the initial space. When used for information retrieval, $k$ is typically about 200-500, while $n$ and $m$ may go into millions. When used to analyze software on the other hand, $k$ is typically about $20-50$ with vocabulary and documents in the range of thousands only. And since $A'$ is the best approximation of $A$ under the least-square-error criterion, the similarity between documents is preserved, while in the same time mapping lexically related terms on one axis of the reduced vector space and thus taking into account synonymy and polysemy. In other words, the initial term-document-matrix $A$ is a table with term occurrences and by breaking it down to much less dimension the latent meaning \emph{must} appear in $A'$ since there is now much less space to encode the same information. Meaningless occurrence data is transformed into meaningful concept information.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Semantic Clustering: Grouping Source Documents}\label{sec:sekla}
+\section{Lexical Clustering: Grouping Source Documents}\label{sec:sekla}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The result of applying LSI is a vector space, based on which we can compute the similarity between both documents or terms. We use this similarity measurement to identify topics in the source code.
@@ -100,7 +100,7 @@ The result of applying LSI is a vector space, based on which we can compute the 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=.8\columnwidth]{fig/hapax-clustering}
-\caption{Semantic clustering of software source code (\eg classes, methods).}
+\caption{Lexical clustering of software source code (\eg classes, methods).}
 \label{fig:clustering}
 \end{center}
 \end{figure}
@@ -115,16 +115,16 @@ The result of applying LSI is a vector space, based on which we can compute the 
   \item \emph{Comparing the topics to the structure.} In \autoref{sec:distribution} we illustrate the distribution of topics over the system on a Distribution Map \cite{Duca06c}.
 \end{enumerate}
 
-We want to emphasize that the primary contribution of our work is semantic clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
+We want to emphasize that the primary contribution of our work is lexical clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{On the Relationship between Concepts and Semantic Clustering}\label{sec:wittgenstein}
-
-In this chapter we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
-
-Other than with domain or application concepts in Software Analysis \cite{Bigg93a}, it is not uncommon in information retrieval to derive \emph{linguistic topics} from the distribution of words over a set of documents. This is in accordance with Wittgenstein who states that \emph{``Die Bedeutung eines Wortes ist sein Gebrauch in der Sprache---the meaning of a word is given by its use in language''} \cite{Witt53a}. Unlike in classical philosophy, as for example Plato, there is no external definition of a word's meaning, but rather the meaning of a word is given by the relations it bears with other terms and sentences being used in the same context. Certainly, there is a congruence between the external definition of a word and its real meaning, since our external definitions are human-made as well, and thus, also part of the language game, but this congruence is never completely accurate.
-
-In accordance with \cite{Bigg89c} we call our clusters \emph{linguistic topics} since they are derived from language use. Certainly, some linguistic topics do map to the domain and others do map to application concepts, however, this mapping is never complete. There is no guarantee that semantic clustering locates all or even any externally defined domain concept. But nonetheless, our case studies show that semantic clustering is able to capture important domain and application concepts of a software system. Which does not come as a surprise, since it is well known that identifer names and comments are one of the most prominent places where developers put their knowledge about a system.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{On the Relationship between Concepts and Lexical Clustering}\label{sec:wittgenstein}
+%
+%In this chapter we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
+%
+%Other than with domain or application concepts in Software Analysis \cite{Bigg93a}, it is not uncommon in information retrieval to derive \emph{linguistic topics} from the distribution of words over a set of documents. This is in accordance with Wittgenstein who states that \emph{``Die Bedeutung eines Wortes ist sein Gebrauch in der Sprache---the meaning of a word is given by its use in language''} \cite{Witt53a}. Unlike in classical philosophy, as for example Plato, there is no external definition of a word's meaning, but rather the meaning of a word is given by the relations it bears with other terms and sentences being used in the same context. Certainly, there is a congruence between the external definition of a word and its real meaning, since our external definitions are human-made as well, and thus, also part of the language game, but this congruence is never completely accurate.
+%
+%In accordance with \cite{Bigg89c} we call our clusters \emph{linguistic topics} since they are derived from language use. Certainly, some linguistic topics do map to the domain and others do map to application concepts, however, this mapping is never complete. There is no guarantee that lexical clustering locates all or even any externally defined domain concept. But nonetheless, our case studies show that lexical clustering is able to capture important domain and application concepts of a software system. Which does not come as a surprise, since it is well known that identifer names and comments are one of the most prominent places where developers put their knowledge about a system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preprocessing the Software System}\label{sec:parsing}
@@ -143,13 +143,13 @@ When preprocessing object-oriented software systems we take the inheritance rela
 
 We use LSI to extract linguistic information from the source code, which results in an LSI-index with similarities between source documents (\ie packages, classes or methods). Based on the index we can determine the similarity between source code documents. Documents are more similar if they cover the same topic, terms are more similar if they denote related topics.
 
-In the vector space model there is a vector for each document. For example, if we use methods as documents, there is a vector for each method and the cosine between these vectors denotes the semantic similarity between the methods. In general cosine values are in the $[-1,1]$ range, however when using an LSI-index the cosine between its element never strays much below zero. This is since the LSI-index is derived from a term-document matrix that contains positive occurrence data only.
+In the vector space model there is a vector for each document. For example, if we use methods as documents, there is a vector for each method and the cosine between these vectors denotes the lexical similarity between the methods. In general cosine values are in the $[-1,1]$ range, however when using an LSI-index the cosine between its element never strays much below zero. This is since the LSI-index is derived from a term-document matrix that contains positive occurrence data only.
 
 \emph{First matrix in \autoref{fig:comaFourStep}.} To visualize similarities between documents we map them to gray values: the darker, the more similar. The similarities between elements are arranged in a square matrix called \emph{correlation matrix} or \emph{dot plot}. Correlation matrix is a common visualization tool to analyze patterns in a set of entities \cite{Ling73a}. Each dot $a_{i,j}$ denotes the similarity between element $d_i$ and element $d_j$. Put in other words, the elements are arranged on the diagonal and the dots in the off-diagonal show the relationship between them.
 
 \begin{figure}[h]
   \includegraphics[width=\linewidth]{fig/hapax-clustering-example}
-  \caption{From left to right: unordered correlation matrix, then sorted by similarity, then grouped by clusters, and finally including semantic links.}\label{fig:comaFourStep}
+  \caption{From left to right: unordered correlation matrix, then sorted by similarity, then grouped by clusters}\label{fig:comaFourStep}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,20 +161,10 @@ Without proper ordering the correlation matrix looks like television tuned to a 
 
 A clustering algorithm groups similar elements together and aggregates them into clusters \cite{Jain99a}. Hierarchical clustering creates a tree of nested clusters, called \emph{dendrogram}, which has two features: breaking the tree at a given threshold groups the elements into clusters, and traversing the tree imposes a sort order upon its leaves. We use these two features to rearrange the matrix and to group the dots into rectangular areas.
 
-\emph{Second and third matrix in \autoref{fig:comaFourStep}.} Each rectangle on the diagonal represents a semantic cluster: the size is given by the number of classes that belong to a topic, the color refers to the \emph{semantic cohesion} \cite{Marc05a} (\ie the average similarity among its classes\footnote{Based on the similarity ${\rm sim}(a,b)$ between elements, we define the similarity between cluster $A$ and cluster $B$ as $\frac{1}{|B| \times |A|}\sum \sum {\rm sim}(a_m,b_n)$ with $a \in A$ and $b \in B$ and in the same way the similarity between an element $a_0$ and a cluster $B$ as $\frac{1}{|B|}\sum {\rm sim}(a_0,b_n)$ with $B \in B$.
+\emph{Second and third matrix in \autoref{fig:comaFourStep}.} Each rectangle on the diagonal represents a lexical cluster: the size is given by the number of classes that belong to a topic, the color refers to the \emph{semantic cohesion} \cite{Marc05a} (\ie the average similarity among its classes\footnote{Based on the similarity ${\rm sim}(a,b)$ between elements, we define the similarity between cluster $A$ and cluster $B$ as $\frac{1}{|B| \times |A|}\sum \sum {\rm sim}(a_m,b_n)$ with $a \in A$ and $b \in B$ and in the same way the similarity between an element $a_0$ and a cluster $B$ as $\frac{1}{|B|}\sum {\rm sim}(a_0,b_n)$ with $B \in B$.
 }). The color in the off-diagonal is the darker the more similar to clusters are, if it is white they are not similar at all. The position on the diagonal is ordered to make sure that similar topics are placed together.
 
 The clustering takes the focus of the visualization from similarity between elements to similarity between clusters. The tradeoff is, as with any abstraction, that some valuable detail information is lost. Our experiments showed that one-to-many relationships between an element and an entire cluster are valuable patterns.
-
-\emph{Fourth matrix in \autoref{fig:comaFourStep}.} If the similarity between an element $d_n$ from a cluster and another cluster differs more than a fix threshold from the average similarity between the two clusters, we plot $d_n$ on top of the clustered matrix either as a bright line if $d_n$ is less similar than average, or as a dark line if $d_n$ is more similar than average. We call such a one-to-many relationship a \emph{semantic link}, as it reveals an element that links from its own topic to another topic.
-
-\autoref{fig:hotspot} illustrates an example of a semantic link. The relationship between cluster A and cluster B is represented by the rectangle found at the intersection of the two clusters. The semantic link can be identified by a horizontal (or vertical) line that is darker than the rest of the rectangle. In our example, we find such a semantic link between two clusters. Please note that the presence of a link does not mean that the element in A should belong to B, it only means that the element in A is more similar to B then the other elements in A.
-
-\begin{figure}[h]
-    \centering
-  \includegraphics[width=\columnwidth]{fig/hapax-hotspot}
-  \caption{Illustration of a semantic link. A semantic link is a one-to-many relation: A document in cluster A that is more similar than its siblings in A to cluster B.}\label{fig:hotspot}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyzing the Distribution of Semantic Clusters}\label{sec:distribution}
@@ -218,22 +208,22 @@ First, we exemplify each step of the approach and discuss its findings in the ca
 \begin{tabular}{l|llrrrrrr}
 \hline
 \textbf{Case Study}&\textbf{language}&\textbf{type}&\textbf{docs}&\textbf{terms}
-&\textbf{parts}&\textbf{links}&\textbf{rank}&\textbf{sim}\\
+&\textbf{parts}&\textbf{rank}&\textbf{sim}\\
 \hline
-Ant & Java & \emph{Classes} & 665 & 1787 & 9 & -- & 17 & 0.4\\
-Azureus & Java & \emph{Classes}       & 2184 & 1980 & 14 & -- & 22 & 0.4\\
-JEdit & Java & \emph{Classes}       & 394  & 1603 & 9 & 53 &17 & 0.5\\
-JBoss & Java & \emph{Classes}       & 660 & 1379 & 10 & -- & 16 & 0.5\\
-Moose\footnotemark{} & Smalltalk & \emph{Classes}  & 726  & 11785 & -- & 137& 27 & --\\
-MSEModel & Smalltalk & \emph{Methods}  & 4324  & 2600 & -- & -- & 32 & 0.75\\
-Outsight & Java & \emph{Classes}    & 223 & 774 & 10 & -- & 12 & 0.5\\
+Ant & Java & \emph{Classes} & 665 & 1787 & 9 & 17 & 0.4\\
+Azureus & Java & \emph{Classes}       & 2184 & 1980 & 14 & 22 & 0.4\\
+JEdit & Java & \emph{Classes}       & 394  & 1603 & 9 & 17 & 0.5\\
+JBoss & Java & \emph{Classes}       & 660 & 1379 & 10 & 16 & 0.5\\
+Moose\footnotemark{} & Smalltalk & \emph{Classes}  & 726  & 11785 & -- & 27 & --\\
+MSEModel & Smalltalk & \emph{Methods}  & 4324  & 2600 & -- & 32 & 0.75\\
+Outsight & Java & \emph{Classes}    & 223 & 774 & 10 & 12 & 0.5\\
 \hline
 \end{tabular}}\\
 \caption{The statistics of sample case studies, JEdit and JBoss are discussed in this work, for the other studies please refer to our previous work \cite{Kuhn05a,Kuhn06a}.}\label{fig:table1}
 \end{figure}
 \footnotetext{The Moose case study in \cite{Kuhn05a} did not use stemming to preprocess the text corpus, hence the large vocabulary.}
 
-\autoref{fig:table1} summarizes the problem size of each case study. It lists for each case study: (lang) the language of the source code, (type) the granularity of  documents, (docs) the number of documents, (terms) the number of terms, (parts) the number of found topics, (links) the number of found semantic links, (rank) the dimension of the LSI-index, and (sim) the threshold  of the clustering.
+\autoref{fig:table1} summarizes the problem size of each case study. It lists for each case study: (lang) the language of the source code, (type) the granularity of  documents, (docs) the number of documents, (terms) the number of terms, (parts) the number of found topics, (rank) the dimension of the LSI-index, and (sim) the threshold  of the clustering.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{On the Calibration of Parameters and Thresholds}\label{sec:parameters}
@@ -251,8 +241,6 @@ Our approach depends on several parameters, which may be difficult too choose fo
 
   \textbf{Breaking the dendrogram into clusters.} Hierarchical clustering uses a threshold to break the dendrogram, which is the tree of all possible clusters, into a fix partition. Depending on the objective, we break it either into a fixed number of clusters (\eg for the Distribution Map, where the number of colors is constrained) or at a given threshold (\eg for the correlation matrix). In the user interface of the Hapax tool, there is a slider for the threshold such that we can immediately observe the effect on both correlation matrix and Distribution Map interactively.
 
-  \textbf{Detecting semantic links.} As explained in \autoref{sec:clustering}, a semantics link is an element in cluster $A$ with a different similarity to cluster $B$ than average. Typically we use a threshold of $\delta = \pm20\%$ to decide this, however, our tool supports fixed thresholds and selecting the top-$n$ link as well. When detecting traceability-links, a problem which is closely related to semantic links, this has been proven as the best out if these three strategies \cite{Luci04a}.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Semantic Clustering applied on JEdit}
 
@@ -261,12 +249,6 @@ We exemplify our approach at the case of JEdit, an open-source Text editor writt
 In \autoref{fig:jeditCorrelation}, we see nine clusters with a size of (from top right to bottom left) 116, 63, 26, 10, 68, 10, 12, 80, and 9 classes. The system is divided into four zones: (zone 1) the large cluster in the top left, (zone 2) two medium sized and a small clusters, (zone 3) a large cluster and two small clusters, and (zone 4) a large and a small cluster. The two zones in the middle that are both similar to the first zone but not to each other, and the fourth zone is not similar to any zone.
 
 In fact, there is a limited area of similarity between the Zone 2 and 3. We will later on identify the two counterparts as topics \pink and \cyan, which are related to text buffers and regular expression respectively. These two topics share some of their labels (\ie start, end, length and count), however they are clustered separately since LSI does more than just keyword matching, LSI takes the context of term usage into account as well, that is the co-location of terms with other terms.
-
-\begin{figure}[b]
-  \centering
-  \includegraphics[width=\columnwidth]{fig/hapax-jedit-correlation-zone}\\
-  \caption{The correlation matrix of JEdit.}\label{fig:jeditCorrelation}
-\end{figure}
 
 This is a common pattern that we often encountered during our experiments: zone 1 is the core of system with domain-specific implementation, zone 2 and 3 are facilities closely related to the core, and zone 4 is an unrelated component or even a third-party library. However, so far this is just an educated guess and therefore we will have a look at the labels next.
 
@@ -286,21 +268,6 @@ This is a common pattern that we often encountered during our experiments: zone 
 \end{figure}
 
 All these labels are terms taken from the vocabulary of the source code and as such they do not always describe the topics in generic terms. For example, event though JEdit is a text-editor, the term \emph{text-editor} is not used on the source code level. The same applies for topic \cyan, where the term \emph{regular expression} does not shop up in the labels.
-
-Next are the semantic links, these are the thin lines on the correlation matrix. If a line is thicker than one pixel, this means that there are two or more similar classes which are each a semantic links. The analysis detected 53 links, below we list as a selection all links related to the scripting topic (these are the link annotated on \autoref{fig:jeditCorrelation}). For each link we list the class names and the direction:
-
-\begin{itemize}
-  \item Link 1: \emph{AppelScriptHandler} and \emph{BeanShell} link from topic \red to scripting.
-  \item Link 2: \emph{Remote} and \emph{ConsoleInterface} link from topic \red to scripting
-  \item Link 3: \emph{VFSDirectoryEntryTable} and \emph{JThis} link from the UI topic to scripting.
-  \item Link 4: \emph{ParseException}, \emph{Token} \emph{TokenMgrError} and \emph{BSHLiteral} link from the regular expressions topic to scripting.
-  \item Link 5: \emph{ClassGeneratorUtil} and \emph{ClasspathError} link from scripting to topic \red.
-  \item Link 6: \emph{ReflectManager} and \emph{Modifiers} link from scripting to the UI topic.
-  \item Link 7: \emph{NameSource} and \emph{SimpleNode} link from scripting to the regular expressions and the XML topic.
-\end{itemize}
-
-Evaluating semantic links is similar to evaluating traceability links \cite{Luci04a}. We inspected the source code of each link. Some of them are false positives, for example link 4 and 5 are based on obviously unrelated use of the same identifers. On the other hand, link 1 points to the main connector between core and scripting library and link 7 reveals a high-level clone, the implementation of the same datatype in three places: XML uses nodes, and both BSH and regular expressions implement their own AST node.
-
 
 \autoref{fig:jeditDistribution} shows the distribution of topics over the package structure of JEdit. The large boxes are the packages (the text above is the package name), the squares are classes and the colors correspond to topics (the colors are the same as on \autoref{fig:jeditLabels}).
 
@@ -355,7 +322,7 @@ This case study presents the outline of JBoss, an application-server written in 
 \end{figure}
 
 
-The Distribution Map is illustrated in \autoref{fig:JBossDistribution}, and the top-7 labels are listed in figure \autoref{fig:JBossLabels} in order of relevance. This is the same setup as in the first case study, except the correlation matrix and semantic links are left out due to space restrictions. We verified the clustering by looking the source code, and present the results as follows.
+The Distribution Map is illustrated in \autoref{fig:JBossDistribution}, and the top-7 labels are listed in figure \autoref{fig:JBossLabels} in order of relevance. This is the same setup as in the first case study, except the correlation matrix is left out due to space restrictions. We verified the clustering by looking the source code, and present the results as follows.
 
 Topic \red is the largest cluster and implements the core functionality of the system: is labeled with terms such as \emph{invocation, interceptor, proxy \emph{and} share}. Related to that, topic \cyan implements the deployment of JAR archives.
 
