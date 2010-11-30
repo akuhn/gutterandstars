@@ -65,16 +65,16 @@ Finally we use cartography techniques (such as digital elevation, hill-shading a
 Why should we adopt vocabulary as distance metric, and not some structural property?
 First of all, vocabulary can effectively \emph{abstract} away from the technical details of source code \cite{Kuhn07a} by capturing the key domain concepts of source code. Software entities with similar vocabulary are conceptually and topically close. Lexical similarity has proven useful to detect high-level clones \cite{Marc01a} and cross-cutting concerns \cite{Pali08a} in software. Furthermore, it is known that over time vocabulary tends to be more stable than the structure of software \cite{Anto07a}, and tends to grow rather than to change \cite{Vasa07b}. Although refactorings may cause functionality to be renamed or moved, the overall vocabulary tends not to change, except as a side-effect of growth. This suggests that vocabulary will be relatively \emph{stable} in the face of change, except where significant growth occurs. As a consequence, vocabulary not only offers an intuitive notion of position that can be used to provide a consistent layout for different kinds of thematic maps, but it also provides a robust and consistent layout for mapping an evolving system. System growth can be clearly positioned with respect to old and more stable parts of the same system.
 
-This paper is an extension of previous work, in which we first proposed \emSOCA for consistent layout of software visualizations \cite{Kuhn08b}. The main contributions of the current paper are:
+This chapter is an extension of previous work, in which we first proposed \emSOCA for consistent layout of software visualizations \cite{Kuhn08b}. The main contributions of the current chapter are:
 
 \begin{itemize}
-\item \emph{Improved algorithm.} In our previous work we presented a technique to create software maps given either a single release, or all releases of a system at once. In this paper we propose an improved algorithm for incremental software maps that update as new changes appear.
-\item \emph{Visual stability.} In our previous work we introduced \SOCA as an approach to achieve consistent layouts for software visualization. In this paper we evaluate four open source case studies to investigate the visual stability of our approach over the evolution of a system. 
+\item \emph{Improved algorithm.} In our previous work we presented a technique to create software maps given either a single release, or all releases of a system at once. In this chapter we propose an improved algorithm for incremental software maps that update as new changes appear.
+\item \emph{Visual stability.} In our previous work we introduced \SOCA as an approach to achieve consistent layouts for software visualization. In this chapter we evaluate four open source case studies to investigate the visual stability of our approach over the evolution of a system. 
 \item \emph{Desiderata for spatial representation.} We present a generalization of DeLine's desiderata for spatial software navigation~\cite{Deli05b} to spatial representation in general, and complete them with the desiderata that visual distance should have a meaningful interpretation.
 \end{itemize}
 
 % ===================================================================================
-\section{SOFTWARE CARTOGRAPHY}
+\section{Software Cartography}
 \label{sec:techniques}
 
 In this section we present the techniques that are used to achieve a consistent layout for software maps. We present two variations of \SOCA, an \emph{offline} algorithm that requires that all releases of a software system are available upfront, and an improved \emph{online} algorithm that updates the layout incrementally as new releases of the system appear. 
@@ -109,7 +109,7 @@ Possible applications of \SOCA in the software development process are, \dots
 
 \subsection{Iterative Online \SOCA}
 
-In our previous work we presented a technique to create software maps given either a single release, or all releases of a system at once \cite{Kuhn08b}. In this paper we propose an improved algorithm for incremental software maps that update as new changes appear. 
+In our previous work we presented a technique to create software maps given either a single release, or all releases of a system at once \cite{Kuhn08b}. In this chapter we propose an improved algorithm for incremental software maps that update as new changes appear. 
 
 The offline scenario processes all releases in one pass. 
 
@@ -183,7 +183,7 @@ For locations that are near to each other it is difficult to place the labels so
 %\end{figure}
 
 % =============================================================================
-\section{ON THE CHOICE OF VOCABULARY}
+\section{On the Choice of Vocabulary}
 \label{sec:onvocabulary}
 
 The decision to use a distance based on lexical similarity does, indeed, create a distribution of distances that should not change a lot in time. This is because programmers will not use a completely new set of lexical tokens in each new version of the software. In fact, it has been shown that over time vocabulary tends to be more stable than the structure of software \cite{Anto07a}. However, this also will create software maps that naturally only can show how items are similar from a lexical point of view.
@@ -201,7 +201,7 @@ In the first case, all occurrences of a symbol are replaced with new symbol. Thi
 Not considered in the present work is the relative weight of different lexical tokens. For example, it seems reasonable to weight local identifiers differently than identifiers in top-level namespaces. Also, one may treat names coming from library functions different from the ones coming from the actual user code. Given the absence of evaluation benchmarks, we decided to use equal weighting for all lexical token. Also, preliminary experiments with different weighting schemes indicate that relative weights below boost level, \ie below a factor of 10, do often not significantly affect the overall layout.
 
 % =============================================================================
-\section{EXAMPLES}
+\section{Examples}
 \label{sec:casestudy}
 
 In this section we present examples of \SOCA. The first example visualizes the evolution of a small software system. The second example shows an overview of six open-source systems. As the third example, we provide two thematic overlays of the same software map.
@@ -337,11 +337,11 @@ A short edge indicates that closely related artifacts are invoking each other, w
 
 \section{Conclusion}
 
-This paper presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual clues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
+This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual clues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
 
 The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
 
-In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this paper is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
+In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
 In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
 
 We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
@@ -377,11 +377,11 @@ we use lexical information to establish a spatial visualization that supports sp
 
 we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
 
-\emph{Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. Spatial representation of software is a promising approach of increasing interest. However, little is known about how developers interact with spatial visualizations that are embedded in the IDE. In this paper, we present a pilot study that explores the use of \SOCA for program comprehension of an unknown system. We investigated whether developers establish a spatial memory of the system, whether clustering by topic offers a sound base layout, and how developers interact with maps. We report our results in the form of observations, hypotheses, and implications. Key findings are a) that developers made good use of the map to inspect search results and call graphs, and b) that developers found the base layout surprising and often confusing. We conclude with concrete advice for the design of embedded software maps.}
+\emph{Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. Spatial representation of software is a promising approach of increasing interest. However, little is known about how developers interact with spatial visualizations that are embedded in the IDE. In this chapter, we present a pilot study that explores the use of \SOCA for program comprehension of an unknown system. We investigated whether developers establish a spatial memory of the system, whether clustering by topic offers a sound base layout, and how developers interact with maps. We report our results in the form of observations, hypotheses, and implications. Key findings are a) that developers made good use of the map to inspect search results and call graphs, and b) that developers found the base layout surprising and often confusing. We conclude with concrete advice for the design of embedded software maps.}
 
 Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. In the past decade the software visualization community has developed a rich wealth of visualization approaches~\cite{Dieh07a} and provided evidence of their usefulness for expert tasks, such as reverse engineering, release management or dynamic analysis (\eg \cite{Tele08b,Pauw08a,Reis05b,Orso03a}). Typically, these visualization approaches had been implemented in interactive tools \cite{Sens08a}. However most of these tools are stand-alone prototypes that have never been integrated in an IDE (integrated development environment). Little is thus known about the benefits of software visualization for the ``end users'' in software engineering, that is for everyday programmers. What is lacking is how these techniques support the day to day activities of software developers \cite{Stor05a}. 
 
-In this paper, we report on a pilot study of a spatial software visualization that is embedded in the IDE. The spatial visualization is based on the \SOCA approach that has been presented and introduced in previous work \cite{Kuhn08a,Kuhn10b,Erni10a}. Spatial representation of software is a promising research field of increasing interest \cite{Wett08a,Deli10a,Brag10b,Stei10a,Mart08a,Noac05a}, however the respective tools are either not tightly integrated in an IDE or have not yet been evaluated in a user study. Spatial representation of software is supposed to support developers in establishing a long term, spatial memory of the software system. Developers may use spatial memory to recall the location of software artifacts, and to put thematic map overlays in relation with each other \cite{Kuhn10b}.
+In this chapter, we report on a pilot study of a spatial software visualization that is embedded in the IDE. The spatial visualization is based on the \SOCA approach that has been presented and introduced in previous work \cite{Kuhn08a,Kuhn10b,Erni10a}. Spatial representation of software is a promising research field of increasing interest \cite{Wett08a,Deli10a,Brag10b,Stei10a,Mart08a,Noac05a}, however the respective tools are either not tightly integrated in an IDE or have not yet been evaluated in a user study. Spatial representation of software is supposed to support developers in establishing a long term, spatial memory of the software system. Developers may use spatial memory to recall the location of software artifacts, and to put thematic map overlays in relation with each other \cite{Kuhn10b}.
 
 %\ewe{Maybe comment somewhere that the level of integration may vary. Distant integration would be the case of the visualization being available within the IDE, but remain rather an supplementary tools. Tight integration implies that the map reacts to other events in the IDE, e.g. file close, etc. or at least stays sync'ed with the project}
 
@@ -390,7 +390,7 @@ The scenario of our user study is first contact with an unknown closed-source sy
 Results are mixed\,---\,some support and some challenge our assumptions on how developers would use the embedded visualization. Participants found the map most useful to explore search results and call graphs, but only rarely used the map for direct navigation as we would have expected.
 %It became quickly apparent that we should revise our initial assumption that lexical similarity is a valid basis for the cartographic layout. Participants interpreted visual distance as a measure of structural dependencies---even though they were aware of the underlying lexical implementation.
 
-Contributions of this paper are as follows: 
+Contributions of this chapter are as follows: 
 %\nes{These aren't the contributions, they're summaries of your methodology, and promises of contributions.}
 
 \begin{itemize}
@@ -409,7 +409,7 @@ Contributions of this paper are as follows:
 
 At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\footnote{\url{http://scg.unibe.ch/codemap}}
 % New features are added on a weekly base, please subscribe to \url{http://twitter.com/codemap} to receive latest news.}
-% ON: The twitter feed is listed on the web page -- don't mention it in the paper
+% ON: The twitter feed is listed on the web page -- don't mention it in the chapter
 
 
 \begin{itemize}
@@ -546,7 +546,7 @@ Typically participants drilled-down with the package explorer and read all packa
 
 To learn about the architectural constraints, professionals, for the first time in the experiment, started reading source code. They also did so quite differently from the way that students did. Whereas students typically read code line by line, trying to understand what it does, the professionals rather used the scroll-wheel to skim over the code as it flies by on the screen, thereby looking for ``landmarks'' such as constructor calls, method signatures and field definitions. Professionals made much more use of ``open call hierarchy'' and ``open type hierarchy''. Interestingly enough, only one participant opened a type hierarchy of the whole project. 
 
-%\nes{Here's a strange thing with your paper. You sort of drift here into a HCI discussion that is interesting, but has little to do with your map. Of course, if this is where you take your research, you have to quote the relevant papers! Also, this line of finding sort of dominates the "real" contributions, but isn't even mentioned in the abstract or introduction.}\ewe{Was anybody navigating by ctrl-click on the types?}
+%\nes{Here's a strange thing with your chapter. You sort of drift here into a HCI discussion that is interesting, but has little to do with your map. Of course, if this is where you take your research, you have to quote the relevant papers! Also, this line of finding sort of dominates the "real" contributions, but isn't even mentioned in the abstract or introduction.}\ewe{Was anybody navigating by ctrl-click on the types?}
 
 \paragraph{Task 4, Feature Location}
 
@@ -736,7 +736,7 @@ Recent research found that the learning materials themselves are often inadequat
 %
 Solving these problems requires a large investment in tool and search engine development.
 %
-To understand where further investment would be the most useful, we ran a study with 19 professional developers to understand what a solution might look like, free of technical constraints. In this paper, we report on design implications of tools for API learning, grounded in the reality of the professional developers themselves. 
+To understand where further investment would be the most useful, we ran a study with 19 professional developers to understand what a solution might look like, free of technical constraints. In this chapter, we report on design implications of tools for API learning, grounded in the reality of the professional developers themselves. 
 The reoccurring themes in the participants' feedback were trustworthiness, confidentiality, information overload and the need for code examples as first-class documentation artifacts.
 
 Modern software development requires a large investment in learning application programming interfaces (APIs), which allows developers to reuse existing components. API learning is a continuous process. Even when a developer makes a large initial investment in learning the API, 
@@ -759,7 +759,7 @@ To understand where further investment would be the most useful, we ran a study 
 
 Borrowing from participatory design, we asked the participants to act as our partners in designing a new user experience for learning Silverlight. We ran two types of sessions.  In the first, we interviewed participants to learn their common learning materials and  most challenging learning tasks and then asked them to sketch a design for a new learning portal. We compiled these ideas into five exploratory designs. In the second type of session, we ran focus groups to get feedback on our descriptions of their learning tasks and the five designs. 
 
-This paper's main contributions are a compilation of design implications for API learning tools, grounded in the reality of the professional developers themselves. We report on the recurring themes in the participants' feedback: trustworthiness, confidentiality, information overload and the need for code examples as first-class documentation artifacts.
+This chapter's main contributions are a compilation of design implications for API learning tools, grounded in the reality of the professional developers themselves. We report on the recurring themes in the participants' feedback: trustworthiness, confidentiality, information overload and the need for code examples as first-class documentation artifacts.
 
 \begin{figure*}
     \includegraphics[width=\linewidth]{api-learning-five-design}
@@ -915,7 +915,7 @@ The study is also based on a single API. While this choice allowed us to compare
 
 % Split by task type?
 
-%\todo{Typically there should be no new ideas in a conclusion, so maybe should move all new ideas from here to a discussion part... or just rename this section. Folksonomies for example are not discussed before, and it would need discussion to motivate why they are an alternative to expensive tool building, so maybe this should be highlighted/hinted at through out the paper. Just the same for the duality of ``heterogeneous learning materials from the web,'' I already tried to do this but we could emphasize this more and make it a central them, like: this is very useful information but credibility and confidentality are crucial when reaching our from local to global sources / audiences. Maybe also we can add some words in the introduction that the heterogenous global content was on available like 10 years ago and that this an all new and exciting situation and thus called for that research to learn about how developers use content on the web to find answers about API questions.}
+%\todo{Typically there should be no new ideas in a conclusion, so maybe should move all new ideas from here to a discussion part... or just rename this section. Folksonomies for example are not discussed before, and it would need discussion to motivate why they are an alternative to expensive tool building, so maybe this should be highlighted/hinted at through out the chapter. Just the same for the duality of ``heterogeneous learning materials from the web,'' I already tried to do this but we could emphasize this more and make it a central them, like: this is very useful information but credibility and confidentality are crucial when reaching our from local to global sources / audiences. Maybe also we can add some words in the introduction that the heterogenous global content was on available like 10 years ago and that this an all new and exciting situation and thus called for that research to learn about how developers use content on the web to find answers about API questions.}
 
 Web search is the predominant form of information seeking, but in many cases is frustrating and error-prone. Developers need the heterogeneous learning materials that web search provides, but want it to be more targeted and organized. 
 Therefore, API learning tools that bring web search and development environments closer together 

@@ -6,12 +6,18 @@ Latoza, Venolia and Deline \cite{Lato06a} studied the work habits of software en
 
 With regard to problems that developers face, they found that understanding the rational behind a piece of code (reported by 66\% of participants) is the biggest problem for developers. When trying to understand a piece of code, developers turn first to the piece of code itself, and when that fails, follow-up social clues to their personal network. They also identifiers being aware of changes that happens somewhere else (61\%), understanding the history of a piece of code (51\%), understanding who owns a piece of code (50\%), and finding the right person to talk to (39\%) among the problems that developers face when working with source code.
 
+\section{Related to Lexical Clues}
+
+\section{Related to Social Clues}
+
+\section{Related to Episodic Clues}
+
+\section{Related to Spatial Clues}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related Work, Semantic Clustering}\label{sec:soa}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Section: Lexical Clues and Lexical Information}
 
 The use of information retrieval techniques for reverse engineering dates back to the late eighties. Frakes and Nejmeh proposed to apply them on source code as if it would be a natural language text corpus \cite{Frak87a}. They applied an IR system based on keyword matching, which allowed to perform simple searches using wildcards and set expressions.
 
@@ -34,7 +40,7 @@ Huffman-Hayes \etal compare the results of several information retrieval techniq
 
 \v{C}ubrani\'{c} \etal build a searchable database with artifacts related to a software system, both source code and external documentation \cite{Cubr03a}. They use a structured meta model, which relates bug reports, news messages, external documentation and source files to each other. Their goal is the support software engineers, especially those new to a project, with a searchable database of what they call ``group memory''. To search the database they use information retrieval, however they do not apply LSI and use a plain vector space model only. They implemented their approach in an eclipse plug-in called Hipikat.
 
-\section{Related work for Software Summarization}\label{relwork}
+\subsection{Section: Related work for Software Summarization}\label{relwork}
 
 The present work is related to Jonathan Feinberg's comparison of inaugural addresses \cite{Feinberg09blog}. Feinberg analysed the inaugural address of Mr. President Barack Obama and his predecessors in office. For each inaugural addresses he provides a pair of \textsc{Wordle}\footnote{\url{http://www.wordle.net}} word clouds. One cloud consists of words that are specific to the address, and the other cloud consists of words that are missing in the address. Font size is used to represent frequency of a word and saturation to represent the log-likelihood ratio. The color blue is used in the left cloud to represent likely terms, and red is used in the right cloud to represent unlikely terms.
 
@@ -51,7 +57,7 @@ Lexical information of source code has been further proven useful for various ta
 Baldi \etal \cite{Bald08a} present a theory of aspects (the programming language feature) as latent topics. They apply Latent Dirichlet Analysis (LDA) to detect topic distributions that are possible candidates for aspect-oriented programming. They present the retrieved topics as a list of the 5 most likely words. The model of LDA assumes that each topic is associated with a multinomial distribution over words, and each document is associated with a multinomial distribution over topics; their approach is thus sound.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related Work for Chronia}\label{sec:soa}
+\subsection{Section: Related Work for Chronia}\label{sec:soa}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Analyzing the way developers interact with the system has only attracted few research. A visualization similar to the \omap is used to visualize how authors change a wiki page \cite{Vieg04a}.
@@ -82,7 +88,7 @@ Zimmerman \etal aimed to provide mechanism to warn developers about the correlat
 
 Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
 
-\section{Related Work for Bugreport Assignment}\label{sec:relatedwork}
+\subsection{Section: Related Work for Bugreport Assignment}\label{sec:relatedwork}
 
 There was previous work done on mining developer expertise from source code. However, if such an expertise model was applied to assist in the triage of bug reports, it required an explicit linkage between bug reports and source files~\cite{Anvik07}. Most existing recommendation systems for the assignment of developers to bug reports use other expertise models, as \eg models based on previous reports. Thus, the main differences between our approach and other recommendation systems are: First, our system is trained on the source code repository rather than on previous bug reports. Second, for the recommendation of a developer suitable to handle a bug report, we do not need a linkage between the bug tracking system and the software repository. As a collorary, our approach is a) not dependent on the quality of previous bug reports, and b) can also be used to assign developers that have not worked on any bug report previously. The main requirement for a developer to be assignable is that he has a contribution history of approx. half a year or more.
 
@@ -142,7 +148,7 @@ Podgurski \etal classified failure reports~\cite{Podgurski03}. They cluster prof
 Lexical information of source code has previously been proven useful for other tasks in software engineering, such as: identifying high-level conceptual clones \cite{Marc01a}, recovering traceability links between external documentation and source code \cite{Anto02a}, automatically categorizing software projects in open-source repositories \cite{Kawa04a}, visualizing conceptual correlations among software artifacts \cite{Kuhn07a,Kuhn08b}, and defining cohesion and coupling metrics \cite{Marc05a,Posh09a}.
 
 % =====================================================================
-\section{Background \& Related Work of Code Search}
+\subsection{Section: Background \& Related Work of Code Search}
 \label{sec:relwork}
 
 Since the rise of internet-scale code search engines, searching for reusable source code has quickly become a fundamental activity for developers \cite{Kuhn09b}. However, in order to establish search-driven software reuse as a best practice, the cost and time of deciding whether to integrate a search result must be minimized. The decision whether to reuse a search result or not should be quickly taken without the need for careful (and thus time-consuming) examination of the search results.
@@ -168,7 +174,7 @@ We are not the first to use collaborative filtering in code search. Ichii \etal 
 The \Jbd prototype, that we present in \autoref{sec:approach}, uses data collected from the Ohloh website to compute the trustability metric that we propose in \autoref{sec:metric}.
 
 % ===================================================================================
-\section{RELATED WORK}
+\subsection{Section: RELATED WORK}
 \label{sec:related}
 
 Using \mds to visualize information based on the metaphor of cartographic maps is by no means a novel idea. \emph{Topic maps}, as they are called, have a longstanding tradition in information visualization \cite{Ware04a}. The work in this paper was originally inspired by Michael Hermann's and Heiri Leuthold's work on the political landscapes of Switzerland \cite{Herm03a}. 

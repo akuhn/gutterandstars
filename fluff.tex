@@ -39,9 +39,9 @@ In the following chapter we present an approach to model a system lexical inform
 %is morning hours minutes seconds is date hours minutes
 %seconds invalid time value hours 12 minutes 60 seconds 60
 
-Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This paper proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this paper.
+Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This chapter proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Semantic Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{semantic clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We compare the topics to each other, identify links between them, provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this chapter.
 
-In this paper, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
+In this chapter, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
 
 \begin{itemize}
   \item \textbf{Providing a first impression of an unfamiliar software system}. A common pattern when encountering an unknown or not well known software for the first time is ``Read all the Code in One Hour'' \cite{Deme02a}. Our objective is to support this task, and to provide a map with a survey of the system's most important topics and their location.
@@ -54,12 +54,12 @@ Our approach is based on Latent Semantic Indexing (LSI), an information retrieva
 
 We implemented this approach in a tool called Hapax\footnote{The name is derived from the term \emph{hapax legomenon}, that refers to a word occurring only once a given body of text.}, which is built on top of the Moose reengineering environment \cite{Duca05a,Nier05c}, and we apply the tool on several case studies, two of which are presented in this work: JEdit\footnote{http://www.jedit.org/} and JBoss\footnote{http://www.JBoss.org/}.
 
-This paper is based on our previous work, in which we first proposed semantic clustering \cite{Kuhn05a}. The main contributions of the current paper are:
+This chapter is based on our previous work, in which we first proposed semantic clustering \cite{Kuhn05a}. The main contributions of the current chapter are:
 \begin{itemize}
 
 \item \emph{Topic distribution analysis.} In our previous work we introduced semantic clustering to detect linguistic topics given by parts of the system that use similar vocabulary. We complement the approach with the analysis of how topics are distributed over the system using a Distribution Map \cite{Duca06c}.
 
-\item \emph{Case studies.} In our previous work, we showed the results of the clustering and labeling on different levels of abstraction on three case studies. In this paper we report on other two case studies.
+\item \emph{Case studies.} In our previous work, we showed the results of the clustering and labeling on different levels of abstraction on three case studies. In this chapter we report on other two case studies.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,12 +115,12 @@ The result of applying LSI is a vector space, based on which we can compute the 
   \item \emph{Comparing the topics to the structure.} In \autoref{sec:distribution} we illustrate the distribution of topics over the system on a Distribution Map \cite{Duca06c}.
 \end{enumerate}
 
-We want to emphasize that the primary contribution of our work is semantic clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this paper.
+We want to emphasize that the primary contribution of our work is semantic clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{On the Relationship between Concepts and Semantic Clustering}\label{sec:wittgenstein}
 
-In this paper we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
+In this chapter we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
 
 Other than with domain or application concepts in Software Analysis \cite{Bigg93a}, it is not uncommon in information retrieval to derive \emph{linguistic topics} from the distribution of words over a set of documents. This is in accordance with Wittgenstein who states that \emph{``Die Bedeutung eines Wortes ist sein Gebrauch in der Sprache---the meaning of a word is given by its use in language''} \cite{Witt53a}. Unlike in classical philosophy, as for example Plato, there is no external definition of a word's meaning, but rather the meaning of a word is given by the relations it bears with other terms and sentences being used in the same context. Certainly, there is a congruence between the external definition of a word and its real meaning, since our external definitions are human-made as well, and thus, also part of the language game, but this congruence is never completely accurate.
 
@@ -182,7 +182,7 @@ The clustering takes the focus of the visualization from similarity between elem
 
 The semantic clusters help us grasp the topics implemented in the source code. However, the clustering does not take the structure of the system into account. As such, an important question is: How are these topics distributed over the system?
 
-To answer this question, we use a Distribution Map \cite{Tuft01a,Duca06c}. A Distribution Map visualizes the distribution of properties over system parts \ie a set of entities. In this paper, we visualize packages and their classes, and color these classes according to the semantic cluster to which they belong.
+To answer this question, we use a Distribution Map \cite{Tuft01a,Duca06c}. A Distribution Map visualizes the distribution of properties over system parts \ie a set of entities. In this chapter, we visualize packages and their classes, and color these classes according to the semantic cluster to which they belong.
 
 For example, in \autoref{fig:distMap} we show an example of a Distribution Map representing 5 packages, 37 classes and 4 semantic clusters. Each package is represented by a rectangle, which includes classes represented as small squares. Each class is colored by the semantic cluster to which it belongs.
 
@@ -390,7 +390,7 @@ Our results are not generalizable to any software system, a good naming conventi
 
 \textbf{On abbreviated identifier names.} Abbreviated identifers are commonly found in legacy code, since early programming languages often restrict the discrimination of identifer names to the first few letters. But unlike generic names, abbreviations affect the labeling only and do not threat our approach  as whole. This might come as a surprise, but since LSI is solely based on analyzing the statistical distribution of terms across the document set, it is not relevant whether identifiers are consistently written out or consistently abbreviated.
 
-However, if the labeling task comes up with terms such as \emph{pma}, \emph{tcm}, \emph{IPFWDIF} or \emph{sccpsn} this does not tell a human reader much about the system. These terms are examples taken from a large industry case study, which is not included in this paper, where about a third of all identifiers where abbreviations. In this case the labeling was completely useless. Please refer to \cite{Anqu98b} for approaches on how to recover abbreviations.
+However, if the labeling task comes up with terms such as \emph{pma}, \emph{tcm}, \emph{IPFWDIF} or \emph{sccpsn} this does not tell a human reader much about the system. These terms are examples taken from a large industry case study, which is not included in this chapter, where about a third of all identifiers where abbreviations. In this case the labeling was completely useless. Please refer to \cite{Anqu98b} for approaches on how to recover abbreviations.
 
 \textbf{On the size of the vocabulary.}  The vocabulary of source code is very small, smaller than that of a natural language text corpus. Intuitively explained: LSI is like a child learning language. In the same way as a human with a vocabulary of 2000 terms is less eloquent and knowledgeable than a human with a vocabulary of 20,000 terms, LSI performs better the larger the vocabulary. Whereas, the smaller the vocabulary the stronger the effect of missing or incorrect terms. In fact, LSI has been proven a valid model of the way children acquire language \cite{Land97a}.
 
@@ -423,9 +423,9 @@ Only one topic out of nine concepts is about the system's domain: job exchange. 
 \section{Conclusions}\label{sec:conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Source code bears the semantics of an application in the names of identifiers and comments. In this paper we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce semantic clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups semantic clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the semantic clusters are distributed over the system.
+Source code bears the semantics of an application in the names of identifiers and comments. In this chapter we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce semantic clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups semantic clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the semantic clusters are distributed over the system.
 
-We applied the approach on several case studies with different characteristics, two of which are presented in this paper.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Semantic clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
+We applied the approach on several case studies with different characteristics, two of which are presented in this chapter.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Semantic clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
 
 When starting this work, one of our hypotheses was that semantic clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
 
@@ -457,13 +457,13 @@ In the following chapter we present an approach to summarize part of a system as
 
 \todo{Include MSR Poster}
 
-As more and more open-source software components become available on the internet we need automatic ways to label and compare them. For example, a developer who searches for reusable software must be able to quickly gain an understanding of retrieved components. This understanding cannot be gained at the level of source code due to the semantic gap between source code and the domain model. In this paper we present a lexical approach that uses the log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system.
+As more and more open-source software components become available on the internet we need automatic ways to label and compare them. For example, a developer who searches for reusable software must be able to quickly gain an understanding of retrieved components. This understanding cannot be gained at the level of source code due to the semantic gap between source code and the domain model. In this chapter we present a lexical approach that uses the log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system.
 
 In recent years, software vocabulary has been proven to be a valuable source for software analysis, often including the retrieval of labels (\eg \cite{Baldi08OOPSLA,EinarHoest,Kuhn07a}). However, labeling software is not without pitfalls. The distribution of words in software corpora follows the same power-law as word frequencies in natural-language text \cite{Linstead09SUITE}. Most of the text is made up of a small set of common terms, whereas content-bearing words are rare. Analysis of software vocabulary must deal with the reality of rare terms, thus statistical tests that assume normal distribution are not applicable. For example, textual comparison based on directly counting term frequencies is subject to overestimation when the frequencies involved are very small.  
 
 For text analysis the use of \loglr improves the statistical results. Likelihood tests do not depend on assumptions of normal distribution, instead they use the asymptotic distribution of binomial likelihood \cite{Dunning}. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms.
 
-In this paper we present a lexical approach that uses the \loglr of word frequencies to automatically retrieve labels from source code. The approach can be applied i) to compare components with each other, ii) to compare a component against a normative corpus, and iii) to compare different revisions of the same component. We present a prototype implementation and give examples of its application. In particular, we apply the approach to detect trends in the evolution of the JUnit software system.
+In this chapter we present a lexical approach that uses the \loglr of word frequencies to automatically retrieve labels from source code. The approach can be applied i) to compare components with each other, ii) to compare a component against a normative corpus, and iii) to compare different revisions of the same component. We present a prototype implementation and give examples of its application. In particular, we apply the approach to detect trends in the evolution of the JUnit software system.
 
 \section{Log-Likelihood in a Nutshell}\label{nutshell}
 
@@ -474,7 +474,7 @@ The idea behind \loglr is to compare two statistical hypotheses, of which one is
 $$ L(p,k,n) = p^k ( 1 - p) ^ { n - k }$$
 \noindent
 with $p = \frac{k}{n}$, where $k$ is the term frequency (\ie number of occurrences) and $n$ the size of the corpus. Taking the logarithm of the likelihood ratio gives
-\footnote{In some publications (\eg \cite{Rayson}) we found that the last two terms were omitted (since their values tend to be orders of magnitude smaller than the corresponding values of the first two terms). The results presented in this paper, however, are obtained using the complete log likelihood ratio formula.}
+\footnote{In some publications (\eg \cite{Rayson}) we found that the last two terms were omitted (since their values tend to be orders of magnitude smaller than the corresponding values of the first two terms). The results presented in this chapter, however, are obtained using the complete log likelihood ratio formula.}
 
 \begin{align*}
 -2 \log \lambda =~&2 \big[ \log L(p_1,k_1,n_1) + \log L(p_2,k_2,n_2)\\
@@ -654,13 +654,13 @@ In the following chapter we present an approach to visualization a system histor
 
 \asteriskasteriskasterisk
 
-As systems evolve their structure change in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this paper we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this paper make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
+As systems evolve their structure change in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this chapter we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this chapter make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
 
 Software systems need to change in ways that challenge the original design. Even if the original documentation exists, it might not reflect the code anymore. In such situations, it is crucial to get access to developer knowledge to understand the system. As systems grow larger, not all developers know about the entire system, thus, to make the best use of developer knowledge, we need to know which developer is knowledgeable in which part of the system.
 
 From another perspective, Conway's law \cite{Conw68a} states that ``Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." That is, the shape of the organization reflects on the shape of the system. As such, to understand the system, one also has to understand the interaction between the developers and the system \cite{Deme02a}.
 
-In this paper we aim to understand how the developers drove the evolution of the system. In particular we provide answers to the following questions:
+In this chapter we aim to understand how the developers drove the evolution of the system. In particular we provide answers to the following questions:
 \begin{itemize}
 \item How many authors developed the system?
 \item Which author developed which part of the system?
@@ -675,7 +675,7 @@ We implemented our approach in Chronia, a tool built on top of the Moose reengin
 
 To show the usefulness of our solution we applied it on several large case studies. We report here some of the findings and discuss different facets of the approach.
 
-The contributions of the paper are:
+The contributions of the chapter are:
 \begin{itemize}
 \item The definition of file ownership.
 \item The clustering of files based on their commit history.
@@ -691,7 +691,7 @@ This section introduces a measurement to characterize the code ownership. The as
 
 The straightforward approach is to checkout all file versions ever committed to the versioning repository and to compute the code ownership from diff information between each subsequent revisions $f_{n-1}$ and $f_n$. From an implementation point of view this implies the transfer of large amounts of data over the network, and long computations.
 
-In this paper, we aim to provide for an approach that can deal with large projects with long history, and that can provide the results fast. As CVS is the very common versioning system, we make tuned our approach to work with the information CVS can provide. In particular we compute the ownership of the code based only on the CVS log information.
+In this chapter, we aim to provide for an approach that can deal with large projects with long history, and that can provide the results fast. As CVS is the very common versioning system, we make tuned our approach to work with the information CVS can provide. In particular we compute the ownership of the code based only on the CVS log information.
 
 Below we present a snippet from a CVS log. The log lists for each version $f_n$ of a file \-- termed revision in CVS \-- the time $t_{f_n}$ of its commit, the name of its author $\alpha_{f_n}$, some state information and finally the number of added and removed lines as deltas $a_{f_n}$ and $r_{f_n}$. We use these numbers to recover both the file size $s_{f_n}$, and the code ownership $own_{f_n}^\alpha$.
 
@@ -811,7 +811,7 @@ D(H_n,H_m) := \sum_{n \in H_n} min^2 \{ \vert m -n \vert : m \in H_m \}
 
 With this metric we can order the files according to the result of a hierarchical clustering algorithm \cite{Jain99a}. From this algorithm a dendrogram can be built: this is a hierarchical tree with clusters as its nodes and the files as its leaves. Traversing this tree and collecting its leaves yields an ordering that places files with similar histories near each other and files with dissimilar histories far apart of each other.
 
-The files axes of the \omap views shown in this paper are ordered with \textit{average linkage} clustering and \textit{larger-clusters-first} tree traversal. Nevertheless, our tool Chronia allows customization of the ordering.
+The files axes of the \omap views shown in this chapter are ordered with \textit{average linkage} clustering and \textit{larger-clusters-first} tree traversal. Nevertheless, our tool Chronia allows customization of the ordering.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Behavioral Patterns}
@@ -966,7 +966,7 @@ But classifications of the authors have to be interpreted in their context. If a
 \section{Conclusions}\label{sec:conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this paper we aim to understand how the developers drove the evolution of the system. In particular we ask the following questions:
+In this chapter we aim to understand how the developers drove the evolution of the system. In particular we ask the following questions:
 \begin{itemize}
 \item How many authors developed the system?
 \item Which author developed which part of the system?
