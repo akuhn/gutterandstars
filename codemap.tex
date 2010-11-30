@@ -434,29 +434,6 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 \end{figure}
 
 % ===================================================================================
-\section{The Codemap Algorithm}
-\label{sec:steps}
-
-\begin{figure*}
-\begin{center}
-  \includegraphics[width=\linewidth]{fig/codemap-pipeline-too}
-\end{center}
-    \caption{\emph{Construction steps of a software map, from left to right: 1) 2-dimensional embedding of files on the visualization pane; 2.a) circles around each file's location, based on class size in KLOC; 2.b) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size; the contributions of all files are summed up; 3) fully rendered map with hill-shading, contour lines, and filename labels.}}
-    \label{fig:steps}
-\end{figure*}
-
-\autoref{fig:steps} illustrates the construction of a software map. The sequence of the construction is basically the same as presented in previous work~\cite{Kuhn08b,Kuhn10b}. 
-
-\paragraph{2-Dimensional Embedding}
-A distance metric is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling (MDS) \cite{Borg05a} is used to embed all software artifacts into the visualization pane. The application of Isomap is an improvement over previous work in order to assist MDS with the global layout. In contrast to our previous work, Latent Semantic Indexing (LSI) is not applied anymore, it has been found to have little impact on the final embedding. 
-%The final embedding minimizes the error between the dissimilarity values and the visual distances.
-%Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
-
-\paragraph{Digital Elevation Model} In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
-
-\paragraph{Cartographic rendering} In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b,Kuhn10b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layers on/off and thus customize the codemap display to their needs.
-
-% ===================================================================================
 \section{Methodology}
 \label{sec:method}
 

@@ -24,29 +24,24 @@ In the following chapter we present an approach to model a system's lexical info
 
 \asteriskasteriskasterisk
 
-%Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
-%
-%{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
-%be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
-%\end{quotation}}
-%
-%Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
-%
-%When we strip away all identifiers and comments, from the machine point of view the functionality remains the same, but for a human reader the meaning is obfuscated and almost impossible to figure out. In our example, retaining formal information only yields:
-%
-%When we keep only the informal information, the purpose of the code is still recognizable. In our example, retaining only the naming yields:
-%
-%is morning hours minutes seconds is date hours minutes
-%seconds invalid time value hours 12 minutes 60 seconds 60
+Acquiring knowledge about a software system is one of the main activities in software reengineering, it is estimated that up to 60 percent of software maintenance is spent on comprehension \cite{Abra04a}. This is because a lot of knowledge about the software system and its associated business domain is not captured in an explicit form. Most approaches that have been developed focus on program structure \cite{Duca05b} or on external documentation \cite{Maar91a,Anto02b}. However, there is another fundamental source of information: the developer knowledge contained in identifier names and source code comments.
 
-Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the vocabulary of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This chapter proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Lexical Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{lexical clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this chapter.
+{\small\begin{quotation}\emph{The informal linguistic information that the software engineer deals with is not simply supplemental information that can
+be ignored because automated tools do not use it. Rather, this information is fundamental. [\ldots] If we are to use this informal information in design recovery tools, we must propose a form for it, suggest how that form relates to the formal information captured in program source code or in formal specifications, and propose a set of operations on these structures that implements the design recovery process} \cite{Bigg89c}.
+\end{quotation}}
 
-In this chapter, we use information retrieval techniques to \emph{derive topics from the vocabulary usage at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
+Languages are a means of communication, and programming languages are no different. Source code contains two levels of communication: human-machine communication through program instructions, and human to human communications through names of identifiers and comments. Let us consider a small code example:
+
+Many of the existing approaches in Software Comprehension focus on program program structure or external documentation. However, by analyzing formal information the informal semantics contained in the lexical information of source code are overlooked. To understand software as a whole, we need to enrich software analysis with the developer knowledge hidden in the code naming. This chapter proposes the use of information retrieval to exploit linguistic information found in source code, such as identifier names and comments. We introduce \emph{Lexical Clustering}, a technique based on Latent Semantic Indexing and clustering to group source artifacts that use similar vocabulary. We call these groups \emph{lexical clusters} and we interpret them as \emph{linguistic topics} that reveal the intention of the code. We provide automatically retrieved labels, and use a visualization to illustrate how they are distributed over the system. Our approach is language independent as it works at the level of identifier names. To validate our approach we applied it on several case studies, two of which we present in this chapter.
+
+In accordance with \cite{Bigg89c} we call our clusters \emph{linguistic topics} since they are derived from language use. Certainly, some linguistic topics do map to the domain and others do map to application concepts, however, this mapping is never complete. There is no guarantee that lexical clustering locates all or even any externally defined domain concept. But nonetheless, our case studies show that lexical clustering is able to capture important domain and application concepts of a software system. Which does not come as a surprise, since it is well known that identifer names and comments are one of the most prominent places where developers put their knowledge about a system.
+
+In this chapter, we use information retrieval techniques to \emph{derive topics from the lexical information at the source code level}. Apart from external documentation, the location and use of source-code identifiers is the most frequently consulted source of information in software maintenance \cite{Kosk04a}. The objective of our work is to analyze software without taking into account any external documentation. In particular we aim at:
 
 \begin{itemize}
   \item \textbf{Providing a first impression of an unfamiliar software system}. A common pattern when encountering an unknown or not well known software for the first time is ``Read all the Code in One Hour'' \cite{Deme02a}. Our objective is to support this task, and to provide a map with a survey of the system's most important topics and their location.
-  \item \textbf{Revealing the developer knowledge hidden in identifiers.} In practice, it is not external documentation, but identifer names and comments where developers put their knowledge about a system. Thus, our objective is not to locate externally defined domain concepts, but rather to derive topics from the actual use of vocabulary in source code.
-  \item \textbf{Enriching Software Analysis with informal information.} When analyzing formal information (\eg structure and behavior) we get only half of the picture: a crucial source of information is missing, namely, the semantics contained in the vocabulary of source code. Our objective is to reveal components or aspects when, for example, planning a large-scale refactoring. Therefore, we analyze how the code naming compares to the code structure: What is the distribution of linguistic topics over a system's modularization? Are the topics well-encapsulated by the modules or do they cross-cut the structure?
+  \item \textbf{Revealing the developer knowledge hidden in identifiers.} In practice, it is not external documentation, but identifer names and comments where developers put their knowledge about a system. Thus, our objective is not to locate externally defined domain concepts, but rather to derive topics from the actual use of lexical information in source code.
+  \item \textbf{Enriching Software Analysis with informal information.} When analyzing formal information (\eg structure and behavior) we get only half of the picture: a crucial source of information is missing, namely, the vocs contained in the lexical information of source code. Our objective is to reveal components or aspects when, for example, planning a large-scale refactoring. Therefore, we analyze how the code naming compares to the code structure: What is the distribution of linguistic topics over a system's modularization? Are the topics well-encapsulated by the modules or do they cross-cut the structure?
 \end{itemize}
 
 
@@ -57,7 +52,7 @@ We implemented this approach in a tool called Hapax\footnote{The name is derived
 This chapter is based on our previous work, in which we first proposed lexical clustering (back then still called ``semantic clustering'' \cite{Kuhn05a}. The main contributions of the current chapter are:
 \begin{itemize}
 
-\item \emph{Topic distribution analysis.} In our previous work we introduced semantic clustering to detect linguistic topics given by parts of the system that use similar vocabulary. We complement the approach with the analysis of how topics are distributed over the system using a Distribution Map \cite{Duca06c}.
+\item \emph{Topic distribution analysis.} In our previous work we introduced lexical clustering to detect linguistic topics given by parts of the system that use similar vocabulary. We complement the approach with the analysis of how topics are distributed over the system using a Distribution Map \cite{Duca06c}.
 
 \item \emph{Case studies.} In our previous work, we showed the results of the clustering and labeling on different levels of abstraction on three case studies. In this chapter we report on other two case studies.
 \end{itemize}
@@ -108,7 +103,7 @@ The result of applying LSI is a vector space, based on which we can compute the 
 \autoref{fig:clustering} illustrates the first three steps of the approach: preprocessing, applying LSI, and clustering. Furthermore we retrieve the most relevant terms for each cluster and visualize the clustering on a 2D-map, thus in short the approach is:
 
 \begin{enumerate}
-  \item \emph{Preprocessing the software system.} In \autoref{sec:parsing}, we show how we break the system into documents and how we build a term-document-matrix that contains the vocabulary usage of the system.
+  \item \emph{Preprocessing the software system.} In \autoref{sec:parsing}, we show how we break the system into documents and how we build a term-document-matrix that contains the lexical information of the system.
   \item \emph{Applying Latent Semantic Indexing.} In \autoref{sec:lsi} we use LSI to compute the similarities between source code documents and illustrate the result in a correlation matrix \cite{Ling73a}.
   \item \emph{Identifying topics.} In \autoref{sec:clustering} we cluster the documents based on their similarity, and we rearrange the correlation matrix. In \autoref{sec:wittgenstein} we discuss that each cluster is a \emph{linguistic topic}.
   \item \emph{Describing the topics with labels.} In \autoref{sec:labeling} we use LSI again to retrieve for each cluster the top-$n$ most relevant terms.
@@ -116,15 +111,6 @@ The result of applying LSI is a vector space, based on which we can compute the 
 \end{enumerate}
 
 We want to emphasize that the primary contribution of our work is lexical clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{On the Relationship between Concepts and Lexical Clustering}\label{sec:wittgenstein}
-%
-%In this chapter we are interested in locating concepts in the source code. However, our concern is not to locate the implementation of externally defined domain concepts, but rather to derive the implemented topics from the vocabulary of source code. We tackle the problem of concept location on the very level of source code, where we apply information retrieval to analyze the use of words in source code documents. The clusters retrieved by our approach are not necessarily domain or application concepts, but rather code-oriented topics.
-%
-%Other than with domain or application concepts in Software Analysis \cite{Bigg93a}, it is not uncommon in information retrieval to derive \emph{linguistic topics} from the distribution of words over a set of documents. This is in accordance with Wittgenstein who states that \emph{``Die Bedeutung eines Wortes ist sein Gebrauch in der Sprache---the meaning of a word is given by its use in language''} \cite{Witt53a}. Unlike in classical philosophy, as for example Plato, there is no external definition of a word's meaning, but rather the meaning of a word is given by the relations it bears with other terms and sentences being used in the same context. Certainly, there is a congruence between the external definition of a word and its real meaning, since our external definitions are human-made as well, and thus, also part of the language game, but this congruence is never completely accurate.
-%
-%In accordance with \cite{Bigg89c} we call our clusters \emph{linguistic topics} since they are derived from language use. Certainly, some linguistic topics do map to the domain and others do map to application concepts, however, this mapping is never complete. There is no guarantee that lexical clustering locates all or even any externally defined domain concept. But nonetheless, our case studies show that lexical clustering is able to capture important domain and application concepts of a software system. Which does not come as a surprise, since it is well known that identifer names and comments are one of the most prominent places where developers put their knowledge about a system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preprocessing the Software System}\label{sec:parsing}
@@ -167,14 +153,14 @@ A clustering algorithm groups similar elements together and aggregates them into
 The clustering takes the focus of the visualization from similarity between elements to similarity between clusters. The tradeoff is, as with any abstraction, that some valuable detail information is lost. Our experiments showed that one-to-many relationships between an element and an entire cluster are valuable patterns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Analyzing the Distribution of Semantic Clusters}\label{sec:distribution}
+\section{Analyzing the Distribution of Lexical Clusters}\label{sec:distribution}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The semantic clusters help us grasp the topics implemented in the source code. However, the clustering does not take the structure of the system into account. As such, an important question is: How are these topics distributed over the system?
+The lexical clusters help us grasp the topics implemented in the source code. However, the clustering does not take the structure of the system into account. As such, an important question is: How are these topics distributed over the system?
 
-To answer this question, we use a Distribution Map \cite{Tuft01a,Duca06c}. A Distribution Map visualizes the distribution of properties over system parts \ie a set of entities. In this chapter, we visualize packages and their classes, and color these classes according to the semantic cluster to which they belong.
+To answer this question, we use a Distribution Map \cite{Tuft01a,Duca06c}. A Distribution Map visualizes the distribution of properties over system parts \ie a set of entities. In this chapter, we visualize packages and their classes, and color these classes according to the lexical cluster to which they belong.
 
-For example, in \autoref{fig:distMap} we show an example of a Distribution Map representing 5 packages, 37 classes and 4 semantic clusters. Each package is represented by a rectangle, which includes classes represented as small squares. Each class is colored by the semantic cluster to which it belongs.
+For example, in \autoref{fig:distMap} we show an example of a Distribution Map representing 5 packages, 37 classes and 4 lexical clusters. Each package is represented by a rectangle, which includes classes represented as small squares. Each class is colored by the lexical cluster to which it belongs.
 
 \begin{figure}[h]
     \centering
@@ -182,7 +168,7 @@ For example, in \autoref{fig:distMap} we show an example of a Distribution Map r
   \caption{Example of a Distribution Map.}\label{fig:distMap}
 \end{figure}
 
-Using the Distribution Map visualization we correlate linguistic information with structural information. The semantic partition of a system, as obtained by semantic clustering, does generally not correspond one-on-one to its structural modularization. In most systems we find both, topics that correspond to the structure as well as topics that cross-cut it. Applying this visualization on several case studies, we identified the following patterns:
+Using the Distribution Map visualization we correlate linguistic information with structural information. The lexical partition of a system, as obtained by lexical clustering, does generally not correspond one-on-one to its structural modularization. In most systems we find both, topics that correspond to the structure as well as topics that cross-cut it. Applying this visualization on several case studies, we identified the following patterns:
 
 \begin{itemize}
   \item \emph{Well-encapsulated topic} -- if a topic corresponds to system parts, we call this a \emph{well-encapsulated topic}. Such a topic is spread over one or multiple parts and includes almost all source code within those parts. If a well-encapsulated topic covers only one part we speak of a \emph{solitary topic}.
@@ -242,7 +228,7 @@ Our approach depends on several parameters, which may be difficult too choose fo
   \textbf{Breaking the dendrogram into clusters.} Hierarchical clustering uses a threshold to break the dendrogram, which is the tree of all possible clusters, into a fix partition. Depending on the objective, we break it either into a fixed number of clusters (\eg for the Distribution Map, where the number of colors is constrained) or at a given threshold (\eg for the correlation matrix). In the user interface of the Hapax tool, there is a slider for the threshold such that we can immediately observe the effect on both correlation matrix and Distribution Map interactively.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Semantic Clustering applied on JEdit}
+\subsection{Lexical Clustering applied on JEdit}
 
 We exemplify our approach at the case of JEdit, an open-source Text editor written in Java. The case study contains 394 classes and uses a vocabulary of 1603 distinct terms. We reduced the text corpus to an LSI-space with rank $r = 15$ and clustered it with a threshold of $\delta = 0.5$ (the choice of parameters is discussed in \autoref{sec:parameters}).
 
@@ -264,7 +250,7 @@ This is a common pattern that we often encountered during our experiments: zone 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{fig/hapax-jedit-correlation-labels}
-\caption{The semantic clusters of JEdit and their labels.}\label{fig:jeditLabels}
+\caption{The lexical clusters of JEdit and their labels.}\label{fig:jeditLabels}
 \end{figure}
 
 All these labels are terms taken from the vocabulary of the source code and as such they do not always describe the topics in generic terms. For example, event though JEdit is a text-editor, the term \emph{text-editor} is not used on the source code level. The same applies for topic \cyan, where the term \emph{regular expression} does not shop up in the labels.
@@ -274,7 +260,7 @@ All these labels are terms taken from the vocabulary of the source code and as s
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{fig/hapax-jedit-distribution}\\
-  \caption{The Distribution Map of the semantic clusters over the package structure of JEdit.}\label{fig:jeditDistribution}
+  \caption{The Distribution Map of the lexical clusters over the package structure of JEdit.}\label{fig:jeditDistribution}
 \end{figure}
 
 
@@ -287,12 +273,12 @@ The three most well-encapsulated topics (\eg \orange, \blue and \cyan) implement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{First Impression of JBoss: Distribution Map and Labels}\label{sec:azureus}
 
-This case study presents the outline of JBoss, an application-server written in Java. We applied semantic clustering and partitioned the system into ten topics. The system is divided into one large cluster (colored in red), which implements the core of the server, and nine smaller clusters. Most of the small clusters implement different services and protocols provided by the application server.
+This case study presents the outline of JBoss, an application-server written in Java. We applied lexical clustering and partitioned the system into ten topics. The system is divided into one large cluster (colored in red), which implements the core of the server, and nine smaller clusters. Most of the small clusters implement different services and protocols provided by the application server.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\linewidth]{fig/hapax-jboss-distribution}
-  \caption{The Distribution Map of the semantic clusters over the package structure of JBoss.}
+  \caption{The Distribution Map of the lexical clusters over the package structure of JBoss.}
   \label{fig:JBossDistribution}
 \end{center}
 \end{figure}
@@ -318,7 +304,7 @@ This case study presents the outline of JBoss, an application-server written in 
     \hline
   \end{tabular}
   \end{scriptsize}
-  \caption{The labels of the semantic clusters of JBoss.}\label{fig:JBossLabels}
+  \caption{The labels of the lexicel clusters of JBoss.}\label{fig:JBossLabels}
 \end{figure}
 
 
@@ -334,7 +320,7 @@ Noteworthy is the label \emph{loubyansky} in topic \blue, it is the name of a de
 
 Noteworthy as well are the labels of topic \darkgreen, as they expose a failure in the preprocessing of the input data. To exclude copyright disclaimers, as for example the GPL licence, we ignore any comment above the \emph{package} statement of a Java class. In the case of topic \darkgreen this heuristic failed: the source files contained another licence within the body of the class. However, repeating the same case study with an improved preprocessing resulted in nearly the same clustering and labeled this cluster as RMI component: \emph{event, receiver, RMI, RMIiop, iiop, RMIidl, and idl}.
 
-The topics extracted from the source code can help improving the comprehension. If a maintainer is seeking information, semantic clustering helps in identifying the related code. This is similar to the use of a search engine, for example if the web-service interface has to be changed, the maintainer can immediately look at the Orange concept, and identify the related classes. Much in the same way, if one has to maintain the database interface, he looks at the Blue concept.
+The topics extracted from the source code can help improving the comprehension. If a maintainer is seeking information, lexical clustering helps in identifying the related code. This is similar to the use of a search engine, for example if the web-service interface has to be changed, the maintainer can immediately look at the Orange concept, and identify the related classes. Much in the same way, if one has to maintain the database interface, he looks at the Blue concept.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -347,7 +333,7 @@ In this section we evaluate and discuss success criteria, strengths and limitati
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{On the Quality of Identifier Names}
 
-In the same way as structural analysis depends on correct syntax, semantic analysis is sensitive to the quality of the naming. Since we derive our topics solely based on the use of identifer names and comments, it does not come as a surprise that our approach stands and fails with the quality of the source code naming.
+In the same way as structural analysis depends on correct syntax, lexical analysis is sensitive to the quality of the naming. Since we derive our topics solely based on the use of identifer names and comments, it does not come as a surprise that our approach stands and fails with the quality of the source code naming.
 
 Our results are not generalizable to any software system, a good naming convention and well chosen identifiers yields best results, whereas bad naming (\ie too generic names, arbitrary names or cryptic abbreviations) is one of the main threats to external validation. The vocabulary of the case studies presented in this work is of good quality, however, when performing other case studies we learned of different facets that affect the outcome, these are:
 
@@ -366,13 +352,13 @@ However, if the labeling task comes up with terms such as \emph{pma}, \emph{tcm}
 \textbf{On the combination of LSI with morphological analysis.} Even tough the benefits of stemming are not without controversy, we apply it as part of the preprocessing step \cite{Baez99b}. Our rational is: analyzing a software system at the level of methods is very sensitive to the quality of input, as the small document size threatens the success of LSI. Considering these circumstances, we  decided to rely on stemming as it is well known that the naming of identifers often includes the same term in singular and plurals: for example \emph{setProperty} and \emph{getAllProperties} or \emph{addChild} and \emph{getChildren}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{On using Semantic Clustering for Topic Identification}
+\subsection{On using Lexical Clustering for Topic Identification}
 
 One of our objectives is to compare linguistic topics to domain and application concepts \cite{Bigg93a}. As discussed in \autoref{sec:wittgenstein}, we derive linguistic topics from the vocabulary usage of source code instead from external definitions. In this section we clarify some questions concerning the relation between derived topics and externally defined concepts:
 
 \textbf{On missing vocabulary and ontologies.} Often the externally defined concepts are not captured by the labeling. The rational for this is as follows. Consider for example a text editor in whose source code the term \emph{text-editor} is never actually used, but terms like \emph{file} and \emph{user}. In this case our approach will label the text-editor concepts with these two terms, as a more generic term is missing. As our approach is not based on an ontological database, its vocabulary is limited to the terms found in source code and if terms are not used our approach will not find accurate labels. We suggest to use ontologies (\ie WordNet) to improve the results in these cases.
 
-\textbf{On the congruence between topics and domain.} When starting this work, one of our hypotheses was that semantic clustering will reveal a system's domain semantics. But our experiments disproved this hypothesis: most linguistic topics are application concepts or architectural components, such as layers. In many experiments, our approach partitioned the system into one (or sometimes two) large domain-specific part and up to a dozen domain-independent parts, such as for example input/output or data storage facilities. Consider for example the application in \autoref{fig:outsight}, it is divided into nine parts as follows:
+\textbf{On the congruence between topics and domain.} When starting this work, one of our hypotheses was that lexical clustering will reveal a system's domain semantics. But our experiments disproved this hypothesis: most linguistic topics are application concepts or architectural components, such as layers. In many experiments, our approach partitioned the system into one (or sometimes two) large domain-specific part and up to a dozen domain-independent parts, such as for example input/output or data storage facilities. Consider for example the application in \autoref{fig:outsight}, it is divided into nine parts as follows:
 
 \begin{figure}[h]
   % Requires \usepackage{graphicx}
@@ -390,13 +376,13 @@ Only one topic out of nine concepts is about the system's domain: job exchange. 
 \section{Conclusions}\label{sec:conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Source code bears the semantics of an application in the names of identifiers and comments. In this chapter we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce semantic clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups semantic clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the semantic clusters are distributed over the system.
+Source code bears the semantics of an application in the names of identifiers and comments. In this chapter we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce lexical clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups lexical clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the lexical clusters are distributed over the system.
 
-We applied the approach on several case studies with different characteristics, two of which are presented in this chapter.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Semantic clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
+We applied the approach on several case studies with different characteristics, two of which are presented in this chapter.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Lexical clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
 
-When starting this work, one of our hypotheses was that semantic clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
+When starting this work, one of our hypotheses was that lexical clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
 
-In the future we would also like to investigate in more depth recall and precision of the approach. For example, we would like to compare the results of the semantic clustering with other types of clustering. Furthermore, we would like to improve the labeling with other computer linguistic techniques.
+In the future we would also like to investigate in more depth recall and precision of the approach. For example, we would like to compare the results of the lexical clustering with other types of clustering. Furthermore, we would like to improve the labeling with other computer linguistic techniques.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
