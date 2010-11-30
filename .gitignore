@@ -3,7 +3,6 @@
 *.out
 gutter+stars.pdf
 *.toc
-*.bbl
 *.blg
 p.png
 scg.bib
