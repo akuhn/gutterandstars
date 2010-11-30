@@ -1,10 +1,24 @@
 %!TEX root = gutter+stars.tex
-\chapter{Approches for Code Orientation}
+\chapter{Related Work}
 \label{the chapter on related work}
 
-Investigation of human-factors in software engineering, such as cognitive clues used for code orientation, is a rather recent trend in the field of software engineering research. While there had always been single papers that focused on human factors a coherent body of research is just about to emerge. For example, theoretic researchers are starting to investigate user needs in qualitative studies, resulting in growing collection of the most common questions that developers ask or the most common problems that developers struggle with. Also, practical researchers in development tool building are starting to evaluate the usability of their tools rather than just giving proof of their technical correctness. 
+Investigation of human-factors in software engineering, such as cognitive clues used for code orientation, is a rather recent trend in the field of software engineering research. While there had always been single papers that focused on human factors, a coherent body of research is just about to emerge. 
+% Examples
+For example, theoretic researchers are starting to investigate user needs in qualitative studies, resulting in growing collection of the most common questions that developers ask or the most common problems that developers struggle with. Also, practical researchers in the field of development tool building are starting to evaluate the usability of their prototypes rather than just giving proof of a prototype's technical correctness. 
 
-In the same time, development tool building in industry is going through a similar transition. While it used to be that software engineers build their own tools (and often still is the case) we observe a professionalization of development tool building as well as a change in the demographics of software developers. Development tools are built by specialized engineers whereas the demographics of developers is growing to include more and more end-user programmers that lack the skills to build their own tools. Thus the assumption that development tool builders inherently know which tool to build because they address their own needs does not hold any more. Independent whether this ever used to be a valid assumption or not these days it does certainly not apply anymore.
+In the same time, development tool building in industry is going through a similar transition. While it used to be that software engineers build their own tools (and often still is the case) we observe both a professionalization of development tool building and a change in the demographics of software developers. Development tools are built by specialized engineers whereas the demographics of developers is growing to include more and more end-user programmers that lack the skills to build their own tools. The assumption that development tool builders inherently know which tool to build because they address their own needs does thus not hold any more. Independent whether this ever used to be a valid assumption, or not, these days it does certainly not apply anymore: development tool building has become a specialized, professional activity---in both industry and academia.
+
+Related academic work on development tool building is found in two distinct bodies of research literature. On the one hand, there is the solution-driven work published at conferences of the software maintenance community (such as ICPC\footnote{International Conference on Program Comprehension}, ICSM\footnote{International Conference on Software Maintenance} and WCRE\footnote{Working Conference on Reverse Engineering}). On the other hand, there is problem-oriented work published at conferences of the human-computer interaction (such as CHI\footnote{International Conference on Human-Computer Interaction}, CSCW\footnote{International Conference on Computer-Supported Collaborative Work} and VLHCC\footnote{Symposium on Visual Languages and Human-Centric Computing}) and as of recently also the software engineering community (most prominently ICSE\footnote{International Conference on Software Engineering} with its CHASE\footnote{Workshop on Cooperative- and Human-Aspects in Software Engineering} workshop). 
+
+Solution-driven literature typically reports on prototypes of external development tools that exploit novel technical approaches. Evaluation is done by applying the prototype on a small number of cases, typically the codebase of one or more open-source projects. This proof-of-concept is used to show that it is feasible to realize the proposed technical approach and that the prototype implementation is technically correct. The user needs that are addressed by this kind work are typically not based on the findings of user studies, but rather based on assumptions drawn from the personal development experience of the researchers themselves. In recent years, some researchers in that field started to evaluate their prototypes using controlled experiments. However, their results are often of little relevance and sometimes even flawed. Controlled experiments have been developed in psychology to study phenomena that are easy to isolate in the lab, such as basic human behavior, and not to study complex work processes such as software engineering. Isolating software engineering tasks in a lab situation is often almost impossible given to the inherent complexity of software engineering and how little understood it still is. Using quantitative user studies would be more appropriate, just as is done when evaluating end-user applications for other computer-supported, and possibly collaborative, professions.
+
+Problem-oriented literature typically reports on surveys and interviews with professional developers and sometimes presents a tool prototype that addresses a specific users need identified by the initial user study. The result of the user studies are typically distilled as lists of common actions, question are problems that document the most common or the most frequent user needs of software engineers. Evaluation of prototypes is done by qualitative user studies, that is again interviewing developers that used the prototype tool and thus showing that the tool in fact addresses the user need that it was built for. Some prototypes are evaluated using quantitative studies, but typically not using controlled experiments but rather measuring frequency, correctness or performance of certain actions that are related to the addressed user need.
+
+\asteriskasteriskasterisk
+
+The remainder of this chapter structured as follows. First, related work of the problem-oriented literature on user needs is discussed. Then, tool prototypes taken from both the solution-driven and the problem-oriented literature are discussed, loosely grouped by the four categories of code orientation clues, \ie lexical, social, episodic and spatial. Where applicable, literature on related information sources, such as \eg lexical and social information found in source code, is discussed as well.
+
+\section{User Needs}
 
 Latoza, Venolia and Deline \cite{Lato06a} studied the work habits of software engineers in two surveys and a series of interviews. The investigated how much time developers spend on code related activities and which are the most serious problems and questions that developers face when working with source code. They found that developers an almost equal amount of time (\ie each about 10--15\% of development time) on editing, writing, designing and understanding code, but also on communication with other developers and other coding activities, such as refactoring. The found a negative correlation between working on new features (36\% of development time) and communication, which suggests that developers working on new features need less information from their team mates. Whereas developers working on bug fixes (49\% of the development time) and maintenance (15\% of development time) spend more time following-up social clues, ie communication with team mates and their social network. 
 
@@ -12,18 +26,7 @@ With regard to problems that developers face, they found that understanding the 
 
 
 
-\section{Related to Lexical Clues}
-
-\section{Related to Social Clues}
-
-\section{Related to Episodic Clues}
-
-\section{Related to Spatial Clues}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Section: Lexical Clues and Lexical Information}
+\section{Lexical Clues and Lexical Information}
 
 The use of information retrieval techniques for reverse engineering dates back to the late eighties. Frakes and Nejmeh proposed to apply them on source code as if it would be a natural language text corpus \cite{Frak87a}. They applied an IR system based on keyword matching, which allowed to perform simple searches using wildcards and set expressions.
 
@@ -46,8 +49,6 @@ Huffman-Hayes \etal compare the results of several information retrieval techniq
 
 \v{C}ubrani\'{c} \etal build a searchable database with artifacts related to a software system, both source code and external documentation \cite{Cubr03a}. They use a structured meta model, which relates bug reports, news messages, external documentation and source files to each other. Their goal is the support software engineers, especially those new to a project, with a searchable database of what they call ``group memory''. To search the database they use information retrieval, however they do not apply LSI and use a plain vector space model only. They implemented their approach in an eclipse plug-in called Hipikat.
 
-\subsection{Section: Related work for Software Summarization}\label{relwork}
-
 The present work is related to Jonathan Feinberg's comparison of inaugural addresses \cite{Feinberg09blog}. Feinberg analysed the inaugural address of Mr. President Barack Obama and his predecessors in office. For each inaugural addresses he provides a pair of \textsc{Wordle}\footnote{\url{http://www.wordle.net}} word clouds. One cloud consists of words that are specific to the address, and the other cloud consists of words that are missing in the address. Font size is used to represent frequency of a word and saturation to represent the log-likelihood ratio. The color blue is used in the left cloud to represent likely terms, and red is used in the right cloud to represent unlikely terms.
 
 Anslow \etal \cite{Anslow08OOPSLA} visualized the evolution of words in class names in Java version 1.1 and Java version 6.0. They illustrated the history in a combined word cloud that contains terms from both versions. Each word is printed twice, font size represents word frequency and color the corpus. As such they compared word counts, which assumes normal distribution and is thus not as sound as using log-likelihood ratios.
@@ -62,39 +63,7 @@ Lexical information of source code has been further proven useful for various ta
 
 Baldi \etal \cite{Bald08a} present a theory of aspects (the programming language feature) as latent topics. They apply Latent Dirichlet Analysis (LDA) to detect topic distributions that are possible candidates for aspect-oriented programming. They present the retrieved topics as a list of the 5 most likely words. The model of LDA assumes that each topic is associated with a multinomial distribution over words, and each document is associated with a multinomial distribution over topics; their approach is thus sound.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Section: Related Work for Chronia}\label{sec:soa}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Analyzing the way developers interact with the system has only attracted few research. A visualization similar to the \omap is used to visualize how authors change a wiki page \cite{Vieg04a}.
-
-Xiaomin Wu \etal visualize \cite{Wu04b} the change log information to provide an overview of the active places in the system as well as of the authors activity. They display measurements like the number of times an author changed a file, or the date of the last commitment.
-
-Measurements and visualization have long been used to analyze how software systems evolve.
-
-Ball and Eick \cite{Ball96a} developed multiple visualizations for showing changes that appear in the source code. For example, they show what is the percentage of bug fixes and feature addition in files, or which lines were changed recently.
-
-Eick \etal proposed multiple visualizations to show changes using colors and third dimension \cite{Eick02a}.
-
-Chuah and Eick proposed a three visualizations for comparing and correlating different evolution information like the number of lines added, the errors recorded between versions, number of people working etc. \cite{Chua98a}.
-
-Rysselberghe and Demeyer use a scatter plot visualization of the changes  to provide an overview of the evolution of systems and to detect patterns of change\cite{Ryss04a}.
-
-Jingwei Wu \etal use the spectrograph metaphor to visualize how changes occur in software systems \cite{Wu04a}. They used colors to denote the age of changes on different parts of the systems.
-
-Jazayeri analyzes the stability of the architecture \cite{Jaza02a} by using colors to depict the changes. From the visualization he concluded that old parts tend to stabilize over time.
-
-Lanza and Ducasse visualize the evolution of classes in the Evolution Matrix \cite{Lanz02a}. Each class version is represented using a rectangle. The size of the rectangle is given by different measurements applied on the class version. From the visualization different evolution patterns can be detected such as continuous growth, growing and shrinking phases etc.
-
-Another relevant reverse engineering domain is the analysis of the co-change history.
-
-Gall \etal aimed to detect logical coupling between parts of the system \cite{Gall98a} by identifying the parts of the system which change together. They used this information to define a coupling measurement based on the fact that the more times two modules were changed at the same time, the more they were coupled.
-
-Zimmerman \etal aimed to provide mechanism to warn developers about the correlation of changes between functions. The authors placed their analysis at the level of entities in the meta-model (\eg methods) \cite{Zimm04a}. The same authors defined a measurement of coupling based on co-changes \cite{Zimm03a}.
-
-Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
-
-\subsection{Section: Related Work for Bugreport Assignment}\label{sec:relatedwork}
+\section{Social Clues and Social Information}
 
 There was previous work done on mining developer expertise from source code. However, if such an expertise model was applied to assist in the triage of bug reports, it required an explicit linkage between bug reports and source files~\cite{Anvik07}. Most existing recommendation systems for the assignment of developers to bug reports use other expertise models, as \eg models based on previous reports. Thus, the main differences between our approach and other recommendation systems are: First, our system is trained on the source code repository rather than on previous bug reports. Second, for the recommendation of a developer suitable to handle a bug report, we do not need a linkage between the bug tracking system and the software repository. As a collorary, our approach is a) not dependent on the quality of previous bug reports, and b) can also be used to assign developers that have not worked on any bug report previously. The main requirement for a developer to be assignable is that he has a contribution history of approx. half a year or more.
 
@@ -153,10 +122,6 @@ Podgurski \etal classified failure reports~\cite{Podgurski03}. They cluster prof
 
 Lexical information of source code has previously been proven useful for other tasks in software engineering, such as: identifying high-level conceptual clones \cite{Marc01a}, recovering traceability links between external documentation and source code \cite{Anto02a}, automatically categorizing software projects in open-source repositories \cite{Kawa04a}, visualizing conceptual correlations among software artifacts \cite{Kuhn07a,Kuhn08b}, and defining cohesion and coupling metrics \cite{Marc05a,Posh09a}.
 
-% =====================================================================
-\subsection{Section: Background \& Related Work of Code Search}
-\label{sec:relwork}
-
 Since the rise of internet-scale code search engines, searching for reusable source code has quickly become a fundamental activity for developers \cite{Kuhn09b}. However, in order to establish search-driven software reuse as a best practice, the cost and time of deciding whether to integrate a search result must be minimized. The decision whether to reuse a search result or not should be quickly taken without the need for careful (and thus time-consuming) examination of the search results.
 
 Trustability is a big issue for reusing code. When a developer reuses code from an external sources he has to trust the work of external developers that are unknown to him. This is not to be confused with trustworthy computing, where clients are concerned with security and reliability of a computation service.
@@ -179,9 +144,37 @@ We are not the first to use collaborative filtering in code search. Ichii \etal 
 
 The \Jbd prototype, that we present in \autoref{sec:approach}, uses data collected from the Ohloh website to compute the trustability metric that we propose in \autoref{sec:metric}.
 
-% ===================================================================================
-\subsection{Section: RELATED WORK}
-\label{sec:related}
+\section{Episodic Clues and Storytelling}
+
+Analyzing the way developers interact with the system has only attracted few research. A visualization similar to the \omap is used to visualize how authors change a wiki page \cite{Vieg04a}.
+
+Xiaomin Wu \etal visualize \cite{Wu04b} the change log information to provide an overview of the active places in the system as well as of the authors activity. They display measurements like the number of times an author changed a file, or the date of the last commitment.
+
+Measurements and visualization have long been used to analyze how software systems evolve.
+
+Ball and Eick \cite{Ball96a} developed multiple visualizations for showing changes that appear in the source code. For example, they show what is the percentage of bug fixes and feature addition in files, or which lines were changed recently.
+
+Eick \etal proposed multiple visualizations to show changes using colors and third dimension \cite{Eick02a}.
+
+Chuah and Eick proposed a three visualizations for comparing and correlating different evolution information like the number of lines added, the errors recorded between versions, number of people working etc. \cite{Chua98a}.
+
+Rysselberghe and Demeyer use a scatter plot visualization of the changes  to provide an overview of the evolution of systems and to detect patterns of change\cite{Ryss04a}.
+
+Jingwei Wu \etal use the spectrograph metaphor to visualize how changes occur in software systems \cite{Wu04a}. They used colors to denote the age of changes on different parts of the systems.
+
+Jazayeri analyzes the stability of the architecture \cite{Jaza02a} by using colors to depict the changes. From the visualization he concluded that old parts tend to stabilize over time.
+
+Lanza and Ducasse visualize the evolution of classes in the Evolution Matrix \cite{Lanz02a}. Each class version is represented using a rectangle. The size of the rectangle is given by different measurements applied on the class version. From the visualization different evolution patterns can be detected such as continuous growth, growing and shrinking phases etc.
+
+Another relevant reverse engineering domain is the analysis of the co-change history.
+
+Gall \etal aimed to detect logical coupling between parts of the system \cite{Gall98a} by identifying the parts of the system which change together. They used this information to define a coupling measurement based on the fact that the more times two modules were changed at the same time, the more they were coupled.
+
+Zimmerman \etal aimed to provide mechanism to warn developers about the correlation of changes between functions. The authors placed their analysis at the level of entities in the meta-model (\eg methods) \cite{Zimm04a}. The same authors defined a measurement of coupling based on co-changes \cite{Zimm03a}.
+
+Hassan \etal analyzed the  types of data that are good predictors of change propagation, and came to the conclusion that historical co-change is a better mechanism than structural dependencies like call-graph \cite{Hass04a}.
+
+\section{Spatial Clues and Software Visualization}
 
 Using \mds to visualize information based on the metaphor of cartographic maps is by no means a novel idea. \emph{Topic maps}, as they are called, have a longstanding tradition in information visualization \cite{Ware04a}. The work in this paper was originally inspired by Michael Hermann's and Heiri Leuthold's work on the political landscapes of Switzerland \cite{Herm03a}. 
 
