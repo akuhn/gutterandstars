@@ -231,11 +231,11 @@ J.~Brandt, M.~Dontcheva, M.~Weskamp, and S.~R. Klemmer.
   development environment.
 \newblock In {\em CHI 2010}, pages 513--522, 2010.
 
-\bibitem{Broo83a}
-S.~D. Brookes and W.~C. Rounds.
-\newblock Behavioral equivalence relations induced by programming logics.
-\newblock In {\em Automata, Languages and Programming, 10th Colloquium}, volume
-  154 of {\em LNCS}. Springer-Verlag, Barcelona, July 1983, 1983.
+\bibitem{Broo83b}
+R.~Brooks.
+\newblock Towards a theory of the comprehension of computer programs.
+\newblock {\em International Journal of Man-Machine Studies}, 18:543--554,
+  1983.
 
 \bibitem{Buja08a}
 A.~Buja, D.~F. Swayne, M.~L. Littman, N.~Dean, H.~Hofmann, and L.~Chen.
@@ -691,6 +691,11 @@ A.~Kuhn.
   Working Conference on Mining Software Repositories}, pages 175--178. IEEE,
   2009.
 
+\bibitem{Kuhn10x}
+A.~Kuhn and R.~DeLine.
+\newblock On designing better tools for learning apis.
+\newblock In {\em submitted to CHI 2011 for review}, 2011.
+
 \bibitem{Kuhn05a}
 A.~Kuhn, S.~Ducasse, and T.~G\^irba.
 \newblock Enriching reverse engineering with semantic clustering.
@@ -790,6 +795,11 @@ O.~A.~L. Lemos, S.~K. Bajracharya, J.~Ossher, R.~S. Morla, P.~C. Masiero,
 \newblock In {\em ASE '07: Proceedings of the twenty-second IEEE/ACM
   international conference on Automated software engineering}, pages 525--526,
   New York, NY, USA, 2007. ACM.
+
+\bibitem{Leto86a}
+S.~Letovsky and E.~Soloway.
+\newblock Delocalized plans and program comprehension.
+\newblock {\em IEEE Software}, 3(3):41--49, 1986.
 
 \bibitem{Lieb88a}
 K.~J. Lieberherr, I.~M. Holland, and A.~Riel.
