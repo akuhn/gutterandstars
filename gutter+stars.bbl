@@ -231,6 +231,12 @@ J.~Brandt, M.~Dontcheva, M.~Weskamp, and S.~R. Klemmer.
   development environment.
 \newblock In {\em CHI 2010}, pages 513--522, 2010.
 
+\bibitem{Broo83a}
+S.~D. Brookes and W.~C. Rounds.
+\newblock Behavioral equivalence relations induced by programming logics.
+\newblock In {\em Automata, Languages and Programming, 10th Colloquium}, volume
+  154 of {\em LNCS}. Springer-Verlag, Barcelona, July 1983, 1983.
+
 \bibitem{Buja08a}
 A.~Buja, D.~F. Swayne, M.~L. Littman, N.~Dean, H.~Hofmann, and L.~Chen.
 \newblock Data visualization with multidimensional scaling.
@@ -369,6 +375,13 @@ S.~Ducasse, T.~G\^irba, M.~Lanza, and S.~Demeyer.
 \newblock In {\em Tools for Software Maintenance and Reengineering}, RCOST /
   Software Technology Series, pages 55--71. Franco Angeli, Milano, 2005.
 
+\bibitem{Duca05b}
+S.~Ducasse and M.~Lanza.
+\newblock The {Class} {Blueprint}: Visually supporting the understanding of
+  classes.
+\newblock {\em Transactions on Software Engineering (TSE)}, 31(1):75--90, Jan.
+  2005.
+
 \bibitem{Duca09c}
 S.~Ducasse and D.~Pollet.
 \newblock Software architecture reconstruction: A process-oriented taxonomy.
@@ -426,6 +439,13 @@ Y.~Frishman and A.~Tal.
 \newblock Online dynamic graph drawing.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   14(4):727--740, 2008.
+
+\bibitem{Frit10a}
+T.~Fritz and G.~C. Murphy.
+\newblock {Using information fragments to answer the questions developers ask}.
+\newblock In {\em Proceedings of the 32nd ACM/IEEE International Conference on
+  Software Engineering - Volume 1}, ICSE '10, pages 175--184, New York, NY,
+  USA, 2010. ACM.
 
 \bibitem{Frit07a}
 T.~Fritz, G.~C. Murphy, and E.~Hill.
@@ -637,6 +657,13 @@ H.~M. Kienle and H.~A. Muller.
 \newblock {\em VISSOFT 2007. 4th IEEE International Workshop on Visualizing
   Software for Understanding and Analysis}, pages 2--9, 2007.
 
+\bibitem{Ko07a}
+A.~J. Ko, R.~DeLine, and G.~Venolia.
+\newblock {Information Needs in Collocated Software Development Teams}.
+\newblock In {\em Proceedings of the 29th international conference on Software
+  Engineering}, ICSE '07, pages 344--353, Washington, DC, USA, May 2007. IEEE
+  Computer Society.
+
 \bibitem{Ko04a}
 A.~J. Ko and B.~A. Myers.
 \newblock Designing the whyline: a debugging interface for asking questions
@@ -810,6 +837,13 @@ M.~Lungu, M.~Lanza, and T.~G\^irba.
   Software Maintenance and Reengineering)}, pages 185--196, Los Alamitos CA,
   2006. IEEE Computer Society Press.
 
+\bibitem{Maar91a}
+Y.~S. Maarek, D.~M. Berry, and G.~E. Kaiser.
+\newblock An information retrieval approach for automatically constructing
+  software libraries.
+\newblock {\em IEEE Transactions on Software Engineering}, 17(8):800--813, Aug.
+  1991.
+
 \bibitem{Male00a}
 J.~I. Maletic and A.~Marcus.
 \newblock Using latent semantic analysis to identify similarities in source
@@ -935,6 +969,12 @@ D.~S. Pattison, C.~A. Bird, and P.~T. Devanbu.
   conference on Mining software repositories}, pages 113--116, New York, NY,
   USA, 2008. ACM.
 
+\bibitem{Penn87a}
+D.~J. Penney and J.~Stein.
+\newblock Class modification in the gemstone object-oriented {DBMS}.
+\newblock In {\em Proceedings OOPSLA '87, ACM SIGPLAN Notices}, volume~22,
+  pages 111--117, Dec. 1987.
+
 \bibitem{Phan05a}
 D.~Phan, L.~Xiao, R.~B. Yeh, P.~Hanrahan, and T.~Winograd.
 \newblock Flow map layout.
@@ -1014,6 +1054,19 @@ M.~Sensalire, P.~Ogao, and A.~Telea.
 \newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
   visualization}, pages 87--90, New York, NY, USA, 2008. ACM.
 
+\bibitem{Shne80a}
+Shneiderman.
+\newblock {\em Software Psychology: Human Factors in Computer and Information
+  Systems}.
+\newblock Winthrop Publishers, 1980.
+
+\bibitem{Sill06a}
+J.~Sillito, G.~C. Murphy, and K.~De~Volder.
+\newblock {Questions programmers ask during software evolution tasks}.
+\newblock In {\em Proceedings of the 14th ACM SIGSOFT international symposium
+  on Foundations of software engineering}, SIGSOFT '06/FSE-14, pages 23--34,
+  New York, NY, USA, 2006. ACM.
+
 \bibitem{Siy08a}
 H.~Siy, P.~Chundi, and M.~Subramaniam.
 \newblock Summarizing developer work history using time series segmentation:
@@ -1032,6 +1085,12 @@ F.~Steinbr\"uckner.
 \newblock Layout stability of software cities.
 \newblock
   \url{http://seal.ifi.uzh.ch/uploads/media/16\_frank\_steinbrueckner.pdf}.
+
+\bibitem{Stor99a}
+M.-A.~D. Storey, F.~D. Fracchia, and H.~A. M\"uller.
+\newblock Cognitive design elements to support the construction of a mental
+  model during software exploration.
+\newblock {\em Journal of Software Systems}, 44:171--185, 1999.
 
 \bibitem{Stor05a}
 M.-A.~D. Storey, D.~\v{C}ubrani\'c, and D.~M. German.
@@ -1158,11 +1217,6 @@ J.~A. Wise, J.~J. Thomas, K.~Pennock, D.~Lantrip, M.~Pottier, A.~Schur, and
 \newblock Visualizing the non-visual: spatial analysis and interaction with
   information from text documents.
 \newblock {\em infovis}, 00:51, 1995.
-
-\bibitem{Witt53a}
-L.~Wittgenstein.
-\newblock {\em Philosophische Untersuchungen}.
-\newblock Blackwell, Oxford, 1953.
 
 \bibitem{Wu04a}
 J.~Wu, R.~Holt, and A.~Hassan.

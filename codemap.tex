@@ -22,7 +22,7 @@
 
 \asteriskasteriskasterisk
 
-Lexical clues are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
+Lexical cues are by far the most common cue used by software engineers for code orientation. Examples of lexical cues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical cue. The true power of lexical cues, however, is only unleashed when applying information retrieval and natural language processing. 
 
 we use lexical information found in source code to establish a visualization that supports spatial code orientation.
 
@@ -337,7 +337,7 @@ A short edge indicates that closely related artifacts are invoking each other, w
 
 \section{Conclusion}
 
-This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual clues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
+This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
 
 The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
 
@@ -369,7 +369,7 @@ As future work, we can identify the following promising directions:
 \chapter{User Study on Software Cartography}
 \label{the chapter on the codemap user study}
 
-Lexical clues are by far the most common clue used by software engineers for code orientation. Examples of lexical clues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical clue. The true power of lexical clues, however, is only unleashed when applying information retrieval and natural language processing. 
+Lexical cues are by far the most common cue used by software engineers for code orientation. Examples of lexical cues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical cue. The true power of lexical cues, however, is only unleashed when applying information retrieval and natural language processing. 
 
 we use lexical information found in source code to establish a visualization that supports spatial code orientation.
 
@@ -543,7 +543,7 @@ Participants now began to read more source code than before. In particular, when
 
 \paragraph{Task 6, Bug Fixing} Participants mainly used the same approach as for the feature location tasks. They first located the implementation of the feature in which the bug occurs, and then fixed the bug. Professional participants did so successfully, whereas student participants did not manage to find the correct location in the source code.
 
-\paragraph{Wrap-up session} In general, participants reported that \Codemap was most useful when it displayed search results, callers, implementers, and references. A participant reported: \emph{``I found it very helpful that you get a visual clue of quantity and distribution of your search results''}. In fact, we observed that that participants rarely used the map for direct navigation but often for search and reverse engineering tasks.
+\paragraph{Wrap-up session} In general, participants reported that \Codemap was most useful when it displayed search results, callers, implementers, and references. A participant reported: \emph{``I found it very helpful that you get a visual cue of quantity and distribution of your search results''}. In fact, we observed that that participants rarely used the map for direct navigation but often for search and reverse engineering tasks.
 
 Another observation was that inexperienced developers (\ie students) are more likely to find the map useful than professional developers. This might be explained by the hypothesis that to power users \emph{any} new way of using the IDE is likely to slow them down, and conversely to beginners \emph{any} way of using the IDE is  novel. The only exception to this observation was \Codemap's search bar, a one-click interface to \eclipse's native search, that was appreciated and used by all participants but one that preferred to use the search dialog.
 
@@ -619,7 +619,7 @@ Codemap does provide tooltips, however participants did not use them. From obser
 
 Contrary to our assumptions, participants did not use the map to return to previously visited locations by recalling them from spatial memory. Some would use the map, but only for exposed classes that are easily recognizable and clickable. This observation is related to the previous one.
 
-We found however some participants established a spatial memory of the package explore\,---\,and did so \emph{in addition to their spatial model of the system's architecture!} For example, participant~S would drill down with the explorer saying ``let's open that class down there'' or ``there was this class up here.'' Over the course of the experiment he got quicker at navigating back to previously visited classes in the package explorer. Other participants, as for example participant~T, relied on lexical clues and made extensive use of Eclipse's ``Open Type'' dialog to find their way back to previously visited classes.
+We found however some participants established a spatial memory of the package explore\,---\,and did so \emph{in addition to their spatial model of the system's architecture!} For example, participant~S would drill down with the explorer saying ``let's open that class down there'' or ``there was this class up here.'' Over the course of the experiment he got quicker at navigating back to previously visited classes in the package explorer. Other participants, as for example participant~T, relied on lexical cues and made extensive use of Eclipse's ``Open Type'' dialog to find their way back to previously visited classes.
 
 Usability glitches will of course worsen the effect of (or might even be the main cause of) not using the map for navigation and revisiting classes. From this it follows that:
 
@@ -637,9 +637,9 @@ For instance, a threshold could be used to not show isolated elements at all, bu
 
 %\paragraph{Observation 6.4: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
 % 
-%\paragraph{Hypothesis 6.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual clues}
+%\paragraph{Hypothesis 6.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual cues}
 %
-%In general, the issue of usability is orthogonal to the map's layout. For example, offering ``search as you type'' might help to raise map interaction for those developers that mainly rely on lexical clues, no matter which base layout is used. It was our impression that any exploratory user study of embedded software visualization will be dominated just as by usability issues as by technical factors, such as your choice of layout algorithm. \ewe{I don't get this one}
+%In general, the issue of usability is orthogonal to the map's layout. For example, offering ``search as you type'' might help to raise map interaction for those developers that mainly rely on lexical cues, no matter which base layout is used. It was our impression that any exploratory user study of embedded software visualization will be dominated just as by usability issues as by technical factors, such as your choice of layout algorithm. \ewe{I don't get this one}
 %
 %\paragraph{Implication 6.4: It should be possible to bookmark classes as ``top landmarks,'' both manually and automatically based on usage statistics}
 % 
