@@ -115,9 +115,9 @@ We want to emphasize that the primary contribution of our work is lexical cluste
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preprocessing the Software System}\label{sec:parsing}
 
-When we apply LSI to a software system we partition its source code into documents and we use the vocabulary found therein as terms. The system can be split into documents at any level of granularity, such as packages or classes and methods. Other slicing solutions are possible as well, for example execution traces \cite{Kuhn05b}, or we can even use entire projects as documents and analyze a complete source repository \cite{Kawa04a}.
+When we apply LSI to a software system we partition its source code into documents and we use the lexical information found therein as terms. The system can be split into documents at any level of granularity, such as packages or classes and methods. Other slicing solutions are possible as well, for example execution traces \cite{Kuhn05b}, or we can even use entire projects as documents and analyze a complete source repository \cite{Kawa04a}.
 
-To build the term-document-matrix, we extract the vocabulary from the source code: we use both identifier names and the content of comments. Natural language text in comments is broken into words, whereas compound identifier names are split into parts. As most modern naming conventions use camel case, splitting identifiers is straightforward: for example \emph{FooBar} becomes \emph{foo} and \emph{bar}.
+To build the term-document-matrix, we extract the lexical information from the source code: we use both identifier names and the content of comments. Natural language text in comments is broken into words, whereas compound identifier names are split into parts. As most modern naming conventions use camel case, splitting identifiers is straightforward: for example \emph{FooBar} becomes \emph{foo} and \emph{bar}.
 
 We exclude common stopwords from the vocabulary, as they do not help to discriminate documents. In addition, if the first comment of a class contains a copyright disclaimer, we exclude it as well. To reduce words to their morphological root we apply a stemming algorithm: for example \emph{entity} and \emph{entities} both become \emph{entiti} \cite{Port80a}. And finally, the term-document matrix is weighted with \emph{tf-idf} to balance out the influence of very rare and very common terms \cite{Duma91a}.
 
@@ -164,7 +164,7 @@ For example, in \autoref{fig:distMap} we show an example of a Distribution Map r
 
 \begin{figure}[h]
     \centering
-  \includegraphics[width=\columnwidth]{fig/hapax-distributionmap-example}\\
+  \includegraphics[width=0.4\columnwidth]{fig/hapax-distributionmap-example}\\
   \caption{Example of a Distribution Map.}\label{fig:distMap}
 \end{figure}
 
@@ -249,7 +249,7 @@ This is a common pattern that we often encountered during our experiments: zone 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\columnwidth]{fig/hapax-jedit-correlation-labels}
+\includegraphics[width=0.8\columnwidth]{fig/hapax-jedit-correlation-labels}
 \caption{The lexical clusters of JEdit and their labels.}\label{fig:jeditLabels}
 \end{figure}
 
@@ -372,17 +372,17 @@ Only one topic out of nine concepts is about the system's domain: job exchange. 
 
 \textbf{On source documents that are related to more than one topic.} If we want to analyze how the topics are spread across some type of documents (\eg packages, classes or methods) we have to break the system into documents one level below the target level. For example, if we want to analyze the topic distribution over packages, we break the system into classes and analyze how the topics of classes are spread over the packages.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}\label{sec:conclusions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Source code bears the semantics of an application in the names of identifiers and comments. In this chapter we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce lexical clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups lexical clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the lexical clusters are distributed over the system.
-
-We applied the approach on several case studies with different characteristics, two of which are presented in this chapter.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Lexical clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
-
-When starting this work, one of our hypotheses was that lexical clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
-
-In the future we would also like to investigate in more depth recall and precision of the approach. For example, we would like to compare the results of the lexical clustering with other types of clustering. Furthermore, we would like to improve the labeling with other computer linguistic techniques.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Conclusions}\label{sec:conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Source code bears the semantics of an application in the names of identifiers and comments. In this chapter we present our approach to retrieve the topics present in the source code vocabulary to support program comprehension. We introduce lexical clustering, a technique based on Latent Semantic Indexing and clustering to group source documents that use similar vocabulary. We call these groups lexical clusters and we interpret them as linguistic topics that reveal the intention of the code. As compared to our previous approach, we go a step forward and use Distribution Maps to illustrate how the lexical clusters are distributed over the system.
+%
+%We applied the approach on several case studies with different characteristics, two of which are presented in this chapter.  The case studies give evidence that our approach provides a useful first impression of an unfamiliar system, and that we reveal valuable developer knowledge. The Distribution Map together with the labeling provides a good first impression of the software's domain. Lexical clustering captures topics regardless of class hierarchies, packages and other structures. One can, at a glance, see whether the software covers just a few or many different topics, how these are distributed over the structure, and -- due to the labeling -- what they are about.
+%
+%When starting this work, one of our hypotheses was that lexical clustering would reveal a systems domain semantics. However, our experiments showed that most linguistic topics relate to application concepts or architectural components. Usually, our approach partitions a system into one (or sometimes two) large domain-specific clusters and up to a dozen domain-independent clusters. As part of our future work, we plan to investigate more closely the relationship between linguistic topics and both domain and application concepts.
+%
+%In the future we would also like to investigate in more depth recall and precision of the approach. For example, we would like to compare the results of the lexical clustering with other types of clustering. Furthermore, we would like to improve the labeling with other computer linguistic techniques.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -402,21 +402,19 @@ In the future we would also like to investigate in more depth recall and precisi
 	{Lexcial and episodic (established through lexical information)}
 	{Visual analytics of word clouds}
 
-Source code rarely comes with an executive summary. When developers encounter a piece of source code for the first time, they are typically not presented with a high-level summary of the code's topics. Looking at package and class names might help to make an educated guess, but does often not give away the complete picture. Even the more, when comparing two pieces of source code or two entire systems to two versions of the same system, developers are missing a high-level summary that distilles the difference in a short textual summarization. The need for software summarization is obvious.
+Source code rarely comes with an executive summary. When developers encounter a piece of source code for the first time they are typically not presented with a high-level summary of the code's topics. Looking at package and class names might help to make an educated guess but does often not give away the complete picture. Even the more, when comparing two pieces of source code or when comparing two versions of the same system, developers are missing a high-level summary that distilles the difference in a short textual summarization. The need for software summarization is obvious.
 
-In the following chapter we present an approach to summarize part of a system as a word cloud, that consist of the statistically most significant terms that set this part of system apart from the rest. The same approach can be use to compare two parts of a system to compare two versions of the same system. When comparing version, both statistically significant addition and removals are shown using two different colors. Presenting those word clouds to the developer helps them to lexically query the topics, as well as when presenting all words clouds of a systems versions to recover and tell the story of a systems history and thus enabling developers to draw from episodic memories that they possibly never experiences first-hand themselves.
+In the following chapter we present an approach to summarize source code as a word cloud. When summarizing part of a system the word cloud consists of the statistically most significant terms that set this part of system apart from the rest. The same approach can be use to compare two parts of a system to compare two versions of the same system. When comparing version, both statistically significant addition and removals are shown using two different colors. Presenting those word clouds to the developer helps them to lexically query the topics, as well as when presenting all words clouds of a systems versions to recover and tell the story of a systems history and thus enabling developers to draw from episodic memories that they possibly never experiences first-hand themselves.
 
 \asteriskasteriskasterisk
 
 \todo{Include MSR Poster}
 
-As more and more open-source software components become available on the internet we need automatic ways to label and compare them. For example, a developer who searches for reusable software must be able to quickly gain an understanding of retrieved components. This understanding cannot be gained at the level of source code due to the semantic gap between source code and the domain model. In this chapter we present a lexical approach that uses the log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system.
+In recent years, lexical information found in source code has been proven to be a valuable source for software analysis, often including the retrieval of labels \cite{Baldi08OOPSLA,EinarHoest,Kuhn07a}. However, labeling software is not without pitfalls. The distribution of words in software corpora follows the same power-law as word frequencies in natural-language text \cite{Linstead09SUITE}. Most of the text is made up of a small set of common terms, whereas content-bearing words are rare. Analysis of software vocabulary must deal with the reality of rare terms, thus statistical tests that assume normal distribution are not applicable. For example, textual comparison based on directly counting term frequencies is subject to overestimation when the frequencies involved are very small.  
 
-In recent years, software vocabulary has been proven to be a valuable source for software analysis, often including the retrieval of labels (\eg \cite{Baldi08OOPSLA,EinarHoest,Kuhn07a}). However, labeling software is not without pitfalls. The distribution of words in software corpora follows the same power-law as word frequencies in natural-language text \cite{Linstead09SUITE}. Most of the text is made up of a small set of common terms, whereas content-bearing words are rare. Analysis of software vocabulary must deal with the reality of rare terms, thus statistical tests that assume normal distribution are not applicable. For example, textual comparison based on directly counting term frequencies is subject to overestimation when the frequencies involved are very small.  
+Our approach uses log-likelihood ratios of word frequencies to automatically provide labels for software components. We present a prototype implementation of our labeling/comparison algorithm and provide examples of its application. In particular, we apply the approach to detect trends in the evolution of a software system. For text analysis the use of \loglr improves the statistical results. Likelihood tests do not depend on assumptions of normal distribution, instead they use the asymptotic distribution of binomial likelihood \cite{Dunning}. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms.
 
-For text analysis the use of \loglr improves the statistical results. Likelihood tests do not depend on assumptions of normal distribution, instead they use the asymptotic distribution of binomial likelihood \cite{Dunning}. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms.
-
-In this chapter we present a lexical approach that uses the \loglr of word frequencies to automatically retrieve labels from source code. The approach can be applied i) to compare components with each other, ii) to compare a component against a normative corpus, and iii) to compare different revisions of the same component. We present a prototype implementation and give examples of its application. In particular, we apply the approach to detect trends in the evolution of the JUnit software system.
+The approach that we present can be applied i) to compare components with each other, ii) to compare a component against a normative corpus, and iii) to compare different revisions of the same component. We present a prototype implementation and give examples of its application. In particular, we apply the approach to detect trends in the evolution of the JUnit software system.
 
 \section{Log-Likelihood in a Nutshell}\label{nutshell}
 
@@ -579,9 +577,9 @@ The top 7 change trends (\ie $-2log\lambda \geqslant 100.0$) in the history of J
 
 %\todo{Compare the results to Linstead's work.}
 
-\section{Conclusion}\label{eventually}
-
-We presented \loglr as a technique to label software components. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms. We presented how to use the \loglr of word frequencies to retrieve labels, and how to compare a component against a normative corpus. In addition, we proposed to use \loglrs to characterize the evolution of a software component. We presented the results of two example applications, one using the Java API as case study, the other using 14 releases of JUnit as case study. By comparing subsequent revisions of JUnit to each other we were able to characterize substantial changes in the history of JUnit.
+%\section{Conclusion}\label{eventually}
+%
+%We presented \loglr as a technique to label software components. Using \loglr{}s allows comparisons to be made between the significance of occurrences of both common and rare terms. We presented how to use the \loglr of word frequencies to retrieve labels, and how to compare a component against a normative corpus. In addition, we proposed to use \loglrs to characterize the evolution of a software component. We presented the results of two example applications, one using the Java API as case study, the other using 14 releases of JUnit as case study. By comparing subsequent revisions of JUnit to each other we were able to characterize substantial changes in the history of JUnit.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -601,13 +599,13 @@ We presented \loglr as a technique to label software components. Using \loglr{}s
 	{Episodic (established through social and historical information)}
 	{Visual analytics of a story-telling visualization}
 
-Episodic cues are of great help to developers when having to find their way through a system, whoever episodic memory is only available to those developer that know the system's history first-hand. For most software systems, the tribal folklore of the team is the only record on the system's history beside the version control system. The tribal folklore is hard to query because it is only present as the team's episodic memory, and the version control system is hard to query because it is typically only present as a series of textual low-level changes to the systems source code. There is a need for better means of recovering and telling a systems story to both new hires and seasoned team members.
+Episodic cues are of great help to developers when having to find their way through a system. However episodic memory is only available to those developer that know the system's history first-hand. For most software systems, the tribal folklore of the team is the only record on the system's history beside the version control system. The tribal folklore is hard to query because it is only present as the team's minds. The version control system contains some of that knowledge, but it is hard to query because it is typically only present as a series of textual low-level changes to the systems source code. There is a need for better means of recovering and telling a systems story to both new hires and seasoned team members.
 
 In the following chapter we present an approach to visualization a system history and its team's collaboration as a story-telling visualization. Story-telling visualizations are a branch of information visualization that has been popularized by the political information graphics of newspapers such as the New York Times and the Guardian. A story-telling visualization is supposed to invite its reader to get engaged with the visualized data by establishing a personal connection between the reader and the presented data. Our approach uses social and historical information taken from the version control system to establish an episodic visualization of the system's history. We show the lifeline of files ordered by code ownership, thus telling the story of the team's collaboration. Team are typically getting very engaged and excited when showen the visualization of their own system. Both new hires and seasoned team members can use this visualization to learn about episodes from the system's history in order to take better technical decisions when working with the system in the future.
 
 \asteriskasteriskasterisk
 
-As systems evolve their structure change in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this chapter we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this chapter make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
+As systems evolve their structure changes in ways not expected upfront. As time goes by, the knowledge of the developers becomes more and more critical for the process of understanding the system. That is, when we want to understand a certain issue of the system we ask the knowledgeable developers. Yet, in large systems, not every developer is knowledgeable in all the details of the system. Thus, we would want to know which developer is knowledgeable in the issue at hand. In this chapter we make use of the mapping between the changes and the author identifiers (\eg user names) provided by versioning repositories. We first define a measurement for the notion of code ownership. We use this measurement to define the \omap visualization to understand when and how different developers interacted in which way and in which part of the system\footnote{The visualizations in this chapter make heavy use of colors. Please obtain a color-printed or electronic version for better understanding.}. We report the results we obtained on several large systems.
 
 Software systems need to change in ways that challenge the original design. Even if the original documentation exists, it might not reflect the code anymore. In such situations, it is crucial to get access to developer knowledge to understand the system. As systems grow larger, not all developers know about the entire system, thus, to make the best use of developer knowledge, we need to know which developer is knowledgeable in which part of the system.
 
@@ -668,7 +666,7 @@ Fixed math to get pdflatex through without errors.
 \subsection{Measuring File Size}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Let $s_{f_n}$ be the size of revision $f_n$, measured in number of lines. The number of lines is not given in the CVS log, but can be computed from the deltas $a_{f_n}$ and $r_{f_n}$ of added and removed lines. Even though the CVS log does not give the initial size $s_{f_0}$, we can give an estimate based on the fact that one cannot remove more lines from a file than were ever contained. We define $s_{f_n}$ as in autoref{fig:filesize}: we first calculate the sizes starting with an initial size of 0, and then in a second pass adjust the values with the lowest value encountered in the first pass.
+Let $s_{f_n}$ be the size of revision $f_n$, measured in number of lines. The number of lines is not given in the CVS log, but can be computed from the deltas $a_{f_n}$ and $r_{f_n}$ of added and removed lines. Even though the CVS log does not give the initial size $s_{f_0}$, we can give an estimate based on the fact that one cannot remove more lines from a file than were ever contained. We define $s_{f_n}$ as in \autoref{fig:filesize}: we first calculate the sizes starting with an initial size of 0, and then in a second pass adjust the values with the lowest value encountered in the first pass.
 
 \begin{figure}[htbp]
 \begin{minipage}[c]{.45\linewidth}
@@ -717,7 +715,7 @@ In the definition we assume that the removed lines $r_{f_n}$ are evenly distribu
 \section{The Ownership Map View}\label{sec:approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We introduce the \omap visualization as in autoref{fig:ownershipDetailsExample}. The visualization is similar to the Evolution Matrix \cite{Lanz02a}: each line represents a history of a file, and each circle on a line represents a change to that file.
+We introduce the \omap visualization as in \autoref{fig:ownershipDetailsExample}. The visualization is similar to the Evolution Matrix \cite{Lanz02a}: each line represents a history of a file, and each circle on a line represents a change to that file.
 
 The color of the circle denotes the author that made the change. The size of the circle reflects the proportion of the file that got changed \ie the larger the change, the larger the circle. And the color of the line denotes the author who owns most of the file.
 
@@ -733,7 +731,7 @@ In a large system, we can have hundreds of developers. Because the human eye is 
 \end{center}
 \end{figure}
 
-In the example from autoref{fig:ownershipDetailsExample}, each line represents the lifetime of a file; each circle represents a change. \id{File A} appears gray in the first part as it originates from the initial import. Later the green author significantly changed the file, and he became the owner of the file. In the end, the blue author deleted the file. \id{File B} was created by the green author. Afterwards, the blue author changed the file, but still the green author owns the larger part, so the line remains green. At some point, the red author committed a large change and took over the ownership. The file was not deleted.
+In the example from \autoref{fig:ownershipDetailsExample}, each line represents the lifetime of a file; each circle represents a change. \id{File A} appears gray in the first part as it originates from the initial import. Later the green author significantly changed the file, and he became the owner of the file. In the end, the blue author deleted the file. \id{File B} was created by the green author. Afterwards, the blue author changed the file, but still the green author owns the larger part, so the line remains green. At some point, the red author committed a large change and took over the ownership. The file was not deleted.
 
 \begin{figure*}[hbt]
 \begin{center}
@@ -770,7 +768,7 @@ The files axes of the \omap views shown in this chapter are ordered with \textit
 \subsection{Behavioral Patterns}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Overview Map reveals semantical information about the work of the developer. autoref{fig:ownershipMapExample} shows a part of the \omap of the Outsight case study (for more details see  autoref{sec:outsight}). In this view we can identify several different behavioral patterns of the developers:
+The Overview Map reveals semantical information about the work of the developer. \autoref{fig:ownershipMapExample} shows a part of the \omap of the Outsight case study (for more details see \autoref{sec:outsight}). In this view we can identify several different behavioral patterns of the developers:
 
 \begin{itemize}
 
@@ -824,25 +822,25 @@ We applied our approach on several large case studies: Outsight, Ant, Tomcat, JE
 \end{center}
 \end{figure*}
 
-The first step to acquire an overview of a system is to build a histogram of the team to get an impression about the fluctuations of the team members over time. autoref{fig:histogram} shows that a team of four developers is working on the system. There is also a fifth author contributing changes in the last two periods only.
+The first step to acquire an overview of a system is to build a histogram of the team to get an impression about the fluctuations of the team members over time. \autoref{fig:histogram} shows that a team of four developers is working on the system. There is also a fifth author contributing changes in the last two periods only.
 
 
 
 autoref{fig:casestudy-outsight} shows the \omap of our case study. The upper half are Java files, the bottom half are JSP pages. The files of both modules are ordered according to the similarity of their commit signature. For the sake of readability we use \id{S1} as a shorthand for the Java files part of the system, and \id{S2} as a shorthand for the JSP files part. Time is cut into eight periods \id{P1} to \id{P8}, each covering three months. The paragraphs below discuss each period in detail, and show how to read the \omap in order to answer our initial questions.
 
-The shorthands in parenthesis denote the labels \id{R1} to \id{R15} as given on autoref{fig:casestudy-outsight}.
+The shorthands in parenthesis denote the labels \id{R1} to \id{R15} as given on \autoref{fig:casestudy-outsight}.
 
 \textbf{Period 1.} In this period four developers are working on the system. Their collaboration maps the separation of \id{S1} and \id{S2}: while Green is working by himself on \id{S2} (\id{R5}), the others are collaborating on \id{S1}. This is a good example of Monologue versus Dialogue. A closer look on \id{S1} reveals two hotspots of Teamwork between Red and Cyan (\id{R1,R3}), as well as large mutations of the file structure. In the top part multiple Cleanings happen (\id{R2}), often accompanied by Expansions in the lower part.
 
 \textbf{Period 2.} Green leaves the team and Blue takes over responsibility of \id{S2}. He starts doing this during a slow Familiarization period (\id{R6}), which lasts until end of \id{P3}. In the meantime Red and Cyan continue their Teamwork on \id{S1} (\id{R4}) and Red starts adding some files, which foreshadow the future Expansion in \id{P3}.
 
-\textbf{Period 3.} This period is dominated by a big growth of the system, the number of files doubles as large Expansions happen in both \id{S1} and \id{S2}. The histogram in autoref{fig:histogram} identifies Red as the main contributor. The Expansion of \id{S1} evolves in sudden steps (\id{R9}), and as their file base grows the Teamwork between Red and Cyan becomes less tight. In contradiction the Expansion of \id{S2} evolves in small steps (\id{R8}), as Blue continues familiarizing himself with \id{S2} and slowly but steady takes over ownership of most files in this subsystem (\id{R6}). Also an Edit of Red in \id{S2} can be identified (\id{R7}).
+\textbf{Period 3.} This period is dominated by a big growth of the system, the number of files doubles as large Expansions happen in both \id{S1} and \id{S2}. The histogram in \autoref{fig:histogram} identifies Red as the main contributor. The Expansion of \id{S1} evolves in sudden steps (\id{R9}), and as their file base grows the Teamwork between Red and Cyan becomes less tight. In contradiction the Expansion of \id{S2} evolves in small steps (\id{R8}), as Blue continues familiarizing himself with \id{S2} and slowly but steady takes over ownership of most files in this subsystem (\id{R6}). Also an Edit of Red in \id{S2} can be identified (\id{R7}).
 
-\textbf{Period 4.} Activity moves down from \id{S1} to \id{S2}, leaving \id{S1} in a Silence only broken by selective changes. autoref{fig:histogram} shows that Red left the team, which consists now of Cyan and Green only. Cyan acts as an allrounder providing changes to both \id{S1} and \id{S2}, and Blue is further working on \id{S2}. The work of Blue culminates in an Epilogue marking the end of this period (\id{R8}). He has now completely taken over ownership of \id{S2}, while the ownership of subsystem \id{S1} is shared between Red and Cyan.
+\textbf{Period 4.} Activity moves down from \id{S1} to \id{S2}, leaving \id{S1} in a Silence only broken by selective changes. \autoref{fig:histogram} shows that Red left the team, which consists now of Cyan and Green only. Cyan acts as an allrounder providing changes to both \id{S1} and \id{S2}, and Blue is further working on \id{S2}. The work of Blue culminates in an Epilogue marking the end of this period (\id{R8}). He has now completely taken over ownership of \id{S2}, while the ownership of subsystem \id{S1} is shared between Red and Cyan.
 
 \textbf{Period 5 and 6.} Starting with this period the system goes into maintenance. Only small changes occur, mainly by author Blue.
 
-\textbf{Period 7.} After two periods of maintenance the team resumes work on the system. In autoref{fig:histogram} we see how the composition of the team changed: Blue leaves and Green comes back. Green restarts with an Edit in \id{S2} (\id{R11}), later followed by a quick sequence of Takeovers (\id{R13}) and thus claiming back the ownership over his former code. Simultaneous he starts expanding \id{S2} in Teamwork with Red (\id{R12}).
+\textbf{Period 7.} After two periods of maintenance the team resumes work on the system. In \autoref{fig:histogram} we see how the composition of the team changed: Blue leaves and Green comes back. Green restarts with an Edit in \id{S2} (\id{R11}), later followed by a quick sequence of Takeovers (\id{R13}) and thus claiming back the ownership over his former code. Simultaneous he starts expanding \id{S2} in Teamwork with Red (\id{R12}).
 
 First we find in \id{S1} selective changes by Red and Cyan scattered over the subsystem, followed by a period of Silence, and culminating in a Takeover by Red in the end \ie an Epilogue (\id{R14}). The Takeover in \id{S1} stretches down into \id{S2}, but there being a mere Edit. Furthermore we can identify two selective Bug-fixes (\id{R10}) by author Yellow, being also a new team member.
 
@@ -887,9 +885,9 @@ Each view shows a different but common pattern. The paragraphs below discuss eac
 \section{Discussion}\label{sec:discussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textbf{On the exploratory nature of the implementation.} We implemented our approach in Chronia, a tool built on top of the Moose reengineering environment \cite{Duca05a}. autoref{fig:chronia} emphasizes the interactive nature of our tool.
+\textbf{On the exploratory nature of the implementation.} We implemented our approach in Chronia, a tool built on top of the Moose reengineering environment \cite{Duca05a}. \autoref{fig:chronia} emphasizes the interactive nature of our tool.
 
-On the left of autoref{fig:chronia} we see Chronia visualizing the overall history of the project, which provides a first overview. Since there is too much data we cannot give the reasoning only from this view, thus, Chronia allows for interactive zooming. For example, in the window on the lower right, we see Chronia zoomed into the bottom right part of the original view. Furthermore, when moving the mouse over the \omap, we complement the view by also showing the current position on both time and file axis are highlighted in the lists on the right. These lists show all file names and the timestamps of all commits. As Chronia is build on top of Moose, it makes use of the Moose contextual menus to open detailed views on particular files, modules or authors. For example, in the top right window we see a view with metrics and measurements of a file revision.
+On the left of \autoref{fig:chronia} we see Chronia visualizing the overall history of the project, which provides a first overview. Since there is too much data we cannot give the reasoning only from this view, thus, Chronia allows for interactive zooming. For example, in the window on the lower right, we see Chronia zoomed into the bottom right part of the original view. Furthermore, when moving the mouse over the \omap, we complement the view by also showing the current position on both time and file axis are highlighted in the lists on the right. These lists show all file names and the timestamps of all commits. As Chronia is build on top of Moose, it makes use of the Moose contextual menus to open detailed views on particular files, modules or authors. For example, in the top right window we see a view with metrics and measurements of a file revision.
 
 \begin{figure*}[htbp]
 \begin{center}
@@ -915,20 +913,20 @@ Also from a project manager point of view the \omap can give valuable hints. Kno
 
 But classifications of the authors have to be interpreted in their context. If a developer ly takes over subsystems this does not mean that he has an  character or that he will always tend to Takeovers. In our case study (autoref{fig:casestudy-outsight}) Green's Takeover of \id{S2} in \id{P7} must be seen in the context of the system history: Blue left the team and Green was the original developer of \id{S2}. He would have acted differently if Blue were still in the team.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}\label{sec:conclusions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In this chapter we aim to understand how the developers drove the evolution of the system. In particular we ask the following questions:
-\begin{itemize}
-\item How many authors developed the system?
-\item Which author developed which part of the system?
-\item What were the behaviors of the developers?
-\end{itemize}
-
-To answer them, we define the \omap visualization based on the notion of code ownership. In addition we semantically group files that have a similar \emph{commit signature} leading to a visualization that is not  based on alphabetical ordering of the files but on co-change relationships between the file histories. The \omap helps in answering which authors are knowledgeable in which part of the system and also reveal behavioral patterns. To show the usefulness we implemented the approach and applied it on several case studies. We reported some of the findings and we discussed the benefits and the limitations as we perceived them during the experiments.
-
-In the future, we would like to investigate the application of the approach at other levels of abstractions besides files, and to take into consideration types of changes beyond just the change of a line of code.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Conclusions}\label{sec:conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%In this chapter we aim to understand how the developers drove the evolution of the system. In particular we ask the following questions:
+%\begin{itemize}
+%\item How many authors developed the system?
+%\item Which author developed which part of the system?
+%\item What were the behaviors of the developers?
+%\end{itemize}
+%
+%To answer them, we define the \omap visualization based on the notion of code ownership. In addition we semantically group files that have a similar \emph{commit signature} leading to a visualization that is not  based on alphabetical ordering of the files but on co-change relationships between the file histories. The \omap helps in answering which authors are knowledgeable in which part of the system and also reveal behavioral patterns. To show the usefulness we implemented the approach and applied it on several case studies. We reported some of the findings and we discussed the benefits and the limitations as we perceived them during the experiments.
+%
+%In the future, we would like to investigate the application of the approach at other levels of abstractions besides files, and to take into consideration types of changes beyond just the change of a line of code.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1251,15 +1249,15 @@ Establishing an identity relationship between CVS logins and people mentioned in
 Information about copy patterns is not available in CVS. Bulk renaming of files appears in the change history of CVS as bulk removal of files followed by bulk addition of files. Given our current implementation of \DEVLECT, this may lead to an incorrect acquisition of developer knowledge, since the entire vocabulary of the moved files is assigned to the developer who moved the files.
 We are thus in good shape to further improve our results by using a copy pattern detection approach~\cite{Chan08a}.
 
-\section{Conclusion}\label{sec:eventually}
-
-We presented a novel expertise model of developers. The model is based on the source code vocabulary of developers. The vocabulary of developers is obtained from the \verb$diff$ of their source code contributions. We applied the model in a recommendation system that assigns developers to bug reports. We evaluated the recommendation system using eight years of Eclipse development as a case study, and achieved 33.6\% top-1 precision and 71.0\% top-10 recall. 
-
-When calibrating our approach, we found that developer expertise decays over time. To counter this effect we applied two weighting schemes: i) \emph{decay of vocabulary} weights expertise by a decay factor that is proportional to the time since the developer acquired that expertise, ii) \emph{inactive developer penalty} downgrades developers that had been inactive for a certain time.
-
-In the future, we would like to extend our expertise model with developer knowledge from other sources, \eg mailing lists. Furthermore we would like to include additional Information Retrieval techniques, as well as combine our approach with approaches that are trained on previous bug reports (\eg \cite{Anvi06a, Canf05a, Cubr04b, Lucc02a}).
-
-For more information on \DEVLECT and the case study presented in this chapter, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
+%\section{Conclusion}\label{sec:eventually}
+%
+%We presented a novel expertise model of developers. The model is based on the source code vocabulary of developers. The vocabulary of developers is obtained from the \verb$diff$ of their source code contributions. We applied the model in a recommendation system that assigns developers to bug reports. We evaluated the recommendation system using eight years of Eclipse development as a case study, and achieved 33.6\% top-1 precision and 71.0\% top-10 recall. 
+%
+%When calibrating our approach, we found that developer expertise decays over time. To counter this effect we applied two weighting schemes: i) \emph{decay of vocabulary} weights expertise by a decay factor that is proportional to the time since the developer acquired that expertise, ii) \emph{inactive developer penalty} downgrades developers that had been inactive for a certain time.
+%
+%In the future, we would like to extend our expertise model with developer knowledge from other sources, \eg mailing lists. Furthermore we would like to include additional Information Retrieval techniques, as well as combine our approach with approaches that are trained on previous bug reports (\eg \cite{Anvi06a, Canf05a, Cubr04b, Lucc02a}).
+%
+%For more information on \DEVLECT and the case study presented in this chapter, please refer to the Master's thesis of Dominique Matter \cite{Matt09a}.
 
 
 %%%%%%%%%%%%%
@@ -1461,18 +1459,18 @@ The Ohloh website provides its own measurement of developer ``karma'', called \e
 \paragraph{Possible weakness of karma ranking}
 One must consider that developers may not use the same user names for all their commits through various repository systems. In such a case Ohloh can not auotmatically collect all the developers commits into one account; the developer would have to register and do this manually. Furthermore we blacklist commit bots. Finally the karma value could be tampered with deliberately if a user was to do a huge number of (small) commits to few highly ranked projects.
 
-\section{Conclusion}
-\label{sec:conclusion}
-
-In this chapter we have presented an approach to improve the \emph{credibility} of search results. credibility of search results is important, so that developers can quickly assess search results from external code bases before integrating them into their local code base. 
-
-%Our aim is that the developer gains a quick estimate of code credibility in his results. We therefore created a trust function, that calculates a trust value for each originating project depending on the projects meta data. This trust value is an indication of the projects quality, its popularity and the quality of its source code. Upon reaching a sufficient size of source code and metadata index it would also be egligible to sort search results according to their trust value. As result relevance is paramount the credibility metric would then be used to choose from a pool of \emph{relevant} search results. Under the premise that all results comply with the users technical specification this would provide the user working results of the best quality.
-
-We have proposed $T_p$ as a credibility metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the credibility metric which allows developers to quickly assess the credibility of search results from a code search engine. We have discussed the choice of our credibility metric and presented preliminary results from an ongoing evaluation. 
-
-%We have proposed $T_p$ as a credibility metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the credibility metric. Integrating the credibility metric in a code search engine allows developers to quickly assess the credibility of search results from a code search engine. We have discussed the choice of our credibility metric and presented preliminary results from an ongoing evaluation.
-
-The current credibility metric is defined per project. We would like to combine it with code ownership data from project history, so that we can assess the credibility of single classes (or even methods) based on developers karma.
-
-Currently we are building up our metadata and code bases for \Jbd; upon reaching a sufficient level we plan do a user study to evaluate the effect of metadata on result credibility. We would also like to compare the proposed credibility metric with other credibility measurements, \eg corporate backing of projects. It might also be promising to combine the proposed credibility metric, which is currently based on human factors only, with technical credibility assessments such as \eg test coverage. 
+%\section{Conclusion}
+%\label{sec:conclusion}
+%
+%In this chapter we have presented an approach to improve the \emph{credibility} of search results. credibility of search results is important, so that developers can quickly assess search results from external code bases before integrating them into their local code base. 
+%
+%%Our aim is that the developer gains a quick estimate of code credibility in his results. We therefore created a trust function, that calculates a trust value for each originating project depending on the projects meta data. This trust value is an indication of the projects quality, its popularity and the quality of its source code. Upon reaching a sufficient size of source code and metadata index it would also be egligible to sort search results according to their trust value. As result relevance is paramount the credibility metric would then be used to choose from a pool of \emph{relevant} search results. Under the premise that all results comply with the users technical specification this would provide the user working results of the best quality.
+%
+%We have proposed $T_p$ as a credibility metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the credibility metric which allows developers to quickly assess the credibility of search results from a code search engine. We have discussed the choice of our credibility metric and presented preliminary results from an ongoing evaluation. 
+%
+%%We have proposed $T_p$ as a credibility metric for software projects.  We have also presented \Jbd, a proof-of-concept prototype code search engine that implements the credibility metric. Integrating the credibility metric in a code search engine allows developers to quickly assess the credibility of search results from a code search engine. We have discussed the choice of our credibility metric and presented preliminary results from an ongoing evaluation.
+%
+%The current credibility metric is defined per project. We would like to combine it with code ownership data from project history, so that we can assess the credibility of single classes (or even methods) based on developers karma.
+%
+%Currently we are building up our metadata and code bases for \Jbd; upon reaching a sufficient level we plan do a user study to evaluate the effect of metadata on result credibility. We would also like to compare the proposed credibility metric with other credibility measurements, \eg corporate backing of projects. It might also be promising to combine the proposed credibility metric, which is currently based on human factors only, with technical credibility assessments such as \eg test coverage. 
 

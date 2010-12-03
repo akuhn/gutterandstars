@@ -73,6 +73,24 @@ This chapter is an extension of previous work, in which we first proposed \emSOC
 \item \emph{Desiderata for spatial representation.} We present a generalization of DeLine's desiderata for spatial software navigation~\cite{Deli05b} to spatial representation in general, and complete them with the desiderata that visual distance should have a meaningful interpretation.
 \end{itemize}
 
+\subsection{Desiderata for Spatial Representation of Software}
+
+Robert DeLine's work on software navigation \cite{Deli05b,Deli06a} closely relates to \SOCA. His work is based on the observation that developers are consistently lost in code \cite{Deli05a} and that using textual landmarks only places a large burden on cognitive memory. He concludes the need for new visualization techniques that allow developers to use their spatial memory while navigating source code.
+
+DeLine proposes four desiderata \cite{Deli05b} that should be satisfied by spatial software navigation: 1)~the display should show the entire program and be continuous, 2)~the display should contain visual landmarks such that developers can find parts of the program perceptually rather than relying on names, 3)~the display should remain visually stable during navigation [and evolution], and 4)~the display should be capable of showing global program information overlays other than navigation.
+
+An ad-hoc algorithm that satisfies the first and fourth properties is presented in the same work. As distance metric between software entities (here, methods) an arbitrary chosen score is used.
+
+Our work satisfies all above desiderata, and completes them with a fifth desideratum that visual distance should have a meaningful interpretation. The scope of \SOCA is broader than just navigation, it is also intended for reverse engineering and code comprehension in general. We can thus generalize the five desiderata for spatial representation of software as follows:
+
+\begin{enumerate}
+\item The visualization should show the entire program and be continuous.
+\item The visualization should contain visualization landmarks that allow the developers to find parts of the system perceptually, rather than relying on name or other cognitive causes. 
+\item The visualization should remain visually stable as the system evolves. 
+\item The visualization should should be capable of showing global information overlays.
+\item On the visualization, distance should have a meaningful interpretation. 
+\end{enumerate}
+
 % ===================================================================================
 \section{Software Cartography}
 \label{sec:techniques}
@@ -335,27 +353,27 @@ A short edge indicates that closely related artifacts are invoking each other, w
 
 \end{itemize}
 
-\section{Conclusion}
-
-This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
-
-The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
-
-In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
-In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
-
-We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
-The examples have been produced using \CODEMAP, a proof-of-concept tool that implements our technique.
-
-As future work, we can identify the following promising directions:
-\begin{itemize}
-  \item Software maps at present are largely static.
-  We envision a more interactive environment in which the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software.
-  \item Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks.
-  \item Orientation and layout are presently consistent for a single project only.
-  We would like to investigate the usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain.
-  \item We plan to perform an empirical user study to evaluate the application of \SOCA for software comprehension and reverse engineering, but also for source code navigation in development environments.
-\end{itemize}
+%\section{Conclusion}
+%
+%This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
+%
+%The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
+%
+%In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
+%In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
+%
+%We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
+%The examples have been produced using \CODEMAP, a proof-of-concept tool that implements our technique.
+%
+%As future work, we can identify the following promising directions:
+%\begin{itemize}
+%  \item Software maps at present are largely static.
+%  We envision a more interactive environment in which the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software.
+%  \item Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks.
+%  \item Orientation and layout are presently consistent for a single project only.
+%  We would like to investigate the usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain.
+%  \item We plan to perform an empirical user study to evaluate the application of \SOCA for software comprehension and reverse engineering, but also for source code navigation in development environments.
+%\end{itemize}
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -369,15 +387,13 @@ As future work, we can identify the following promising directions:
 \chapter{User Study on Software Cartography}
 \label{the chapter on the codemap user study}
 
-Lexical cues are by far the most common cue used by software engineers for code orientation. Examples of lexical cues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical cue. The true power of lexical cues, however, is only unleashed when applying information retrieval and natural language processing. 
+Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. 
 
-we use lexical information found in source code to establish a visualization that supports spatial code orientation.
+In this chapter we provide a cartographic on-screen visualization so they can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout of the local code base. Code maps, as we call them, are stable over time and can be shared among members of a team to establish a common mental model of the system. 
+%
+We implemented our approach in a prototype, evaluated it in a user study, and found that it is most helpful for spatially exploring search results and call hierarchies.
 
-we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
-
-we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
-
-\emph{Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. Spatial representation of software is a promising approach of increasing interest. However, little is known about how developers interact with spatial visualizations that are embedded in the IDE. In this chapter, we present a pilot study that explores the use of \SOCA for program comprehension of an unknown system. We investigated whether developers establish a spatial memory of the system, whether clustering by topic offers a sound base layout, and how developers interact with maps. We report our results in the form of observations, hypotheses, and implications. Key findings are a) that developers made good use of the map to inspect search results and call graphs, and b) that developers found the base layout surprising and often confusing. We conclude with concrete advice for the design of embedded software maps.}
+Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. Spatial representation of software is a promising approach of increasing interest. However, little is known about how developers interact with spatial visualizations that are embedded in the IDE. In this chapter, we present a pilot study that explores the use of \SOCA for program comprehension of an unknown system. We investigated whether developers establish a spatial memory of the system, whether clustering by topic offers a sound base layout, and how developers interact with maps. We report our results in the form of observations, hypotheses, and implications. Key findings are a) that developers made good use of the map to inspect search results and call graphs, and b) that developers found the base layout surprising and often confusing. We conclude with concrete advice for the design of embedded software maps.
 
 Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. In the past decade the software visualization community has developed a rich wealth of visualization approaches~\cite{Dieh07a} and provided evidence of their usefulness for expert tasks, such as reverse engineering, release management or dynamic analysis (\eg \cite{Tele08b,Pauw08a,Reis05b,Orso03a}). Typically, these visualization approaches had been implemented in interactive tools \cite{Sens08a}. However most of these tools are stand-alone prototypes that have never been integrated in an IDE (integrated development environment). Little is thus known about the benefits of software visualization for the ``end users'' in software engineering, that is for everyday programmers. What is lacking is how these techniques support the day to day activities of software developers \cite{Stor05a}. 
 
