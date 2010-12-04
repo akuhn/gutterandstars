@@ -52,27 +52,7 @@ It is presumably for this reason that there are so many different and incomparab
 A cursory survey of recent \textsc{Softvis} and \textsc{Vissoft} publications shows that the majority of the presented visualizations feature arbitrary layout, the most common being based on alphabetical order and \emph{arbitrary hash-key order}.
 (Hash-key order is what we get in most programming languages when iterating over the elements of a Set or Dictionary collection.)
 
-Consistent layout for software would make it easier to compare visualizations of different kinds of information. But what should be the basis for positioning representations of software artifacts within a ``cartographic'' software map?
-What we need is a semantically meaningful notion of position and distance for software artifacts, a spatial representation of software in a multi-dimensional space, which can then be mapped to consistent layout on the 2-dimensional visualization plane.
-
-We propose to use \emph{vocabulary} as the most natural analogue of physical position for software artifacts, and to map these positions to a two-dimensional space as a way to achieve consistent layout for software maps.
-Distance between software artifacts then corresponds to distance in their vocabulary.
-Drawing from previous work \cite{Kuhn07a,Duca06c} we apply \LSI (LSI) \cite{Deer90a} to the vocabulary of a system to obtain $n$-dimensional locations, and we use \MDS (MDS) \cite{Borg05a} to obtain a consistent layout.
-Finally we use cartography techniques (such as digital elevation, hill-shading and contour lines) to generate a landscape representing the frequency of topics. We call our approach \emSOCA, and call a series of visualizations \emph{Software Maps}, when they all use the same consistent layout created by our approach. 
-
-
-Why should we adopt vocabulary as distance metric, and not some structural property?
-First of all, vocabulary can effectively \emph{abstract} away from the technical details of source code \cite{Kuhn07a} by capturing the key domain concepts of source code. Software entities with similar vocabulary are conceptually and topically close. Lexical similarity has proven useful to detect high-level clones \cite{Marc01a} and cross-cutting concerns \cite{Pali08a} in software. Furthermore, it is known that over time vocabulary tends to be more stable than the structure of software \cite{Anto07a}, and tends to grow rather than to change \cite{Vasa07b}. Although refactorings may cause functionality to be renamed or moved, the overall vocabulary tends not to change, except as a side-effect of growth. This suggests that vocabulary will be relatively \emph{stable} in the face of change, except where significant growth occurs. As a consequence, vocabulary not only offers an intuitive notion of position that can be used to provide a consistent layout for different kinds of thematic maps, but it also provides a robust and consistent layout for mapping an evolving system. System growth can be clearly positioned with respect to old and more stable parts of the same system.
-
-This chapter is an extension of previous work, in which we first proposed \emSOCA for consistent layout of software visualizations \cite{Kuhn08b}. The main contributions of the current chapter are:
-
-\begin{itemize}
-\item \emph{Improved algorithm.} In our previous work we presented a technique to create software maps given either a single release, or all releases of a system at once. In this chapter we propose an improved algorithm for incremental software maps that update as new changes appear.
-\item \emph{Visual stability.} In our previous work we introduced \SOCA as an approach to achieve consistent layouts for software visualization. In this chapter we evaluate four open source case studies to investigate the visual stability of our approach over the evolution of a system. 
-\item \emph{Desiderata for spatial representation.} We present a generalization of DeLine's desiderata for spatial software navigation~\cite{Deli05b} to spatial representation in general, and complete them with the desiderata that visual distance should have a meaningful interpretation.
-\end{itemize}
-
-\subsection{Desiderata for Spatial Representation of Software}
+\section{Spatial Representation of Software}
 
 Robert DeLine's work on software navigation \cite{Deli05b,Deli06a} closely relates to \SOCA. His work is based on the observation that developers are consistently lost in code \cite{Deli05a} and that using textual landmarks only places a large burden on cognitive memory. He concludes the need for new visualization techniques that allow developers to use their spatial memory while navigating source code.
 
@@ -94,6 +74,17 @@ Our work satisfies all above desiderata, and completes them with a fifth desider
 \section{Software Cartography}
 \label{sec:techniques}
 
+Consistent layout for software would make it easier to compare visualizations of different kinds of information. But what should be the basis for positioning representations of software artifacts within a ``cartographic'' software map?
+What we need is a semantically meaningful notion of position and distance for software artifacts, a spatial representation of software in a multi-dimensional space, which can then be mapped to consistent layout on the 2-dimensional visualization plane.
+
+We propose to use \emph{vocabulary} as the most natural analogue of physical position for software artifacts, and to map these positions to a two-dimensional space as a way to achieve consistent layout for software maps.
+Distance between software artifacts then corresponds to distance in their vocabulary.
+Drawing from previous work \cite{Kuhn07a,Duca06c} we apply \LSI (LSI) \cite{Deer90a} to the vocabulary of a system to obtain $n$-dimensional locations, and we use \MDS (MDS) \cite{Borg05a} to obtain a consistent layout.
+Finally we use cartography techniques (such as digital elevation, hill-shading and contour lines) to generate a landscape representing the frequency of topics. We call our approach \emSOCA, and call a series of visualizations \emph{Software Maps}, when they all use the same consistent layout created by our approach. 
+
+Why should we adopt vocabulary as distance metric, and not some structural property?
+First of all, vocabulary can effectively \emph{abstract} away from the technical details of source code \cite{Kuhn07a} by capturing the key domain concepts of source code. Software entities with similar vocabulary are conceptually and topically close. Lexical similarity has proven useful to detect high-level clones \cite{Marc01a} and cross-cutting concerns \cite{Pali08a} in software. Furthermore, it is known that over time vocabulary tends to be more stable than the structure of software \cite{Anto07a}, and tends to grow rather than to change \cite{Vasa07b}. Although refactorings may cause functionality to be renamed or moved, the overall vocabulary tends not to change, except as a side-effect of growth. This suggests that vocabulary will be relatively \emph{stable} in the face of change, except where significant growth occurs. As a consequence, vocabulary not only offers an intuitive notion of position that can be used to provide a consistent layout for different kinds of thematic maps, but it also provides a robust and consistent layout for mapping an evolving system. System growth can be clearly positioned with respect to old and more stable parts of the same system.
+
 In this section we present the techniques that are used to achieve a consistent layout for software maps. We present two variations of \SOCA, an \emph{offline} algorithm that requires that all releases of a software system are available upfront, and an improved \emph{online} algorithm that updates the layout incrementally as new releases of the system appear. 
 
 \begin{figure}
@@ -107,20 +98,18 @@ In this section we present the techniques that are used to achieve a consistent 
 The general approach of \SOCA, as illustrated in \autoref{fig:soca}, is as follows:
 \begin{enumerate}
 \item We parse the vocabulary of source files into term-frequency histograms. All text found in raw source code is taken into account, including not only identifiers but also comments and literals.
-\item We transform the term-frequency histograms using \LSI (LSI) \cite{Deer90a}, an information retrieval technique that resolves synonymy and polysemy. 
 \item We use \MDS (MDS) \cite{Borg05a} to map the term-frequency histograms onto the 2D visualization pane. This preserves the lexical co-relation of source files as well as possible.
 \item We use cartographic visualization techniques to render an aesthetically appealing landscape.
 \end{enumerate}
 
-Possible applications of \SOCA in the software development process are, \dots
-
-\begin{itemize}
-\item \dots to navigate within a software system, be it for development or analysis.
-\item \dots to relate different metrics to each other, \eg search results and bug prediction.
-\item \dots to stay in touch with other developers of your team, by showing open files of other developers.
-\item \dots to understand a system’s domain upon first contact.
-\item \dots to explore a system during reverse engineering.
-\end{itemize}
+%Possible applications of \SOCA in the software development process are, \dots
+%\begin{itemize}
+%\item \dots to navigate within a software system, be it for development or analysis.
+%\item \dots to relate different metrics to each other, \eg search results and bug prediction.
+%\item \dots to stay in touch with other developers of your team, by showing open files of other developers.
+%\item \dots to understand a system’s domain upon first contact.
+%\item \dots to explore a system during reverse engineering.
+%\end{itemize}
 
 \noindent We implemented a prototype of our approach, \CODEMAP, which is available as an open source project. \CODEMAP was originally programmed in Smalltalk, in the mean time development has been moved to Java. \CODEMAP is available as an Eclipse plug-in\footnote{\url{http://scg.unibe.ch/codemap}}.
 
@@ -142,6 +131,21 @@ Given a series of releases both variations yield a visually stable sequence of m
 
 %For example, the JUnit case-study in section  (Hausdorff distance $0.25 \pm 0.11$ versus $0.10 \pm 0.14$).
 
+\begin{description}
+
+\item[2-Dimensional Embedding]
+A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling \cite{Borg05a} is used to embed all software artifacts on the visualization pane. Different to lexical clustering Latent Semantic Indexing is not anymore; it has been found to have little impact on the final embedding, if at all. The application of Isomap is an improvement of the embedding in order to assist MDS with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
+
+Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
+
+\item[Digital Elevation Model] In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
+
+Using KLOC leads to an elevation model where large classes dominate the codemap. Observations from our user study indicate that this might be misleading since developers tend to interpret size as a measure of impact. Based on this observation, we implemented a set of different impact metrics~\cite{Lanz06a} and plan to evaluate them in a fresh user study.
+
+\item[Cartographic rendering] In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
+
+\end{description}
+
 % -----------------------------------------------------------------------------------
 \subsection{Lexical Similarity between Source Files}
 \label{sec:lsi}
@@ -149,8 +153,6 @@ Given a series of releases both variations yield a visually stable sequence of m
 As motivated in the introduction, the distance between software entities on the map is based on the lexical similarity of source files. Lexical similarity is an Information Retrieval (IR) technique based on the vocabulary of text files. Formally, lexical similarity is defined as the cosine between the term frequency vectors of two text documents. That is, the more terms (\ie identifiers names and operators, but also words in comments) two source files share, the closer they are on the map. 
 
 First, the raw source files are split into terms. Then a matrix is created, which lists for each document the occurrences of terms. Typically, the vocabulary of source code consists of 500--20'000 terms. In fact, studies have shown that the relation between term count and software size follows a power law \cite{Zhan08a}. For this work, we consider all text found in raw source files as terms. This includes class names, methods names, parameter names, local variables names, names of invoked methods, but also words found in comments and literal values. Identifiers are further preprocessed by splitting up the camel-case name convention which is predominantly used in Java source code. Note that since our approach is based on raw text, any programming language that uses textual source files might  be processed.
-
-In a next step, \LSI \cite{Deer90a} is applied to reduce the rank of the term-document matrix to about 50 dimensions. LSI is able to resolve issues of synonymy and polysemy without the use of predefined dictionaries. This is advantageous for the vocabulary of source code which often deviates from common English usage. For more details on \LSI and lexical similarity, please refer to our previous work on software clustering \cite{Kuhn07a}.
 
 % -----------------------------------------------------------------------------------
 \subsection{Multi-dimensional Scaling}
@@ -160,8 +162,6 @@ In order to visualize the lexical similarity between software entities, we must 
 We use \MDS (MDS) in order to map from the previously established multi-dimensional term-document matrix down to two dimensions.
  \MDS tries to minimize a stress function while iteratively placing elements into a low-level space. \MDS yields the best approximation of a vector space's orientation, \ie it preserves the distance relation between elements as best as possible. This is good for data exploration problems.
 
-Note that \MDS is not a force-based graph layout algorithm. MDS does not operate on a graph of vertices and edges. MDS maps elements from a high-dimensional metric space to a low-dimensional metric space. In this work, the high-dimensional space is a term-document matrix using Pearson-8 as metric\footnote{When computing the lexical similarity between text documents, it is important to use a cosine or Pearson distance metric. The standard Euclidian distance has no meaningful interpretation when applied to term-document vector space!} and the low-dimensional space a visualization pane with Euclidian metric.
-
 \newlength{\figwidth}
 \begin{figure}
 \begin{center}
@@ -170,8 +170,6 @@ Note that \MDS is not a force-based graph layout algorithm. MDS does not operate
     \caption{Construction steps: left) MDS placement of files on the visualization pane, middle) circles around each file's location, based on class size in KLOC, right) digital elevation model with hill-shading and contour lines. Sidebox on digital elevation model) each file contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all files are summed up to a digital elevation model.}
     \label{fig:steps}
 \end{figure}
-
-This work applies High-throughput MDS (Hit-MDS), which is an optimized implementation of MDS particularly well-suited for dealing with large data sets \cite{Stri05a}. The algorithm was originally designed for clustering multi-parallel gene expression probes. These data sets contain thousands of gene probes and the corresponding similarity matrix dimension reflects this huge data amount. The price paid for fast computation is less accurate approximation and a simplified distance metric.
 
 % -----------------------------------------------------------------------------------
 \subsection{Cartographic Visualization Techniques}
@@ -207,26 +205,18 @@ The decision to use a distance based on lexical similarity does, indeed, create 
 
 The map layout as presented in this work can, of course, be used to see how items are related from the point of view of some other distance, such as considering structural similarity, similarity with regard to a complexity or testability metric. In that case, the distance may vary a lot over time during the evolution of a product, and this will create unstable layouts. The focus of this work, however, is the creation of maps that help programmers to establish a stable mental model of their software system under work. In any case, if maps  based on other metrics are ever to be used in conjunction with vocabulary-based \SOCA maps, we strongly recommend to visually distinguish them by using another rendering scheme. This helps to reduce the likeliness that programmers confuse the spatial layout of these other maps, with the mental model acquired through the use of \SOCA maps. 
 
-As mentioned in the introduction, \SOCA is vocabulary-based because vocabulary can effectively \emph{abstract} away from the technical details of source code \cite{Kuhn07a} by capturing the key domain concepts of source code. The assumption being that software entities with similar vocabulary are conceptually and topically close. Consider, for example, programming languages and software where name overloading is applied. Even though overloaded methods differ in their implementation strategy, they will typically implement the same concept using the same vocabulary. In fact, lexical similarity has proven useful to detect high-level clones \cite{Marc01a} and cross-cutting concerns \cite{Pali08a} in software.  
-
-Due to name scoping, semantically different scopes can have identical names with different meanings. Consider, for example, two large functions having mostly identifiers such as i, j, prev, next, end, stop, flag, \dots;  the one does some matrix computations, while the other is a hash-table implementation. Without the application of \LSI (\secref{lsi}) the two would be classified as being very similar, while this is clearly not true from a developer's perspective. \LSI, however, can identify words that have different meaning depending on their context. LSI has the ability to resolve certain synonymy and polysemy \cite{Deer90a}.
-
+As mentioned above, \SOCA is vocabulary-based because vocabulary can effectively \emph{abstract} away from the technical details of source code \cite{Kuhn07a} by capturing the key domain concepts of source code. The assumption being that software entities with similar vocabulary are conceptually and topically close. Consider, for example, programming languages and software where name overloading is applied. Even though overloaded methods differ in their implementation strategy, they will typically implement the same concept using the same vocabulary. In fact, lexical similarity has proven useful to detect high-level clones \cite{Marc01a} and cross-cutting concerns \cite{Pali08a} in software.  
 
 Although refactorings may cause functionality to be renamed or moved, the overall vocabulary tends not to change, except as a side-effect of growth \cite{Zhan08a,Vasa07b}. Consider the example of a rename refactoring. Two effects may occur. 
-In the first case, all occurrences of a symbol are replaced with new symbol. This will not affect the map, since both lexical similarity and LSI are based on statistical analysis only. Replacing all occurrences of one term with a new term is, from the point of these IR technologies, a null operation. In the second case, some occurrences of a symbol are replaced with another symbol which is already used. This will indeed affect the layout of the map. Given that the new name was well chosen by the programmer, the new layout constitutes a better representation of the system. On the other hand, if the new name is a bad choice, the new layout is flawed. However, what constitutes bad naming is not merely a matter of taste. Approaches that combine vocabulary with structural information can indeed assess the quality of naming. Please refer to H\o{}st's recent work on debugging method names for further reading \cite{Hoes09a}.
+In the first case, all occurrences of a symbol are replaced with new symbol. This will not affect the map, since both lexical similarity is based on statistical analysis only. Replacing all occurrences of one term with a new term is, from the point of these IR technologies, a null operation. In the second case, some occurrences of a symbol are replaced with another symbol which is already used. This will indeed affect the layout of the map. Given that the new name was well chosen by the programmer, the new layout constitutes a better representation of the system. On the other hand, if the new name is a bad choice, the new layout is flawed. However, what constitutes bad naming is not merely a matter of taste. Approaches that combine vocabulary with structural information can indeed assess the quality of naming. Please refer to H\o{}st's recent work on debugging method names for further reading \cite{Hoes09a}.
 
 Not considered in the present work is the relative weight of different lexical tokens. For example, it seems reasonable to weight local identifiers differently than identifiers in top-level namespaces. Also, one may treat names coming from library functions different from the ones coming from the actual user code. Given the absence of evaluation benchmarks, we decided to use equal weighting for all lexical token. Also, preliminary experiments with different weighting schemes indicate that relative weights below boost level, \ie below a factor of 10, do often not significantly affect the overall layout.
 
 % =============================================================================
-\section{Examples}
+\section{Example: the Story of Ludo}
 \label{sec:casestudy}
 
-In this section we present examples of \SOCA. The first example visualizes the evolution of a small software system. The second example shows an overview of six open-source systems. As the third example, we provide two thematic overlays of the same software map.
-
-% -----------------------------------------------------------------------------------
-\subsection{The Evolution of Ludo}
-
-Figure~\ref{fig:ludo} shows the complete history of the Ludo system, consisting of four iterations. Ludo is used in a first year programming course to teach iterative development (please mail the first author to get the sources). The 4th iteration is the largest with 30 classes and a total size of 3-4 KLOC. We selected Ludo because in each iteration, a crucial part of the final system is added. 
+In this section we present an examples of \SOCA. Figure~\ref{fig:ludo} shows the complete history of the Ludo system, consisting of four iterations. Ludo is used in a first year programming course to teach iterative development (please mail the first author to get the sources). The 4th iteration is the largest with 30 classes and a total size of 3-4 KLOC. We selected Ludo because in each iteration, a crucial part of the final system is added. 
 
 \begin{itemize}
 
@@ -242,137 +232,27 @@ Figure~\ref{fig:ludo} shows the complete history of the Ludo system, consisting 
 
 The layout of elements remains stable over all four iterations.  For example, {\tt Board/LudoFactory} is on all four views located in the south-western quadrant. This is due to LSI's robustness in the face of synonymy and polysemy; as a consequence most renamings do not significantly change the vocabulary of a software artifact \cite{Kuhn07a}.
 
-%\setlength{\figwidth}{0.32\textwidth}
-%\begin{figure*}
-%\begin{center}
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{apache-tomcat-bw}\\
-%  Apache Tomcat
-%\end{center}
-%\end{minipage}~
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{columba-bw}\\
-%  Columba
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{google-taglib-bw}\\
-%  Google Taglib
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{j-fdp-bw}\\
-%  JFtp
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{JoSQL-bw}\\
-%  JoSQL
-%\end{center}
-%\end{minipage}
-%\begin{minipage}{\figwidth}
-%\begin{center}
-%  \includegraphics[width=\figwidth]{figures-bw/jcgrid-bw}\\
-%  JCGrid
-%\end{center}
-%\end{minipage}
-%\end{center}
-%\vspace{1ex}
-%    \caption{Overview of the software maps of six open source systems. Each map reveals a distinct spatial structure. When consequently applied to every visualization, the consistent layout may soon turn into the system's iconic fingerprint. An engineer might \eg point to the top left map and say: ``Look, this huge {\tt Digester} peninsula in the north, that must be Tomcat. I know it from last year's code review.''.
-%    }
-%    \label{fig:fullpage}
-%\end{figure*} 
+\section{Conclusion}
 
-% -----------------------------------------------------------------------------------
-\subsection{Open-source examples}
+This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
 
-We applied the \SOCA approach to all systems listed in the field study by Cabral and Marques \cite{Cabr07a}. They list 32 systems, including 4 of each type of application (Standalone, Server, Server Applications, Libraries) and selected programming language (Java, .NET).  
+The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
 
-Figure \ref{fig:fullpage} shows the software map for six of these systems: Apache Tomcat, Columba, Google Taglib, JFtp, JCGrid and JoSQL. Each system reveals a distinct spatial structure. Some fall apart into many islands, like JFtp, whereas others cluster into one (or possibly two) large contents, like Columba and Apache Tomcat. The 36 case-studies raised interesting questions for future work regarding the correlation between a system's layout and code quality. For example, do large continents indicate bad modularizations? Or, do archipelagoes indicate low coupling?
+In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
+In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
 
-%Each system's size in TLC and KLOC is listed in Table~\ref{tab:six}.
+We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
+The examples have been produced using \CODEMAP, a proof-of-concept tool that implements our technique.
 
-%\begin{table}[htdp]
-%\begin{center}
-%\begin{tabular}{l|rr}
-%\textbf{System} & \textbf{\# Top-level} & \textbf{KLOC} \\
-% & \textbf{classes} & \\
-%\hline
-%Apache Tomcat & 162 & 14'700 \\
-%Columba & 1'549 & 53'500 \\
-%Google Taglib & 20 & 940 \\ 
-%JFtp & 78 & 3'470 \\
-%JCGrid & 94 & 3'630 \\
-%JoSQL & 83 & 6'480 \\
-%\end{tabular}
-%\end{center}
-%\vspace{1ex}
-%\caption{Statistics of the six systems in Figure~\ref{fig:fullpage}. \AK{Are you sure this is KLOC? Does Google Taglib really have 0.9 million(!) lines of code in 20 classes only?}
-%}
-%\label{tab:six}
-%\end{table}
-
-% -----------------------------------------------------------------------------------
-\subsection{Thematic cartography examples}
-
-\begin{figure}
-\begin{center}
-\begin{minipage}{1.4\figwidth}
-\begin{center}
-  \includegraphics[width=1.4\figwidth]{fig/chronia-ludo-testtubes}
-\end{center}
-\end{minipage}
-\begin{minipage}{1.4\figwidth}
-\begin{center}
-  \includegraphics[width=1.4\figwidth]{fig/chronia-ludo-testexecution}
-\end{center}
-\end{minipage}
-\end{center}
-    \caption{Software maps with thematic overlay: (left) glyphs are drawn on top of the map, to display additional information. Each test tube glyph indicates the location of unit test case, (right) invocation edges are drawn on top of the map, showing the trace of executing the {\tt RuleThreeTest} test case.}
-    \label{fig:mock}
-\end{figure}
-
-Software maps can be used as canvas for more specialized visualizations of the same system. In the following, we provide two thematic visualization of the Ludo system that might benefit from consistent layout. (The maps in this subsection are mockups, not yet fully supported by \CODEMAP.)
-
+As future work, we can identify the following promising directions:
 \begin{itemize}
-
-\item Boccuzzo and Gall present a set of metaphors for the visual shape of entities \cite{Bocc07a}. They use simple and well-known graphical elements from daily life, such as houses and tables. However they use conventional albeit arbitrary layouts, where the distribution of glyphs often does not bear a meaningful interpretation. The first map in Figure~\ref{fig:mock} (on the left) employs their technique on top of a software map, using test tubes to indicate the distribution of test cases.
-
-\item Greevy \etal present a three-dimensional variation of System Complexity View to visualize a System's dynamic runtime state \cite{Gree05d}. They connect classes with edges representing method invocation, and stack boxes on top of each other to represent a class's instances.
-Since System Complexity Views do not capture any notion of position, the lengths of their invocation edges do not express any real sense of distance.
-
-Figure~\ref{fig:mock} (on the right) employs their approach on top of a software map, drawing invocation edges in a two-dimensional plane.
-Here the distances have an interpretation in terms of lexical distance, so the lengths of invocation edges are meaningful.
-A short edge indicates that closely related artifacts are invoking each other, whereas long edges indicate a ``long-distance call'' to a lexically unrelated class.
-
+  \item Software maps at present are largely static.
+  We envision a more interactive environment in which the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software.
+  \item Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks.
+  \item Orientation and layout are presently consistent for a single project only.
+  We would like to investigate the usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain.
+  \item We plan to perform an empirical user study to evaluate the application of \SOCA for software comprehension and reverse engineering, but also for source code navigation in development environments.
 \end{itemize}
-
-%\section{Conclusion}
-%
-%This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
-%
-%The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses \LSI to position software entities in an multi-dimensional space, and \MDS to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
-%
-%In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
-%In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
-%
-%We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
-%The examples have been produced using \CODEMAP, a proof-of-concept tool that implements our technique.
-%
-%As future work, we can identify the following promising directions:
-%\begin{itemize}
-%  \item Software maps at present are largely static.
-%  We envision a more interactive environment in which the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software.
-%  \item Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks.
-%  \item Orientation and layout are presently consistent for a single project only.
-%  We would like to investigate the usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain.
-%  \item We plan to perform an empirical user study to evaluate the application of \SOCA for software comprehension and reverse engineering, but also for source code navigation in development environments.
-%\end{itemize}
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -386,12 +266,6 @@ A short edge indicates that closely related artifacts are invoking each other, w
 \chapter{User Study on Software Cartography}
 \label{the chapter on the codemap user study}
 
-Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. 
-
-In this chapter we provide a cartographic on-screen visualization so they can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout of the local code base. Code maps, as we call them, are stable over time and can be shared among members of a team to establish a common mental model of the system. 
-%
-We implemented our approach in a prototype, evaluated it in a user study, and found that it is most helpful for spatially exploring search results and call hierarchies.
-
 Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. Spatial representation of software is a promising approach of increasing interest. However, little is known about how developers interact with spatial visualizations that are embedded in the IDE. In this chapter, we present a pilot study that explores the use of \SOCA for program comprehension of an unknown system. We investigated whether developers establish a spatial memory of the system, whether clustering by topic offers a sound base layout, and how developers interact with maps. We report our results in the form of observations, hypotheses, and implications. Key findings are a) that developers made good use of the map to inspect search results and call graphs, and b) that developers found the base layout surprising and often confusing. We conclude with concrete advice for the design of embedded software maps.
 
 Software visualization can be of great use for understanding and exploring a software system in an intuitive manner. In the past decade the software visualization community has developed a rich wealth of visualization approaches~\cite{Dieh07a} and provided evidence of their usefulness for expert tasks, such as reverse engineering, release management or dynamic analysis (\eg \cite{Tele08b,Pauw08a,Reis05b,Orso03a}). Typically, these visualization approaches had been implemented in interactive tools \cite{Sens08a}. However most of these tools are stand-alone prototypes that have never been integrated in an IDE (integrated development environment). Little is thus known about the benefits of software visualization for the ``end users'' in software engineering, that is for everyday programmers. What is lacking is how these techniques support the day to day activities of software developers \cite{Stor05a}. 
@@ -400,22 +274,13 @@ In this chapter, we report on a pilot study of a spatial software visualization 
 
 %\ewe{Maybe comment somewhere that the level of integration may vary. Distant integration would be the case of the visualization being available within the IDE, but remain rather an supplementary tools. Tight integration implies that the map reacts to other events in the IDE, e.g. file close, etc. or at least stays sync'ed with the project}
 
-The scenario of our user study is first contact with an unknown closed-source system. Our main question was whether and how developers make use of the embedded visualization and if our initial assumptions made when designing the visualization (as for example the choice of lexical similarity as the map's base layout \cite[Sec 3]{Kuhn10b}) are based on a valid model of developer needs. Participants had 90 minutes to solve 5 exploratory tasks and to fix one bug report. We used the think-aloud protocol and recorded the voices of the participants together with a screen capture of their IDE interactions. We took manual notes of IDE interaction sequences and annotated the sequences with the recorded think-aloud transcripts. 
+The scenario of our user study is first contact with an unknown closed-source system. Our main question was whether and how developers make use of the embedded visualization and if our initial assumptions made when designing the visualization (as for example the choice of lexical similarity as the map's base layout, see \autoref{sec:onvocabulary}) are based on a valid model of developer needs. Participants had 90 minutes to solve 5 exploratory tasks and to fix one bug report. We used the think-aloud protocol and recorded the voices of the participants together with a screen capture of their IDE interactions. We took manual notes of IDE interaction sequences and annotated the sequences with the recorded think-aloud transcripts. 
 
 Results are mixed\,---\,some support and some challenge our assumptions on how developers would use the embedded visualization. Participants found the map most useful to explore search results and call graphs, but only rarely used the map for direct navigation as we would have expected.
 %It became quickly apparent that we should revise our initial assumption that lexical similarity is a valid basis for the cartographic layout. Participants interpreted visual distance as a measure of structural dependencies---even though they were aware of the underlying lexical implementation.
 
-Contributions of this chapter are as follows: 
-%\nes{These aren't the contributions, they're summaries of your methodology, and promises of contributions.}
-
-\begin{itemize}
-\item We embedded the stand-alone \Codemap prototype in the Eclipse IDE, and added novel thematic overlays that support the most important development tasks with visual feedback (see \autoref{sec:tasks} and \autoref{sec:steps}).
-\item We performed a think-aloud user study to evaluate the use of spatial visualization in the IDE. We discuss and comment on our results, and conclude with practical design implications (see \autoref{sec:results} and \autoref{sec:discussion}).
-\item We provide suggestions on how to improve \SOCA and the \Codemap tool (see \autoref{sec:related}).
-\end{itemize}
-
 % ===================================================================================
-\section{Software Cartography}
+\section{The \CODEMAP Prototype}
 \label{sec:tasks}
 
 \SOCA uses a spatial visualization of software systems to provide software development teams with a stable and shared mental model. The basic idea of cartographic visualization is to apply thematic cartography~\cite{Sloc05a} on software visualization. That is, to show thematic overlays on top of a stable, spatial base layout. Features on a thematic map are either point-based, arrow-based or continuous. For software this could be the dispersion of design flaws as visualized using icons; a call graph  is visualized as a flow map (as illustrated on \autoref{fig:awesome}); and test coverage is visualized as a choropleth map, \ie a heat map. 
@@ -423,9 +288,6 @@ Contributions of this chapter are as follows:
 \SOCA is most useful when it supports as many development tasks with spatial location awareness as possible. We therefore integrated our prototype into the Eclipse IDE so that a map of the software system may always be present. This helps developers to correlate as many development tasks as possible with their spatial location.
 
 At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\footnote{\url{http://scg.unibe.ch/codemap}}
-% New features are added on a weekly base, please subscribe to \url{http://twitter.com/codemap} to receive latest news.}
-% ON: The twitter feed is listed on the web page -- don't mention it in the chapter
-
 
 \begin{itemize}
 \item Navigation within a software system, be it for development or analysis. \Codemap is integrated with the package explorer and editor of \eclipse. The selection in the package explorer and the selection on the map are linked. Open files are marked with an icon on the map. Double clicking on the map opens the closest file in the editor. When using heat map mode, recently visited classes are highlighted on the map.
@@ -442,26 +304,11 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
 
 \begin{figure}
 \begin{center}
-  \includegraphics[width=\linewidth]{fig/codemap-example}
+  \includegraphics[width=0.7\linewidth]{fig/codemap-example}
 \end{center}
     \caption{\emph{Thematic codemap of a software system. Here the \Codemap tool itself is shown. Arrow edges show incoming calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus labeled with a pop-up.}}
     \label{fig:awesome}
 \end{figure}
-
-\begin{description}
-
-\item[2-Dimensional Embedding]
-A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling \cite{Borg05a} is used to embed all software artifacts on the visualization pane. Different to lexical clustering Latent Semantic Indexing is not anymore; it has been found to have little impact on the final embedding, if at all. The application of Isomap is an improvement of the embedding in order to assist MDS with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
-
-Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
-
-\item[Digital Elevation Model] In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
-
-Using KLOC leads to an elevation model where large classes dominate the codemap. Observations from our user study indicate that this might be misleading since developers tend to interpret size as a measure of impact. Based on this observation, we implemented a set of different impact metrics~\cite{Lanz06a} and plan to evaluate them in a fresh user study.
-
-\item[Cartographic rendering] In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
-
-\end{description}
 
 % ===================================================================================
 \section{Methodology}
@@ -633,25 +480,25 @@ The need for better presentation of search results has implications beyond the d
 For our next prototype we plan to integrate search results into the package explorer view, just as is already done with compile errors (which are, from this point of view, just like the search results of a complex query that is run to find syntax errors). This planned feature addresses another implication of our study as well, as we have found that some developers establish a spatial memory of the package explorer view. It therefore makes sense to mark search results both on our map as well as in the explorer view. 
 %\ewe{Can't agree more}
 
-\paragraph{Observation 6.3: When interacting with the map, participants were attracted to isolated elements, rather than exploring clusters of closely related elements}
+\paragraph{Observation 6.3/a: When interacting with the map, participants were attracted to isolated elements, rather than exploring clusters of closely related elements}
  
 We found that participants are more likely to inspect easily discernible elements on the map. They are more likely to notice and interact with an isolated island rather than with elements that are part of a larger continent. Unfortunately, it is exactly dense and strongly correlated clusters that contain the most interesting parts of the system! When investigating this issue, participants answered that \emph{``those (isolated) elements looked more important as they visually stick out of the rest of the map.''} 
  
 Also, when working with another system that had (unlike the present study) a large cluster in the middle surrounded by archipelagos on the periphery, we found that users started their exploration with isolated hills in the periphery, only then working their way towards the more dense cluster in the middle. 
 
-\paragraph{Hypothesis 6.3/a: Developers avoided clusters of closely relates elements because they are difficult to identify and select on the map}
-
-All participants had difficulties to open files by clicking on the map. They had difficulties to select classes on the map when they are in a crowded cluster. They would click in the middle of a label, but often the labels are not centered, which is an unavoidable artifact of any labeling algorithm, and thus the clicks would open a different (unlabeled) class.
-
-Codemap does provide tooltips, however participants did not use them. From observing their work it was obvious why: both students and professionals were working at such a speed that waiting for a tooltip to appear would have totally taken them out of their workflow. 
-
-\paragraph{Observation 6.3/b: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
+\paragraph{Hypothesis 6.3/b: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
 
 Contrary to our assumptions, participants did not use the map to return to previously visited locations by recalling them from spatial memory. Some would use the map, but only for exposed classes that are easily recognizable and clickable. This observation is related to the previous one.
 
 We found however some participants established a spatial memory of the package explore\,---\,and did so \emph{in addition to their spatial model of the system's architecture!} For example, participant~S would drill down with the explorer saying ``let's open that class down there'' or ``there was this class up here.'' Over the course of the experiment he got quicker at navigating back to previously visited classes in the package explorer. Other participants, as for example participant~T, relied on lexical cues and made extensive use of Eclipse's ``Open Type'' dialog to find their way back to previously visited classes.
 
 Usability glitches will of course worsen the effect of (or might even be the main cause of) not using the map for navigation and revisiting classes. From this it follows that:
+
+\paragraph{Hypothesis 6.3: Developers avoided clusters of closely relates elements because they are difficult to identify and select on the map}
+
+All participants had difficulties to open files by clicking on the map. They had difficulties to select classes on the map when they are in a crowded cluster. They would click in the middle of a label, but often the labels are not centered, which is an unavoidable artifact of any labeling algorithm, and thus the clicks would open a different (unlabeled) class.
+
+Codemap does provide tooltips, however participants did not use them. From observing their work it was obvious why: both students and professionals were working at such a speed that waiting for a tooltip to appear would have totally taken them out of their workflow. 
 
 \paragraph{Implication 6.3: The map's layout should be such that all elements are easily discernable and easy to click}
 
@@ -665,15 +512,16 @@ For instance, a threshold could be used to not show isolated elements at all, bu
 
 %\ewe{I'm a bit puzzled with the formulation of 6.3. The fact that we are attracted by elements that visually detach from other has two impacts: (1) one is the we tend to look at isolated element of low significance, the other (2) that it's hard to identify elements in the cluster. Both are very different. The hypothesis  is more related to (1) while hypothesis and implication relates more to (2). The argumentation should be consolidated, IMHO. For instance, a threshold could be used to not show isolated elements at all, but only significant clusters. That would address (1), but not (2). Or the usage of colors, to display isolated element so that they don't attract our look }
 
-%\paragraph{Observation 6.4: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
-% 
-%\paragraph{Hypothesis 6.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual cues}
-%
-%In general, the issue of usability is orthogonal to the map's layout. For example, offering ``search as you type'' might help to raise map interaction for those developers that mainly rely on lexical cues, no matter which base layout is used. It was our impression that any exploratory user study of embedded software visualization will be dominated just as by usability issues as by technical factors, such as your choice of layout algorithm. \ewe{I don't get this one}
-%
-%\paragraph{Implication 6.4: It should be possible to bookmark classes as ``top landmarks,'' both manually and automatically based on usage statistics}
-% 
-%What might help as well to ease the retrieval of previously visited classes is a ``top landmarks'' feature where you can manually (but also automatically based on visits) set markers on the map as starting points for further activities. We plan to work on this for our next prototype. \ewe{The apparent ability to remember position in the package explorer but not in the map may be due to other aspects. I'm wondering for instance if providing a grid in the map with row A-F, and column 0-16 would help to remember the position in the map. Maybe yes, maybe not. In the real-world analogy, maps have latitude and longitude. With never remember them, but help us to slice the map. We maybe need some rigidity to be able to anchor position in our mental model. The package explorer is too rigid, and the map is to flexible/free.} \ewe{All that to say that I don't quite get the link form observation 6.4 to implication 6.4}
+\paragraph{Observation 6.4: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
+ 
+\paragraph{Hypothesis 6.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual cues}
+
+In general, the issue of usability is orthogonal to the map's layout. For example, offering ``search as you type'' might help to raise map interaction for those developers that mainly rely on lexical cues, no matter which base layout is used. It was our impression that any exploratory user study of embedded software visualization will be dominated just as by usability issues as by technical factors, such as your choice of layout algorithm. 
+
+\paragraph{Implication 6.4: It should be possible to bookmark classes as ``top landmarks,'' both manually and automatically based on usage statistics}
+ 
+What might help as well to ease the retrieval of previously visited classes is a ``top landmarks'' feature where you can manually (but also automatically based on visits) set markers on the map as starting points for further activities. We plan to work on this for our next prototype. 
+%\ewe{The apparent ability to remember position in the package explorer but not in the map may be due to other aspects. I'm wondering for instance if providing a grid in the map with row A-F, and column 0-16 would help to remember the position in the map. Maybe yes, maybe not. In the real-world analogy, maps have latitude and longitude. With never remember them, but help us to slice the map. We maybe need some rigidity to be able to anchor position in our mental model. The package explorer is too rigid, and the map is to flexible/free.} \ewe{All that to say that I don't quite get the link form observation 6.4 to implication 6.4}
 %
 %\ewe{Actually, I'm wondering if dropping 6.4 altogether wouldn't make the argumentation stronger. To me the main points are 6.1, 6.2, 6.3, 6.5}.
 
@@ -722,8 +570,52 @@ It is a known problem to recruit professional participants for user studies, but
 One of the most striking difference between students and professionals was that a professional would never do any click or action in the IDE without having a clearly stated hypothesis of what is going on, while students soon turned into repeated ``linear search'' patterns when facing problemens they could not understand. 
 %
 On the other hand, the students shows a much better adoption rate of the software visualization the the professionals. That was not unexpected, since to power users any new way of using the IDE is likely to slow them down, and conversely to beginners any way of using the IDE is  novel. This raises the question of incremental versus revolutionary improvements: is it possible to prove the usefulness of a revolutionary improvement in a user study? Clearly, for well-defined incremental improvements we can measure the benefit with controlled and repeatable experiments. However, some revolutionary improvements are likely to be rejected by professionals for being not enough in line with their habits but as well as are likely to show no measurable improvement for students, since students are still struggling to learn their profession rather than being able to perform controlled tasks.
-%
-%\ewe{Need to be proof-read}
+
+% ===================================================================================
+\section{Conclusion}
+\label{sec:future}
+
+In this paper we presented an evaluation of spatial software visualization in the IDE. We embedded a prototype of the \emph{\SOCA} approach~\cite{Kuhn08a,Erni10a,Kuhn10b}, the \Codemap plug-in, in the Eclipse IDE and ran an exploratory user study which included both students and professionals. 
+
+Software maps are supposed to help developers with a visual representation of their software systems that addresses their spatial thinking and memory. The scenario of our user study was first contact with an unknown closed-source system. Results were as follows:
+
+\begin{itemize}
+\item Participants made good us of the map to inspect search results and call graph, they reported that the spatial visualization provided them with an immediate estimate of quantity and dispersion of search results. 
+\item Participants found the layout of the map (which uses lexical information to cluster classes by topic) surprising and often confusing. This led to the revision of our initial assumption that lexical similarity is sufficient to lay out the cartographic map.
+\end{itemize}
+
+\noindent We made the following four main observations, and concluded from these the following implications:
+
+\begin{itemize}
+\item All participants used a form of spacial thinking to understand the system. It would be best to allow developers to rearrange the initial layout according to their spatial memory.
+
+
+\item Immediate estimate of quantity and dispersion of search results is useful and the map suits this well. 
+\item Participants are distracted by isolated elements, which does not happen in textual/tabular representation. This is the drawback of visualization, which must find the right balance between the power of visualization and the pitfall of visualization. The map should be improved to mitigate that.
+\item The coexistence of two models for the software (one structural, one conceptual) causes some confusion. With the present map and implementation, participants were puzzled by non-structural nature of the map.
+\end{itemize}
+
+Developers intuitively expect that the map meets their mental model of the system's architecture. We observed that if this is not given, developers are not able to take advantage of the map's consistent layout. So for example, even though north/south and east/west directions had clear (semantic) interpretations in the map used for the user study, developers did not navigate along these axes. 
+
+However, even with the most perfect layout, developers might not be able to take advantage of the map if it elements are barely discernable, and thus difficult to inspect. 
+
+Based on the results of our user study, we conclude with the working hypothesis that \emph{the map should incorporate structural information and be improved from point of usability} and that \emph{we need more work to make two models (one structural, one conceptual) coexists without creating confusion.} 
+
+%\ewe{Also, I would personally draw another conclusion, which is that Which I think is possible, but requires fine tuning. Devil is in the details! The barrier between "crystal clear" and "plain confused" is maybe not so big. ... But I diverge}
+
+In order to achieve this, we propose the following changes to the \SOCA approach: 
+
+\begin{itemize}
+\item Compute the initial layout such that distance reflects structural correlation, since this is what the developers expect (\ie ``principle of least astonishment'').
+\item Use \emph{anchored multi-dimensional scaling} for the layout such that developers may rearrange the map according to their spatial model of the system.
+\item To use architectural components as anchors for rearrangement of the map, since spatial thinking of developers is strongest at the architectural level.
+\item Improve the usability experience of inspecting and selecting of elements on the map, possibly using a zoom\-able user interface.
+\end{itemize}
+
+%\ewe{ Software is all about dependencies. The de-facto main view is structural/module dependencies, and the conceptual/feature/topic dependencies are delegated to an auxiliary in-memory map. 
+%The question is how should the the 2nd view be displayed.  CodeMap address this problem, but suffers maybe from immaturity. }
+%\ewe{Also, given that the topic was not displayed on the map, I'm personally wondering if there isn't a huge bias in the study. Developers don't know the meaning of a cluster: ``Participants reported that they had a hard time to interpret the thematic map''. Looks very legitimate, but very easily to tackle.}
+%\ewe{You report that senior dev where confused by the size of the island because KLOC does not reflect the significance of a class, plus the fact that we tend to be attracted to isolated elements. Again, this could be addressed in one way or the other}
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
