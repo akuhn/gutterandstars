@@ -22,13 +22,12 @@
 
 \asteriskasteriskasterisk
 
-Lexical cues are by far the most common cue used by software engineers for code orientation. Examples of lexical cues are the name of an identifier used to refind some code, or a keyword used to search the web for documentation or code examples. Simple keyword search and regular expressions over the source code are of great help to follow up a lexical cue. The true power of lexical cues, however, is only unleashed when applying information retrieval and natural language processing. 
+Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. 
 
-we use lexical information found in source code to establish a visualization that supports spatial code orientation.
+We provide a cartographic on-screen visualization so they can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout of the local code base. Code maps, as we call them, are stable over time and can be shared among members of a team to establish a common mental model of the system. 
+%
+We implemented our approach in a prototype, evaluated it in a user study, and found that it is most helpful for spatially exploring search results and call hierarchies.
 
-we use lexical information to establish a spatial visualization that supports spatial code orientation by individuals or teams.
-
-we report on a qualitative user study that evaluates a prototype implementation of the techniques introduced in the chapter above. 
 
 Software visualizations can provide a concise overview of a complex software system.
 Unfortunately, since software has no physical shape, there is no ``natural'' mapping of software to a two-dimensional space. As a consequence most visualizations tend to use a layout in which position and distance have no meaning, and consequently layout typically diverges from one visualization to another.
@@ -448,6 +447,21 @@ At the moment, the \Codemap plug-in for \eclipse supports the following tasks:\f
     \caption{\emph{Thematic codemap of a software system. Here the \Codemap tool itself is shown. Arrow edges show incoming calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus labeled with a pop-up.}}
     \label{fig:awesome}
 \end{figure}
+
+\begin{description}
+
+\item[2-Dimensional Embedding]
+A metric distance is used to compute the pair-wise dissimilarity of software artifacts (typically source code files). A combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling \cite{Borg05a} is used to embed all software artifacts on the visualization pane. Different to lexical clustering Latent Semantic Indexing is not anymore; it has been found to have little impact on the final embedding, if at all. The application of Isomap is an improvement of the embedding in order to assist MDS with the global layout. The final embedding minimizes the error between the dissimilarity values and the visual distances.
+
+Early prototypes of \Codemap used a distance metric that was based on lexical similarity only. However, our user study revealed that developers tend to interpret visual distance as a measure of structural dependencies, even though they were aware of the underlying lexical implementation. Based on this observation, we developed an improved distance metric that takes both lexical similarity and structural distance (based on the ``Law of Demeter'' \cite{Lieb88a}) into account. 
+
+\item[Digital Elevation Model] In the next step, a digital elevation model is created. Each software artifact contributes a Gaussian shaped basis function to the elevation model according to its KLOC size. The contributions of all software artifacts are summed up and normalized. 
+
+Using KLOC leads to an elevation model where large classes dominate the codemap. Observations from our user study indicate that this might be misleading since developers tend to interpret size as a measure of impact. Based on this observation, we implemented a set of different impact metrics~\cite{Lanz06a} and plan to evaluate them in a fresh user study.
+
+\item[Cartographic rendering] In the final step, hill-shading is used to render the landscape of the software map. Please refer to previous work for full details~\cite{Kuhn08b}. Metrics and markers are rendered in transparent layers on top of the landscape. Users can toggle separate layer on/off and thus customize the codemap display to their needs.
+
+\end{description}
 
 % ===================================================================================
 \section{Methodology}
