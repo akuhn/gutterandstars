@@ -1,201 +1,100 @@
-\newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{vGNEE06}
+\begin{thebibliography}{100}
 
-\bibitem[ABDT04]{Abra04a}
+\bibitem{Abra04a}
 A.~Abran, P.~Bourque, R.~Dupuis, and L.L. Tripp.
 \newblock Guide to the software engineering body of knowledge (ironman
   version).
 \newblock Technical report, IEEE Computer Society, 2004.
 
-\bibitem[ACC{\etalchar{+}}02]{Anto02b}
-Giuliano Antoniol, Gerardo Canfora, Gerardo Casazza, Andrea {De Lucia}, and
-  Ettore Merlo.
-\newblock Recovering traceability links between code and documentation.
-\newblock {\em IEEE Transactions on Software Engineering}, 28(10):970--983,
-  2002.
-
-\bibitem[ACCD00]{Anto00c}
-Giuliano Antoniol, Gerardo Canfora, Gerardo Casazza, and Andrea {De Lucia}.
-\newblock Information retrieval models for recovering traceability links
-  between code and documentation.
-\newblock In {\em Proceedings of the International Conference on Software
-  Maintenance (ICSM 2000)}, pages 40--49, 2000.
-
-\bibitem[ADG08]{Alon08a}
+\bibitem{Alon08a}
 Omar Alonso, Premkumar~T. Devanbu, and Michael Gertz.
 \newblock Expertise identification and visualization from {CVS}.
 \newblock In {\em MSR '08: Proceedings of the 2008 international working
   conference on Mining software repositories}, pages 125--128, New York, NY,
   USA, 2008. ACM.
 
-\bibitem[ADSM05]{Andr05a}
+\bibitem{Andr05a}
 Olena Andriyevska, Natalia Dragan, Bonita Simoes, and Jonathan~I. Maletic.
 \newblock Evaluating {UML} class diagram layout based on architectural
   importance.
 \newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Visualizing
   Software for Understanding and Analysis}, 0:9, 2005.
 
-\bibitem[AGMT07]{Anto07a}
-Giuliano Antoniol, Yann-Gael Gueheneuc, Ettore Merlo, and Paolo Tonella.
-\newblock Mining the lexicon used by programmers during sofware evolution.
-\newblock In {\em ICSM 2007: IEEE International Conference on Software
-  Maintenance}, pages 14--23, October 2007.
-
-\bibitem[AHM06]{Anvi06a}
-John Anvik, Lyndon Hiew, and Gail~C. Murphy.
-\newblock Who should fix this bug?
-\newblock In {\em Proceedings of the 2006 ACM Conference on Software
-  Engineering}, 2006.
-
-\bibitem[AL98]{Anqu98b}
+\bibitem{Anqu98b}
 Nicolas Anquetil and Timothy Lethbridge.
 \newblock Extracting concepts from file names; a new file clustering criterion.
 \newblock In {\em International Conference on Software Engineering (ICSE
   1998)}, pages 84--93, 1998.
 
-\bibitem[AM07]{Anvik07}
-John Anvik and Gail~C. Murphy.
-\newblock Determining implementation expertise from bug reports.
-\newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
-  Software Repositories}, page~2, Washington, DC, USA, 2007. IEEE Computer
-  Society.
-
-\bibitem[ANMT08]{Anslow08OOPSLA}
+\bibitem{Anslow08OOPSLA}
 Craig Anslow, James Noble, Stuart Marshall, and Ewan Tempero.
 \newblock Visualizing the word structure of java class names.
 \newblock In {\em OOPSLA Companion '08: Companion to the 23rd ACM SIGPLAN
   conference on Object-oriented programming systems languages and
   applications}, pages 777--778, New York, NY, USA, 2008. ACM.
 
-\bibitem[Anv06]{Anvi06b}
+\bibitem{Anto00c}
+Giuliano Antoniol, Gerardo Canfora, Gerardo Casazza, and Andrea {De Lucia}.
+\newblock Information retrieval models for recovering traceability links
+  between code and documentation.
+\newblock In {\em Proceedings of the International Conference on Software
+  Maintenance (ICSM 2000)}, pages 40--49, 2000.
+
+\bibitem{Anto02b}
+Giuliano Antoniol, Gerardo Canfora, Gerardo Casazza, Andrea {De Lucia}, and
+  Ettore Merlo.
+\newblock Recovering traceability links between code and documentation.
+\newblock {\em IEEE Transactions on Software Engineering}, 28(10):970--983,
+  2002.
+
+\bibitem{Anto07a}
+Giuliano Antoniol, Yann-Gael Gueheneuc, Ettore Merlo, and Paolo Tonella.
+\newblock Mining the lexicon used by programmers during sofware evolution.
+\newblock In {\em ICSM 2007: IEEE International Conference on Software
+  Maintenance}, pages 14--23, October 2007.
+
+\bibitem{Anto02a}
+Giuliano Antoniol, Umberto Villano, Ettore Merlo, and Massimiliano {Di Penta}.
+\newblock Analyzing cloning evolution in the {Linux} kernel.
+\newblock {\em Information and Software Technology}, 44(13):755--765, 2002.
+
+\bibitem{Anvi06b}
 John Anvik.
 \newblock Automating bug report assignment.
 \newblock In {\em ICSE '06: Proceedings of the 28th international conference on
   Software engineering}, pages 937--940, New York, NY, USA, 2006. ACM.
 
-\bibitem[AVMD02]{Anto02a}
-Giuliano Antoniol, Umberto Villano, Ettore Merlo, and Massimiliano {Di Penta}.
-\newblock Analyzing cloning evolution in the {Linux} kernel.
-\newblock {\em Information and Software Technology}, 44(13):755--765, 2002.
+\bibitem{Anvi06a}
+John Anvik, Lyndon Hiew, and Gail~C. Murphy.
+\newblock Who should fix this bug?
+\newblock In {\em Proceedings of the 2006 ACM Conference on Software
+  Engineering}, 2006.
 
-\bibitem[Bar03]{Bara03a}
-Albert-Laszlo Barabasi.
-\newblock {\em Linked: How Everything Is Connected to Everything Else and What
-  It Means}.
-\newblock Plume, reissue edition, April 2003.
+\bibitem{Anvik07}
+John Anvik and Gail~C. Murphy.
+\newblock Determining implementation expertise from bug reports.
+\newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
+  Software Repositories}, page~2, Washington, DC, USA, 2007. IEEE Computer
+  Society.
 
-\bibitem[BD07]{Bohn07a}
-Johannes Bohnet and Jurgen Dollner.
-\newblock {CGA} call graph analyzer --- locating and understanding
-  functionality within the {Gnu} compiler collection's million lines of code.
-\newblock {\em VISSOFT 2007. 4th IEEE International Workshop on Visualizing
-  Software for Understanding and Analysis}, 0:161--162, 2007.
+\bibitem{Baez99b}
+Ricardo Baeza-Yates and Berthier Ribeiro-Neto.
+\newblock {\em Modern Information Retrieval}.
+\newblock Addison-Wesley, 1999.
 
-\bibitem[BDL05]{Balz05a}
-Michael Balzer, Oliver Deussen, and Claus Lewerentz.
-\newblock Voronoi treemaps for the visualization of software metrics.
-\newblock In {\em SoftVis '05: Proceedings of the 2005 ACM symposium on
-  Software visualization}, pages 165--172, New York, NY, USA, 2005. ACM.
+\bibitem{Bajracharya2009a}
+S.~Bajracharya and C.~Lopes.
+\newblock Mining search topics from a code search engine usage log.
+\newblock In {\em MSR 2009}, pages 111--120, 2009.
 
-\bibitem[BDO95]{Berr94a}
-Michael~W. Berry, Susan~T. Dumais, and Gavin~W. O'Brien.
-\newblock Using linear algebra for intelligent information retrieval.
-\newblock {\em SIAM Review}, 37(4):573--597, 1995.
-
-\bibitem[BDWK10]{bdwk10}
-Joel Brandt, Mira Dontcheva, Marcos Weskamp, and Scott~R. Klemmer.
-\newblock Example-centric programming: Integrating web search into the
-  development environment.
-\newblock In {\em CHI 2010}, pages 513--522, 2010.
-
-\bibitem[BE96]{Ball96a}
-Timothy Ball and Stephen Eick.
-\newblock Software visualization in the large.
-\newblock {\em IEEE Computer}, 29(4):33--43, 1996.
-
-\bibitem[Ber73]{Bert73a}
-Jacques Bertin.
-\newblock {\em S\'emiologie graphique}.
-\newblock Les Re-impressions des Editions de l'Ecole des Hautes Etudes En
-  Sciences Sociales, 1973.
-
-\bibitem[Ber74]{Bert74a}
-Jacques Bertin.
-\newblock {\em Graphische Semiologie}.
-\newblock Walter de Gruyter, 1974.
-
-\bibitem[BG05]{Borg05a}
-Ingwer Borg and Patriuck J.~F. Groenen.
-\newblock {\em Modern Multidimensional Scaling: Theory and Applications}.
-\newblock Springer, 2005.
-
-\bibitem[BH97]{Hugh97a}
-Hugh Beyer and Karen Holtzblatt.
-\newblock {\em Contextual Design: Defining Customer-Centered Systems
-  (Interactive Technologies)}.
-\newblock Morgan Kaufmann, 1st edition, September 1997.
-
-\bibitem[Big89]{Bigg89c}
-Ted~J. Biggerstaff.
-\newblock Design recovery for maintenance and reuse.
-\newblock {\em IEEE Computer}, 22:36--49, October 1989.
-
-\bibitem[BKY09]{Kuhn09b}
+\bibitem{Kuhn09b}
 Sushil Bajracharya, Adrian Kuhn, and Yunwen Ye.
 \newblock Suite 2009: First international workshop on search-driven development
   - users, infrastructure, tools and evaluation.
 \newblock In {\em Software Engineering - Companion Volume, 2009. ICSE-Companion
   2009. 31st International Conference on}, pages 445--446, 2009.
 
-\bibitem[BL09]{Bajracharya2009a}
-S.~Bajracharya and C.~Lopes.
-\newblock Mining search topics from a code search engine usage log.
-\newblock In {\em MSR 2009}, pages 111--120, 2009.
-
-\bibitem[BLLB08a]{Bald08a}
-Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
-  Bajracharya.
-\newblock A theory of aspects as latent topics.
-\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
-  Object-oriented programming systems languages and applications}, pages
-  543--562, New York, NY, USA, 2008. ACM.
-
-\bibitem[BLLB08b]{Pali08a}
-Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
-  Bajracharya.
-\newblock A theory of aspects as latent topics.
-\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
-  Object-oriented programming systems languages and applications}, pages
-  543--562, New York, NY, USA, 2008. ACM.
-
-\bibitem[BLLB08c]{Baldi08OOPSLA}
-Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
-  Bajracharya.
-\newblock A theory of aspects as latent topics.
-\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
-  Object-oriented programming systems languages and applications}, pages
-  543--562, New York, NY, USA, 2008. ACM.
-
-\bibitem[BM98]{Burr98a}
-P.~A. Burrough and R.A. McDonell.
-\newblock {\em Principles of Geographical Information Systems}.
-\newblock Oxford University Press, New York, 1998.
-
-\bibitem[BM07]{Bays07a}
-Olga Baysal and Andrew~J. Malton.
-\newblock Correlating social interactions to release history during software
-  evolution.
-\newblock In {\em MSR '07: Proceedings of the Fourth International Workshop on
-  Mining Software Repositories}, page~7, Washington, DC, USA, 2007. IEEE
-  Computer Society.
-
-\bibitem[BMW93]{Bigg93a}
-Ted~J. Biggerstaff, Bharat~G. Mittbander, and Dallas Webster.
-\newblock The concept assignment problem in program understanding.
-\newblock In {\em Proceedings of the 15th international conference on Software
-  Engineering (ICSE 1993)}. IEEE Computer, 1993.
-
-\bibitem[BNL{\etalchar{+}}06]{Bajr06a}
+\bibitem{Bajr06a}
 Sushil Bajracharya, Trung Ngo, Erik Linstead, Yimeng Dou, Paul Rigor, Pierre
   Baldi, and Cristina Lopes.
 \newblock Sourcerer: a search engine for open source code supporting
@@ -204,32 +103,120 @@ Sushil Bajracharya, Trung Ngo, Erik Linstead, Yimeng Dou, Paul Rigor, Pierre
   Object-oriented programming systems, languages, and applications}, pages
   681--682, New York, NY, USA, 2006. ACM.
 
-\bibitem[BOL09]{Bajrach09SUITE}
+\bibitem{Bajrach09SUITE}
 Sushil Bajracharya, Joel Ossher, and Cristina Lopes.
 \newblock Sourcerer: An internet-scale software repository.
 \newblock In {\em Proceedings of 1st Intl. Workshop on Search-driven
   Development, Users, Interfaces, Tools, and Evaluation (SUITE'09)}, page Too
   appear, 2009.
 
-\bibitem[Boo94]{Booc94a}
-Grady Booch.
-\newblock {\em Object Oriented Analysis and Design with Applications}.
-\newblock The Benjamin Cummings Publishing Co. Inc., 2nd edition, 1994.
+\bibitem{Bald08a}
+Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
+  Bajracharya.
+\newblock A theory of aspects as latent topics.
+\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
+  Object-oriented programming systems languages and applications}, pages
+  543--562, New York, NY, USA, 2008. ACM.
 
-\bibitem[BPZK08]{Bett08c}
+\bibitem{Pali08a}
+Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
+  Bajracharya.
+\newblock A theory of aspects as latent topics.
+\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
+  Object-oriented programming systems languages and applications}, pages
+  543--562, New York, NY, USA, 2008. ACM.
+
+\bibitem{Baldi08OOPSLA}
+Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
+  Bajracharya.
+\newblock A theory of aspects as latent topics.
+\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
+  Object-oriented programming systems languages and applications}, pages
+  543--562, New York, NY, USA, 2008. ACM.
+
+\bibitem{Ball96a}
+Timothy Ball and Stephen Eick.
+\newblock Software visualization in the large.
+\newblock {\em IEEE Computer}, 29(4):33--43, 1996.
+
+\bibitem{Balz05a}
+Michael Balzer, Oliver Deussen, and Claus Lewerentz.
+\newblock Voronoi treemaps for the visualization of software metrics.
+\newblock In {\em SoftVis '05: Proceedings of the 2005 ACM symposium on
+  Software visualization}, pages 165--172, New York, NY, USA, 2005. ACM.
+
+\bibitem{Bara03a}
+Albert-Laszlo Barabasi.
+\newblock {\em Linked: How Everything Is Connected to Everything Else and What
+  It Means}.
+\newblock Plume, reissue edition, April 2003.
+
+\bibitem{Bays07a}
+Olga Baysal and Andrew~J. Malton.
+\newblock Correlating social interactions to release history during software
+  evolution.
+\newblock In {\em MSR '07: Proceedings of the Fourth International Workshop on
+  Mining Software Repositories}, page~7, Washington, DC, USA, 2007. IEEE
+  Computer Society.
+
+\bibitem{Berr94a}
+Michael~W. Berry, Susan~T. Dumais, and Gavin~W. O'Brien.
+\newblock Using linear algebra for intelligent information retrieval.
+\newblock {\em SIAM Review}, 37(4):573--597, 1995.
+
+\bibitem{Bert73a}
+Jacques Bertin.
+\newblock {\em S\'emiologie graphique}.
+\newblock Les Re-impressions des Editions de l'Ecole des Hautes Etudes En
+  Sciences Sociales, 1973.
+
+\bibitem{Bert74a}
+Jacques Bertin.
+\newblock {\em Graphische Semiologie}.
+\newblock Walter de Gruyter, 1974.
+
+\bibitem{Bett08c}
 Nicolas Bettenburg, Rahul Premraj, Thomas Zimmermann, and Sunghun Kim.
 \newblock Extracting structural information from bug reports.
 \newblock In {\em MSR '08: Proceedings of the 2008 international working
   conference on Mining software repositories}, pages 27--30, New York, NY, USA,
   2008. ACM.
 
-\bibitem[Bro83]{Broo83b}
-Ruven Brooks.
-\newblock Towards a theory of the comprehension of computer programs.
-\newblock {\em International Journal of Man-Machine Studies}, 18:543--554,
-  1983.
+\bibitem{Hugh97a}
+Hugh Beyer and Karen Holtzblatt.
+\newblock {\em Contextual Design: Defining Customer-Centered Systems
+  (Interactive Technologies)}.
+\newblock Morgan Kaufmann, 1st edition, September 1997.
 
-\bibitem[BRZ{\etalchar{+}}10]{Brag10b}
+\bibitem{Bigg89c}
+Ted~J. Biggerstaff.
+\newblock Design recovery for maintenance and reuse.
+\newblock {\em IEEE Computer}, 22:36--49, October 1989.
+
+\bibitem{Bigg93a}
+Ted~J. Biggerstaff, Bharat~G. Mittbander, and Dallas Webster.
+\newblock The concept assignment problem in program understanding.
+\newblock In {\em Proceedings of the 15th international conference on Software
+  Engineering (ICSE 1993)}. IEEE Computer, 1993.
+
+\bibitem{Bohn07a}
+Johannes Bohnet and Jurgen Dollner.
+\newblock {CGA} call graph analyzer --- locating and understanding
+  functionality within the {Gnu} compiler collection's million lines of code.
+\newblock {\em VISSOFT 2007. 4th IEEE International Workshop on Visualizing
+  Software for Understanding and Analysis}, 0:161--162, 2007.
+
+\bibitem{Booc94a}
+Grady Booch.
+\newblock {\em Object Oriented Analysis and Design with Applications}.
+\newblock The Benjamin Cummings Publishing Co. Inc., 2nd edition, 1994.
+
+\bibitem{Borg05a}
+Ingwer Borg and Patriuck J.~F. Groenen.
+\newblock {\em Modern Multidimensional Scaling: Theory and Applications}.
+\newblock Springer, 2005.
+
+\bibitem{Brag10b}
 Andrew Bragdon, Steven~P. Reiss, Robert Zeleznik, Suman Karumuri, William
   Cheung, Joshua Kaplan, Christopher Coleman, Ferdi Adeputra, and Joseph
   J.~LaViola Jr.
@@ -238,194 +225,217 @@ Andrew Bragdon, Steven~P. Reiss, Robert Zeleznik, Suman Karumuri, William
 \newblock In {\em Proceedings of the 32nd International Conference on Software
   Engineering (2010)}. ACM, 2010.
 
-\bibitem[BSL{\etalchar{+}}08]{Buja08a}
+\bibitem{bdwk10}
+Joel Brandt, Mira Dontcheva, Marcos Weskamp, and Scott~R. Klemmer.
+\newblock Example-centric programming: Integrating web search into the
+  development environment.
+\newblock In {\em CHI 2010}, pages 513--522, 2010.
+
+\bibitem{Broo83b}
+Ruven Brooks.
+\newblock Towards a theory of the comprehension of computer programs.
+\newblock {\em International Journal of Man-Machine Studies}, 18:543--554,
+  1983.
+
+\bibitem{Buja08a}
 Andreas Buja, Deborah~F. Swayne, Michael~L. Littman, Nathaniel Dean, Heike
   Hofmann, and Lisha Chen.
 \newblock Data visualization with multidimensional scaling.
 \newblock {\em Journal of Computational and Graphical Statistics},
   17(2):444--472, June 2008.
 
-\bibitem[BT06]{Byel06a}
+\bibitem{Burr98a}
+P.~A. Burrough and R.A. McDonell.
+\newblock {\em Principles of Geographical Information Systems}.
+\newblock Oxford University Press, New York, 1998.
+
+\bibitem{Byel06a}
 Heorhiy Byelas and Alexandru~C. Telea.
 \newblock Visualization of areas of interest in software architecture diagrams.
 \newblock In {\em SoftVis '06: Proceedings of the 2006 ACM symposium on
   Software visualization}, pages 105--114, New York, NY, USA, 2006. ACM.
 
-\bibitem[BYRN99]{Baez99b}
-Ricardo Baeza-Yates and Berthier Ribeiro-Neto.
-\newblock {\em Modern Information Retrieval}.
-\newblock Addison-Wesley, 1999.
-
-\bibitem[CC05]{Canf05a}
+\bibitem{Canf05a}
 Gerardo Canfora and Luigi Cerulo.
 \newblock How software repositories can help in resolving a new change request.
 \newblock In {\em Proceedings of the Workshop on Empirical Studies in Reverse
   Engineering}, September 2005.
 
-\bibitem[CE98]{Chua98a}
-Mei~C. Chuah and Stephen~G. Eick.
-\newblock Information rich glyphs for software management data.
-\newblock {\em IEEE Computer Graphics and Applications}, 18(4):24--29, July
-  1998.
+\bibitem{Capr93a}
+Bruno Caprile and Paolo Tonella.
+\newblock Nomen est omen: Analyzing the language of function identifiers.
+\newblock In {\em Proceedings of 6th Working Conference on Reverse Engineering
+  (WCRE 1999)}, pages 112--122. IEEE Computer Society Press, 1999.
 
-\bibitem[CM03]{Cubr03a}
-Davor Cubranic and Gail Murphy.
-\newblock Hipikat: Recommending pertinent software development artifacts.
-\newblock In {\em Proceedings 25th International Conference on Software
-  Engineering (ICSE 2003)}, pages 408--418, New York NY, 2003. ACM Press.
-
-\bibitem[CM08]{Chan08a}
+\bibitem{Chan08a}
 Hung-Fu Chang and Audris Mockus.
 \newblock Evaluation of source code copy detection methods on freebsd.
 \newblock In {\em MSR '08: Proceedings of the 2008 international working
   conference on Mining software repositories}, pages 61--66, New York, NY, USA,
   2008. ACM.
 
-\bibitem[Con68]{Conw68a}
+\bibitem{Chua98a}
+Mei~C. Chuah and Stephen~G. Eick.
+\newblock Information rich glyphs for software management data.
+\newblock {\em IEEE Computer Graphics and Applications}, 18(4):24--29, July
+  1998.
+
+\bibitem{Conw68a}
 Melvin~E. Conway.
 \newblock How do committees invent?
 \newblock {\em Datamation}, 14(4):28--31, April 1968.
 
-\bibitem[CT99]{Capr93a}
-Bruno Caprile and Paolo Tonella.
-\newblock Nomen est omen: Analyzing the language of function identifiers.
-\newblock In {\em Proceedings of 6th Working Conference on Reverse Engineering
-  (WCRE 1999)}, pages 112--122. IEEE Computer Society Press, 1999.
+\bibitem{Cubr03a}
+Davor Cubranic and Gail Murphy.
+\newblock Hipikat: Recommending pertinent software development artifacts.
+\newblock In {\em Proceedings 25th International Conference on Software
+  Engineering (ICSE 2003)}, pages 408--418, New York NY, 2003. ACM Press.
 
-\bibitem[DCM{\etalchar{+}}06]{Deli06a}
-Robert DeLine, Mary Czerwinski, Brian Meyers, Gina Venolia, Steven~M. Drucker,
-  and George~G. Robertson.
-\newblock Code thumbnails: Using spatial memory to navigate source code.
-\newblock In {\em VL/HCC}, pages 11--18, 2006.
-
-\bibitem[DDG02]{Lucc02b}
-Giuseppe~A. {Di Lucca}, Massimiliano {Di Penta}, and Sara Gradara.
-\newblock An approach to classify software maintenance requests.
-\newblock In {\em Processings of 18th IEEE International Conference on Software
-  Maintenance (ICSM 2002)}, pages 93--102, 2002.
-
-\bibitem[DDL{\etalchar{+}}90]{Deer90a}
-Scott~C. Deerwester, Susan~T. Dumais, Thomas~K. Landauer, George~W. Furnas, and
-  Richard~A. Harshman.
-\newblock Indexing by latent semantic analysis.
-\newblock {\em Journal of the American Society of Information Science},
-  41(6):391--407, 1990.
-
-\bibitem[DDN02]{Deme02a}
-Serge Demeyer, St{\'e}phane Ducasse, and Oscar Nierstrasz.
-\newblock {\em Object-Oriented Reengineering Patterns}.
-\newblock Morgan Kaufmann, 2002.
-
-\bibitem[DeL05]{Deli05b}
-Robert DeLine.
-\newblock Staying oriented with software terrain maps.
-\newblock In {\em Proceedings of the 2005 International Workshop on Visual
-  Languages and Computing}, pages 309--314. IEEE Computer Society, 2005.
-
-\bibitem[DFOT04]{Luci04a}
+\bibitem{Luci04a}
 Andrea {De Lucia}, Fausto Fasano, Rocco Oliveto, and Genoveffa Tortora.
 \newblock Enhancing an artefact management system with traceability recovery
   features.
 \newblock In {\em Proceedings of 20th IEEE International Conference on Software
   Maintainance (ICSM 2004)}, pages 306--315, 2004.
 
-\bibitem[DGK06]{Duca06c}
-St\'ephane Ducasse, Tudor G\^irba, and Adrian Kuhn.
-\newblock Distribution map.
-\newblock In {\em Proceedings of 22nd IEEE International Conference on Software
-  Maintenance (ICSM '06)}, pages 203--212, Los Alamitos CA, 2006. IEEE Computer
-  Society.
-
-\bibitem[DGLD05]{Duca05a}
-St\'ephane Ducasse, Tudor G\^irba, Michele Lanza, and Serge Demeyer.
-\newblock Moose: a collaborative and extensible reengineering environment.
-\newblock In {\em Tools for Software Maintenance and Reengineering}, RCOST /
-  Software Technology Series, pages 55--71. Franco Angeli, Milano, 2005.
-
-\bibitem[Die07]{Dieh07a}
-Stephan Diehl.
-\newblock {\em Software Visualization}.
-\newblock Springer-Verlag, Berlin Heidelberg, 2007.
-
-\bibitem[DKCR05]{Deli05a}
-Robert DeLine, Amir Khella, Mary Czerwinski, and George~G. Robertson.
-\newblock Towards understanding programs through wear-based filtering.
-\newblock In {\em SOFTVIS}, pages 183--192, 2005.
-
-\bibitem[DL05]{Duca05b}
-St\'ephane Ducasse and Michele Lanza.
-\newblock The {Class} {Blueprint}: Visually supporting the understanding of
-  classes.
-\newblock {\em Transactions on Software Engineering (TSE)}, 31(1):75--90,
-  January 2005.
-
-\bibitem[DN92]{Duma92a}
-Susan~T. Dumais and Jakob Nielsen.
-\newblock Automating the assignment of submitted manuscripts to reviewers.
-\newblock In {\em Research and Development in Information Retrieval}, pages
-  233--244, 1992.
-
-\bibitem[DP09]{Duca09c}
-St\'ephane Ducasse and Damien Pollet.
-\newblock Software architecture reconstruction: A process-oriented taxonomy.
-\newblock {\em IEEE Transactions on Software Engineering}, 35(4):573--591, July
-  2009.
-
-\bibitem[DPAA08]{Pauw08a}
+\bibitem{Pauw08a}
 Wim De~Pauw, Henrique Andrade, and Lisa Amini.
 \newblock Streamsight: a visualization tool for large-scale streaming
   applications.
 \newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
   visualization}, pages 125--134, New York, NY, USA, 2008. ACM.
 
-\bibitem[DR10]{Deli10a}
+\bibitem{Deer90a}
+Scott~C. Deerwester, Susan~T. Dumais, Thomas~K. Landauer, George~W. Furnas, and
+  Richard~A. Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock {\em Journal of the American Society of Information Science},
+  41(6):391--407, 1990.
+
+\bibitem{Deli05b}
+Robert DeLine.
+\newblock Staying oriented with software terrain maps.
+\newblock In {\em Proceedings of the 2005 International Workshop on Visual
+  Languages and Computing}, pages 309--314. IEEE Computer Society, 2005.
+
+\bibitem{Deli06a}
+Robert DeLine, Mary Czerwinski, Brian Meyers, Gina Venolia, Steven~M. Drucker,
+  and George~G. Robertson.
+\newblock Code thumbnails: Using spatial memory to navigate source code.
+\newblock In {\em VL/HCC}, pages 11--18, 2006.
+
+\bibitem{Deli05a}
+Robert DeLine, Amir Khella, Mary Czerwinski, and George~G. Robertson.
+\newblock Towards understanding programs through wear-based filtering.
+\newblock In {\em SOFTVIS}, pages 183--192, 2005.
+
+\bibitem{Deli10a}
 Robert DeLine and Kael Rowan.
 \newblock Code canvas: Zooming towards better development environments.
 \newblock In {\em Proceedings of the International Conference on Software
   Engineering (New Ideas and Emerging Results}. ACM, 2010.
 
-\bibitem[Dum91]{Duma91a}
+\bibitem{Deline2010a}
+Robert DeLine, Gina Venolia, and Kael Rowan.
+\newblock Software development with code maps.
+\newblock {\em CACM}, 53(8):48--54, 2010.
+
+\bibitem{Deme02a}
+Serge Demeyer, St{\'e}phane Ducasse, and Oscar Nierstrasz.
+\newblock {\em Object-Oriented Reengineering Patterns}.
+\newblock Morgan Kaufmann, 2002.
+
+\bibitem{Lucc02b}
+Giuseppe~A. {Di Lucca}, Massimiliano {Di Penta}, and Sara Gradara.
+\newblock An approach to classify software maintenance requests.
+\newblock In {\em Processings of 18th IEEE International Conference on Software
+  Maintenance (ICSM 2002)}, pages 93--102, 2002.
+
+\bibitem{Dieh07a}
+Stephan Diehl.
+\newblock {\em Software Visualization}.
+\newblock Springer-Verlag, Berlin Heidelberg, 2007.
+
+\bibitem{Duca06c}
+St\'ephane Ducasse, Tudor G\^irba, and Adrian Kuhn.
+\newblock Distribution map.
+\newblock In {\em Proceedings of 22nd IEEE International Conference on Software
+  Maintenance (ICSM '06)}, pages 203--212, Los Alamitos CA, 2006. IEEE Computer
+  Society.
+
+\bibitem{Duca05a}
+St\'ephane Ducasse, Tudor G\^irba, Michele Lanza, and Serge Demeyer.
+\newblock Moose: a collaborative and extensible reengineering environment.
+\newblock In {\em Tools for Software Maintenance and Reengineering}, RCOST /
+  Software Technology Series, pages 55--71. Franco Angeli, Milano, 2005.
+
+\bibitem{Duca05b}
+St\'ephane Ducasse and Michele Lanza.
+\newblock The {Class} {Blueprint}: Visually supporting the understanding of
+  classes.
+\newblock {\em Transactions on Software Engineering (TSE)}, 31(1):75--90,
+  January 2005.
+
+\bibitem{Duca09c}
+St\'ephane Ducasse and Damien Pollet.
+\newblock Software architecture reconstruction: A process-oriented taxonomy.
+\newblock {\em IEEE Transactions on Software Engineering}, 35(4):573--591, July
+  2009.
+
+\bibitem{Duma91a}
 Susan~T. Dumais.
 \newblock Improving the retrieval of information from external sources.
 \newblock {\em Behavior Research Methods, Instruments and Computers},
   23:229--236, 1991.
 
-\bibitem[Dun93]{Dunning}
+\bibitem{Duma92a}
+Susan~T. Dumais and Jakob Nielsen.
+\newblock Automating the assignment of submitted manuscripts to reviewers.
+\newblock In {\em Research and Development in Information Retrieval}, pages
+  233--244, 1992.
+
+\bibitem{Dunning}
 Ted Dunning.
 \newblock Accurate methods for the statistics of surprise and coincidence.
 \newblock {\em Computational Linguistics}, 19(1):61--74, March 1993.
 
-\bibitem[DVR10]{Deline2010a}
-Robert DeLine, Gina Venolia, and Kael Rowan.
-\newblock Software development with code maps.
-\newblock {\em CACM}, 53(8):48--54, 2010.
-
-\bibitem[EGK{\etalchar{+}}02]{Eick02a}
+\bibitem{Eick02a}
 Stephen Eick, Todd Graves, Alan Karr, Audris Mockus, and Paul Schuster.
 \newblock Visualizing software changes.
 \newblock {\em IEEE Transactions on Software Engineering}, 28(4):396--412,
   2002.
 
-\bibitem[Ern10]{Erni10a}
+\bibitem{Erni10a}
 David Erni.
 \newblock Codemap---improving the mental model of software developers through
   cartographic visualization.
 \newblock Master's thesis, University of Bern, January 2010.
 
-\bibitem[FLL99]{Folt99a}
+\bibitem{Folt99a}
 Peter Foltz, Darrell Laham, and Thomas Landauer.
 \newblock Automated essay scoring: Applications to educational technology.
 \newblock In {\em Proceedings World Conference on Educational Multimedia,
   Hypermedia and Telecommunications (EdMedia 1999)}, pages 939--944, 1999.
 
-\bibitem[FM10]{Frit10a}
+\bibitem{Frak87a}
+William Frakes and Brian Nejmeh.
+\newblock Software reuse through information retrieval.
+\newblock {\em SIGIR Forum}, 21(1-2):30--36, 1987.
+
+\bibitem{Fris08a}
+Yaniv Frishman and Ayellet Tal.
+\newblock Online dynamic graph drawing.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  14(4):727--740, 2008.
+
+\bibitem{Frit10a}
 Thomas Fritz and Gail~C. Murphy.
 \newblock {Using information fragments to answer the questions developers ask}.
 \newblock In {\em Proceedings of the 32nd ACM/IEEE International Conference on
   Software Engineering - Volume 1}, ICSE '10, pages 175--184, New York, NY,
   USA, 2010. ACM.
 
-\bibitem[FMH07]{Frit07a}
+\bibitem{Frit07a}
 Thomas Fritz, Gail~C. Murphy, and Emily Hill.
 \newblock Does a programmer's activity indicate knowledge of code?
 \newblock In {\em ESEC-FSE '07: Proceedings of the the 6th joint meeting of the
@@ -433,91 +443,92 @@ Thomas Fritz, Gail~C. Murphy, and Emily Hill.
   foundations of software engineering}, pages 341--350, New York, NY, USA,
   2007. ACM.
 
-\bibitem[FN87]{Frak87a}
-William Frakes and Brian Nejmeh.
-\newblock Software reuse through information retrieval.
-\newblock {\em SIGIR Forum}, 21(1-2):30--36, 1987.
-
-\bibitem[FT08]{Fris08a}
-Yaniv Frishman and Ayellet Tal.
-\newblock Online dynamic graph drawing.
-\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
-  14(4):727--740, 2008.
-
-\bibitem[GHJ98]{Gall98a}
+\bibitem{Gall98a}
 Harald Gall, Karin Hajek, and Mehdi Jazayeri.
 \newblock Detection of logical coupling based on product release history.
 \newblock In {\em Proceedings International Conference on Software Maintenance
   (ICSM '98)}, pages 190--198, Los Alamitos CA, 1998. IEEE Computer Society
   Press.
 
-\bibitem[GK10a]{Gysi10b}
-Florian~S. Gysin and Adrian Kuhn.
-\newblock A trustability metric for code search based on developer karma.
-\newblock In {\em ICSE Workshop on Search-Driven Development-Users,
-  Infrastructure, Tools and Evaluation, 2010. SUITE '10.}, 2010.
+\bibitem{Gall09a}
+R.~E. Gallardo-Valencia and S.~Elliott~Sim.
+\newblock Internet-scale code search.
+\newblock In {\em Search-Driven Development-Users, Infrastructure, Tools and
+  Evaluation, 2009. SUITE '09. ICSE Workshop on}, pages 49--52, 2009.
 
-\bibitem[GK10b]{Gysin2010a}
-Florian~S. Gysin and Adrian Kuhn.
-\newblock A trustability metric for code search based on developer karma.
-\newblock In {\em SUITE 2010}, pages 41--44, 2010.
-
-\bibitem[GKS08]{Gous08a}
-Georgios Gousios, Eirini Kalliamvakou, and Diomidis Spinellis.
-\newblock Measuring developer contribution from software repository data.
-\newblock In {\em MSR '08: Proceedings of the 2008 international working
-  conference on Mining software repositories}, pages 129--132, New York, NY,
-  USA, 2008. ACM.
-
-\bibitem[GKSD05]{Girb05c}
+\bibitem{Girb05c}
 Tudor G\^irba, Adrian Kuhn, Mauricio Seeberger, and St\'ephane Ducasse.
 \newblock How developers drive software evolution.
 \newblock In {\em Proceedings of International Workshop on Principles of
   Software Evolution (IWPSE 2005)}, pages 113--122. IEEE Computer Society
   Press, 2005.
 
-\bibitem[GLD05]{Girb05a}
+\bibitem{Girb05a}
 Tudor G\^irba, Michele Lanza, and St\'ephane Ducasse.
 \newblock Characterizing the evolution of class hierarchies.
 \newblock In {\em Proceedings of 9th European Conference on Software
   Maintenance and Reengineering (CSMR'05)}, pages 2--11, Los Alamitos CA, 2005.
   IEEE Computer Society.
 
-\bibitem[GLW06]{Gree06a}
+\bibitem{gm09}
+Max Goldman and Robert~C. Miller.
+\newblock Codetrail: Connecting source code and web resources.
+\newblock {\em JVLC}, 20(4):223--235, Aug. 2009.
+
+\bibitem{Gous08a}
+Georgios Gousios, Eirini Kalliamvakou, and Diomidis Spinellis.
+\newblock Measuring developer contribution from software repository data.
+\newblock In {\em MSR '08: Proceedings of the 2008 international working
+  conference on Mining software repositories}, pages 129--132, New York, NY,
+  USA, 2008. ACM.
+
+\bibitem{Gree06a}
 Orla Greevy, Michele Lanza, and Christoph Wysseier.
 \newblock Visualizing live software systems in 3{D}.
 \newblock In {\em Proceedings of SoftVis 2006 (ACM Symposium on Software
   Visualization)}, September 2006.
 
-\bibitem[GM09]{gm09}
-Max Goldman and Robert~C. Miller.
-\newblock Codetrail: Connecting source code and web resources.
-\newblock {\em JVLC}, 20(4):223--235, Aug. 2009.
-
-\bibitem[GVES09]{Gall09a}
-R.~E. Gallardo-Valencia and S.~Elliott~Sim.
-\newblock Internet-scale code search.
-\newblock In {\em Search-Driven Development-Users, Infrastructure, Tools and
-  Evaluation, 2009. SUITE '09. ICSE Workshop on}, pages 49--52, 2009.
-
-\bibitem[Gys10a]{Gysi10a}
+\bibitem{Gysi10a}
 Florian~S. Gysin.
 \newblock Improved social trustability of code search results.
 \newblock In {\em Proceedings International Conference on Software Engineering,
   ICSE '10, Student Research Competition}, 2010.
 
-\bibitem[Gys10b]{Gysi10c}
+\bibitem{Gysi10c}
 Florian~S. Gysin.
 \newblock {Trust this Code?} --- improving code search results through human
   trustability factors.
 \newblock Bachelor's thesis, University of Bern, March 2010.
 
-\bibitem[Hea09]{Hear09a}
+\bibitem{Gysi10b}
+Florian~S. Gysin and Adrian Kuhn.
+\newblock A trustability metric for code search based on developer karma.
+\newblock In {\em ICSE Workshop on Search-Driven Development-Users,
+  Infrastructure, Tools and Evaluation, 2010. SUITE '10.}, 2010.
+
+\bibitem{Gysin2010a}
+Florian~S. Gysin and Adrian Kuhn.
+\newblock A trustability metric for code search based on developer karma.
+\newblock In {\em SUITE 2010}, pages 41--44, 2010.
+
+\bibitem{Hass04a}
+Ahmed Hassan and Richard Holt.
+\newblock Predicting change propagation in software systems.
+\newblock In {\em Proceedings 20th IEEE International Conference on Software
+  Maintenance (ICSM'04)}, pages 284--293, Los Alamitos CA, September 2004. IEEE
+  Computer Society Press.
+
+\bibitem{Hear09a}
 Marti~A. Hearst.
 \newblock {\em Search User Interfaces}.
 \newblock Cambridge University Press, 1 edition, September 2009.
 
-\bibitem[HFB{\etalchar{+}}08]{Hill08a}
+\bibitem{Herm03a}
+Michael Hermann and Heiri Leuthold.
+\newblock {\em Atlas der politischen Landschaften}.
+\newblock vdf Hochschlverlag AG, ETH Z\"urich, 2003.
+
+\bibitem{Hill08a}
 Emily Hill, Zachary~P. Fry, Haley Boyd, Giriprasad Sridhara, Yana Novikova,
   Lori Pollock, and K.~Vijay-Shanker.
 \newblock {AMAP}: automatically mining abbreviation expansions in programs to
@@ -526,174 +537,187 @@ Emily Hill, Zachary~P. Fry, Haley Boyd, Giriprasad Sridhara, Yana Novikova,
   conference on Mining software repositories}, pages 79--88, New York, NY, USA,
   2008. ACM.
 
-\bibitem[HFW07]{Hoffmann2007a}
-Raphael Hoffmann, James Fogarty, and Daniel~S. Weld.
-\newblock Assieme: finding and leveraging implicit references in a web search
-  interface for programmers.
-\newblock In {\em UIST 2007}, pages 13--22, 2007.
-
-\bibitem[HGH08]{Hind08b}
+\bibitem{Hind08b}
 Abram Hindle, Daniel~M. German, and Ric Holt.
 \newblock What do large commits tell us?: a taxonomical study of large commits.
 \newblock In {\em MSR '08: Proceedings of the 2008 Intl. working conference on
   Mining software repositories}, pages 99--108, New York, NY, USA, 2008. ACM.
 
-\bibitem[HH04]{Hass04a}
-Ahmed Hassan and Richard Holt.
-\newblock Predicting change propagation in software systems.
-\newblock In {\em Proceedings 20th IEEE International Conference on Software
-  Maintenance (ICSM'04)}, pages 284--293, Los Alamitos CA, September 2004. IEEE
-  Computer Society Press.
-
-\bibitem[HHDS06]{Huff06a}
-Jane Huffman-Hayes, Alex Dekhtyar, and Senthil~Karthikeyan Sundaram.
-\newblock Advancing candidate link generation for requirements tracing: The
-  study of methods.
-\newblock {\em IEEE Transactions on Software Engineering}, 32(1):4--19, January
-  2006.
-
-\bibitem[HJA08]{Humm08a}
-O.~Hummel, W.~Janjic, and C.~Atkinson.
-\newblock Code conjurer: Pulling reusable software out of thin air.
-\newblock {\em Software, IEEE}, 25(5):45--52, 2008.
-
-\bibitem[HL03]{Herm03a}
-Michael Hermann and Heiri Leuthold.
-\newblock {\em Atlas der politischen Landschaften}.
-\newblock vdf Hochschlverlag AG, ETH Z\"urich, 2003.
-
-\bibitem[HM05]{Holmes2005}
-R.~Holmes and G.~C. Murphy.
-\newblock Using structural context to recommend source code examples.
-\newblock In {\em ICSE 2005}, pages 117--125, 2005.
-
-\bibitem[HNS99]{Hite99a}
+\bibitem{Hite99a}
 Kenneth Hite, Craig Neumeier, and Michael~S. Schiffer.
 \newblock {\em GURPS Alternate Earths}, volume~2.
 \newblock Steve Jackson Games, Austin, Texas, 1999.
 
-\bibitem[HO08]{EinarHoest}
+\bibitem{EinarHoest}
 Einar Hoest and Bjarte Ostvold.
 \newblock The java programmer's phrase book.
 \newblock In {\em Proceedings of 1st Int. Conf. on Software Language
   Engineering}, pages 1--10, 2008.
 
-\bibitem[HO09]{Hoes09a}
+\bibitem{Hoes09a}
 Einar~W. Hoest and Bjarte~M. OEstvold.
 \newblock Debugging method names.
 \newblock In {\em Proceedings of the 23nd European Conference on
   Object-Oriented Programming (ECOOP'09)}, LNCS, page To appear. Springer,
   2009.
 
-\bibitem[Hof99]{Hofmann99PLSA}
+\bibitem{Hoffmann2007a}
+Raphael Hoffmann, James Fogarty, and Daniel~S. Weld.
+\newblock Assieme: finding and leveraging implicit references in a web search
+  interface for programmers.
+\newblock In {\em UIST 2007}, pages 13--22, 2007.
+
+\bibitem{Hofmann99PLSA}
 Thomas Hofmann.
 \newblock Probabilistic latent semantic analysis.
 \newblock In {\em In Proc. of Uncertainty in Artificial Intelligence,
   UAI‚Äô99}, pages 289--296, 1999.
 
-\bibitem[IHY{\etalchar{+}}09]{Ichi09a}
+\bibitem{Holmes2005}
+R.~Holmes and G.~C. Murphy.
+\newblock Using structural context to recommend source code examples.
+\newblock In {\em ICSE 2005}, pages 117--125, 2005.
+
+\bibitem{Huff06a}
+Jane Huffman-Hayes, Alex Dekhtyar, and Senthil~Karthikeyan Sundaram.
+\newblock Advancing candidate link generation for requirements tracing: The
+  study of methods.
+\newblock {\em IEEE Transactions on Software Engineering}, 32(1):4--19, January
+  2006.
+
+\bibitem{Humm08a}
+O.~Hummel, W.~Janjic, and C.~Atkinson.
+\newblock Code conjurer: Pulling reusable software out of thin air.
+\newblock {\em Software, IEEE}, 25(5):45--52, 2008.
+
+\bibitem{Ichi09a}
 M.~Ichii, Y.~Hayase, R.~Yokomori, T.~Yamamoto, and K.~Inoue.
 \newblock Software component recommendation using collaborative filtering.
 \newblock In {\em Search-Driven Development-Users, Infrastructure, Tools and
   Evaluation, 2009. SUITE '09. ICSE Workshop on}, pages 17--20, 2009.
 
-\bibitem[Jaz02]{Jaza02a}
+\bibitem{Jain99a}
+Anil~Kumar Jain, M.~Narasimha Murty, and Patrick~Joseph Flynn.
+\newblock Data clustering: a review.
+\newblock {\em ACM Computing Surveys}, 31(3):264--323, 1999.
+
+\bibitem{Jaza02a}
 Mehdi Jazayeri.
 \newblock On architectural stability and evolution.
 \newblock In {\em Reliable Software Technologies-Ada-Europe 2002}, pages
   13--23, Berlin, 2002. Springer Verlag.
 
-\bibitem[JJG06]{Juck06a}
+\bibitem{Juck06a}
 Susanne Jucknath-John and Dennis Graf.
 \newblock Icon graphs: visualizing the evolution of large class models.
 \newblock In {\em SoftVis '06: Proceedings of the 2006 ACM symposium on
   Software visualization}, pages 167--168, New York, NY, USA, 2006. ACM.
 
-\bibitem[JMF99]{Jain99a}
-Anil~Kumar Jain, M.~Narasimha Murty, and Patrick~Joseph Flynn.
-\newblock Data clustering: a review.
-\newblock {\em ACM Computing Surveys}, 31(3):264--323, 1999.
-
-\bibitem[KD11]{Kuhn10x}
-Adrian Kuhn and Robert DeLine.
-\newblock On designing better tools for learning apis.
-\newblock In {\em submitted to CHI 2011 for review}, 2011.
-
-\bibitem[KDG05]{Kuhn05a}
-Adrian Kuhn, St\'ephane Ducasse, and Tudor G\^irba.
-\newblock Enriching reverse engineering with semantic clustering.
-\newblock In {\em Proceedings of 12th Working Conference on Reverse Engineering
-  (WCRE'05)}, pages 113--122, Los Alamitos CA, November 2005. IEEE Computer
-  Society Press.
-
-\bibitem[KDG07]{Kuhn07a}
-Adrian Kuhn, St\'ephane Ducasse, and Tudor G\^irba.
-\newblock Semantic clustering: Identifying topics in source code.
-\newblock {\em Information and Software Technology}, 49(3):230--243, March
-  2007.
-
-\bibitem[KDV07]{Ko07a}
-Andrew~J. Ko, Robert DeLine, and Gina Venolia.
-\newblock {Information Needs in Collocated Software Development Teams}.
-\newblock In {\em Proceedings of the 29th international conference on Software
-  Engineering}, ICSE '07, pages 344--353, Washington, DC, USA, May 2007. IEEE
-  Computer Society.
-
-\bibitem[KELN10]{Kuhn10b}
-Adrian Kuhn, David Erni, Peter Loretan, and Oscar Nierstrasz.
-\newblock Software cartography: Thematic software visualization with consistent
-  layout.
-\newblock {\em Journal of Software Maintenance and Evolution (JSME)},
-  22(3):191--210, April 2010.
-
-\bibitem[KEN10]{Kuhn10c}
-Adrian Kuhn, David Erni, and Oscar Nierstrasz.
-\newblock Embedding spatial software visualization in the ide: an exploratory
-  study.
-\newblock In {\em SOFTVIS 2010}, October 2010.
-
-\bibitem[KG07]{Kats07a}
+\bibitem{Kats07a}
 Evangelos Katsamakas and Nicholas Georgantzas.
 \newblock Why most open source development projects do not succeed?
 \newblock In {\em ICSEW '07: Proceedings of the 29th International Conference
   on Software Engineering Workshops}, pages 123+, Washington, DC, USA, 2007.
   IEEE Computer Society.
 
-\bibitem[KGG05]{Kuhn05b}
-Adrian Kuhn, Orla Greevy, and Tudor G\^irba.
-\newblock Applying semantic analysis to feature execution traces.
-\newblock In {\em Proceedings IEEE Workshop on Program Comprehension through
-  Dynamic Analysis (PCODA 2005)}, pages 48--53, Los Alamitos CA, November 2005.
-  IEEE Computer Society Press.
+\bibitem{Kauf01b}
+Michael Kaufmann and Dorothea Wagner.
+\newblock {\em Drawing Graphs}.
+\newblock Springer-Verlag, Berlin Heidelberg, 2001.
 
-\bibitem[KGMI04]{Kawa04a}
+\bibitem{Kawa04a}
 Shinji Kawaguchi, Pankaj~K. Garg, Makoto Matsushita, and Katsuro Inoue.
 \newblock Mudablue: An automatic categorization system for open source
   repositories.
 \newblock In {\em Proceedings of the 11th Asia-Pacific Software Engineering
   Conference (APSEC 2004)}, pages 184--193, 2004.
 
-\bibitem[KLN08]{Kuhn08b}
-Adrian Kuhn, Peter Loretan, and Oscar Nierstrasz.
-\newblock Consistent layout for thematic software maps.
-\newblock In {\em Proceedings of 15th Working Conference on Reverse Engineering
-  (WCRE'08)}, pages 209--218, Los Alamitos CA, October 2008. IEEE Computer
-  Society Press.
+\bibitem{Kien07a}
+Holger~M. Kienle and Hausi~A. Muller.
+\newblock Requirements of software visualization tools: A literature survey.
+\newblock {\em VISSOFT 2007. 4th IEEE International Workshop on Visualizing
+  Software for Understanding and Analysis}, pages 2--9, 2007.
 
-\bibitem[KM04]{Ko04a}
+\bibitem{Ko07a}
+Andrew~J. Ko, Robert DeLine, and Gina Venolia.
+\newblock {Information Needs in Collocated Software Development Teams}.
+\newblock In {\em Proceedings of the 29th international conference on Software
+  Engineering}, ICSE '07, pages 344--353, Washington, DC, USA, May 2007. IEEE
+  Computer Society.
+
+\bibitem{Ko04a}
 Andrew~J. Ko and Brad~A. Myers.
 \newblock Designing the whyline: a debugging interface for asking questions
   about program behavior.
 \newblock In {\em Proceedings of the 2004 conference on Human factors in
   computing systems}, pages 151--158. ACM Press, 2004.
 
-\bibitem[KM07]{Kien07a}
-Holger~M. Kienle and Hausi~A. Muller.
-\newblock Requirements of software visualization tools: A literature survey.
-\newblock {\em VISSOFT 2007. 4th IEEE International Workshop on Visualizing
-  Software for Understanding and Analysis}, pages 2--9, 2007.
+\bibitem{Kosk04a}
+Jussi Koskinen, Airi Salminen, and Jukka Paakki.
+\newblock Hypertext support for the information needs of software maintainers.
+\newblock {\em Journal on Software Maintenance Evolution: Research and
+  Practice}, 16(3):187--215, 2004.
 
-\bibitem[KRH{\etalchar{+}}08]{Kuhn08a}
+\bibitem{Kuhn06a}
+Adrian Kuhn.
+\newblock Semantic clustering: Making use of linguistic information to reveal
+  concepts in source code.
+\newblock Master's thesis, University of Bern, March 2006.
+
+\bibitem{Kuhn09a}
+Adrian Kuhn.
+\newblock Automatic labeling of software components and their evolution using
+  log-likelihood ratio of word frequencies in source code.
+\newblock In {\em MSR '09: Proceedings of the 2009 6th IEEE International
+  Working Conference on Mining Software Repositories}, pages 175--178. IEEE,
+  2009.
+
+\bibitem{Kuhn10x}
+Adrian Kuhn and Robert DeLine.
+\newblock On designing better tools for learning apis.
+\newblock In {\em submitted to CHI 2011 for review}, 2011.
+
+\bibitem{Kuhn05a}
+Adrian Kuhn, St\'ephane Ducasse, and Tudor G\^irba.
+\newblock Enriching reverse engineering with semantic clustering.
+\newblock In {\em Proceedings of 12th Working Conference on Reverse Engineering
+  (WCRE'05)}, pages 113--122, Los Alamitos CA, November 2005. IEEE Computer
+  Society Press.
+
+\bibitem{Kuhn07a}
+Adrian Kuhn, St\'ephane Ducasse, and Tudor G\^irba.
+\newblock Semantic clustering: Identifying topics in source code.
+\newblock {\em Information and Software Technology}, 49(3):230--243, March
+  2007.
+
+\bibitem{Kuhn10b}
+Adrian Kuhn, David Erni, Peter Loretan, and Oscar Nierstrasz.
+\newblock Software cartography: Thematic software visualization with consistent
+  layout.
+\newblock {\em Journal of Software Maintenance and Evolution (JSME)},
+  22(3):191--210, April 2010.
+
+\bibitem{Kuhn10c}
+Adrian Kuhn, David Erni, and Oscar Nierstrasz.
+\newblock Embedding spatial software visualization in the ide: an exploratory
+  study.
+\newblock In {\em SOFTVIS 2010}, October 2010.
+
+\bibitem{Kuhn05b}
+Adrian Kuhn, Orla Greevy, and Tudor G\^irba.
+\newblock Applying semantic analysis to feature execution traces.
+\newblock In {\em Proceedings IEEE Workshop on Program Comprehension through
+  Dynamic Analysis (PCODA 2005)}, pages 48--53, Los Alamitos CA, November 2005.
+  IEEE Computer Society Press.
+
+\bibitem{Kuhn08b}
+Adrian Kuhn, Peter Loretan, and Oscar Nierstrasz.
+\newblock Consistent layout for thematic software maps.
+\newblock In {\em Proceedings of 15th Working Conference on Reverse Engineering
+  (WCRE'08)}, pages 209--218, Los Alamitos CA, October 2008. IEEE Computer
+  Society Press.
+
+\bibitem{Kuhn08a}
 Adrian Kuhn, Bart~Van Rompaey, Lea H\"ansenberger, Oscar Nierstrasz, Serge
   Demeyer, Markus Gaelli, and Koenraad~Van Leemput.
 \newblock {JExample}: Exploiting dependencies between tests to improve defect
@@ -702,108 +726,13 @@ Adrian Kuhn, Bart~Van Rompaey, Lea H\"ansenberger, Oscar Nierstrasz, Serge
   Processes in Software Engineering, 9th International Conference, XP 2008},
   Lecture Notes in Computer Science, pages 73--82. Springer, 2008.
 
-\bibitem[KSP04]{Kosk04a}
-Jussi Koskinen, Airi Salminen, and Jukka Paakki.
-\newblock Hypertext support for the information needs of software maintainers.
-\newblock {\em Journal on Software Maintenance Evolution: Research and
-  Practice}, 16(3):187--215, 2004.
-
-\bibitem[Kuh06]{Kuhn06a}
-Adrian Kuhn.
-\newblock Semantic clustering: Making use of linguistic information to reveal
-  concepts in source code.
-\newblock Master's thesis, University of Bern, March 2006.
-
-\bibitem[Kuh09]{Kuhn09a}
-Adrian Kuhn.
-\newblock Automatic labeling of software components and their evolution using
-  log-likelihood ratio of word frequencies in source code.
-\newblock In {\em MSR '09: Proceedings of the 2009 6th IEEE International
-  Working Conference on Mining Software Repositories}, pages 175--178. IEEE,
-  2009.
-
-\bibitem[KW01]{Kauf01b}
-Michael Kaufmann and Dorothea Wagner.
-\newblock {\em Drawing Graphs}.
-\newblock Springer-Verlag, Berlin Heidelberg, 2001.
-
-\bibitem[LBO{\etalchar{+}}07]{Lemo07a}
-Ot\'{a}vio Augusto~Lazzarini Lemos, Sushil~K. Bajracharya, Joel Ossher,
-  Ricardo~S. Morla, Paulo~C. Masiero, Pierre Baldi, and Cristina~V. Lopes.
-\newblock Codegenie: using test-cases to search and reuse source code.
-\newblock In {\em ASE '07: Proceedings of the twenty-second IEEE/ACM
-  international conference on Automated software engineering}, pages 525--526,
-  New York, NY, USA, 2007. ACM.
-
-\bibitem[LD91]{Land97a}
+\bibitem{Land97a}
 T.~Landauer and S.~Dumais.
 \newblock The latent semantic analysis theory of acquisition, induction, and
   representation of knowledge.
 \newblock In {\em Psychological Review}, volume 104/2, pages 211--240, 1991.
 
-\bibitem[LD02]{Lanz02a}
-Michele Lanza and St\'ephane Ducasse.
-\newblock Understanding software evolution using a combination of software
-  visualization and software metrics.
-\newblock In {\em Proceedings of Langages et Mod\`eles \`a Objets (LMO'02)},
-  pages 135--149, Paris, 2002. Lavoisier.
-
-\bibitem[LD03]{Lanz03d}
-Michele Lanza and St\'ephane Ducasse.
-\newblock Polymetric views---a lightweight visual approach to reverse
-  engineering.
-\newblock {\em Transactions on Software Engineering (TSE)}, 29(9):782--795,
-  September 2003.
-
-\bibitem[LHLB09]{Linstead09SUITE}
-Erik Linstead, Lindsey Huges, Christina Lopes, and Pierre Baldi.
-\newblock Exploring java software vocabulary: A search and mining perspective.
-\newblock In {\em Proceedings of 1st Intl. Workshop on Search-driven
-  Development, Users, Interfaces, Tools, and Evaluation (SUITE'09)}, page Too
-  appear, 2009.
-
-\bibitem[LHR88]{Lieb88a}
-Karl~J. Lieberherr, Ian~M. Holland, and Arthur Riel.
-\newblock Object-oriented programming: An objective sense of style.
-\newblock In {\em Proceedings OOPSLA '88, ACM SIGPLAN Notices}, volume~23,
-  pages 323--334, November 1988.
-
-\bibitem[Lin73]{Ling73a}
-Robert~L. Ling.
-\newblock A computer generated aid for cluster analysis.
-\newblock {\em Communications of ACM}, 16(6):355--361, 1973.
-
-\bibitem[LLG06]{Lung06a}
-Mircea Lungu, Michele Lanza, and Tudor G\^irba.
-\newblock Package patterns for visual architecture recovery.
-\newblock In {\em Proceedings of CSMR 2006 (10th European Conference on
-  Software Maintenance and Reengineering)}, pages 185--196, Los Alamitos CA,
-  2006. IEEE Computer Society Press.
-
-\bibitem[LM06]{Lanz06a}
-Michele Lanza and Radu Marinescu.
-\newblock {\em Object-Oriented Metrics in Practice}.
-\newblock Springer-Verlag, 2006.
-
-\bibitem[LM10]{Latoza2010a}
-Thomas~D. LaToza and Brad~A. Myers.
-\newblock Developers ask reachability questions.
-\newblock In {\em ICSE 2010}, pages 185--194, 2010.
-
-\bibitem[LRB{\etalchar{+}}07]{Linstead07}
-Erik Linstead, Paul Rigor, Sushil Bajracharya, Cristina Lopes, and Pierre
-  Baldi.
-\newblock Mining eclipse developer contributions via author-topic models.
-\newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
-  Software Repositories}, page~30, Washington, DC, USA, 2007. IEEE Computer
-  Society.
-
-\bibitem[LS86]{Leto86a}
-S.~Letovsky and E.~Soloway.
-\newblock Delocalized plans and program comprehension.
-\newblock {\em IEEE Software}, 3(3):41--49, 1986.
-
-\bibitem[LSP05]{Lang05a}
+\bibitem{Lang05a}
 Guillaume Langelier, Houari~A. Sahraoui, and Pierre Poulin.
 \newblock Visualization-based analysis of quality for large-scale software
   systems.
@@ -811,52 +740,149 @@ Guillaume Langelier, Houari~A. Sahraoui, and Pierre Poulin.
   Conference on Automated software engineering}, pages 214--223, New York, NY,
   USA, 2005. ACM.
 
-\bibitem[Luc02]{Lucc02a}
-G.~di Lucca.
-\newblock An approach to classify software maintenance requests.
-\newblock In {\em ICSM '02: Proceedings of the Intl. Conference on Software
-  Maintenance (ICSM'02)}, page~93, Washington, DC, USA, 2002. IEEE Computer
-  Society.
+\bibitem{Lanz02a}
+Michele Lanza and St\'ephane Ducasse.
+\newblock Understanding software evolution using a combination of software
+  visualization and software metrics.
+\newblock In {\em Proceedings of Langages et Mod\`eles \`a Objets (LMO'02)},
+  pages 135--149, Paris, 2002. Lavoisier.
 
-\bibitem[LVD06a]{Lato06a}
+\bibitem{Lanz03d}
+Michele Lanza and St\'ephane Ducasse.
+\newblock Polymetric views---a lightweight visual approach to reverse
+  engineering.
+\newblock {\em Transactions on Software Engineering (TSE)}, 29(9):782--795,
+  September 2003.
+
+\bibitem{Lanz06a}
+Michele Lanza and Radu Marinescu.
+\newblock {\em Object-Oriented Metrics in Practice}.
+\newblock Springer-Verlag, 2006.
+
+\bibitem{Latoza2010a}
+Thomas~D. LaToza and Brad~A. Myers.
+\newblock Developers ask reachability questions.
+\newblock In {\em ICSE 2010}, pages 185--194, 2010.
+
+\bibitem{Lato06a}
 Thomas~D. LaToza, Gina Venolia, and Robert DeLine.
 \newblock {Maintaining mental models: a study of developer work habits}.
 \newblock In {\em ICSE '06: Proceedings of the 28th international conference on
   Software engineering}, pages 492--501, New York, NY, USA, 2006. ACM.
 
-\bibitem[LvD06b]{Lorm06a}
+\bibitem{Lemo07a}
+Ot\'{a}vio Augusto~Lazzarini Lemos, Sushil~K. Bajracharya, Joel Ossher,
+  Ricardo~S. Morla, Paulo~C. Masiero, Pierre Baldi, and Cristina~V. Lopes.
+\newblock Codegenie: using test-cases to search and reuse source code.
+\newblock In {\em ASE '07: Proceedings of the twenty-second IEEE/ACM
+  international conference on Automated software engineering}, pages 525--526,
+  New York, NY, USA, 2007. ACM.
+
+\bibitem{Leto86a}
+S.~Letovsky and E.~Soloway.
+\newblock Delocalized plans and program comprehension.
+\newblock {\em IEEE Software}, 3(3):41--49, 1986.
+
+\bibitem{Lieb88a}
+Karl~J. Lieberherr, Ian~M. Holland, and Arthur Riel.
+\newblock Object-oriented programming: An objective sense of style.
+\newblock In {\em Proceedings OOPSLA '88, ACM SIGPLAN Notices}, volume~23,
+  pages 323--334, November 1988.
+
+\bibitem{Ling73a}
+Robert~L. Ling.
+\newblock A computer generated aid for cluster analysis.
+\newblock {\em Communications of ACM}, 16(6):355--361, 1973.
+
+\bibitem{Linstead09SUITE}
+Erik Linstead, Lindsey Huges, Christina Lopes, and Pierre Baldi.
+\newblock Exploring java software vocabulary: A search and mining perspective.
+\newblock In {\em Proceedings of 1st Intl. Workshop on Search-driven
+  Development, Users, Interfaces, Tools, and Evaluation (SUITE'09)}, page Too
+  appear, 2009.
+
+\bibitem{Linstead07}
+Erik Linstead, Paul Rigor, Sushil Bajracharya, Cristina Lopes, and Pierre
+  Baldi.
+\newblock Mining eclipse developer contributions via author-topic models.
+\newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
+  Software Repositories}, page~30, Washington, DC, USA, 2007. IEEE Computer
+  Society.
+
+\bibitem{Lorm06a}
 M.~Lormans and A.~van Deursen.
 \newblock Can lsi help reconstructing requirements traceability in design and
   test?
 \newblock In {\em Proceedings of the 10th European Conference on Software
   Maintenance and Reengineering (CSMR'06)}. IEEE Computer Society, 2006.
 
-\bibitem[Mat09]{Matt09b}
-Dominique Matter.
-\newblock Who knows about that bug? --- automatic bug report assignment with a
-  vocabulary-based developer expertise model.
-\newblock Master's thesis, University of Bern, June 2009.
+\bibitem{Lucc02a}
+G.~di Lucca.
+\newblock An approach to classify software maintenance requests.
+\newblock In {\em ICSM '02: Proceedings of the Intl. Conference on Software
+  Maintenance (ICSM'02)}, page~93, Washington, DC, USA, 2002. IEEE Computer
+  Society.
 
-\bibitem[MBK91]{Maar91a}
+\bibitem{Lung06a}
+Mircea Lungu, Michele Lanza, and Tudor G\^irba.
+\newblock Package patterns for visual architecture recovery.
+\newblock In {\em Proceedings of CSMR 2006 (10th European Conference on
+  Software Maintenance and Reengineering)}, pages 185--196, Los Alamitos CA,
+  2006. IEEE Computer Society Press.
+
+\bibitem{Maar91a}
 Yo{\"e}lle~S. Maarek, Daniel~M. Berry, and Gail~E. Kaiser.
 \newblock An information retrieval approach for automatically constructing
   software libraries.
 \newblock {\em IEEE Transactions on Software Engineering}, 17(8):800--813,
   August 1991.
 
-\bibitem[MCG08]{Mart08a}
+\bibitem{Male00a}
+Jonathan~I. Maletic and Andrian Marcus.
+\newblock Using latent semantic analysis to identify similarities in source
+  code to support program understanding.
+\newblock In {\em Proceedings of the 12th International Conference on Tools
+  with Artificial Intelligences (ICTAI 2000)}, pages 46--53, November 2000.
+
+\bibitem{Marc03b}
+Andrian Marcus and Jonathan Maletic.
+\newblock Recovering documentation-to-source-code traceability links using
+  latent semantic indexing.
+\newblock In {\em Proceedings of the 25th International Conference on Software
+  Engineering (ICSE 2003)}, pages 125--135, May 2003.
+
+\bibitem{Marc01a}
+Andrian Marcus and Jonathan~I. Maletic.
+\newblock Identification of high-level concept clones in source code.
+\newblock In {\em Proceedings of the 16th International Conference on Automated
+  Software Engineering (ASE 2001)}, pages 107--114, November 2001.
+
+\bibitem{Marc05a}
+Andrian Marcus and Denys Poshyvanyk.
+\newblock The conceptual cohesion of classes.
+\newblock In {\em Proceedings International Conference on Software Maintenance
+  (ICSM 2005)}, pages 133--142, Los Alamitos CA, 2005. IEEE Computer Society
+  Press.
+
+\bibitem{Marc04a}
+Andrian Marcus, Andrey Sergeyev, Vaclav Rajlich, and Jonathan Maletic.
+\newblock An information retrieval approach to concept location in source code.
+\newblock In {\em Proceedings of the 11th Working Conference on Reverse
+  Engineering (WCRE 2004)}, pages 214--223, November 2004.
+
+\bibitem{Mart08a}
 Amaia~A. Martinez, Javier~Dolado Cosin, and Concepcion~P. Garcia.
 \newblock A metro map metaphor for visualization of software projects.
 \newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
   visualization}, pages 199--200, New York, NY, USA, 2008. ACM.
 
-\bibitem[MH02]{Mock02b}
-Audris Mockus and James~D. Herbsleb.
-\newblock Expertise browser: a quantitative approach to identifying expertise.
-\newblock In {\em ICSE '02: Proceedings of the 24th International Conference on
-  Software Engineering}, pages 503--512, New York, NY, USA, 2002. ACM.
+\bibitem{Matt09b}
+Dominique Matter.
+\newblock Who knows about that bug? --- automatic bug report assignment with a
+  vocabulary-based developer expertise model.
+\newblock Master's thesis, University of Bern, June 2009.
 
-\bibitem[MKN09]{Matt09a}
+\bibitem{Matt09a}
 Dominique Matter, Adrian Kuhn, and Oscar Nierstrasz.
 \newblock Assigning bug reports using a vocabulary-based expertise model of
   developers.
@@ -864,91 +890,58 @@ Dominique Matter, Adrian Kuhn, and Oscar Nierstrasz.
   Working Conference on Mining Software Repositories}, pages 131--140. IEEE,
   2009.
 
-\bibitem[ML05]{Mesn05b}
+\bibitem{Mesn05b}
 C{\'e}dric Mesnage and Michele Lanza.
 \newblock {White Coats}: Web-visualization of evolving software in {3D}.
 \newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Visualizing
   Software for Understanding and Analysis}, 0:40--45, 2005.
 
-\bibitem[MM00]{Male00a}
-Jonathan~I. Maletic and Andrian Marcus.
-\newblock Using latent semantic analysis to identify similarities in source
-  code to support program understanding.
-\newblock In {\em Proceedings of the 12th International Conference on Tools
-  with Artificial Intelligences (ICTAI 2000)}, pages 46--53, November 2000.
-
-\bibitem[MM01]{Marc01a}
-Andrian Marcus and Jonathan~I. Maletic.
-\newblock Identification of high-level concept clones in source code.
-\newblock In {\em Proceedings of the 16th International Conference on Automated
-  Software Engineering (ASE 2001)}, pages 107--114, November 2001.
-
-\bibitem[MM03]{Marc03b}
-Andrian Marcus and Jonathan Maletic.
-\newblock Recovering documentation-to-source-code traceability links using
-  latent semantic indexing.
-\newblock In {\em Proceedings of the 25th International Conference on Software
-  Engineering (ICSE 2003)}, pages 125--135, May 2003.
-
-\bibitem[MM07]{Minto07}
+\bibitem{Minto07}
 Shawn Minto and Gail~C. Murphy.
 \newblock Recommending emergent teams.
 \newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
   Software Repositories}, page~5, Washington, DC, USA, 2007. IEEE Computer
   Society.
 
-\bibitem[MP05]{Marc05a}
-Andrian Marcus and Denys Poshyvanyk.
-\newblock The conceptual cohesion of classes.
-\newblock In {\em Proceedings International Conference on Software Maintenance
-  (ICSM 2005)}, pages 133--142, Los Alamitos CA, 2005. IEEE Computer Society
-  Press.
+\bibitem{Mock02b}
+Audris Mockus and James~D. Herbsleb.
+\newblock Expertise browser: a quantitative approach to identifying expertise.
+\newblock In {\em ICSE '02: Proceedings of the 24th International Conference on
+  Software Engineering}, pages 503--512, New York, NY, USA, 2002. ACM.
 
-\bibitem[MSRM04]{Marc04a}
-Andrian Marcus, Andrey Sergeyev, Vaclav Rajlich, and Jonathan Maletic.
-\newblock An information retrieval approach to concept location in source code.
-\newblock In {\em Proceedings of the 11th Working Conference on Reverse
-  Engineering (WCRE 2004)}, pages 214--223, November 2004.
+\bibitem{Nako01b}
+P.~Nakov, A.~Popova, and P.~Mateev.
+\newblock Weight functions impact on lsa performance.
+\newblock {\em Proceedings of the EuroConference Recent Advances in Natural
+  Language Processing (RANLP 2001)}, pages 187--193, 2001.
 
-\bibitem[Nak01]{Nako01a}
+\bibitem{Nako01a}
 Preslav Nakov.
 \newblock Latent semantic analysis for german literature investigation.
 \newblock In {\em Proceedings of the International Conference, 7th Fuzzy Days
   on Computational Intelligence, Theory and Applications}, pages 834--841,
   London, UK, 2001. Springer-Verlag.
 
-\bibitem[NDG05]{Nier05c}
+\bibitem{Niel03a}
+Jakob Nielsen.
+\newblock {\em Usability Engineering}.
+\newblock Morgan Kaufmann, 1st edition, September 1993.
+
+\bibitem{Nier05c}
 Oscar Nierstrasz, St\'ephane Ducasse, and Tudor G\^irba.
 \newblock The story of {Moose}: an agile reengineering environment.
 \newblock In {\em Proceedings of the European Software Engineering Conference
   (ESEC/FSE'05)}, pages 1--10, New York NY, 2005. ACM Press.
 \newblock Invited paper.
 
-\bibitem[Nie93]{Niel03a}
-Jakob Nielsen.
-\newblock {\em Usability Engineering}.
-\newblock Morgan Kaufmann, 1st edition, September 1993.
-
-\bibitem[NL05]{Noac05a}
+\bibitem{Noac05a}
 Andreas Noack and Claus Lewerentz.
 \newblock A space of layout styles for hierarchical graph models of software
   systems.
 \newblock In {\em SoftVis '05: Proceedings of the 2005 ACM symposium on
   Software visualization}, pages 155--164, New York, NY, USA, 2005. ACM.
 
-\bibitem[NPM01]{Nako01b}
-P.~Nakov, A.~Popova, and P.~Mateev.
-\newblock Weight functions impact on lsa performance.
-\newblock {\em Proceedings of the EuroConference Recent Advances in Natural
-  Language Processing (RANLP 2001)}, pages 187--193, 2001.
-
-\bibitem[OJH03]{Orso03a}
-Alessandro Orso, James Jones, and Mary~J. Harrold.
-\newblock Visualization of program-execution data for deployed software.
-\newblock In {\em SoftVis '03: Proceedings of the 2003 ACM symposium on
-  Software visualization}, pages 67--ff, New York, NY, USA, 2003. ACM.
-
-\bibitem[OM08]{Omor08a}
+\bibitem{Omor08a}
 Takayuki Omori and Katsuhisa Maruyama.
 \newblock A change-aware development environment by recording editing
   operations of source code.
@@ -956,14 +949,31 @@ Takayuki Omori and Katsuhisa Maruyama.
   conference on Mining software repositories}, pages 31--34, New York, NY, USA,
   2008. ACM.
 
-\bibitem[PBD08]{Patt08a}
+\bibitem{Orso03a}
+Alessandro Orso, James Jones, and Mary~J. Harrold.
+\newblock Visualization of program-execution data for deployed software.
+\newblock In {\em SoftVis '03: Proceedings of the 2003 ACM symposium on
+  Software visualization}, pages 67--ff, New York, NY, USA, 2003. ACM.
+
+\bibitem{Patt08a}
 David~S. Pattison, Christian~A. Bird, and Premkumar~T. Devanbu.
 \newblock Talk and work: a preliminary report.
 \newblock In {\em MSR '08: Proceedings of the 2008 international working
   conference on Mining software repositories}, pages 113--116, New York, NY,
   USA, 2008. ACM.
 
-\bibitem[PLF{\etalchar{+}}03]{Podgurski03}
+\bibitem{Penn87a}
+D.~Jason Penney and Jacob Stein.
+\newblock Class modification in the gemstone object-oriented {DBMS}.
+\newblock In {\em Proceedings OOPSLA '87, ACM SIGPLAN Notices}, volume~22,
+  pages 111--117, December 1987.
+
+\bibitem{Phan05a}
+Doantam Phan, Ling Xiao, Ron~B. Yeh, Pat Hanrahan, and Terry Winograd.
+\newblock Flow map layout.
+\newblock In {\em INFOVIS}, page~29, 2005.
+
+\bibitem{Podgurski03}
 Andy Podgurski, David Leon, Patrick Francis, Wes Masri, Melinda Minch, Jiayang
   Sun, and Bin Wang.
 \newblock Automated support for classifying software failure reports.
@@ -971,7 +981,12 @@ Andy Podgurski, David Leon, Patrick Francis, Wes Masri, Melinda Minch, Jiayang
   Software Engineering}, pages 465--475, Washington, DC, USA, 2003. IEEE
   Computer Society.
 
-\bibitem[PM07]{Posh07a}
+\bibitem{Port80a}
+Martin~F. Porter.
+\newblock An algorithm for suffix stripping.
+\newblock {\em Program}, 14(3):130--137, 1980.
+
+\bibitem{Posh07a}
 Denys Poshyvanyk and Andrian Marcus.
 \newblock Combining formal concept analysis with information retrieval for
   concept location in source code.
@@ -979,58 +994,74 @@ Denys Poshyvanyk and Andrian Marcus.
   Conference on Program Comprehension}, pages 37--48, Washington, DC, USA,
   2007. IEEE Computer Society.
 
-\bibitem[PMFG09]{Posh09a}
+\bibitem{Posh09a}
 Denys Poshyvanyk, Andrian Marcus, Rudolf Ferenc, and Tibor Gyim\'{o}thy.
 \newblock Using information retrieval based coupling measures for impact
   analysis.
 \newblock {\em Empirical Software Engineering}, 14(1):5--32, February 2009.
 
-\bibitem[Por80]{Port80a}
-Martin~F. Porter.
-\newblock An algorithm for suffix stripping.
-\newblock {\em Program}, 14(3):130--137, 1980.
-
-\bibitem[PS87]{Penn87a}
-D.~Jason Penney and Jacob Stein.
-\newblock Class modification in the gemstone object-oriented {DBMS}.
-\newblock In {\em Proceedings OOPSLA '87, ACM SIGPLAN Notices}, volume~22,
-  pages 111--117, December 1987.
-
-\bibitem[PXY{\etalchar{+}}05]{Phan05a}
-Doantam Phan, Ling Xiao, Ron~B. Yeh, Pat Hanrahan, and Terry Winograd.
-\newblock Flow map layout.
-\newblock In {\em INFOVIS}, page~29, 2005.
-
-\bibitem[Rei05a]{Reis05b}
-Steven~P. Reiss.
-\newblock {JOVE}: {Java} as it happens.
-\newblock In {\em Proceedings of SoftVis 2005(ACM Symposium on Software
-  Visualization)}, pages 115--124, 2005.
-
-\bibitem[Rei05b]{Reis05a}
-Steven~P. Reiss.
-\newblock The paradox of software visualization.
-\newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Visualizing
-  Software for Understanding and Analysis}, page~19, 2005.
-
-\bibitem[RG00]{Rayson}
+\bibitem{Rayson}
 Paul Rayson and Roger Garside.
 \newblock Comparing corpora using frequency profiling.
 \newblock In {\em Proceedings of the Workshop on Comparing Corpora}, pages
   1--6, October 2000.
 
-\bibitem[RL08]{Robb08a}
+\bibitem{Reis05b}
+Steven~P. Reiss.
+\newblock {JOVE}: {Java} as it happens.
+\newblock In {\em Proceedings of SoftVis 2005(ACM Symposium on Software
+  Visualization)}, pages 115--124, 2005.
+
+\bibitem{Reis05a}
+Steven~P. Reiss.
+\newblock The paradox of software visualization.
+\newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Visualizing
+  Software for Understanding and Analysis}, page~19, 2005.
+
+\bibitem{Robb08a}
 Romain Robbes and Michele Lanza.
 \newblock How program history can improve code completion.
 \newblock In {\em Proceedings of ASE 2008 (23rd International Conference on
   Automated Software Engineering)}, pages 317--326, 2008.
 
-\bibitem[Rob09]{robillard09}
+\bibitem{robillard09}
 M.P. Robillard.
 \newblock What makes {API}s hard to learn? answers from developers.
 \newblock {\em Software, IEEE}, 26(6):27--34, Nov. 2009.
 
-\bibitem[SCS08]{Siy08a}
+\bibitem{Schu08a}
+David Schuler and Thomas Zimmermann.
+\newblock Mining usage expertise from version archives.
+\newblock In {\em MSR '08: Proceedings of the 2008 international working
+  conference on Mining software repositories}, pages 121--124, New York, NY,
+  USA, 2008. ACM.
+
+\bibitem{Seeb06a}
+Mauricio Seeberger.
+\newblock How developers drive software evolution.
+\newblock Master's thesis, University of Bern, January 2006.
+
+\bibitem{Sens08a}
+Mariam Sensalire, Patrick Ogao, and Alexandru Telea.
+\newblock Classifying desirable features of software visualization tools for
+  corrective maintenance.
+\newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
+  visualization}, pages 87--90, New York, NY, USA, 2008. ACM.
+
+\bibitem{Shne80a}
+Shneiderman.
+\newblock {\em Software Psychology: Human Factors in Computer and Information
+  Systems}.
+\newblock Winthrop Publishers, 1980.
+
+\bibitem{Sill06a}
+Jonathan Sillito, Gail~C. Murphy, and Kris De~Volder.
+\newblock {Questions programmers ask during software evolution tasks}.
+\newblock In {\em Proceedings of the 14th ACM SIGSOFT international symposium
+  on Foundations of software engineering}, SIGSOFT '06/FSE-14, pages 23--34,
+  New York, NY, USA, 2006. ACM.
+
+\bibitem{Siy08a}
 Harvey Siy, Parvathi Chundi, and Mahadevan Subramaniam.
 \newblock Summarizing developer work history using time series segmentation:
   challenge report.
@@ -1038,117 +1069,79 @@ Harvey Siy, Parvathi Chundi, and Mahadevan Subramaniam.
   conference on Mining software repositories}, pages 137--140, New York, NY,
   USA, 2008. ACM.
 
-\bibitem[See06]{Seeb06a}
-Mauricio Seeberger.
-\newblock How developers drive software evolution.
-\newblock Master's thesis, University of Bern, January 2006.
-
-\bibitem[SFM99]{Stor99a}
-Margaret-Anne~D. Storey, F.~David Fracchia, and Hausi~A. M\"uller.
-\newblock Cognitive design elements to support the construction of a mental
-  model during software exploration.
-\newblock {\em Journal of Software Systems}, 44:171--185, 1999.
-
-\bibitem[Shn80]{Shne80a}
-Shneiderman.
-\newblock {\em Software Psychology: Human Factors in Computer and Information
-  Systems}.
-\newblock Winthrop Publishers, 1980.
-
-\bibitem[SMDV06]{Sill06a}
-Jonathan Sillito, Gail~C. Murphy, and Kris De~Volder.
-\newblock {Questions programmers ask during software evolution tasks}.
-\newblock In {\em Proceedings of the 14th ACM SIGSOFT international symposium
-  on Foundations of software engineering}, SIGSOFT '06/FSE-14, pages 23--34,
-  New York, NY, USA, 2006. ACM.
-
-\bibitem[SMKH05]{Sloc05a}
+\bibitem{Sloc05a}
 Terry~A. Slocum, Robert~B. McMaster, Fritz~C. Kessler, and Hugh~H. Howard.
 \newblock {\em Thematic Carthography and Geographic Visualization}.
 \newblock Pearson Prentice Hall, Upper Saddle River, New Jersey, 2005.
 
-\bibitem[SOT08]{Sens08a}
-Mariam Sensalire, Patrick Ogao, and Alexandru Telea.
-\newblock Classifying desirable features of software visualization tools for
-  corrective maintenance.
-\newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
-  visualization}, pages 87--90, New York, NY, USA, 2008. ACM.
-
-\bibitem[Ste]{Stei10a}
+\bibitem{Stei10a}
 Frank Steinbr\"uckner.
 \newblock Layout stability of software cities.
 \newblock
   \url{http://seal.ifi.uzh.ch/uploads/media/16\_frank\_steinbrueckner.pdf}.
 
-\bibitem[SvG05]{Stor05a}
+\bibitem{Stor99a}
+Margaret-Anne~D. Storey, F.~David Fracchia, and Hausi~A. M\"uller.
+\newblock Cognitive design elements to support the construction of a mental
+  model during software exploration.
+\newblock {\em Journal of Software Systems}, 44:171--185, 1999.
+
+\bibitem{Stor05a}
 Margaret-Anne~D. Storey, Davor \v{C}ubrani\'c, and Daniel~M. German.
 \newblock On the use of visualization to support awareness of human activities
   in software development: a survey and a framework.
 \newblock In {\em SoftVis'05: Proceedings of the 2005 ACM symposium on software
   visualization}, pages 193--202. ACM Press, 2005.
 
-\bibitem[SZ08]{Schu08a}
-David Schuler and Thomas Zimmermann.
-\newblock Mining usage expertise from version archives.
-\newblock In {\em MSR '08: Proceedings of the 2008 international working
-  conference on Mining software repositories}, pages 121--124, New York, NY,
-  USA, 2008. ACM.
-
-\bibitem[TLTC05]{Term05a}
-Maurice Termeer, Christian~F.J. Lange, Alexandru Telea, and Michel~R.V.
-  Chaudron.
-\newblock Visual exploration of combined architectural and metric information.
-\newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Volume}, 0:11,
-  2005.
-
-\bibitem[TMR02]{Tele03a}
+\bibitem{Tele03a}
 Alexandru Telea, Alessandro Maccari, and Claudio Riva.
 \newblock An open toolkit for prototyping reverse engineering visualizations.
 \newblock In {\em VISSYM '02: Proceedings of the symposium on Data
   Visualisation 2002}, pages 241--ff, Aire-la-Ville, Switzerland, Switzerland,
   2002. Eurographics Association.
 
-\bibitem[TSL00]{Tene00a}
-Joshua~B. Tenenbaum, Vin Silva, and John~C. Langford.
-\newblock A global geometric framework for nonlinear dimensionality reduction.
-\newblock {\em Science}, 290(5500):2319--2323, December 2000.
-
-\bibitem[Tuf90]{Tuft90a}
-Edward~R. Tufte.
-\newblock {\em Envisioning Information}.
-\newblock Graphics Press, 1990.
-
-\bibitem[Tuf01]{Tuft01a}
-Edward~R. Tufte.
-\newblock {\em The Visual Display of Quantitative Information}.
-\newblock Graphics Press, 2nd edition, 2001.
-
-\bibitem[TV08]{Tele08b}
+\bibitem{Tele08b}
 Alexandru Telea and Lucian Voinea.
 \newblock An interactive reverse engineering environment for large-scale c++
   code.
 \newblock In {\em SoftVis '08: Proceedings of the 4th ACM symposium on Software
   visualization}, pages 67--76, New York, NY, USA, 2008. ACM.
 
-\bibitem[vGNEE06]{Gude06a}
+\bibitem{Tene00a}
+Joshua~B. Tenenbaum, Vin Silva, and John~C. Langford.
+\newblock A global geometric framework for nonlinear dimensionality reduction.
+\newblock {\em Science}, 290(5500):2319--2323, December 2000.
+
+\bibitem{Term05a}
+Maurice Termeer, Christian~F.J. Lange, Alexandru Telea, and Michel~R.V.
+  Chaudron.
+\newblock Visual exploration of combined architectural and metric information.
+\newblock {\em VISSOFT 2005. 3rd IEEE International Workshop on Volume}, 0:11,
+  2005.
+
+\bibitem{Tuft90a}
+Edward~R. Tufte.
+\newblock {\em Envisioning Information}.
+\newblock Graphics Press, 1990.
+
+\bibitem{Tuft01a}
+Edward~R. Tufte.
+\newblock {\em The Visual Display of Quantitative Information}.
+\newblock Graphics Press, 2nd edition, 2001.
+
+\bibitem{Gude06a}
 J\"urgen~Wolff v.~Gudenberg, A.~Niederle, M.~Ebner, and Holger Eichelberger.
 \newblock Evolutionary layout of uml class diagrams.
 \newblock In {\em SoftVis '06: Proceedings of the 2006 ACM symposium on
   Software visualization}, pages 163--164, New York, NY, USA, 2006. ACM.
 
-\bibitem[vLdL03]{Lier03a}
+\bibitem{Lier03a}
 Robert van Liere and Wim de~Leeuw.
 \newblock Graphsplatting: Visualizing graphs as continuous fields.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics},
   9(2):206--212, 2003.
 
-\bibitem[vM04]{Cubr04b}
-Davor \v{C}ubrani\'c and Gail~C. Murphy.
-\newblock Automatic bug triage using text categorization.
-\newblock In {\em Proceedings of the Sixteenth International Conference on
-  Software Engineering \& Knowledge Engineering}, pages 92--97, 2004.
-
-\bibitem[VRD04]{Ryss04a}
+\bibitem{Ryss04a}
 Filip Van~Rysselberghe and Serge Demeyer.
 \newblock Studying software evolution information by visualizing the change
   history.
@@ -1156,50 +1149,70 @@ Filip Van~Rysselberghe and Serge Demeyer.
   Maintenance (ICSM '04)}, pages 328--337, Los Alamitos CA, September 2004.
   IEEE Computer Society Press.
 
-\bibitem[VSN07]{Vasa07b}
+\bibitem{Vasa07b}
 Rajesh Vasa, Jean-Guy Schneider, and Oscar Nierstrasz.
 \newblock The inevitable stability of software change.
 \newblock In {\em Proceedings of 23rd IEEE International Conference on Software
   Maintenance (ICSM '07)}, pages 4--13, Los Alamitos CA, 2007. IEEE Computer
   Society.
 
-\bibitem[VWD04]{Vieg04a}
+\bibitem{Cubr04b}
+Davor \v{C}ubrani\'c and Gail~C. Murphy.
+\newblock Automatic bug triage using text categorization.
+\newblock In {\em Proceedings of the Sixteenth International Conference on
+  Software Engineering \& Knowledge Engineering}, pages 92--97, 2004.
+
+\bibitem{Vieg04a}
 Fernanda Vi\'egas, Martin Wattenberg, and Kushal Dave.
 \newblock Studying cooperation and conflict between authors with history flow
   visualizations.
 \newblock In {\em In Proceedings of the Conference on Human Factors in
   Computing Systems (CHI 2004)}, pages 575--582, April 2004.
 
-\bibitem[War00]{Ware00a}
+\bibitem{Ware00a}
 Colin Ware.
 \newblock {\em Information Visualization}.
 \newblock Morgan Kaufmann, 2000.
 
-\bibitem[War04]{Ware04a}
+\bibitem{Ware04a}
 Colin Ware.
 \newblock {\em Information Visualisation}.
 \newblock Elsevier, Sansome Street, San Fransico, 2004.
 
-\bibitem[WHH04]{Wu04a}
+\bibitem{Weis07a}
+Cathrin Weiss, Rahul Premraj, Thomas Zimmermann, and Andreas Zeller.
+\newblock How long will it take to fix this bug?
+\newblock In {\em MSR '07: Proceedings of the Fourth International Workshop on
+  Mining Software Repositories}, Washington, DC, USA, 2007. IEEE Computer
+  Society.
+
+\bibitem{Wett07b}
+Richard Wettel and Michele Lanza.
+\newblock Visualizing software systems as cities.
+\newblock In {\em Proceedings of VISSOFT 2007 (4th IEEE International Workshop
+  on Visualizing Software For Understanding and Analysis)}, pages 92--99, 2007.
+
+\bibitem{Wett08a}
+Richard Wettel and Michele Lanza.
+\newblock Visual exploration of large-scale system evolution.
+\newblock In {\em Proceedings of Softvis 2008 (4th International ACM Symposium
+  on Software Visualization)}, pages 155 -- 164. IEEE CS Press, 2008.
+
+\bibitem{Wise95b}
+James~A. Wise, James~J. Thomas, Kelly Pennock, David Lantrip, Marc Pottier,
+  Anne Schur, and Vern Crow.
+\newblock Visualizing the non-visual: spatial analysis and interaction with
+  information from text documents.
+\newblock {\em infovis}, 00:51, 1995.
+
+\bibitem{Wu04a}
 Jingwei Wu, Richard Holt, and Ahmed Hassan.
 \newblock Exploring software evolution using spectrographs.
 \newblock In {\em Proceedings of 11th Working Conference on Reverse Engineering
   (WCRE 2004)}, pages 80--89, Los Alamitos CA, November 2004. IEEE Computer
   Society Press.
 
-\bibitem[WL07]{Wett07b}
-Richard Wettel and Michele Lanza.
-\newblock Visualizing software systems as cities.
-\newblock In {\em Proceedings of VISSOFT 2007 (4th IEEE International Workshop
-  on Visualizing Software For Understanding and Analysis)}, pages 92--99, 2007.
-
-\bibitem[WL08]{Wett08a}
-Richard Wettel and Michele Lanza.
-\newblock Visual exploration of large-scale system evolution.
-\newblock In {\em Proceedings of Softvis 2008 (4th International ACM Symposium
-  on Software Visualization)}, pages 155 -- 164. IEEE CS Press, 2008.
-
-\bibitem[WMSL04]{Wu04b}
+\bibitem{Wu04b}
 Xiaomin Wu, Adam Murray, Margaret-Anne Storey, and Rob Lintern.
 \newblock A reverse engineering approach to support software maintenance:
   Version control knowledge extraction.
@@ -1207,34 +1220,20 @@ Xiaomin Wu, Adam Murray, Margaret-Anne Storey, and Rob Lintern.
   (WCRE 2004)}, pages 90--99, Los Alamitos CA, November 2004. IEEE Computer
   Society Press.
 
-\bibitem[WPZZ07]{Weis07a}
-Cathrin Weiss, Rahul Premraj, Thomas Zimmermann, and Andreas Zeller.
-\newblock How long will it take to fix this bug?
-\newblock In {\em MSR '07: Proceedings of the Fourth International Workshop on
-  Mining Software Repositories}, Washington, DC, USA, 2007. IEEE Computer
-  Society.
+\bibitem{Zhan08a}
+Hongyu Zhang.
+\newblock Exploring regularity in source code: Software science and {Zipf's}
+  law.
+\newblock {\em Reverse Engineering, Working Conference on}, 0:101--110, 2008.
 
-\bibitem[WTP{\etalchar{+}}95]{Wise95b}
-James~A. Wise, James~J. Thomas, Kelly Pennock, David Lantrip, Marc Pottier,
-  Anne Schur, and Vern Crow.
-\newblock Visualizing the non-visual: spatial analysis and interaction with
-  information from text documents.
-\newblock {\em infovis}, 00:51, 1995.
-
-\bibitem[ZDZ03]{Zimm03a}
+\bibitem{Zimm03a}
 Thomas Zimmermann, Stephan Diehl, and Andreas Zeller.
 \newblock How history justifies system architecture (or not).
 \newblock In {\em 6th International Workshop on Principles of Software
   Evolution (IWPSE 2003)}, pages 73--83, Los Alamitos CA, 2003. IEEE Computer
   Society Press.
 
-\bibitem[Zha08]{Zhan08a}
-Hongyu Zhang.
-\newblock Exploring regularity in source code: Software science and {Zipf's}
-  law.
-\newblock {\em Reverse Engineering, Working Conference on}, 0:101--110, 2008.
-
-\bibitem[ZWDZ04]{Zimm04a}
+\bibitem{Zimm04a}
 Thomas Zimmermann, Peter Wei{\ss}gerber, Stephan Diehl, and Andreas Zeller.
 \newblock Mining version histories to guide software changes.
 \newblock In {\em 26th International Conference on Software Engineering (ICSE
