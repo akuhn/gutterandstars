@@ -681,11 +681,6 @@ Adrian Kuhn.
   Working Conference on Mining Software Repositories}, pages 175--178. IEEE,
   2009.
 
-\bibitem{Kuhn10x}
-Adrian Kuhn and Robert DeLine.
-\newblock On designing better tools for learning apis.
-\newblock In {\em submitted to CHI 2011 for review}, 2011.
-
 \bibitem{Kuhn05a}
 Adrian Kuhn, St\'ephane Ducasse, and Tudor G\^irba.
 \newblock Enriching reverse engineering with semantic clustering.
@@ -711,6 +706,12 @@ Adrian Kuhn, David Erni, and Oscar Nierstrasz.
 \newblock Embedding spatial software visualization in the ide: an exploratory
   study.
 \newblock In {\em SOFTVIS 2010}, October 2010.
+
+\bibitem{Kuhn10x}
+Adrian Kuhn, David Erni, and Oscar Nierstrasz.
+\newblock Towards improving the mental model of software developers through
+  cartographic visualization, 2010.
+\newblock To appear, ACM SOFTVIS 2010.
 
 \bibitem{Kuhn05b}
 Adrian Kuhn, Orla Greevy, and Tudor G\^irba.
