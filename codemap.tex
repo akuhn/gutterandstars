@@ -221,27 +221,21 @@ In this section we present an examples of \SOCA. Figure~\ref{fig:ludo} shows the
 
 The layout of elements remains stable over all four iterations.  For example, {\tt Board/LudoFactory} is on all four views located in the south-western quadrant.
 
-\section{Conclusion}
+\section{Discussion}
 
-This chapter presents \SOCA, a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
+\SOCA, as presented in this chapter, is a spatial representation of software. Our approach visualizes software entities using a consistent layout. Software maps present the entire program and are continuous. Software maps contain visual landmarks that allow developers to find parts of the system perceptually rather then relying on conceptual cues, \eg names. Since all software maps of a system use the same layout, maps with thematic overlays can be compared to each other.
 
 The layout of software maps is based on the lexical similarity of software entities. Our algorithm uses a vector-space model to position software entities in an multi-dimensional space, and a combination of the Isomap algorithm \cite{Tene00a} and Multidimensional Scaling \cite{Borg05a} to map these positions on a two-dimensional display. Software maps can be generated to depict evolution of a software system over time. We evaluated the visual stability of iteratively generated maps considering four open source case studies.
 
 In spite of the aesthetic appeal of hill shading and contour lines, the main contribution of this chapter is not the cartographic look of software maps. The main contribution of \SOCA is (i) that cartographic position reflects topical distance of software entities, and (ii) that consistent layout allows different software maps to be easily compared.
 In this way, software maps reflect world maps in an atlas that exploit the same consistent layout to depict various kinds of thematic information about geographical sites.
 
-We have presented several examples to illustrate the usefulness of software maps to depict the evolution of software systems, and to serve as a background for thematic visualizations.
-The examples have been produced using \CODEMAP, a proof-of-concept tool that implements our technique.
+Software maps at present are largely static. In an more interactive environment the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software. The \textsc{CodeCanvas} prototype by Deline and Rowan offers this feature \cite{Deli10a}. All source code is put on a large zoomable canvas and developers zoom and pan around on this canvas as they work on the system. Depending on the zoom level of the canvas a different semantic view of the system is shown. For example, as the canvas is zoomed out the source code fades off and labels with colored icons appear instead to mark the signature of methods.
 
-As future work, we can identify the following promising directions:
-\begin{itemize}
-  \item Software maps at present are largely static.
-  We envision a more interactive environment in which the user can ``zoom and pan'' through the landscape to see features in closer detail, or navigate to other views of the software.
-  \item Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks.
-  \item Orientation and layout are presently consistent for a single project only.
-  We would like to investigate the usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain.
-  \item We plan to perform an empirical user study to evaluate the application of \SOCA for software comprehension and reverse engineering, but also for source code navigation in development environments.
-\end{itemize}
+Selectively displaying features would make the environment more attractive for navigation. Instead of generating all the labels and thematic widgets up-front, users can annotate the map, adding comments and waymarks as they perform their tasks. The \textsc{CodeBubbles} prototype by Bragdon and Reiss offers this feature \cite{Brag10b}. Instead of offering one global representation, a custom spatial layout of separate method bodies is unfolded as the developer works on the code. For each working context, \ie task, a new view is generated. The offer specialized views for debugging contexts, including a differential debugging mode. They are evaluating their prototype in an ongoing series of user studies, on the first of which is being reported in their current publications \cite{Brag10a,Brag10b}.
+
+Orientation and layout are presently consistent for a single project only. The usefulness of conventions for establishing consistent layout and orientation (\ie ``testing'' is North-East) that will work across multiple projects, possibly within a reasonably well-defined domain, is an open issue. However, given the findings of the user study presented in the next chapter, we consider it to be more worthwhile to invest in customizable layouts rather than predefined global layouts. Even though, generating a map of \eg all available open-source projects might be worthwhile on its own accord.
+
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%

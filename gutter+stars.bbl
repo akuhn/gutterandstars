@@ -225,6 +225,16 @@ Andrew Bragdon, Steven~P. Reiss, Robert Zeleznik, Suman Karumuri, William
 \newblock In {\em Proceedings of the 32nd International Conference on Software
   Engineering (2010)}. ACM, 2010.
 
+\bibitem{Brag10a}
+Andrew Bragdon, Robert Zeleznik, Steven~P. Reiss, Suman Karumuri, William
+  Cheung, Joshua Kaplan, Christopher Coleman, Ferdi Adeputra, and Joseph~J.
+  LaViola, Jr.
+\newblock Code bubbles: a working set-based interface for code understanding
+  and maintenance.
+\newblock In {\em CHI '10: Proceedings of the 28th international conference on
+  Human factors in computing systems}, pages 2503--2512, New York, NY, USA,
+  2010. ACM.
+
 \bibitem{bdwk10}
 Joel Brandt, Mira Dontcheva, Marcos Weskamp, and Scott~R. Klemmer.
 \newblock Example-centric programming: Integrating web search into the
@@ -567,12 +577,6 @@ Raphael Hoffmann, James Fogarty, and Daniel~S. Weld.
   interface for programmers.
 \newblock In {\em UIST 2007}, pages 13--22, 2007.
 
-\bibitem{Hofmann99PLSA}
-Thomas Hofmann.
-\newblock Probabilistic latent semantic analysis.
-\newblock In {\em In Proc. of Uncertainty in Artificial Intelligence,
-  UAI‚Äô99}, pages 289--296, 1999.
-
 \bibitem{Holmes2005}
 R.~Holmes and G.~C. Murphy.
 \newblock Using structural context to recommend source code examples.
@@ -806,14 +810,6 @@ Erik Linstead, Lindsey Huges, Christina Lopes, and Pierre Baldi.
   Development, Users, Interfaces, Tools, and Evaluation (SUITE'09)}, page Too
   appear, 2009.
 
-\bibitem{Linstead07}
-Erik Linstead, Paul Rigor, Sushil Bajracharya, Cristina Lopes, and Pierre
-  Baldi.
-\newblock Mining eclipse developer contributions via author-topic models.
-\newblock In {\em MSR '07: Proceedings of the 4th Intl. Workshop on Mining
-  Software Repositories}, page~30, Washington, DC, USA, 2007. IEEE Computer
-  Society.
-
 \bibitem{Lorm06a}
 M.~Lormans and A.~van Deursen.
 \newblock Can lsi help reconstructing requirements traceability in design and
@@ -978,14 +974,6 @@ Doantam Phan, Ling Xiao, Ron~B. Yeh, Pat Hanrahan, and Terry Winograd.
 \newblock Flow map layout.
 \newblock In {\em INFOVIS}, page~29, 2005.
 
-\bibitem{Podgurski03}
-Andy Podgurski, David Leon, Patrick Francis, Wes Masri, Melinda Minch, Jiayang
-  Sun, and Bin Wang.
-\newblock Automated support for classifying software failure reports.
-\newblock In {\em ICSE '03: Proceedings of the 25th Intl. Conference on
-  Software Engineering}, pages 465--475, Washington, DC, USA, 2003. IEEE
-  Computer Society.
-
 \bibitem{Port80a}
 Martin~F. Porter.
 \newblock An algorithm for suffix stripping.
@@ -1045,6 +1033,12 @@ David Schuler and Thomas Zimmermann.
 Mauricio Seeberger.
 \newblock How developers drive software evolution.
 \newblock Master's thesis, University of Bern, January 2006.
+
+\bibitem{Sege10a}
+Edward Segel and Jeffrey Heer.
+\newblock {Narrative Visualization: Telling Stories with Data}.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  16(6):1139--1148, 2010.
 
 \bibitem{Sens08a}
 Mariam Sensalire, Patrick Ogao, and Alexandru Telea.
@@ -1183,13 +1177,6 @@ Colin Ware.
 Colin Ware.
 \newblock {\em Information Visualisation}.
 \newblock Elsevier, Sansome Street, San Fransico, 2004.
-
-\bibitem{Weis07a}
-Cathrin Weiss, Rahul Premraj, Thomas Zimmermann, and Andreas Zeller.
-\newblock How long will it take to fix this bug?
-\newblock In {\em MSR '07: Proceedings of the Fourth International Workshop on
-  Mining Software Repositories}, Washington, DC, USA, 2007. IEEE Computer
-  Society.
 
 \bibitem{Wett07b}
 Richard Wettel and Michele Lanza.
