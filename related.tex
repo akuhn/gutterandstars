@@ -40,7 +40,7 @@ Storey, Fracchia and M\"uller \cite{Stor99a} propose a series of cognitive featu
 
 The list of tools features as proposed by Storey \etal is based on program comprehensions models taken from theoretical literature on program comprehension models.
 %
-The bottom-up program comprehension model by Shneiderman and Pennignton propose that understanding is built by reading source code and then mentally chunking  or grouping those statements into higher-level abstractions \cite{Shne80a,Shne79a,Penn87a}.
+The bottom-up program comprehension model by Shneiderman and Pennignton propose that understanding is built by reading source code and then mentally chunking  or grouping those statements into higher-level abstractions \cite{Shne80a,Penn87a}.
 %
 The top-down program comprehension model by Brooks, Soloway and Ehrlich proposes that developers understand a complete program by reconstructing knowledge about the domain of the program and mapping that to the actual code \cite{Broo83b, Solo84a}. 
 % 
@@ -207,7 +207,7 @@ Hassan \etal analyzed the  types of data that are good predictors of change prop
 
 In this section we discuss work related to the spatial representation of abstract information spaces such as source code. Using \mds to visualize information based on the metaphor of cartographic maps is by no means a novel idea. \emph{Topic maps}, as they are called, have a longstanding tradition in information visualization \cite{Ware04a}. The work in this paper was originally inspired by Michael Hermann's and Heiri Leuthold's work on the political landscapes of Switzerland \cite{Herm03a}. Reader that are not know knowledgeable in German may refer to Hermann's recent TED talk on his work, which is available online\footnote{\url{http://tedxzurich.com/2010/09/05/michael-hermann-visualizes-politics}}.
 
-In the same way, stable layouts have a long history in information visualization, as a starting point see \eg the recent work by Frishman and Tal on online dynamic graph drawing \cite{Fris08a}. They present an online graph drawing approach, which is similar to the online pipeline presented in this work. Please refer to \autoref{sec:other} for a comparison of graph drawing and \MDS. 
+In the same way, stable layouts have a long history in information visualization, as a starting point see \eg the recent work by Frishman and Tal on online dynamic graph drawing \cite{Fris08a}. They present an online graph drawing approach, which is similar to the online pipeline presented in this work.
 
 ThemeScape is the best-known example of a text visualization tool that uses the metaphor of cartographic maps. 
 Topics extracted from documents are organized into a visualization where visual distance correlates to topical distance and surface height corresponds to topical frequency \cite{Wise95b}. The visualization is part of a larger toolset that uses a variety of algorithms to cluster terms in documents. For laying out small document sets MDS is used; for larger document sets a proprietary algorithm, called ``Anchored Least Stress'', is used. The digital elevation model is constructed by successively layering the contributions of the contributing topical terms, similar to our approach.
