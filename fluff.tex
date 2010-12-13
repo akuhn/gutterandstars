@@ -105,12 +105,12 @@ The result of applying LSI is a vector space, based on which we can compute the 
 \begin{enumerate}
   \item \emph{Preprocessing the software system.} In \autoref{sec:parsing}, we show how we break the system into documents and how we build a term-document-matrix that contains the lexical information of the system.
   \item \emph{Applying Latent Semantic Indexing.} In \autoref{sec:lsi} we use LSI to compute the similarities between source code documents and illustrate the result in a correlation matrix \cite{Ling73a}.
-  \item \emph{Identifying topics.} In \autoref{sec:clustering} we cluster the documents based on their similarity, and we rearrange the correlation matrix. In \autoref{sec:wittgenstein} we discuss that each cluster is a \emph{linguistic topic}.
-  \item \emph{Describing the topics with labels.} In \autoref{sec:labeling} we use LSI again to retrieve for each cluster the top-$n$ most relevant terms.
+  \item \emph{Identifying topics.} In \autoref{sec:clustering} we cluster the documents based on their similarity, and we rearrange the correlation matrix. Each cluster is a lexical topic.
+  \item \emph{Describing the topics with labels.} we use LSI again to retrieve for each cluster the top-$n$ most relevant terms. For more information on labeling please refer to \autoref{the chapter on LogLR}.
   \item \emph{Comparing the topics to the structure.} In \autoref{sec:distribution} we illustrate the distribution of topics over the system on a Distribution Map \cite{Duca06c}.
 \end{enumerate}
 
-We want to emphasize that the primary contribution of our work is lexical clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
+%We want to emphasize that the primary contribution of our work is lexical clustering and the labeling. The visualization we describe are just used as a means to convey the results and are not original contributions of this chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preprocessing the Software System}\label{sec:parsing}
@@ -232,7 +232,7 @@ Our approach depends on several parameters, which may be difficult too choose fo
 
 We exemplify our approach at the case of JEdit, an open-source Text editor written in Java. The case study contains 394 classes and uses a vocabulary of 1603 distinct terms. We reduced the text corpus to an LSI-space with rank $r = 15$ and clustered it with a threshold of $\delta = 0.5$ (the choice of parameters is discussed in \autoref{sec:parameters}).
 
-In \autoref{fig:jeditCorrelation}, we see nine clusters with a size of (from top right to bottom left) 116, 63, 26, 10, 68, 10, 12, 80, and 9 classes. The system is divided into four zones: (zone 1) the large cluster in the top left, (zone 2) two medium sized and a small clusters, (zone 3) a large cluster and two small clusters, and (zone 4) a large and a small cluster. The two zones in the middle that are both similar to the first zone but not to each other, and the fourth zone is not similar to any zone.
+In \autoref{fig:jeditLabels}, we see nine clusters with a size of (from top right to bottom left) 116, 63, 26, 10, 68, 10, 12, 80, and 9 classes. The system is divided into four zones: (zone 1) the large cluster in the top left, (zone 2) two medium sized and a small clusters, (zone 3) a large cluster and two small clusters, and (zone 4) a large and a small cluster. The two zones in the middle that are both similar to the first zone but not to each other, and the fourth zone is not similar to any zone.
 
 In fact, there is a limited area of similarity between the Zone 2 and 3. We will later on identify the two counterparts as topics \pink and \cyan, which are related to text buffers and regular expression respectively. These two topics share some of their labels (\ie start, end, length and count), however they are clustered separately since LSI does more than just keyword matching, LSI takes the context of term usage into account as well, that is the co-location of terms with other terms.
 
@@ -354,7 +354,7 @@ However, if the labeling task comes up with terms such as \emph{pma}, \emph{tcm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{On using Lexical Clustering for Topic Identification}
 
-One of our objectives is to compare linguistic topics to domain and application concepts \cite{Bigg93a}. As discussed in \autoref{sec:wittgenstein}, we derive linguistic topics from the vocabulary usage of source code instead from external definitions. In this section we clarify some questions concerning the relation between derived topics and externally defined concepts:
+One of our objectives is to compare linguistic topics to domain and application concepts \cite{Bigg93a}. We derive linguistic topics from the vocabulary usage of source code instead from external definitions. In this section we clarify some questions concerning the relation between derived topics and externally defined concepts:
 
 \textbf{On missing vocabulary and ontologies.} Often the externally defined concepts are not captured by the labeling. The rational for this is as follows. Consider for example a text editor in whose source code the term \emph{text-editor} is never actually used, but terms like \emph{file} and \emph{user}. In this case our approach will label the text-editor concepts with these two terms, as a more generic term is missing. As our approach is not based on an ontological database, its vocabulary is limited to the terms found in source code and if terms are not used our approach will not find accurate labels. We suggest to use ontologies (\ie WordNet) to improve the results in these cases.
 

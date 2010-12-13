@@ -577,6 +577,12 @@ Raphael Hoffmann, James Fogarty, and Daniel~S. Weld.
   interface for programmers.
 \newblock In {\em UIST 2007}, pages 13--22, 2007.
 
+\bibitem{Holm09a}
+R.~Holmes.
+\newblock Do developers search for source code examples using multiple facts?
+\newblock In {\em Search-Driven Development-Users, Infrastructure, Tools and
+  Evaluation, 2009. SUITE '09. ICSE Workshop on}, pages 13--16, 2009.
+
 \bibitem{Holmes2005}
 R.~Holmes and G.~C. Murphy.
 \newblock Using structural context to recommend source code examples.
@@ -811,6 +817,19 @@ Erik Linstead, Lindsey Huges, Christina Lopes, and Pierre Baldi.
   Development, Users, Interfaces, Tools, and Evaluation (SUITE'09)}, page Too
   appear, 2009.
 
+\bibitem{Litt86a}
+David~C. Littman, Jeannine Pinto, Stanley Letovsky, and Elliot Soloway.
+\newblock {Mental models and software maintenance}.
+\newblock In {\em Papers presented at the first workshop on empirical studies
+  of programmers on Empirical studies of programmers}, pages 80--98, Norwood,
+  NJ, USA, 1986. Ablex Publishing Corp.
+
+\bibitem{Lore11x}
+Peter Loretan.
+\newblock Software cartography.
+\newblock Master's thesis, University of Bern, 2010.
+\newblock To be published.
+
 \bibitem{Lorm06a}
 M.~Lormans and A.~van Deursen.
 \newblock Can lsi help reconstructing requirements traceability in design and
@@ -975,6 +994,20 @@ Doantam Phan, Ling Xiao, Ron~B. Yeh, Pat Hanrahan, and Terry Winograd.
 \newblock Flow map layout.
 \newblock In {\em INFOVIS}, page~29, 2005.
 
+\bibitem{Piro09a}
+Peter Pirolli.
+\newblock {Information Foraging}.
+\newblock In Ling Liu and M.~Tamer \"{O}zsu, editors, {\em Encyclopedia of
+  Database Systems}, chapter 205, pages 1485--1490. Springer US, Boston, MA,
+  2009.
+
+\bibitem{Piro95a}
+Peter Pirolli and Stuart Card.
+\newblock {Information foraging in information access environments}.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, CHI '95, pages 51--58, New York, NY, USA, 1995. ACM
+  Press/Addison-Wesley Publishing Co.
+
 \bibitem{Port80a}
 Martin~F. Porter.
 \newblock An algorithm for suffix stripping.
@@ -1074,6 +1107,12 @@ Terry~A. Slocum, Robert~B. McMaster, Fritz~C. Kessler, and Hugh~H. Howard.
 \newblock {\em Thematic Carthography and Geographic Visualization}.
 \newblock Pearson Prentice Hall, Upper Saddle River, New Jersey, 2005.
 
+\bibitem{Solo86a}
+E.~Soloway and K.~Ehrlich.
+\newblock Empirical studies of programming knowledge.
+\newblock {\em Readings in artificial intelligence and software engineering},
+  pages 507--521, 1986.
+
 \bibitem{Stei10a}
 Frank Steinbr\"uckner.
 \newblock Layout stability of software cities.
@@ -1168,6 +1207,12 @@ Fernanda Vi\'egas, Martin Wattenberg, and Kushal Dave.
   visualizations.
 \newblock In {\em In Proceedings of the Conference on Human Factors in
   Computing Systems (CHI 2004)}, pages 575--582, April 2004.
+
+\bibitem{Mayr94a}
+A.~von Mayrhauser and A.~M. Vans.
+\newblock {Comprehension processes during large scale maintenance}.
+\newblock In {\em Software Engineering, 1994. Proceedings. ICSE-16., 16th
+  International Conference on}, pages 39--48, 1994.
 
 \bibitem{Ware00a}
 Colin Ware.
