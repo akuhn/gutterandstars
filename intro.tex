@@ -1,28 +1,34 @@
 %!TEX root = gutter+stars.tex
 \chapter{Introduction}
 
-Despite common belief, software engineers do not spend most time writing code. An approximate 50--90\% of development time is spent on code navigation and understanding \cite{Abra04a,Lato06a,Ko07a}. This may include reading of local source code and documentation, searching the internet for tutorials and code examples, but also seeking help of other developers. User studies have found that software engineers use at least four kinds of cognitive clues for \codenavigation: 
+Despite common belief, software engineers do not spend most time writing code. An approximate 50--90\% of development time is spent on code navigation and understanding \cite{Abra04a,Lato06a,Ko07a}. This may include reading of local source code and documentation, searching the internet for tutorials and code examples, but also seeking help of other developers. 
+
+User studies have found that software engineers use at least four kinds of cognitive clues for \codenavigation: 
 	lexical clues, 
 	social clues, 
 	episodic clues 
 	and spatial clues 
 	\cite{Lato06a,Ko07a,Sill06a,Frit10a,Kuhn10x}.
-
+%
 Examples of code orientation by these clues are: 
 	searching for an identifier name (lexical clue),
 	contacting a coworker with known expertise (social clue), 
 	referring to a design decision that was made years ago (episodic clue), or 
-	recalling the position of a piece of code within a source text file (episodic clue). 
+	navigating to the location of a piece of code within a source text file (episodic clue). 
 
 %Tool support for \codenavigation, however, is typically limited to keyword-based text file processing and hyperlinking of code elements. 
 
-In our research, we are interested in how to support software engineers when they are facing technical questions that involve code navigation and code understanding. We investigated how software engineers find answers to technical questions in order to learn about their \codenavigation strategies (see \autoref{the chapter on the MSR user study}). We found that the way towards an answer is split in two parts. In a 1)~first part, developers aim to turn their fuzzy initial clue into a concrete textual clue, for example by running a series of web searches and inspecting the results. Developers particularly struggle with resolving social, episodic and spatial clues during the first part. In a 2)~second part, they use that newly found textual clue to query local documentation or resourced on the internet for the answer. This two-step procedure might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow-up, or it might be a general problem-solution strategy. In either case, developers need better tool support to follow-up social, episodic and spatial clues that are non-textual.
+In our research, we are interested in how to support software engineers when they are facing technical questions that involve code navigation and code understanding. We investigated how software engineers find answers to technical questions in order to learn about their \codenavigation strategies (\autoref{the chapter on the MSR user study}). We found that the way towards an answer is typically split in two parts. In a 1)~first part, developers aim to turn their fuzzy initial clue into a concrete textual clue, for example by running a series of web searches and inspecting the results. Developers particularly struggle with resolving social, episodic and spatial clues during the first part. In a 2)~second part, they use that newly found textual clue to query resources on the internet or local documentation. This two-step procedure might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow up, or it might be a general problem-solution strategy. In either case, developers need better tool support to follow up non-textual clues such as social, episodic and spatial clues.
 
-Of the four kinds of clues that software developers use, spatial clues stand out for not having a first-class representation in the ecosystem of source code. 
+Among the code orientation strategies used by developers, spatial clues stand out for not having a first-class representation in the ecosystem of source code. 
 %Textual clues have a representation in identifiers found in source code or to terms used in comments and documentation. Social clues are connected to coworkers and experts from a developer's network. Episodic clues are often related to events that have been recorded in the version control system and in mailing list archives. 
-Spatial clues typically lack a first-class counterpart in source code since software does not have an inherent spatial extent. Nevertheless, we found that developers do refer to source code by \adhoc spatial properties, auch as clues regarding the position of a code artifact on-screen or within a source text file. 
+Spatial clues typically lack a first-class counterpart in source code since software systems do not have an inherent spatial extent. Nevertheless, we found that developers do refer to source code by \adhoc spatial properties, auch as clues regarding the position of a code artifact on-screen or within a source text file. 
+%
+Given the potential of spatial clues for code navigation, we investigated how to best represent software systems using spatial representations. 
 
-Given the potential of spatial clues for code navigation, we investigated how to best represent software systems using spatial representations. In this dissertation we present \emph{Software Cartography}, a novel cartographic visualization of software systems that enables code orientation by on-screen spatial clues (see \autoref{the chapter on codemap}). The \emph{software maps} that are created by our approach are a spatial representation of software systems based on lexical information found in the system's source code. Software maps are stable over time and can be used by individual developers as well as shared by a team. We implemented a prototype tool and evaluated it in a qualitative user study. We found that software maps are most helpful to exploring search results and call hierarchies (see \autoref{the chapter on the codemap user study}).
+In this dissertation we present \emph{Software Cartography}, a novel cartographic visualization of software systems that enables code orientation by on-screen spatial clues (\autoref{the chapter on codemap}). The \emph{software map} visualizations created by our approach are a spatial representation of software systems based on lexical information found in the system's source code. Software maps are stable over time and can be used by individual developers as well as shared by a team. 
+
+We implemented a prototype tool and evaluated it in a qualitative user study. We found that software maps are most helpful to exploring search results and call hierarchies (\autoref{the chapter on the codemap user study}).
 
 %%%%%%%%%% Section 1.1
 %%%%%%%%%%
@@ -37,22 +43,24 @@ We introduce the term \emph{\codenavigation{}} in order to refer to the navigati
 
 In the context of this work, we categorize \codenavigation activities according to the kind of cognitive clues being followed-up (lexical clues, social clues, episodic clues and spatial clues) and characterize \navigation tasks according to their aim (refind, discovery and learning) and their reach (ranging from current working set to the entire internet). 
 
-In the following, we first discuss aim and reach of code orientation tasks and then enumerate orientation clues by category. We motivate the use of orientation clues by developers, provide examples, shed light on underlying assumptions, and discuss current tool support and its shortcomings.
+%In the following, we first discuss aim and reach of code orientation tasks and then enumerate them by category. We motivate the use of orientation clues by developers, provide examples, shed light on underlying assumptions, and discuss current tool support and its shortcomings.
 
-\subsection*{Aim and Reach of Code Orientation}
+%\subsection*{Aim and Reach of Code Orientation}
 	
-The aim of code orientation tasks can be a) refinding a given piece of code or functionality that was encountered in the past, b) discovering a piece of code by searching local code repositories or the internet, or c) learning how to implement a certain piece of code by talking to people with expertise, by reading a book, or by getting advice from a mailing list or from a blog post. 
+The aim of code orientation tasks can be a) refinding information or source code that was encountered in the past, b) discovering new information or source code, or c) learning how to solve a problem by talking to people with expertise, by reading a book, or by getting advice from a mailing list or from a blog post. 
 
-The reach of code orientation tasks can range from the current working set to the entire internet. The current working set can be a single method or all open files. The local codebase can be the current project or the entire codebase of a developer's company, but also includes all local documentation and learning resources. Eventually the ultimate reach is accessing the internet, which offers two kind of knowledge bases. On the one hand there are dedicated code repositories that only contain source code, on the other hand, there is an amazing amount of code examples that are contained in blog posts and websites. The latter are a typically more useful for code orientation since they have been selected through collaborative filtering, \ie the authors of the embedding content carefully selected those examples for their usefulness for learning and copy-pasting. 
+The reach of code orientation tasks can range from the current working set to the entire internet. The current working set can be a single method or all open files. The local codebase can be the current project or the entire codebase of a developer's company, but also includes all local documentation and learning resources. Eventually the ultimate reach is accessing the internet. The internet offers two kind of knowledge bases: on the one hand there are dedicated code repositories that only contain source code; on the other hand, there is an amazing amount of code examples that are contained in blog posts and websites. The latter are a typically more useful for code orientation since they have been selected through collaborative filtering, \ie the authors of the embedding content carefully selected those examples for their usefulness for learning and copy-pasting. 
 
-The aim of code orientation tasks often correlates with their aim. For example, refinding tasks are typically targeted at the local codebase, with which the developers are familiar, whereas discovery and learning tasks are typically targeted at the internet. But just as likely, parts of the local code based might be unknown to a developer and thus become target of a discovery task, or it may be that a developer recalls to have read about the solution on the internet and attempts to refind information at a global scale on the internet. However, the nature of information resources changes when moving from a local to global information source. Local information sources are typically limited, homogenous and authored by a small group of trusted people with known expertise. More global information sources are typically unlimited, heterogenous and authored by people with unknown expertise and unknown trustworthiness.
+The reach of code orientation tasks often correlates with their aim. For example, refinding tasks are typically targeted at the local codebase, with which the developers are familiar, whereas discovery and learning tasks are typically targeted at the internet. But just as likely, parts of the local code based might be unknown to a developer and thus become target of a discovery task, or it may be that a developer recalls to have read about the solution on the internet and attempts to refind information at a global scale on the internet. Generally, the nature of information resources changes when moving from a local to global information source. Local information sources are typically limited, homogenous and authored by a small group of trusted people with known expertise. Global information sources are typically unlimited, heterogenous and authored by people with unknown expertise and unknown trustworthiness.
+
+In the following we introduce the categorization of clues that developers use for code orientation. We motivate the use of orientation clues by developers, provide examples, shed light on underlying assumptions, and discuss current tool support and its shortcomings.
 
 \subsection*{Orientation by Lexical Clues}
 
 % Importance
 Lexical clues are by far the most common clue used by software engineers for \codenavigation. 
 % Examples
-Examples of lexical clues are recalling the name of an identifie, or using a keyword to search the web for documentation or code examples. 
+Examples of lexical clues are recalling the name of an identifier, or using a keyword to search the web for documentation or code examples. 
 % Assumption
 
 Developers rely on lexical clues because they assume that names are meaningful, that there is a meaning to names and that names have been meaningfully chosen. 
@@ -60,17 +68,19 @@ Developers rely on lexical clues because they assume that names are meaningful, 
 Lexical clues are often pointers to lexical information found in source code, that is identifier names or the vocabulary of comments. However, lexical information is not limited to source code but also found in emails, bug reports and web sites. For example, following-up a lexical clue might guide the developer to a wikipedia page that contains the algorithm he's looking for. 
 
 % Tool support and hint a need that we address later on?
-Simple keyword search and regular expressions are of great help to follow-up a lexical clue. However, a major problem with lexical clues is that developers have to make a guess about how other people name things. (It is often said that there are two hard problems in software engineering, caching and naming.) Using information retrieval and natural language processing can help to go beyond the limitation of keyword-based approaches.
+Simple keyword search and regular expressions are of great help to follow up lexical clues. However, a major problem with lexical clues is that developers have to make a guess about how other people name things. (It is often said that there are two hard problems in software engineering, caching and naming.) Using information retrieval and natural language processing can help to go beyond the limitation of keyword-based approaches.
+
+%In \autoref{the chapter on hapax} we present an approach for automatically retrieving labels for software systems and their evolution, and in \autoref{the chapter on LogLR} an approach for clustering and summarizing of software systems based on lexical information found in the source code. Both approaches provide developers with new means of code orientation by lexical clues.
 
 \subsection*{Orientation by Social Clues}
 
 % Importance
-Social clues are often not considered part of program comprehension, yet they are most helpful for discovery and learning. User studies have found that coworkers are the most frequent source of information used by developers \cite{Ko07a}.
+Social clues are often not considered part of program comprehension, yet they are most helpful for discovery and learning. Coworkers are the most frequent source of information used by developers \cite{Ko07a}.
 % Examples
 Examples of social clues are asking coworkers for help, or posting a question to a discussion board on the web where professionals share their expertise. 
 
 % Assumption 
-Developers rely on social clues because they assume that people have expertise, in particular that other people do have more or different expertise so they can be of help to find answers. The knowledge in the mind of team members is typically more accurate than documentation. 
+Developers rely on social clues because they assume that people have expertise, in particular that other people have more or different expertise so they can be of help to find answers. Typically, the knowledge in the mind of team members is more accurate than documentation. 
 % Kind of information?
 Social clues are often pointers to other persons from the developer's personal network, either a co-worker or a friend. However, social clues are not limited to the personal network but can also be pointers to mailing lists and other expert groups that are ready to share their expertise online on the internet.
 
@@ -85,7 +95,7 @@ Episodic clues are most helpful to refind source code that has been written or u
 Episodic clues are typically tied to personal memory, as for example in recalling the first-hand experience of a conference talk or of a pair programming session. 
 
 % Assumption 
-Developers rely on episodic clues because they assume that their knowledge in the past has been more accurate than their current knowledge. That is a valid assumption because as humans our episodic memory works way better than our structural memory typically developers recall ``that'' they knew the answer before, but not ``what'' the answer exactly constituted of.  
+Developers rely on episodic clues because they assume that their knowledge in the past has been more accurate than their current knowledge. That is a valid assumption because as humans our episodic memory works way better than our structural memory. Typically developers recall ``that'' they knew the answer before, but not ``what'' the answer exactly constituted of.  
 
 % Kind of information?
 Episodic clues are often pointers to past interaction with books, mailing lists and other people, but may also be pointers to past snapshots of the current or a related software system. 
@@ -99,16 +109,16 @@ Information related to episodic clues is often stored in external databases, suc
 \subsection*{Orientation by Spatial Clues}
 
 % Importance
-Spatial clues may help to reduce the cognitive load of a user's orientation in a hyperlinked document space, such as software systems. 
+Spatial clues may help to reduce the cognitive load of orientation in a hyperlinked document space, such as software systems. 
 % Examples
 % Kind of information?
 Spatial clues can be of three kinds, either they are structural or conceptual as in recalling which class or architectural layer some functionality belongs to, or they are true spatial clues as in recalling the on-screen or within-text-file position of a given function.
 
 % Assumption 
-Developers rely on spatial clues because as humans they have strong spatial capabilities. The spatial capabilities of our brain are impressive. We found in a user study that developers form a spatially meaningful internal mental model of software systems (see \autoref{the chapter on the codemap user study}) even though the external representation of source code has no inherent spatial dimension. 
+Developers rely on spatial clues because as humans they have strong spatial capabilities. The spatial capabilities of our brain are impressive. We found in a user study that developers form a spatially meaningful internal mental model of software systems (\autoref{the chapter on the codemap user study}) even though the external representation of source code has no inherent spatial dimension. 
 
 % Tool support and hint a need that we address later on?
-Current support for code orientation by spatial clues in development tools is \adhoc at best. The systems is presented as a tree view of alphabetically ordered files and inside a file the source code is linearized as a text file. While this might accidentally help to refind some code by a spatial clue, support for the discovery of yet unknown source code by spatial clues is limited. Providing developers with a cartographic visualization so they can use spatial on-screen clues for navigation and understanding of code may help to go beyond the limitation of source code's missing spatial extent.
+Current support for code orientation by spatial clues in development tools is \adhoc at best. The systems is presented as a tree of alphabetically ordered files and inside a file the source code is linearized as a text file. While this might accidentally help to refind some code by a spatial clue, support for discovering of yet unknown source code by spatial clues is limited. Providing developers with a cartographic visualization so they can use spatial on-screen clues for navigation and understanding of code may help to go beyond the limitation of source code's missing spatial extent.
 
 %%%%%%%%%% Section 1.2
 %%%%%%%%%%
@@ -127,15 +137,13 @@ We state our thesis as follows
 %we need development tools that tap on unconventional information found 
 %in source code in order to provide developers with code orientation clues 
 %that would be out of their reach without tool support.
-To support software engineers with code navigation and understanding we need development tools that provide first-class support for the code orientation clues that developers use. We need to tap on unconventional information found in the source code in order to provide developers with code orientation clues that would otherwise be out of their reach without tool support.
+To support software engineers with code navigation and understanding we need development tools that provide first-class support for the code orientation clues that developers use. We need to tap on unconventional information found in the source code in order to provide developers with code orientation clues that would be out of their reach without tool support.
 \end{quote}
 
-\noindent And append as a collorary
-
-
-\begin{quote}
-A stable cartographic on-screen representation of software systems built from non-spatial properties of the system, may help to support software engineers with code orientation by spatial clues.
-\end{quote}
+%\noindent And append as a collorary
+%\begin{quote}
+%A stable cartographic on-screen representation of software systems built from non-spatial properties of the system, may help to support software engineers with code orientation by spatial clues.
+%\end{quote}
 
 %%%%%%%%%% Section 1.3
 %%%%%%%%%%
@@ -239,7 +247,7 @@ The work on discovery of experts has been realized by my student Dominique Matte
 	{Episodic (established through social and historical information)}
 	{Name of an open-source project}
 
-Searching for code examples or libraries on the internet is a common programming task. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet (see \autoref{the chapter on the MSR user study}). We present an approach to automatically asses the trustworthiness of open-source projects based on the credibility of their authors. Our approach infers the trustworthiness of unknown projects from the trustworthiness well-known projects, if they have common contributors. 
+Searching for code examples or libraries on the internet is a common programming task. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet (\autoref{the chapter on the MSR user study}). We present an approach to automatically asses the trustworthiness of open-source projects based on the credibility of their authors. Our approach infers the trustworthiness of unknown projects from the trustworthiness well-known projects, if they have common contributors. 
 %
 We implemented the approach in a prototype and evaluated it against a benchmark in bug-report assignment .
 
@@ -254,9 +262,9 @@ The work on discovery of experts has been realized by my student Florian Gysin, 
 
 \section{Software Cartography in a Nutshell}
 
-Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. With \SOCA we aim to address this limitation. We provide a cartographic on-screen visualization so that software engineers can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout. 
+Current tool support for code orientation by spatial clues is \adhoc at best, most striking is the lack of spatial on-screen representations of source code. Without such a representation, developer are barely able to draw on the strong spatial capability of the human brain. With \SOCA we aim to address this limitation. We provide a cartographic on-screen visualization that software engineers can start using spatial clues for code orientation. Since software has no inherent spatial structure, we use lexical and structural information found in the source code to establish a spatial layout. 
 
-\SOCA embeds a cartographic visualization of the current working set in the development environment (IDE) of software engineers. The generated \emph{software maps} are stable over time and can be shared among members of a team to establish a common mental model of the system. Code maps are most useful when they supports as many development tasks as possible with spatial clues. Therefore we integrated \SOCA in the IDE so that a map of the software system may always be present and may thus support as many development tasks as possible. 
+\SOCA embeds a cartographic visualization of the current working set in the development environment (IDE) of software engineers. The generated \emph{software maps} are stable over time and can be shared among members of a team to establish a common mental model of the system. Code maps are most useful when they support as many development tasks as possible with spatial clues. Therefore we integrated \SOCA in the IDE so that a map of the software system may always be present and may thus support as many development tasks as possible. 
 
 \begin{figure*}
 \begin{center}
