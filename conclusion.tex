@@ -16,16 +16,37 @@ We set out to address the user needs of software engineers regarding code naviga
 \item We identified (\autoref{the introduction}) for fundamental categories of orientation clues used by developers for code navigation and code understanding: \emph{lexical clues} refer to identifier names and concepts, \emph{social clues} referring to a developer's personal network and to internet communities, \emph{episodic clues} referring to personal first-hand memories of a developer, and \emph{spatial clues} referring to the system's architecture or to source code's on-screen position in the development tool.
 \item We introduced \emph{Software Cartography} (\autoref{the chapter on codemap}) an approach to create spatial on-screen visualization of software systems based on non-spatial properties. Software maps are stable over time, embedded in the development environment, and can be shared among teams. We evaluated (\autoref{the chapter on the codemap user study}) the approach in a user study, using a prototype implementation, and showed that it supports code orientation by spatial clues.
 \item We investigated (\autoref{the chapter on the MSR user study}) how software engineers find answers to technical questions in a series of user studies. We found that developers typically proceed in two steps, first they narrow down their initial clue to a textual clue, and then they query resources on the internet or local documentation for an answer.
-\item We presented various prototype tools that tap on unconventional information found in source code in order to provide software developers with code orientation clues that would otherwise be out of their reach. The prototypes support code orientation by providing developers with: lexical clustering of software systems (\autoref{the chapter on hapax}), summarization of software systems and their history (\autoref{the chapter on LogLR}), a story-telling visualization of past contributions to a software system \autoref{the chapter on chronia}), recommendation of experts for work items (\autoref{the chapter on bug reports}), and assessing the credibility of code search results (\autoref{the chapter on codesearch}).
+\item We presented various prototype tools that tap on unconventional information found in source code in order to provide software developers with code orientation clues that would otherwise be out of their reach. The prototypes support code orientation by providing developers with: lexical clustering of software systems (\autoref{the chapter on hapax}), summarization of software systems and their history (\autoref{the chapter on LogLR}), a story-telling visualization of past contributions to a software system (\autoref{the chapter on chronia}), recommendation of experts for work items (\autoref{the chapter on bug reports}), and assessing the credibility of code search results (\autoref{the chapter on codesearch}).
 \end{itemize} 
 
 \section{Future Research Directions}
 
 \begin{description}
-\item[User Studies on Developer Needs.]
-\item[Spatial Representation in Development Tools.]
-\item[Social Media in Software Engineering.]
-\item[Example-Centric Code Search.]
+\item[Qualitative Studies on Developer Needs.] 
+%
+Ethnographic research in software engineering is a rather new field. There are still many open questions regarding the user needs of developers. We investigated (\autoref{the chapter on the MSR user study}) in a qualitativ user study how developers find answers to questions and discussed (\autoref{the chapter on related work}) related work on developer needs, on questions that developers aks and on frequent problems of developers. Further qualitativ studies on similar subjects are a promising research direction.
+
+\item[Hybridization of Global and Contextual Software Maps.] 
+%
+Spatial representation of software in the development environment has received quite some attention in the past year. In this dissertation, we introduced \emph{Software Cartography} (\autoref{the chapter on codemap}) an approach that provides a global map of the entire system besides the code editor. Deline and Rowan introduced \emph{CodeCanvas} \cite{Deli10a} an approach that embeds code editors on a global map of the entire system. Bragdon \etal introduced \emph{CodeBubbles} \cite{Brag10a,Brag10b} an approach that embeds code editors in contextual maps that are created on the fly. User studies of these approaches suggest that developers need both global and contextual maps. How to best address the user needs of software engineers using a hybrid approach is an open research question. 
+
+\item[Summarization of Software Engineering Artifacts.] 
+%
+How to best summarize code examples and work items is an open research problem.
+%has received some attention in the past year. 
+In this dissertation, we presented (\autoref{the chapter on LogLR}) an approach for retrieving labels for software systems by selecting them from the vocabulary found in the source code. This is approach limited since the most descriptive umbrella terms are typically not present in the source code. How to infer the terms that best describe a source code entities is an open problem, just as is providing natural language description of source code and work items.
+
+\item[Example-Centric Code Search.] Search-driven software engineering is a new and promising research field. Recent user studies have shown that developer make extensive use of internet search engines in order to find and research code examples on the internet, including the user study presented in this dissertation (\autoref{the chapter on the MSR user study}). Current internet search engines, including dedicated code search engines such as \emph{Krugle} and \emph{Koders}, do not address this use-case. There seem to be at least three user needs to be addressed by example-centric code search: a) developer prefer code examples found on plain websites over those taken from code repositories , b) developers care about the credibility of code example and c) developers need to adapt search result to suite their local coding conventions. 
+
+\item[Story-Telling in Software Visualization.] 
+%
+Story-telling in information visualization has received popular attention in the past year. There had been a one day workshop on telling stories with data (TSWD\footnote{\url{http://thevcl.com/storytelling}}) at the \textsc{Visweek} conference. In this dissertation, we presented (\autoref{the chapter on chronia}) a software visualization that tells the story of past contributions to a software system and how team members collaborated with one another. How to best support the tribal knowledge and episodic memory of development teams with story-telling visualizations is a promising research problem.
+
+\item[Social Media in Software Engineering.] 
+%
+Most current development environments do not support code orientation by social clues.  
+The recent rise of social media on the internet provides software engineering research with new inspiration on how to address the social needs of developers. For example, in this dissertation, we presented (\autoref{the chapter on codesearch}) a preliminary approach on how to address the credibility of code search results using collaborative filtering of user votes. Promising research directions are how to better support awareness in teams, how to encourage developers to share their knowledge with other developers and further research on how to recommend experts in social networks.
+
 \item[]
 \end{description}
 
