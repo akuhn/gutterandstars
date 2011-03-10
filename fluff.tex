@@ -356,29 +356,29 @@ But classifications of the authors have to be interpreted in their context. If a
 
 \infobox
 	{Discovery of experts}
-	{Experts that committed to local codebase}
+	{Experts who committed to local codebase}
 	{Social (established through lexical and historical information)}
 	{Fuzzy problem description given as natural language text}
 
-Given current tool support, following up social clues has to be done through the lexical proxy of a person's name. However, often developers are facing a problem where they need help but do not know an expert by name. Either because they are not aware that someone from their personal network is actually on expert on that matter, or because they simply do not know an expert on that matter. There is a clear need for establishing a link between fuzzy problem descriptions and experts, such that developers may follow-up social clues that are otherwise out of their reach. 
+Given current tool support, social clues have to be followed up through the lexical proxy of a person's name. However, often developers are facing a problem where they need help but do not know an expert by name. Maybe they are not aware that someone from their personal network is actually on expert on that matter, or because they simply do not know an expert on that matter. There is a clear need for establishing a link between fuzzy problem descriptions and experts, so that developers may follow-up social clues that are otherwise out of their reach. 
 
-In this chapter we present an approach to discover experts without having to know their name. Given a problem description, such as a work item or a bug report, we provide an automated means of linking to the person with the expertise on that matter. Our work deals with assigning incoming bug reports to developers, however the techniques that we developed can be used to establish links from any fuzzy problem description to known experts. To model the expertise of developers, we require a recorded history of their changes to a system's source base. This information can be taken from a version control system. We use lexical information found in those submission to model the developer's expertise. 
+In this chapter we present an approach to discover experts without having to know their name. Given a problem description, such as a work item or a bug report, we provide an automated means of linking to the person with the expertise on that matter. Our work deals with assigning incoming bug reports to developers, however the techniques that we developed can be used to establish links from any fuzzy problem description to known experts. To model the expertise of developers, we require a recorded history of their changes to a system's source base. This information can be taken from a version control system. We use lexical information found in those contributions in order to model the developer's expertise. 
 %Even though not discussed in the following chapter, that very information could also be used to render \EVOCLOUDS of the developer's expertise and thus to enable discovery of experts through the means of an story telling visualization.
 
 \asteriskasteriskasterisk
 
-For popular software systems, the number of daily submitted bug reports is high. Triaging these incoming reports is a time consuming task. Part of the bug triage is the assignment of a report to a developer with the appropriate expertise. In this chapter, we present an approach to automatically suggest developers who have the appropriate expertise for handling a bug report. We model developer expertise using the vocabulary found in their source code contributions and compare this vocabulary to the vocabulary of bug reports. We evaluate our approach by comparing the suggested experts to the persons who eventually worked on the bug. Using eight years of Eclipse development as a case study, we achieve 33.6\% top-1 precision and 71.0\% top-10 recall.
+For popular software systems, the number of daily submitted bug reports is high. Triaging these incoming reports is a time consuming task. Part of the bug triage is the assignment of a report to a developer with the appropriate expertise. In this chapter, we present an approach to automatically suggest developers who have the appropriate expertise for handling a bug report. We model developer expertise using the vocabulary found in their source code contributions and compare this vocabulary to the vocabulary of bug reports. We evaluate our approach by comparing the suggested experts to the persons who actually worked on the bug. Using eight years of Eclipse development as a case study, we achieve 33.6\% top-1 precision and 71.0\% top-10 recall.
 
 \todo{Do not forget to remove the page numbers in the camera-ready version!}
 Software repositories of large projects are typically accompanied by a bug report tracking system. In the case of popular open source software systems, the bug tracking systems receive an increasing number of reports daily. The task of triaging the incoming reports therefore consumes an increasing amount of time \cite{Anvi06b}. One part of the triage is the assignment of a report to a developer with the appropriate expertise. Since in large open source software systems the developers typically are numerous and distributed, finding a developer with a specific expertise can be a difficult task.
 
-Expertise models of developers can be used to support the assignment of developers to bug reports. It has been proposed that tasks such as bug triage can be improved if an externalized model of each programmer's expertise of the code base is available \cite{Frit07a}. Even though approaches for expertise models based on software repository contributions are available, existing recommendation systems for bug assignment typically use expertise models based on previous bug reports only \cite{Anvi06a,Canf05a,Cubr04b,Mock02b,Lucc02a}.
+Expertise models of developers can be used to support the assignment of developers to bug reports. It has been proposed that tasks such as bug triaging can be improved if an externalized model of each programmer's expertise of the code base is available \cite{Frit07a}. Even though approaches for expertise models based on software repository contributions are available, existing recommendation systems for bug assignment typically use expertise models based on previous bug reports only \cite{Anvi06a,Canf05a,Cubr04b,Mock02b,Lucc02a}.
 Typically a classifier is trained with previously assigned bug reports, and is then used to classify and assign new, incoming bug reports.
-Our approach differs, we train our recommendations system with all source code contributions up to the reporting date of the bug and then use the bug reports textual description as a search query against the expertise model's \TAM.
+Our approach differs in that we train our recommendations system with all source code contributions up to the reporting date of the bug and then use the bug report's textual description as a search query against the expertise model's \TAM.
 
 In this chapter, we propose an expertise model based on source code contributions and apply in it a recommendation system that assigns developers to bug reports. We compare \VOC found in the \verb$diff$s of a developer's contributions with the vocabulary found in the description of a bug report. We then recommend developers whose contribution vocabulary is lexically similar to the vocabulary of the \BR.
 
-We implemented our approach as a prototype called \DEVLECT\footnote{\DEVLECT is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
+We implemented our approach as a prototype called \DEVLECT\footnote{\DEVLECT is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect} \todo{fix url}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
 
 The contributions of this chapter are as follows:
 \begin{itemize}
@@ -400,7 +400,7 @@ The contributions of this chapter are as follows:
 
 In this chapter we present i) the construction of an expertise model of developers and ii) the application of a recommendation system that uses this expertise model to automatically assign developers to bug reports. Our approach requires a versioning repository to construct the expertise model as well as a bug tracking facility to assign developers to bug reports. We realized the approach as a prototype implementation, called \DEVLECT.
 
-In his work on automatic bug report assignment, John Anvik proposes eight types of information sources to be used by a recommendation system \cite{Anvi06b}. Our recommendation system focuses on three of these types of information: the information of the textual description of the bug (type~1), the one of the developer who owns the associated code (type~6), and the information of the list of developers actively contributing to the project (type~8). We refine information type~6 to take into account the textual content of the code owned by a developer. Our recommendation system is based on an expertise model of the developer's source code contributions. For each developer, we count the textual word frequencies in their change sets. This includes deleted code and context lines, assuming that any kind of change (even deletions) requires developer knowledge and thus familiarity with the vocabulary. 
+In his work on automatic bug report assignment, John Anvik proposes eight types of information sources to be used by a recommendation system \cite{Anvi06b}. Our recommendation system focuses on three of these types of information: the information of the textual description of the bug (type~1), that of the developer who owns the associated code (type~6), and the information of the list of developers actively contributing to the project (type~8). We refine information type~6 to take into account the textual content of the code owned by a developer. Our recommendation system is based on an expertise model of the developer's source code contributions. For each developer, we count the textual word frequencies in their change sets. This includes deleted code and context lines, assuming that any kind of change (even deletions) requires developer knowledge and thus familiarity with the vocabulary. 
 
 Our system currently does not consider the component the bug is reported for (type~2), the operation system that the bug occurs on (type~3), the hardware that the bug occurs on (type~4), the version of the software the bug was observed for (type~5), or the current workload of the developers (type~7). Information types 2--4 are indirectly covered, since textual references to the component, operation system, or hardware are taken into account when found in bug reports or source code. Information of type~7 is typically not publicly available for open source projects and thus excluded from our studies. Furthermore, we deliberately disregard information of type~5, since developer knowledge acquired in any version pre-dating the bug report might be of use. 
 
@@ -454,7 +454,7 @@ The comment message associated with a revision is processed in the same way, and
 
 \subsection{Modeling the Expertise of Developers as a Term-Author-Matrix}
 
-We store the expertise model in a matrix that correlates word frequencies with developers. We refer to this matrix as a \TAM. Although, technically it is a term-document-matrix where the documents are developers. (It is common in Information Retrieval to describe documents as bags of words, thus our model is essentially the same, with developers standing in for documents.)
+We store the expertise model in a matrix that correlates word frequencies with developers. We refer to this matrix as a \TAM, even though technically it is a term-document-matrix where the documents are developers. (It is commonly used in Information Retrieval to describe documents as bags of words, thus our model is essentially the same, with developers standing in for documents.)
 
 The \TAM has dimension $n \times m$, where $n$ is the global number of words and $m$ the number of contributors, that is developers. Each entry $m_{i,j}$ equals the frequencies of the word $t_i$ summed up over all source code contributions provided by developer $a_j$.
 %Furthermore, we weight the matrix with \emph{tf-idf} (term frequencyinverse document frequency) to balance rare and common words.
@@ -469,8 +469,7 @@ We have found that results improve if the \TAM is weighted as follows:
 
 To assign developers to bug reports, we use the bug report's textual content as a search query to the \TAM.
 %Our current tool supports the extraction of bug reports from Bugzilla, however our approach works with any textual representation of bug reports, even with raw text.
-Given a Bugzilla\footnote{http://www.bugzilla.org} bug report, we count the word frequencies in its textual content. In particular we process both short and all long descriptions (threats to validity see \autoref{sec:discussion}).
-\todo{ XXX, mail this to migod! }
+Given a Bugzilla bug report, we count the word frequencies in its textual content. In particular we process both short and all long descriptions (for threats to validity see \autoref{sec:discussion}).
 We disregard attachments that are Base-64 encoded, such as attached images, as well as fields that refer to persons. From the extracted word frequencies, we create a \emph{term vector} that uses the same word indices as the \TAM. % The lexical similarity between term vectors is obtained using the cosine between both vectors.
 We then compute the lexical similarity between two term vectors by taking the cosine of the angle between them.
 The similarity values range from $1.0$ for identical vectors to $0.0$ for vectors without shared terms. (Negative similarity values are not possible, since word-frequencies cannot be negative either.)
@@ -484,7 +483,7 @@ We have found that the results improve if the \TAM is further weighted as follow
 
 \section{Case Study: \EC platform}\label{sec:casestudy}
 
-To evaluate our approach we take Eclipse\footnote{http://www.eclipse.org/eclipse} as a case study. \EC is a large open source software project with numerous active developers.
+To evaluate our approach we take Eclipse as a case study. \EC is a large open source software project with numerous active developers.
 \EC has been developed over several years now. Therefore, its version repository contains a great deal of source code developed by many different authors.
 % a lot of source code of different authors can be obtained from its versioning system CVS.
 Furthermore, \EC uses Bugzilla as its bug tracking system, storing \BRs dating back to nearly the beginning of the project.
@@ -496,7 +495,7 @@ Our case study covers the Eclipse project between April 22, 2001, and November 9
 
 \subsection{Setup of the Case Study}
 
-The setup of the Eclipse case study consists of two different parts. The first part is about the change database, here we use all changes before the actual bug report. The second part is about the bug database, here we make 10 partitions of which two are used in this case study. We process and evaluate  both parts in weekly iterations as follows:
+The setup of the Eclipse case study consists of two different parts. The first part is about the change database, where we use all changes before the actual bug report. The second part is about the bug database, where we make 10 partitions of which two are used in this case study. We process and evaluate  both parts in weekly iterations as follows:
 \begin{itemize}
 \item We create a \DEVLECT expertise model based on contributions between April 22, 2001, and the last day of the previous week.
 \item We generate a suggested list of the top-10 experts for all bug reports submitted in the current week.
@@ -505,7 +504,7 @@ The setup of the Eclipse case study consists of two different parts. The first p
 
 For example, for a bug report submitted on May 21, 2005, we would train our system with all commits between April 22, 2001 and May 15, 2005, and then evaluate the list of suggested experts against the set of developers who, between May 23, 2005, and November 9, 2008, eventually handled the bug report.
 
-We use systematic sampling to create 10 partitions of 13,077 bug reports (ordered by time) that span the entire time of the project. One partition is used as \trainingset for the development of our approach, and another partition is used as \validationset to validate our approach. We applied the approach to the \validationset only after all implementation details and all calibration parameters had been finally decided on. The other partitions remain untouched for use as \validationset in future work.
+We use systematic sampling to create 10 partitions of 13,077 bug reports (ordered by time) that span the entire time of the project. One partition is used as \trainingset for the development of our approach, and another partition is used as \validationset to validate our approach. We applied the approach to the \validationset only after all implementation details and all calibration parameters had been finally decided on. The other partitions remain untouched for use as validation sets in future work.
 
 In this section, we report on our results obtained on the validation partition \#2. In \autoref{sec:discussion} we report on results obtained from the training partition \#1 while calibrating the approach.
 
@@ -539,7 +538,7 @@ In this section, we report on our results obtained on the validation partition \
 
 \subsection{Precision and Recall}
 
-We evaluate our approach by comparing the suggested list of experts with the developers who eventually worked on the bug report. We report on precision and recall for different sizes of suggested lists, between $k = 1$ and $k = 10$. Comparing our results to the persons who eventually worked on the bug is not optimal. For example, the person could have been assigned to the bug report by some factor other than expertise. Obtaining a better list of experts requires manual interrogation of the development team.
+We evaluate our approach by comparing the suggested list of experts with the developers who eventually worked on the bug report. We report on precision and recall for different sizes of suggested lists, between $k = 1$ and $k = 10$. Comparing our results to the persons who eventually worked on the bug is not optimal. For example, the person could have been assigned to the bug report by some factor other than expertise. Obtaining a better list of experts requires personal interrogation of the development team.
 
 Precision is the percentage of suggested developers who actually worked on the bug report. Recall is the percentage of developers who worked on the bug who were actually suggested. It is typical for Information Retrieval approaches that there is a trade-off between precision and recall.
 
@@ -556,7 +555,8 @@ Please refer to \autoref{sec:discussion} for further discussion of the above con
 \subsection{Results}\label{therealthing}
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{fig/devlect-test-set}
+	\center
+    \includegraphics[width=0.61\linewidth]{fig/devlect-test-set}
     \caption{Recall and precision of the Eclipse case study: configuration C1 scores best with $33.6\%$ top-1 precision and $71.0\%$ top-10 recall.}
     \label{fig:eclipse}
 \end{figure} 
@@ -573,9 +573,9 @@ In this section, we first discuss the calibration of our approach and then cover
 
 Compared to related work, an advantage of our approach is that we do not require a record of previous \BRs. We are able to recommend developers who did not work on bugs previously. For example, we do not require that developers have worked on at least 10 resolved bug reports. On the other hand, our approach requires at least a half to one year of versioning history in order to suggest developers. 
 
-One obvious threat to validity is the quality of our evaluation benchmark. We compare our suggested list against the developers who eventually worked on the bug report and assume that these are the top experts. For example, the bug report could have been assigned to a developer by some factor other than expertise. This threat is hard to counter. A better list of experts can be obtained by manual interrogation of the development team, but even this is not a golden oracle.
+One obvious threat to validity is the quality of our evaluation benchmark. We compare our suggested list against the developers who eventually worked on the bug report and assume that these are the top experts. For example, the bug report could have been assigned to a developer by some factor other than expertise. This threat is hard to counter. A better list of experts can be obtained by personal interrogation of the development team, but even this is not a golden oracle.
 
-Another threat to validity is that we use all long descriptions, including comments, of a bug report as information source. This may include discussions that happened after the bug has been eventually assigned or fixed, information which is not actually available when doing initial bug triage. This might impact the performance of our approach. 
+Another threat to validity is that we use all long descriptions, including comments, of a bug report as information sources. This may include discussions that happened after the bug has been eventually assigned or fixed, information which is not actually available when doing initial bug triage. This might impact the performance of our approach. 
 
 
 \begin{figure*}
@@ -693,9 +693,9 @@ We are thus in good shape to further improve our results by using a copy pattern
 	{Episodic (established through social and historical information)}
 	{Name of an open-source project}
 
-Searching for code examples or libraries on the internet is a common code orientation task. Developers do use code search engines to discover source code that they need in order to answer a technical question, such as implementing a given functionality. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet. Other than internal sources, code examples taken from external source are possibly written by an untrusted author.
+Searching for code examples or libraries on the internet is a common code orientation task. Developers do use code search engines to discover source code that they need in order to answer a technical question, such as implementing a given functionality. In interviews with developers, we have found that credibility is one of the major issues when copying source code from an external and thus untrusted source such as the internet. Other than internal sources, code examples taken from external sources are possibly written by an untrusted author.
 
-We found that developer follow-up social clues rather than technical issues in order to asses the trustworthiness of code search results. On a second thought, this is not surprising: when developers copy-paste code, they do because they either do not have the time or do not have the expertise to technically understand the problem, thus assessing trustworthiness based on social clues as a pragmatic alternative---given the assumption that more trustworthy developers do write more trustworthy source code. For example, we have found that developers are more likely to assess a search result as trustworthy if it has been written by an author they do know or by an author that belongs to a company or to an open source project that they do value for its credibility. Automating this process may help the reduce the time and effort that developers have to spend on following-up social clues related to code search results.
+We found that developers follow up social clues rather than technical issues in order to assess the trustworthiness of code search results. This is not surprising: when developers copy-paste code, they do so because they either do not have the time or do not have the expertise to technically understand the problem, thus assessing trustworthiness based on social clues as a pragmatic alternative---given the assumption that more trustworthy developers do write more trustworthy source code. For example, we have found that developers are more likely to assess a search result as trustworthy if it has been written by an author they know or by an author who belongs to a company or to an open source project that they value for its credibility. Automating this process may help reduce the time and effort that developers have to spend on following-up social clues related to code search results.
 
 \asteriskasteriskasterisk
 
@@ -705,7 +705,7 @@ In this chapter, we introduce a \emph{credibility metric} to help users assess t
 %
 We present \Jbd, a proof-of-concept code search engine which implements our credibility metric and we discuss preliminary results from an evaluation of the prototype.
 
-Code search engines help developers to find and reuse software. However, to support search-driven development it is not sufficient to implement a mere full text search over a base of source code, human factors have to be taken into account as well. At last year's SUITE workshop \cite{Kuhn09a}, \emph{suitability} and \emph{credibility} have been major issues in search-driven development, besides---of course---relevance of search results.  
+Code search engines help developers to find and reuse software. However, to support search-driven development it is not sufficient to implement a mere full text search over a base of source code, human factors have to be taken into account as well. At the SUITE 2009 workshop \cite{Kuhn09a}, \emph{suitability} and \emph{credibility} (sometimes also referred to as \emph{trustability}) have been major issues in search-driven development, besides---of course---relevance of search results.  
 
 In this chapter we focus on the \emph{credibility} of search results. Relevance of code search results is of course paramount, but credibility in the results is just as important. Before integrating a search result the developer has to assess its trustworthiness to take a go-or-no-go decision. A well-designed search interface allows its users to take this decision on the spot. Gallardo-Valencia \etal found that developers often look into human rather than technical factors to assess the credibility of search results \cite{Gall09a}. For example developers will prefer results from well-known open source projects over results from less popular projects.
 
@@ -722,10 +722,10 @@ Contributions of this chapter are as follows.
 % =====================================================================
 \begin{figure}
   \centering
-    \includegraphics[width=\linewidth]{fig/bender-architecture-diagram}
+    \includegraphics[width=0.8\linewidth]{fig/bender-architecture-diagram}
     \caption{
     {\small
-    Architecture of the \Jbd prototype. \Jbd enhances search results from source code with a credibility estimate that is based on social data collect from the Ohloh Web 2.0 website.
+    Architecture of the \Jbd prototype. \Jbd enhances search results from source code with a credibility estimate that is based on social data collected from the Ohloh Web 2.0 website.
     }
     }
     \label{fig:archi}
@@ -754,7 +754,7 @@ To assess the credibility of code search results we combine traditional full tex
 \item A vector $V = (v_p)$ with user votes for software projects to signal the users' trust in projects. Gallardo-Valencia \etal refer to user votes as ``fellow users'' \cite{Gall09a}.
 \end{itemize}
 
-We use collaborative filtering of both user votes and cross-project activity of developers. For example, if a little-known project is written by developers who have also contributed to a popular open source project, the little-known project is considered to be as trustable as the popular project. Since both the number of contributions per contributor and the number of votes per project follow a power-law distribution, we use \emph{log} weighting and \emph{tf-idf}\footnote{``term frequency-inverse document frequency'' \url{http://en.wikipedia.org/wiki/Tf-idf}} weighting where applicable. 
+We use collaborative filtering of both user votes and cross-project activity of developers. For example, if a little-known project is written by developers who have also contributed to a popular open source project, the little-known project is considered to be as trustable as the popular project. Since both the number of contributions per contributor and the number of votes per project follow a power-law distribution, we use \emph{log} weighting and \emph{tf-idf} \cite{Baez99b} weighting where applicable. 
 
 First we define the \emph{karma} of a contributor as
 
@@ -774,7 +774,7 @@ Based on this, credibility of a project is defined as
 
 \noindent
 which represents the sum of the karma of all the projects contributors, weighted by the number of their contributions.
-Note that we divide project credibility by the total number of contributions, but not contributor karma. This is on purpose, contributors are more trustable the more they commit (based on the assumption that all accepted commits require approval of a trusted core developer, as is common in many open source projects) but projects are not per se more trustable the larger they are.
+Note that we divide project credibility by the total number of contributions, but not contributor karma. This is on purpose, contributors are assumed to be more trustable the more they commit (based on the assumption that all accepted commits require approval of a trusted core developer, as is common in many open source projects) but projects are not per se more trustable the larger they are.
 
 To summarize, we consider a project to be trustable if there are significant contributions by contributors who have also significantly contributed to projects (including the project in question) that have received a high number of user votes.
 
@@ -786,7 +786,7 @@ The proposed definition of credibility is dominated by cross-project contributor
 
 We have developed a prototype, called \Jbd, which enriches code search results with credibility information. To add to the information content of search results we combine two main sources to form the \Jbd code search engine. On the one hand there is the actual code base of the search engine over which an index is created. On the other hand we have created a database of metadata for the projects in the code base. 
 
-\autoref{fig:archi} illustrates the architecture of \Jbd. \Jbd creates a searchable index over the code base and provides a code search over it. Its novelty however lies in the underlying metadata which is linked to the projects in the searchable code base - upon finding results from the latter \Jbd can supply the meta information stored for the result's originating project.
+\autoref{fig:archi} illustrates the architecture of \Jbd. \Jbd creates a searchable index over the code base and provides a code search over it. Its novelty however lies in the underlying metadata which is linked to the projects in the searchable code base. Upon finding results from the latter \Jbd can supply the meta information stored for the result's originating project.
 
 
 \begin{figure*}
@@ -839,15 +839,14 @@ Top ten results for A) project ranking by Ohloh, B) karma of developers, C) proj
 \subsection{JBender's Metadatabase}
 Our source of meta data is the \textsc{Ohloh}\footnote{\url{http://www.ohloh.net}} project. Ohloh is a social networking platform for open source software projects where projects (or rather their developers) can specify additional information. However Ohloh does not allow users to actually search through or interact with the source code: Ohloh is not a code search engine. Ohloh provides user contributed information on both open source projects and their developers, composing valuable information for search users. Users can vote for both projects and developers whether and how much they like them by rating projects and giving kudos to certain developers. Furthermore kudos are (automatically) given to developers who have worked for successful projects, i.e. projects with large user bases. 
 
-For the \Jbd prototype we collected the credibility meta-information from Ohloh, which is a social web platform for open source projects that provides user contributed information on both open source projects and their developers.
-
+For the \Jbd prototype we collected the credibility meta-information from Ohloh.
 Metadata stored in the database includes (among others): Description of original project, project homepage, rating of the project, list of current repositories (type, url, last time of update, ...), licenses of files in the project (exact type of license, number of files), employed programming languages (percentage of total, lines of code, comment ratio, ...), the project's users and developers who worked on the project (kudos, experience, commits per project, ...).
 
 \subsection{JBender's Codebase}
-In addition to the collected metadata, \Jbd also follows the links to the version control repositories that are listed on Ohloh, creates local copies of these repositories and parses the code in Java projects to build an search index over them.
+In addition to the collected metadata, \Jbd also follows the links to the version control repositories that are listed on Ohloh, creates local copies of these repositories and parses the code in Java projects to build a search index over them.
 \Jbd then provides a basic structured code search over various parts of the indexed source code. Examples are method/class names and their bodies, comments, visibility, dependencies and implemented interfaces.
 
-\subsection{credibility enhanced results}
+\subsection{Credibility enhanced results}
 
 The following data from Ohloh was directly used for the credibility metric: As contributors we used the developers of the projects and as the number of contributions we used the number of commits. As user votes we used the number of developers who ``stacked'' a project, which is Ohloh's terminology for claiming to be an active user of a project.\footnote{That is, we interpret ``votes'' as a user expressing his trust in a project by using it.} Thus in our case, both users and contributors are open source developers. To be a user the developers must be registered on Ohloh.  This is not necessary for being a contributor, since that information is taken from version control systems.
 
@@ -872,7 +871,7 @@ At the moment project credibility ranges from zero to about 52, developer karma 
 The Ohloh website provides its own measurement of developer ``karma'', called \emph{kudo-rank}. Kudo-ranks are based on a mix of user votes for projects and of user votes for developers, called \emph{kudos}. User participation for kudos is very low and as a consequence a small clique of developers can vote themselves up to top ranks. Therefore, we decided against including kudo-ranks in our credibility function.
 
 \paragraph{Possible weakness of karma ranking}
-One must consider that developers may not use the same user names for all their commits through various repository systems. In such a case Ohloh can not auotmatically collect all the developers commits into one account; the developer would have to register and do this manually. Furthermore we blacklist commit bots. Finally the karma value could be tampered with deliberately if a user was to do a huge number of (small) commits to few highly ranked projects.
+One must consider that developers may not use the same user names for all their commits through various repository systems. In such a case Ohloh cannot automatically collect all the developer's commits into one account; the developer would have to register and do this manually. Furthermore we blacklist commit bots. Finally the karma value could be tampered with deliberately if a user was to do a huge number of (small) commits to few highly ranked projects.
 
 %\section{Conclusion}
 %\label{sec:conclusion}
