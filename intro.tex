@@ -19,7 +19,8 @@ Examples of code orientation by these clues are:
 
 %Tool support for \codenavigation, however, is typically limited to keyword-based text file processing and hyperlinking of code elements. 
 
-In our research, we are interested in how to support software engineers when they are facing technical questions that involve code navigation and code understanding. We investigated how software engineers find answers to technical questions in order to learn about their \codenavigation strategies (\autoref{the chapter on the MSR user study}). We found that the way towards an answer is typically split into two parts. 1) In a first part, developers aim to turn their fuzzy initial clue into a concrete textual clue, for example by running a series of web searches and inspecting the results. Developers particularly struggle to resolve social, episodic and spatial clues during the first part. 2) In a second part, they use that newly found textual clue to query resources on the internet or in local documentation. This two-step procedure might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow up, or it might be a general problem-solution strategy. In either case, developers need better tool support to follow up non-textual clues such as social, episodic and spatial clues.
+In our research, we are interested in how to support software engineers when they are facing technical questions that involve code navigation and code understanding. We investigated how software engineers find answers to technical questions in order to learn about their \codenavigation strategies (\autoref{the chapter on the MSR user study}). 
+We found that the way towards an answer is typically split into two parts. In a first part, developers aim to turn their fuzzy initial clue into a concrete textual clue, for example by running a series of web searches and inspecting the results. Developers particularly struggle to resolve social, episodic and spatial clues during the first part. In a second part, they use that newly found textual clue to query resources on the internet or in local documentation. This two-step procedure might be an artifact of current tool limitations, that is developers aim to find a lexical clue first because other clues are harder to follow up, or it might be a general problem-solution strategy. In either case, developers need better tool support to follow up non-textual clues such as social, episodic and spatial clues.
 
 Among the code orientation strategies used by developers, spatial clues stand out for not having a first-class representation in the ecosystem of source code. 
 %Textual clues have a representation in identifiers found in source code or to terms used in comments and documentation. Social clues are connected to coworkers and experts from a developer's network. Episodic clues are often related to events that have been recorded in the version control system and in mailing list archives. 
@@ -275,6 +276,13 @@ Current tool support for code orientation by spatial clues is \adhoc at best, mo
     \label{fig/intro-pipeline}
 \end{figure*}
 
+\begin{figure}
+\begin{center}
+  \includegraphics[width=\linewidth]{fig/intro-codemap-example}
+\end{center}
+    \caption{\emph{Thematic codemap of a software system, here the \Codemap tool itself is shown. Arrow edges show outgoing calls from the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus marked with a speech-balloon label.}}
+    \label{fig/intro-codemap-example}
+\end{figure}
 
 The general approach of \SOCA, as illustrated in \autoref{fig/intro-pipeline}, is as follows:
 \begin{enumerate}
@@ -298,15 +306,6 @@ We implemented the approach in \Codemap, a prototype plug-in for \eclipse that i
 
 \item Exploring a system during reverse engineering. \Codemap is integrated with \eclipse's structural navigation features, such as search for callers, implementers, and references. Arrows are shown for search results. We apply the \textsc{Flow Map} algorithm \cite{Phan05a} to  avoid visual clutter by merging parallel arrow edges. \autoref{fig/intro-codemap-example} shows the result of searching for calls to the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class.
 \end{itemize}
-
-\begin{figure}
-\begin{center}
-  \includegraphics[width=0.75\linewidth]{fig/intro-codemap-example}
-\end{center}
-    \caption{\emph{Thematic codemap of a software system, here the \Codemap tool itself is shown. Arrow edges show outgoing calls from the {\tt \#getSettingOrDefault} method in the {\tt MenuAction} class, which is currently active in the editor and thus marked with a speech-balloon label.}}
-    \label{fig/intro-codemap-example}
-\end{figure}
-
 
 %%%%%%%%%% Section 1.5
 %%%%%%%%%%
