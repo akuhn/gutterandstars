@@ -176,7 +176,7 @@ D(H_n,H_m) := \sum_{n \in H_n} min^2 \{ \vert m -n \vert : m \in H_m \}
 \delta(H_a,H_b) := max \{ D(H_a,H_b), D(H_b,H_a) \}
 \]
 
-With this metric we can order the files according to the result of a hierarchical clustering algorithm \cite{Jain99a}. From this algorithm a dendrogram \todo{explain!} can be built: this is a hierarchical tree with clusters as its nodes and the files as its leaves. Traversing this tree and collecting its leaves yields an ordering that places files with similar histories near each other and files with dissimilar histories far apart of each other.
+With this metric we can order the files according to the result of a hierarchical clustering algorithm \cite{Jain99a}. From this algorithm a dendrogram can be built: this is a hierarchical tree with clusters as its nodes and the files as its leaves. Traversing this tree and collecting its leaves yields an ordering that places files with similar histories near each other and files with dissimilar histories far apart of each other.
 
 The file axis of the \omap views shown in this chapter are ordered with \textit{average linkage} clustering and \textit{larger-clusters-first} tree traversal. Nevertheless, our tool Chronia allows customization of the ordering.
 
@@ -319,7 +319,7 @@ First, we aim to provide a solution that gives fast results; \eg building the \o
 
 Second, it is much easier to get access to closed source case studies from industry, when only metainformation is required and not the source code itself. We consider this an advantage of our approach.
 
-\textbf{On the shortcomings of CVS as a versioning system.} As CVS lacks support for true file renaming or moving, this information is not recoverable without time consuming calculations. To move a file, one must remove it and add it later under another name. Our approach identifies the author doing the renaming as the new owner of the file, where in truth she only did rename it. For that reason, renaming directories impacts the computation of code ownership in a way not desired. \todo{say something about git and subversion here}
+\textbf{On the shortcomings of CVS as a versioning system.} As CVS lacks support for true file renaming or moving, this information is not recoverable without time consuming calculations. To move a file, one must remove it and add it later under another name. Our approach identifies the author doing the renaming as the new owner of the file, where in truth she only did rename it. For that reason, renaming directories impacts the computation of code ownership in a way not desired. More recent version control system such as Subversion and Git do not have  those limitations \cite{citeulike:5416084}.
 
 \textbf{On the perspective of interpreting the \omap.} In our visualization we sought answers to questions regarding the developers and their behaviors. We analyzed the files from an author perspective, and not from a file perspective. Thus the \omap tells the story of the developers and not of the files \eg concerning small commits: subsequent commits by a different author to one file do not show up as a hotspot, while a commit by one author across multiple files does. A pattern that we termed \textit{Edit}.
 
@@ -377,7 +377,7 @@ Our approach differs in that we train our recommendations system with all source
 
 In this chapter, we propose an expertise model based on source code contributions and apply in it a recommendation system that assigns developers to bug reports. We compare \VOC found in the \verb$diff$s of a developer's contributions with the vocabulary found in the description of a bug report. We then recommend developers whose contribution vocabulary is lexically similar to the vocabulary of the \BR.
 
-We implemented our approach as a prototype called \DEVLECT\footnote{\DEVLECT is open source, written in Smalltalk, and available at \url{http://smallwiki.unibe.ch/develect} \todo{fix url}. The name \emph{develect} is a portmanteau word of \emph{developer} and \emph{dialect}. }, and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
+We implemented our approach as a prototype called \DEVLECT and evaluate the recommendation system using the Eclipse project as a case study. We develop and calibrate our approach on a \trainingset of bug reports. Then we report the results of evaluating it on a set of reports of the remaining case study.
 
 The contributions of this chapter are as follows:
 \begin{itemize}
@@ -448,8 +448,6 @@ is applied to remove the grammatical suffix of words.
 
 The comment message associated with a revision is processed in the same way, and added to the expertise model of the contributing developer as well. 
 %This is done on a per file basis: the comment message of a commit including many files is weighted higher than the comment message of a single file commit.
-
-%\todo{Add conclusional paragraph which sums up this subsection}
 
 \subsection{Modeling the Expertise of Developers as a Term-Author-Matrix}
 

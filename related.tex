@@ -46,7 +46,7 @@ Storey, Fracchia and M\"uller \cite{Stor99a} propose a series of cognitive featu
 
 The list of tools features as proposed by Storey \etal is based on program comprehension models taken from theoretical literature on program comprehension models.
 %
-The bottom-up program comprehension model by Shneiderman and Pennignton proposes that understanding is built by reading source code and then mentally chunking  or grouping those statements into higher-level abstractions \cite{Shne80a,Penn87a}. \todo{fix penn87a}
+The bottom-up program comprehension model by Shneiderman and Pennington proposes that understanding is built by reading source code and then mentally chunking  or grouping those statements into higher-level abstractions \cite{Shne80a,Penn87b}. 
 %
 The top-down program comprehension model by Brooks, Soloway and Ehrlich proposes that developers understand a complete program by reconstructing knowledge about the domain of the program and mapping that to the actual code \cite{Broo83b, Solo86a}. 
 % 
@@ -58,7 +58,7 @@ Von Mayrhauser and Vans synthesize Soloway's top-down model with Pennignton's mo
 
 Common to all these comprehension models is that they consider program comprehensions as a task performed by single engineers who are typically considered to be new to a system, rather than as a collaborative activity of engineers that have knowledge both about the parts of the system they own as well as knowledge about who owns other parts of the system. Social and episodic clues are thus typically not included in these theoretical models.
 
-When this research was published internet-scale search has not been available to developers. As we show in our user study in \autoref{the chapter on the MSR user study} the internet has since become the prime source of answers for developers when they are lost in third-party code. Theories such as Pirolli's \emph{information foraging} theory \cite{Piro95a,Piro09a} might thus be more appropriate to model the program comprehension strategies of today's software engineers. \todo{explain information foraging} Also, to our best knowledge, there is no empirical research on generational differences in software engineering, except a brief discussion in Andrew Hunt's ``Pragmatic Thinking and Learning'' \cite{Hunt08a}. There might be generational differences that impact the application of findings from eighties on today's generation of software engineers in particular given the adoption of agile methodologies by the younger generation.
+When this research was published internet-scale search has not been available to developers. As we show in our user study in \autoref{the chapter on the MSR user study} the internet has since become the prime source of answers for developers when they are lost in third-party code. Theories such as Pirolli's \emph{information foraging} theory \cite{Piro95a,Piro09a} might thus be more appropriate to model the program comprehension strategies of today's software engineers. \on{explain information foraging} Also, to our best knowledge, there is no empirical research on generational differences in software engineering, except a brief discussion in Andrew Hunt's ``Pragmatic Thinking and Learning'' \cite{Hunt08a}. There might be generational differences that impact the application of findings from eighties on today's generation of software engineers in particular given the adoption of agile methodologies by the younger generation.
 
 \section{Lexical Information}
 
@@ -162,12 +162,11 @@ Canfora and Cerulo \cite{Canf05a} propose an Information Retrieval technique to 
 Similar to our work, Di Lucca \etal use Information Retrieval approaches to classify maintenance requests \cite{Lucc02b}. They train a classifier on previously assigned bug reports, which is then used to classify incoming bug reports. They evaluate different classifiers, one of them being a term-documents matrix using cosine similarity. However, this matrix is used to model the vocabulary of previous bug reports and not the vocabulary of developers.
 
 Anvik and Murphy evaluate approaches that mine implementation expertise from a software repository or from \BRs~\cite{Anvik07}. Both approaches are used to recommend experts for a \BR. For the approach that gathers information from the software repository, a linkage between similar reports and source code elements is required. For the approach that mines the reports itself, amongst others, the commenters of the reports (if they are developers) are estimated as possible experts. Both approaches disregard inactive developers. Both recommendation sets are then compared to human generated expert sets for the \BR.
-%\todo{write more, write results, compare to our results}
+%\matter{write more, write results, compare to our results}
 
 Minto and Murphy's Emergent Expertise Locator (EEL)~\cite{Minto07} recommends a ranked list of experts for a set of files of interest. The expertise is calculated based on how many times which files have been changed together and how many times which author has changed what file. They validate their approach by comparing recommended experts for files changed for a bug fix with the developers commenting on the bug report, assuming that they ``either have expertise in this area or gain expertise through the discussion"~\cite{Minto07}.
-%\todo{I guess the next cite is not really related...}\cite{Sand04xMSR}.
 
-%\todo{Explain why we didn't use ten-fold cross validation which is normally commonly used (see also \cite{Anvi06a}) }
+%\matter{Explain why we didn't use ten-fold cross validation which is normally commonly used (see also \cite{Anvi06a}) }
 
 %We are not the first to apply an author-topic model \cite{Linstead07, Bald08a}. Linstead \etal showed promising results in applying author-topic models on Eclipse and Baldi \etal applied topic models to mine aspects.
 %%They extract the words contained in the source code files to generate a word-document matrix. An additional author-document matrix is generated from a bug database where information about developers changing specific source files can be found. 
