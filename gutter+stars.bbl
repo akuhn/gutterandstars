@@ -28,7 +28,7 @@ Nicolas Anquetil and Timothy Lethbridge.
 
 \bibitem{Anslow08OOPSLA}
 Craig Anslow, James Noble, Stuart Marshall, and Ewan Tempero.
-\newblock Visualizing the word structure of java class names.
+\newblock Visualizing the word structure of {Java} class names.
 \newblock In {\em OOPSLA Companion '08: Companion to the 23rd ACM SIGPLAN
   conference on Object-oriented programming systems languages and
   applications}, pages 777--778, New York, NY, USA, 2008. ACM.
@@ -182,6 +182,12 @@ Ted~J. Biggerstaff, Bharat~G. Mittbander, and Dallas Webster.
 \newblock The concept assignment problem in program understanding.
 \newblock In {\em Proceedings of the 15th international conference on Software
   Engineering (ICSE 1993)}. IEEE Computer, 1993.
+
+\bibitem{citeulike:5416084}
+C.~Bird, P.~C. Rigby, E.~T. Barr, D.~J. Hamilton, D.~M. German, and P.~Devanbu.
+\newblock The promises and perils of mining git.
+\newblock In {\em Mining Software Repositories, 2009. MSR '09. 6th IEEE
+  International Working Conference on}, pages 1--10, 2009.
 
 \bibitem{Bohn07a}
 Johannes Bohnet and Jurgen Dollner.
@@ -1058,10 +1064,10 @@ Mariam Sensalire, Patrick Ogao, and Alexandru Telea.
   visualization}, pages 87--90, New York, NY, USA, 2008. ACM.
 
 \bibitem{Shne80a}
-Ben Shneiderman.
-\newblock {\em {Software psychology : human factors in computer and information
-  systems}}.
-\newblock Winthrop computer systems series. Winthrop Publishers, 1980.
+Shneiderman.
+\newblock {\em Software Psychology: Human Factors in Computer and Information
+  Systems}.
+\newblock Winthrop Publishers, 1980.
 
 \bibitem{Sill06a}
 Jonathan Sillito, Gail~C. Murphy, and Kris De~Volder.

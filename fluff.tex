@@ -59,7 +59,7 @@ The contributions of the chapter are:
 
 This section introduces a measurement to characterize the code ownership. The assumption is that the original developer of a line of code is the most knowledgeable in that line of code. Based on this assumption, we determine the owner of a piece of code as being the developer who owns the most lines  of that piece of code.
 
-Our approach is based on incremental line change information taken from the log files of the version control system. We approximate the ownership of files from this information. An advantage of this approach is that we can work with the log files only and do not need to retrieve the entire version history. Other than more modern systems like Git and Subversion, the CVS protocol does not provide an easy way to mirror an entire repository \cite{PromisesAndPerilsOfGIT}.  
+Our approach is based on incremental line change information taken from the log files of the version control system. We approximate the ownership of files from this information. An advantage of this approach is that we can work with the log files only and do not need to retrieve the entire version history. Other than more modern systems like Git and Subversion, the CVS protocol does not provide an easy way to mirror an entire repository \cite{citeulike:5416084}.  
 
 Below we present a snippet from a CVS log. The log lists for each version $f_n$ of a file, termed revision in CVS, the time $t_{f_n}$ of its commit, the name of its author $\alpha_{f_n}$, some state information and finally the number of added and removed lines as deltas $a_{f_n}$ and $r_{f_n}$. We use these numbers to recover both the file size $s_{f_n}$, and the code ownership $own_{f_n}^\alpha$.
 
