@@ -567,12 +567,6 @@ Raphael Hoffmann, James Fogarty, and Daniel~S. Weld.
   interface for programmers.
 \newblock In {\em UIST 2007}, pages 13--22, 2007.
 
-\bibitem{Holm09a}
-R.~Holmes.
-\newblock Do developers search for source code examples using multiple facts?
-\newblock In {\em Search-Driven Development-Users, Infrastructure, Tools and
-  Evaluation, 2009. SUITE '09. ICSE Workshop on}, pages 13--16, 2009.
-
 \bibitem{Holmes2005}
 R.~Holmes and G.~C. Murphy.
 \newblock Using structural context to recommend source code examples.
@@ -965,11 +959,11 @@ David~S. Pattison, Christian~A. Bird, and Premkumar~T. Devanbu.
   conference on Mining software repositories}, pages 113--116, New York, NY,
   USA, 2008. ACM.
 
-\bibitem{Penn87a}
-D.~Jason Penney and Jacob Stein.
-\newblock Class modification in the gemstone object-oriented {DBMS}.
-\newblock In {\em Proceedings OOPSLA '87, ACM SIGPLAN Notices}, volume~22,
-  pages 111--117, December 1987.
+\bibitem{Penn87b}
+Nancy Pennington.
+\newblock Stimulus structures and mental representations in expert
+  comprehension of computer programs.
+\newblock {\em Cognitive Psychology}, 19:295--341, 1987.
 
 \bibitem{Phan05a}
 Doantam Phan, Ling Xiao, Ron~B. Yeh, Pat Hanrahan, and Terry Winograd.
@@ -1095,11 +1089,11 @@ E.~Soloway and K.~Ehrlich.
 \newblock {\em Readings in artificial intelligence and software engineering},
   pages 507--521, 1986.
 
-\bibitem{Stei10a}
-Frank Steinbr\"uckner.
-\newblock Layout stability of software cities.
-\newblock
-  \url{http://seal.ifi.uzh.ch/uploads/media/16\_frank\_steinbrueckner.pdf}.
+\bibitem{Stei10b}
+Frank Steinbr\"{u}ckner and Claus Lewerentz.
+\newblock Representing development history in software cities.
+\newblock In {\em Proceedings of the 5th international symposium on Software
+  visualization}, SOFTVIS '10, pages 193--202, New York, NY, USA, 2010. ACM.
 
 \bibitem{Stor99a}
 Margaret-Anne~D. Storey, F.~David Fracchia, and Hausi~A. M\"uller.
