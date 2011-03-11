@@ -118,22 +118,6 @@ Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
   Object-oriented programming systems languages and applications}, pages
   543--562, New York, NY, USA, 2008. ACM.
 
-\bibitem{Pali08a}
-Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
-  Bajracharya.
-\newblock A theory of aspects as latent topics.
-\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
-  Object-oriented programming systems languages and applications}, pages
-  543--562, New York, NY, USA, 2008. ACM.
-
-\bibitem{Baldi08OOPSLA}
-Pierre~F. Baldi, Cristina~V. Lopes, Erik~J. Linstead, and Sushil~K.
-  Bajracharya.
-\newblock A theory of aspects as latent topics.
-\newblock In {\em OOPSLA '08: Proceedings of the 23rd ACM SIGPLAN conference on
-  Object-oriented programming systems languages and applications}, pages
-  543--562, New York, NY, USA, 2008. ACM.
-
 \bibitem{Ball96a}
 Timothy Ball and Stephen Eick.
 \newblock Software visualization in the large.
@@ -786,14 +770,6 @@ Thomas~D. LaToza, Gina Venolia, and Robert DeLine.
 \newblock In {\em ICSE '06: Proceedings of the 28th international conference on
   Software engineering}, pages 492--501, New York, NY, USA, 2006. ACM.
 
-\bibitem{Lemo07a}
-Ot\'{a}vio Augusto~Lazzarini Lemos, Sushil~K. Bajracharya, Joel Ossher,
-  Ricardo~S. Morla, Paulo~C. Masiero, Pierre Baldi, and Cristina~V. Lopes.
-\newblock Codegenie: using test-cases to search and reuse source code.
-\newblock In {\em ASE '07: Proceedings of the twenty-second IEEE/ACM
-  international conference on Automated software engineering}, pages 525--526,
-  New York, NY, USA, 2007. ACM.
-
 \bibitem{Leto86a}
 S.~Letovsky and E.~Soloway.
 \newblock Delocalized plans and program comprehension.
@@ -1218,11 +1194,6 @@ A.~von Mayrhauser and A.~M. Vans.
 Colin Ware.
 \newblock {\em Information Visualization}.
 \newblock Morgan Kaufmann, 2000.
-
-\bibitem{Ware04a}
-Colin Ware.
-\newblock {\em Information Visualisation}.
-\newblock Elsevier, Sansome Street, San Fransico, 2004.
 
 \bibitem{Wett07b}
 Richard Wettel and Michele Lanza.

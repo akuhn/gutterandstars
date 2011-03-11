@@ -1,5 +1,8 @@
 %!TEX root = gutter+stars.tex
 %%%
+%\usepackage[draft]{graphicx}
+\usepackage{graphicx}
+
 \usepackage{xspace}
 \newcommand{\ie}{{that is}\xspace}
 \newcommand{\eg}{{for example}\xspace}
@@ -9,7 +12,7 @@
 %%%
 \usepackage{amsmath, amsthm, amssymb} 
 %\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
-\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor= blue,citecolor= blue,urlcolor=blue]{hyperref}
+\usepackage[pdftex,colorlinks=true,pdfstartview=FitV,linkcolor= blue,citecolor= blue,urlcolor=blue,backref]{hyperref}
 \renewcommand{\sectionautorefname}{Section}
 \renewcommand{\figureautorefname}{Figure}
 %%%
@@ -32,7 +35,7 @@
 \usepackage{ifthen}
 \usepackage{amssymb}
 \newboolean{showcomments}
-\setboolean{showcomments}{false} % toggle to show or hide comments
+\setboolean{showcomments}{true} % toggle to show or hide comments
 \ifthenelse{\boolean{showcomments}}
   {\newcommand{\note}[2]{
 	% \fbox{\bfseries\sffamily\scriptsize#1}
