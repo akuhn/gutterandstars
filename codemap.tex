@@ -405,7 +405,7 @@ One participant also provided us feedback comparing his experience with \Codemap
 
 In this section, we present an in-depth analysis of our observations, structured by triples of \emph{observation}, \emph{hypothesis}, and \emph{implication}. Implications are directed at improving the design and usability of spatial visualizations that are embedded in an IDE.
 % ---- ----- ----- ----- ----- ---- ---
-\paragraph{Observation 6.1: When thinking aloud, developers spoke of the system's architecture in spatial terms} 
+\paragraph{Observation 7.1: When thinking aloud, developers spoke of the system's architecture in spatial terms} 
 
 %\begin{figure}
 %\begin{center}
@@ -421,25 +421,25 @@ For example, participant~T located all utility packages in the upper left corner
 
 Students on the other hand made much fewer references to the system's architecture, both spatial as well as in general. They were typically reasoning about the system at the level of classes and source lines, rather than in architectural terms. The maps drawn by students in the wrap-up phase, however, showed similar spatial structure to those of the professionals. It remains thus open whether students established a genuine spatial model while working with the code (as we observed for professionals) or only because they were asked to draw the wrap-up maps.
 
-\paragraph{Hypothesis 6.1: Professional developers establish a spatial mental model of the system's architecture}
+\paragraph{Hypothesis 7.1: Professional developers establish a spatial mental model of the system's architecture}
 
 Based on above observations there is evidence to assume that professional developers establish a spatial mental model of the system's architecture as they work with code. Furthermore, they do so even without visual aids, since they use spatial terms and thinking even before being asked to draw a diagram of the system's architecture.
 
 %\ewe{A few more questions: do devs cluster the things in similar ways, but positions the clusters relatively to one other in a different way? Or is the clustering different among people? Is there a natural tendency to position clusters one way or the other, e.g. UI on the left, Data on the right, Utility at the bottom? If you can say something about that it would be great}
 
-\paragraph{Implication 6.1: Developers should be able to arrange the layout according to their mental model}
+\paragraph{Implication 7.1: Developers should be able to arrange the layout according to their mental model}
 
 This has implications on the design of a system's spatial visualization. Developers should be able to arrange the layout according to their mental model. Developers should be able to drag and move parts of the map around as they wish, rather than having to stick with the automatically established layout. Code Canvas \cite{Deli10a} and Code Bubbles \cite{Brag10b} both already address this implication. In those tools, the user may drag individual elements around and arrange them according to his mental model. 
 
 We observed that developers referred to architectural components, but not classes, in spatial terms. The needs of developers might thus be even better served by providing them more high-level means of arranging the map. Our next prototype will use \emph{anchored multidimensional scaling} such that developers may initialize the map to their mental model. Anchored MDS allows the developer to define anchors which influence the layout of the map \cite[Sec 4.4]{Buja08a}. Any software artifact can be used as an anchor (as long as we can compute a its distance to artifacts on the map), even for example external libraries. In this way, developers might \eg arrange the database layer in the south and the UI layer in the north using the respective libraries as anchors.
 
-\paragraph{Observation 6.2: Participants used Codemap to assess quantity and dispersion of search results and call graphs}
+\paragraph{Observation 7.2: Participants used Codemap to assess quantity and dispersion of search results and call graphs}
 
 The feature of Codemap that was used most often, by both professionals and students, was the illustration of search results and call graphs. Participants reported that they liked the search-result support of the map, explaining that it gives them much faster initial feedback than Eclipse's tabular presentation of search results. Many participants reported that it was \emph{``as if you could feel the search results,''} and that \emph{``you get an immediate estimate how much was found, whether it is all one place or scattered all over the place.''}
 
 \autoref{fig:fatarrow} illustrates one particular ``Aha moment'' as encountered by participant~T during task 4-b, \ie location of security features: Upon opening the call hierarchy, a huge call-arrow appeared on the map: indicating dozens of individual calls that connect the security-related archipelago in the south-west with the \texttt{TreeFactory} island in the east. Given the visual evidence of this arrow, the participant solved the task immediately without further investigation of the system.
 
-\paragraph{Hypothesis 6.2: Intuitive visualizations to show quantity and dispersion of search results (as well as call graphs) address an important need of developers}
+\paragraph{Hypothesis 7.2: Intuitive visualizations to show quantity and dispersion of search results (as well as call graphs) address an important need of developers}
 
 %\ewe{I would maybe generalize it and say: Intuitive visualization to show the quantity and dispersion.... I could imagine that the package explorer could be enriched with a smart way to show search result. E.g. packages with many hits would be red, while packages with few hits would be gray. Or a smart algorithm that would unfold the package to show the relevant class hierarchies. Or something else}
 
@@ -447,7 +447,7 @@ Given the above observation it seems clear that developers have urgent needs for
 
 Given the map's illustration of search results however, the behavior of both groups changed. Students dared to take quick decisions from a mere glance at the map, whereas professionals were more likely to inspect several results. One professional reported that he \emph{``inspected more results than usual, because the map shows them in their context and that this helps him to take a more informed choice on which results are worth inspection and which ones not.''}
 
-\paragraph{Implication 6.2: Tools should put search results into a meaningful context, so developers can take both quicker and better-informed decisions}
+\paragraph{Implication 7.2: Tools should put search results into a meaningful context, so developers can take both quicker and better-informed decisions}
 
 The need for better presentation of search results has implications beyond the design of spatial visualizations. Work on presentation of search results goes beyond spatial maps \cite{Hear09a}, for example results can be presented as a graph. Poshyvanyk and Marcus \cite{Posh07a} have taken one such approach (representing search results as a lattice) and applied it to source code search with promising results. 
 %\ewe{Can't agree more}
@@ -455,13 +455,13 @@ The need for better presentation of search results has implications beyond the d
 For our next prototype we plan to integrate search results into the package explorer view, just as is already done with compile errors (which are, from this point of view, just like the search results of a complex query that is run to find syntax errors). This planned feature addresses another implication of our study as well, as we have found that some developers establish a spatial memory of the package explorer view. It therefore makes sense to mark search results both on our map as well as in the explorer view. 
 %\ewe{Can't agree more}
 
-\paragraph{Observation 6.3/a: When interacting with the map, participants were attracted to isolated elements, rather than exploring clusters of closely related elements}
+\paragraph{Observation 7.3/a: When interacting with the map, participants were attracted to isolated elements, rather than exploring clusters of closely related elements}
  
 We found that participants are more likely to inspect easily discernible elements on the map. They are more likely to notice and interact with an isolated island rather than with elements that are part of a larger continent. Unfortunately, it is exactly dense and strongly correlated clusters that contain the most interesting parts of the system! When investigating this issue, participants answered that \emph{``those (isolated) elements looked more important as they visually stick out of the rest of the map.''} 
  
 Also, when working with another system that had (unlike the present study) a large cluster in the middle surrounded by archipelagos on the periphery, we found that users started their exploration with isolated hills in the periphery, only then working their way towards the more dense cluster in the middle. 
 
-\paragraph{Hypothesis 6.3/b: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
+\paragraph{Hypothesis 7.3/b: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
 
 Contrary to our assumptions, participants did not use the map to return to previously visited locations by recalling them from spatial memory. Some would use the map, but only for exposed classes that are easily recognizable and clickable. This observation is related to the previous one.
 
@@ -469,13 +469,13 @@ We found however some participants established a spatial memory of the package e
 
 Usability glitches will of course worsen the effect of (or might even be the main cause of) not using the map for navigation and revisiting classes. From this it follows that:
 
-\paragraph{Hypothesis 6.3: Developers avoided clusters of closely related elements because they are difficult to identify and select on the map}
+\paragraph{Hypothesis 7.3: Developers avoided clusters of closely related elements because they are difficult to identify and select on the map}
 
 All participants had difficulties to open files by clicking on the map. They had difficulties to select classes on the map when they are in a crowded cluster. They would click in the middle of a label, but often the labels are not centered, which is an unavoidable artifact of any labeling algorithm, and thus the clicks would open a different (unlabeled) class.
 
 Codemap does provide tooltips, however participants did not use them. From observing their work it was obvious why: both students and professionals were working at such a speed that waiting for a tooltip to appear would have totally taken them out of their workflow. 
 
-\paragraph{Implication 6.3: The map's layout should be such that all elements are easily discernable and easy to click}
+\paragraph{Implication 7.3: The map's layout should be such that all elements are easily discernable and easy to click}
 
 Real estate on a computer screen is limited, and even more so in an IDE with all its views and panels. As tool builders we have limited space available for an embedded visualization. Given our goal of establishing a global layout we face the challenge of having to visualize all elements of a system in that very limited space. 
 
@@ -487,32 +487,32 @@ For instance, a threshold could be used to not show isolated elements at all, bu
 
 %\ewe{I'm a bit puzzled with the formulation of 6.3. The fact that we are attracted by elements that visually detach from other has two impacts: (1) one is the we tend to look at isolated element of low significance, the other (2) that it's hard to identify elements in the cluster. Both are very different. The hypothesis  is more related to (1) while hypothesis and implication relates more to (2). The argumentation should be consolidated, IMHO. For instance, a threshold could be used to not show isolated elements at all, but only significant clusters. That would address (1), but not (2). Or the usage of colors, to display isolated element so that they don't attract our look }
 
-\paragraph{Observation 6.4: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
+\paragraph{Observation 7.4: Participants rarely used Codemap to return to previously visited locations, instead using package explorer and ``Open Type'' to do so}
  
-\paragraph{Hypothesis 6.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual cues}
+\paragraph{Hypothesis 7.4:  Developers failed to establish a spatial memory of the map not due to its layout but also due to missing visual cues}
 
 In general, the issue of usability is orthogonal to the map's layout. For example, offering ``search as you type'' might help to raise map interaction for those developers that mainly rely on lexical cues, no matter which base layout is used. It was our impression that any exploratory user study of embedded software visualization will be dominated just as by usability issues as by technical factors, such as your choice of layout algorithm. 
 
-\paragraph{Implication 6.4: It should be possible to bookmark classes as ``top landmarks,'' both manually and automatically based on usage statistics}
+\paragraph{Implication 7.4: It should be possible to bookmark classes as ``top landmarks,'' both manually and automatically based on usage statistics}
  
 What might help as well to ease the retrieval of previously visited classes is a ``top landmarks'' feature where you can manually (but also automatically based on visits) set markers on the map as starting points for further activities. We plan to work on this for our next prototype. 
 %\ewe{The apparent ability to remember position in the package explorer but not in the map may be due to other aspects. I'm wondering for instance if providing a grid in the map with row A-F, and column 0-16 would help to remember the position in the map. Maybe yes, maybe not. In the real-world analogy, maps have latitude and longitude. With never remember them, but help us to slice the map. We maybe need some rigidity to be able to anchor position in our mental model. The package explorer is too rigid, and the map is to flexible/free.} \ewe{All that to say that I don't quite get the link form observation 6.4 to implication 6.4}
 %
 %\ewe{Actually, I'm wondering if dropping 6.4 altogether wouldn't make the argumentation stronger. To me the main points are 6.1, 6.2, 6.3, 6.5}.
 
-\paragraph{Observation 6.5: Participants used Codemap as if its layout were based on package structure\,---\,even though they were aware of the underlying topic-based layout}
+\paragraph{Observation 7.5: Participants used Codemap as if its layout were based on package structure\,---\,even though they were aware of the underlying topic-based layout}
 
 Developers assume that packages are a valid decomposition of the system and expect that the layout of the spatial visualization corresponds to the package structure. We found that clustering classes by topic rather than packages violates the ``principle of least surprise.'' We observed that participants tended to interpret visual distance as a measure of structural dependencies\,---\,even though they were aware of the underlying lexical implementation!
  
 Participants expected the layout to reflect at least some structural property. Most of them reacted surprised or confused when for example the classes of a package were not mostly in the same place. For example, Participant~S reported in the wrap-up, \emph{``this is a very useful tool but the layout does not make sense".} Another participant stated during task 3 (\ie the architecture recovery) with confusion that \emph{``the classes contained in packages are scattered on the map, it is not obvious what their spatial connection is.''}
  
-\paragraph{Hypothesis 6.5: From the developers view, the predominant mental decomposition of a system is package structure}
+\paragraph{Hypothesis 7.5: From the developers view, the predominant mental decomposition of a system is package structure}
 
 Given the general stance of reverse engineering research \cite{Nier05c,Kuhn07a,Duca09c} we had come to distrust package decomposition, however it seems that developers like to rely on the packaging that other developers have made when designing the system.
 
 One problem raised by research in re-packaging legacy systems is that packages play too many roles: as distribution units, as units of namespacing, as  working sets, as topics, as unit of architectural components, etc. However, as an opposing point of view, we can relate packaging to the folksonomies of the Web 2.0, where users label elements with unstructured tags that are then exploited by other users to search for elements. In the same way, we could say that putting trust into a given package structure is a way of collaborative filtering. Developers assume that other developers had made the same choice as they would when packaging the system. 
 
-\paragraph{Implication 6.5: The map layout should be based on code structure rather than latent topics only. However, non-structural data should be used to enrich the layout}
+\paragraph{Implication 7.5: The map layout should be based on code structure rather than latent topics only. However, non-structural data should be used to enrich the layout}
 
 When running the user study, it became quickly apparent that we should revise our initial assumption that lexical similarity is a valid dissimilarity metric for the spatial layout. This was the strongest feedback, and as is often the case in exploratory user studies, already obvious from watching the first professional participant for five minutes only. From all participants we got the feedback that they expect the layout to be structural and that our clustering by topics kept surprising them even after working with the map for almost two hours.
  
